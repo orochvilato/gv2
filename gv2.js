@@ -1,30 +1,81 @@
+$(function() {
+  $('#f').on('load', iframeLoaded);
+  $('#f').attr('src','view.html');
+});
 var f = document.getElementById("f");
-function makeStyleProp(styles) {
-  prop = "";
-  for (var s in styles) {
-    if (s!="") prop += s+': '+styles[s]+'; ';
-  }
-  return prop;
+
+document.execCommand('insertBrOnReturn',false);
+function iframeLoaded() {
+  $('#f').contents().find('div.zone').keypress(function(e) {
+    var frame = $('#f')[0];
+    var fwindow = frame.contentWindow;
+    var fdocument = fwindow.document;
+    var fzone = e.target;
+    var charcode = e.charCode;
+
+    var char = String.fromCharCode(charcode);
+
+    if ($('#f')[0].contentWindow.getSelection) {
+      var selection = $('#f')[0].contentWindow.getSelection();
+      //range = selection.getRangeAt(0);
+      var eNode = selection.focusNode;
+      if ((eNode.nodeType==1) && (eNode.tagName!='SPAN')) {
+        $(eNode).html('');
+        var span = document.createElement('span');
+        span.innerHTML = char;
+        if ($(eNode).hasClass('zone')) {
+          var div = document.createElement('div');
+          div.appendChild(span);
+          eNode.appendChild(div);
+        } else {
+          console.log('add');
+          eNode.appendChild(span);
+        }
+        var range = fdocument.createRange();
+        var sel = fwindow.getSelection();
+        range.setStart(span.childNodes[0],1);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        e.preventDefault();
+      }
+    }
+  });
+
 }
-function getStyles(obj) {
-  if ($(obj).attr('style')==undefined) {
-    return {};
-  }
-var stylestemp = $(obj).attr('style').split(';');
-   var styles = {};
-   var c = '';
-   for (var x = 0, l = stylestemp.length; x < l; x++) {
-     c = stylestemp[x].split(':');
-     styles[$.trim(c[0])] = $.trim(c[1]);
-   }
-  return styles
-}
-function updateStyle(value,n,unit) {
-  return  (parseInt(value)+n)+unit;
-}
+
 $("#fm").click(function() {
   var sel = f.contentWindow.getSelection();
-  console.log(getSelectedNodes(),sel.anchorNode.parentNode,sel.focusNode.parentNode);
+  console.log(sel);
+  var startOffset = sel.anchorOffset;
+  var endOffset = sel.extentOffset;
+  var nodes = getSelectedNodes();
+  console.log(nodes);
+  defaults = { fontsize: 4};
+  if (nodes.length>1) {
+
+    // 1ere node
+    if (startOffset>0) {
+
+
+      var startnode = 1;
+    } else {
+      var startnode = 0;
+    }
+    // derniere node
+    if ($(nodes[nodes.length-1]).text().length == endOffset) {
+      var nbnodes = nodes.length;
+      console.log('bingo');
+    } else {
+      var nbnodes = nodes.length-1;
+    }
+
+    for(i=startnode;i<nbnodes;i++) {
+      var fontsize = parseInt($(nodes[i]).attr('fontsize'));
+      if (!fontsize) fontsize = defaults.fontsize;
+      $(nodes[i]).attr('fontsize',fontsize+1)
+    }
+  }
+
   return
 
 
@@ -134,16 +185,18 @@ function getRangeSelectedNodes(range) {
 
     // Iterate nodes until we hit the end container
     var rangeNodes = [];
-    while (node && node != endNode) {
-        rangeNodes.push( node = nextNode(node) );
+    while (node) {
+        if (((node.nodeType==3)&&(node.parentNode.tagName=='SPAN'))||((node.nodeType==1)&&(!$(node.parentNode).hasClass('zone')))) rangeNodes.push( node );
+        node = nextNode(node);
     }
 
+
     // Add partially selected nodes at the start of the range
-    node = range.startContainer;
-    while (node && node != range.commonAncestorContainer) {
-        rangeNodes.unshift(node);
-        node = node.parentNode;
-    }
+    //node = range.startContainer;
+    //while (node && node != range.commonAncestorContainer) {
+    //    rangeNodes.unshift(node);
+    //    node = node.parentNode;
+    //}
 
     return rangeNodes;
 }
