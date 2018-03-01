@@ -20,7 +20,7 @@ function iframeLoaded() {
       //range = selection.getRangeAt(0);
       var eNode = selection.focusNode;
       if ((eNode.nodeType==1) && (eNode.tagName!='SPAN')) {
-        $(eNode).html('');
+        if ($(eNode).html() == '<br>') $(eNode).html('');
         var span = document.createElement('span');
         span.innerHTML = char;
         if ($(eNode).hasClass('zone')) {
@@ -45,11 +45,37 @@ function iframeLoaded() {
 
 $("#fm").click(function() {
   var sel = f.contentWindow.getSelection();
-  console.log(sel);
+  var range = sel.getRangeAt(0);
+  console.log(range);
   var startOffset = sel.anchorOffset;
   var endOffset = sel.extentOffset;
   var nodes = getSelectedNodes();
+  var startNode = (range.startContainer.nodeType==3)? range.startContainer : range.startContainer.childNodes[range.startOffset] ;
+  var endNode = (range.endContainer.nodeType==3)? range.endContainer : range.endContainer.childNodes[range.endOffset] ;
+  var started = false;
+  for (i=0;i<nodes.length;i++) {
+    if (nodes[i] == startNode) {
+      started = true;
+      if ((nodes[i].nodeType==3)&&(nodes[i-1] != nodes[i])) {
+        if (range.startOffset>0) {
+          var span = document.createElement('span');
+          span.innerHTML = nodes[i].nodeValue.substr(0,range.startOffset);
+          nodes[i].nodeValue = nodes[i].nodeValue.substr(range.startOffset);
+          $(span).insertBefore(nodes[i].parentNode);
+          console.log('boom',range.startOffset);
+        }
+      }
+    }
+    if (nodes[i] == endNode) {
+      started = false;
+    }
+    if ((started == true) && (nodes[i-1] != nodes[i])) {
+
+      console.log(i,nodes[i]);
+    }
+  }
   console.log(nodes);
+  return
   defaults = { fontsize: 4};
   if (nodes.length>1) {
 
@@ -186,17 +212,18 @@ function getRangeSelectedNodes(range) {
     // Iterate nodes until we hit the end container
     var rangeNodes = [];
     while (node) {
-        if (((node.nodeType==3)&&(node.parentNode.tagName=='SPAN'))||((node.nodeType==1)&&(!$(node.parentNode).hasClass('zone')))) rangeNodes.push( node );
+        //if (((node.nodeType==3)&&(node.parentNode.tagName=='SPAN'))||((node.nodeType==1)&&(!$(node.parentNode).hasClass('zone'))))
+        rangeNodes.push( node );
         node = nextNode(node);
     }
 
 
     // Add partially selected nodes at the start of the range
-    //node = range.startContainer;
-    //while (node && node != range.commonAncestorContainer) {
-    //    rangeNodes.unshift(node);
-    //    node = node.parentNode;
-    //}
+    node = range.startContainer;
+    while (node && node != range.commonAncestorContainer) {
+        rangeNodes.unshift(node);
+        node = node.parentNode;
+    }
 
     return rangeNodes;
 }
