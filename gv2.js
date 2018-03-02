@@ -60,14 +60,24 @@ $("#fm").click(function() {
         if (range.startOffset>0) {
           var span = document.createElement('span');
           span.innerHTML = nodes[i].nodeValue.substr(0,range.startOffset);
-          nodes[i].nodeValue = nodes[i].nodeValue.substr(range.startOffset);
+          nodes[i].textContent = nodes[i].nodeValue.substr(range.startOffset);
           $(span).insertBefore(nodes[i].parentNode);
-          console.log('boom',range.startOffset);
+
         }
       }
     }
     if (nodes[i] == endNode) {
       started = false;
+      if (nodes[i].nodeType==3) {
+        if (range.endOffset<nodes[i].nodeValue.length) {
+          var span = document.createElement('span');
+          span.innerHTML = nodes[i].nodeValue.substr(range.endOffset);
+          nodes[i].nodeValue = nodes[i].nodeValue.substr(0,range.endOffset);
+          $(span).insertAfter(nodes[i].parentNode);
+          range.setEnd(span,0);
+
+        }
+      }
     }
     if ((started == true) && (nodes[i-1] != nodes[i])) {
 
