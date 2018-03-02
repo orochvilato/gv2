@@ -1,0 +1,422 @@
+*[fontsize="1"] {
+  font-size: 1vw;
+  height:1vw;
+}
+*[fontsize="2"] {
+  font-size: 2vw;
+  height:2vw;
+}
+*[fontsize="3"] {
+  font-size: 3vw;
+  height:3vw;
+}
+*[fontsize="4"] {
+  font-size: 4vw;
+  height:4vw;
+}
+*[fontsize="5"] {
+  font-size: 5vw;
+  height:5vw;
+}
+*[fontsize="6"] {
+  font-size: 6vw;
+  height:6vw;
+}
+*[fontsize="7"] {
+  font-size: 7vw;
+  height:7vw;
+}
+*[fontsize="8"] {
+  font-size: 8vw;
+  height:8vw;
+}
+*[fontsize="9"] {
+  font-size: 9vw;
+  height:9vw;
+}
+*[fontsize="10"] {
+  font-size: 10vw;
+  height:10vw;
+}
+*[fontsize="11"] {
+  font-size: 11vw;
+  height:11vw;
+}
+*[fontsize="12"] {
+  font-size: 12vw;
+  height:12vw;
+}
+*[fontsize="13"] {
+  font-size: 13vw;
+  height:13vw;
+}
+*[fontsize="14"] {
+  font-size: 14vw;
+  height:14vw;
+}
+*[fontsize="15"] {
+  font-size: 15vw;
+  height:15vw;
+}
+*[fontsize="16"] {
+  font-size: 16vw;
+  height:16vw;
+}
+*[fontsize="17"] {
+  font-size: 17vw;
+  height:17vw;
+}
+*[fontsize="18"] {
+  font-size: 18vw;
+  height:18vw;
+}
+*[fontsize="19"] {
+  font-size: 19vw;
+  height:19vw;
+}
+*[fontsize="20"] {
+  font-size: 20vw;
+  height:20vw;
+}
+*[fontsize="21"] {
+  font-size: 21vw;
+  height:21vw;
+}
+*[fontsize="22"] {
+  font-size: 22vw;
+  height:22vw;
+}
+*[fontsize="23"] {
+  font-size: 23vw;
+  height:23vw;
+}
+*[fontsize="24"] {
+  font-size: 24vw;
+  height:24vw;
+}
+*[fontsize="25"] {
+  font-size: 25vw;
+  height:25vw;
+}
+*[fontsize="26"] {
+  font-size: 26vw;
+  height:26vw;
+}
+*[fontsize="27"] {
+  font-size: 27vw;
+  height:27vw;
+}
+*[fontsize="28"] {
+  font-size: 28vw;
+  height:28vw;
+}
+*[fontsize="29"] {
+  font-size: 29vw;
+  height:29vw;
+}
+*[fontsize="30"] {
+  font-size: 30vw;
+  height:30vw;
+}
+*[fontweight="1"] {
+  font-weight:100;
+}
+*[fontweight="2"] {
+  font-weight:200;
+}
+*[fontweight="3"] {
+  font-weight:300;
+}
+*[fontweight="4"] {
+  font-weight:400;
+}
+*[fontweight="5"] {
+  font-weight:500;
+}
+*[fontweight="6"] {
+  font-weight:600;
+}
+*[fontweight="7"] {
+  font-weight:700;
+}
+*[fontweight="8"] {
+  font-weight:800;
+}
+*[fontweight="9"] {
+  font-weight:900;
+}
+
+*[color="1"] {
+  color:#000;
+}
+*[color="2"] {
+  color:#fff;
+}
+*[color="3"] {
+  color:#777;
+}
+*[bgcolor="0"] {
+  background-color: unset;
+}
+*[bgcolor="1"] {
+  background-color:#000;
+}
+*[bgcolor="2"] {
+  background-color:#fff;
+}
+*[bgcolor="3"] {
+  background-color:#777;
+}
+
+
+*[marginleft="0"] {
+  margin-left: 0vw;
+}
+*[marginleft="1"] {
+  margin-left: 1vw;
+}
+*[marginleft="2"] {
+  margin-left: 2vw;
+}
+*[marginleft="3"] {
+  margin-left: 3vw;
+}
+*[marginleft="4"] {
+  margin-left: 4vw;
+}
+*[marginleft="5"] {
+  margin-left: 5vw;
+}
+*[marginleft="6"] {
+  margin-left: 6vw;
+}
+*[marginleft="7"] {
+  margin-left: 7vw;
+}
+*[marginleft="8"] {
+  margin-left: 8vw;
+}
+*[marginleft="9"] {
+  margin-left: 9vw;
+}
+*[marginleft="10"] {
+  margin-left: 10vw;
+}
+*[marginleft="11"] {
+  margin-left: 11vw;
+}
+*[marginleft="12"] {
+  margin-left: 12vw;
+}
+*[marginleft="13"] {
+  margin-left: 13vw;
+}
+*[marginleft="14"] {
+  margin-left: 14vw;
+}
+*[marginleft="15"] {
+  margin-left: 15vw;
+}
+*[marginleft="16"] {
+  margin-left: 16vw;
+}
+*[marginleft="17"] {
+  margin-left: 17vw;
+}
+*[marginleft="18"] {
+  margin-left: 18vw;
+}
+*[marginleft="19"] {
+  margin-left: 19vw;
+}
+*[marginleft="20"] {
+  margin-left: 20vw;
+}
+
+*[marginleft="-1"] {
+  margin-left: -1vw;
+}
+*[marginleft="-2"] {
+  margin-left: -2vw;
+}
+*[marginleft="-3"] {
+  margin-left: -3vw;
+}
+*[marginleft="-4"] {
+  margin-left: -4vw;
+}
+*[marginleft="-5"] {
+  margin-left: -5vw;
+}
+*[marginleft="-6"] {
+  margin-left: -6vw;
+}
+*[marginleft="-7"] {
+  margin-left: -7vw;
+}
+*[marginleft="-8"] {
+  margin-left: -8vw;
+}
+*[marginleft="-9"] {
+  margin-left: -9vw;
+}
+*[marginleft="-10"] {
+  margin-left: -10vw;
+}
+*[marginleft="-11"] {
+  margin-left: -11vw;
+}
+*[marginleft="-12"] {
+  margin-left: -12vw;
+}
+*[marginleft="-13"] {
+  margin-left: -13vw;
+}
+*[marginleft="-14"] {
+  margin-left: -14vw;
+}
+*[marginleft="-15"] {
+  margin-left: -15vw;
+}
+*[marginleft="-16"] {
+  margin-left: -16vw;
+}
+*[marginleft="-17"] {
+  margin-left: -17vw;
+}
+*[marginleft="-18"] {
+  margin-left: -18vw;
+}
+*[marginleft="-19"] {
+  margin-left: -19vw;
+}
+*[marginleft="-20"] {
+  margin-left: -20vw;
+}
+
+*[margintop="0"] {
+  margin-top: 0vw;
+}
+*[margintop="1"] {
+  margin-top: 1vw;
+}
+*[margintop="2"] {
+  margin-top: 2vw;
+}
+*[margintop="3"] {
+  margin-top: 3vw;
+}
+*[margintop="4"] {
+  margin-top: 4vw;
+}
+*[margintop="5"] {
+  margin-top: 5vw;
+}
+*[margintop="6"] {
+  margin-top: 6vw;
+}
+*[margintop="7"] {
+  margin-top: 7vw;
+}
+*[margintop="8"] {
+  margin-top: 8vw;
+}
+*[margintop="9"] {
+  margin-top: 9vw;
+}
+*[margintop="10"] {
+  margin-top: 10vw;
+}
+*[margintop="11"] {
+  margin-top: 11vw;
+}
+*[margintop="12"] {
+  margin-top: 12vw;
+}
+*[margintop="13"] {
+  margin-top: 13vw;
+}
+*[margintop="14"] {
+  margin-top: 14vw;
+}
+*[margintop="15"] {
+  margin-top: 15vw;
+}
+*[margintop="16"] {
+  margin-top: 16vw;
+}
+*[margintop="17"] {
+  margin-top: 17vw;
+}
+*[margintop="18"] {
+  margin-top: 18vw;
+}
+*[margintop="19"] {
+  margin-top: 19vw;
+}
+*[margintop="20"] {
+  margin-top: 20vw;
+}
+
+*[margintop="-1"] {
+  margin-top: -1vw;
+}
+*[margintop="-2"] {
+  margin-top: -2vw;
+}
+*[margintop="-3"] {
+  margin-top: -3vw;
+}
+*[margintop="-4"] {
+  margin-top: -4vw;
+}
+*[margintop="-5"] {
+  margin-top: -5vw;
+}
+
+*[align="center"] {
+  text-align: center;
+}
+*[align="left"] {
+  text-align: left;
+}
+*[align="right"] {
+  text-align: right;
+}
+*[align="justify"] {
+  text-align: justify;
+}
+
+
+
+/* Spécifique */
+*[fontfamily="1"] {
+  font-family: "Montserrat", sans-serif;
+}
+*[fontfamily="2"] {
+  font-family: "Roboto Slab", serif;
+}
+*[fontfamily="3"] {
+  font-family: "Courgette", serif;
+}
+
+
+*[color="4"] {
+  color:#1f3356;
+}
+*[color="5"] {
+  color:#0098b6;
+}
+*[color="6"] {
+  color:#e23d22;
+}
+
+*[bgcolor="4"] {
+  background-color:#1f3356;
+}
+*[bgcolor="5"] {
+  background-color:#0098b6;
+}
+*[bgcolor="6"] {
+  background-color:#e23d22;
+}

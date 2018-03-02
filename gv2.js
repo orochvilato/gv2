@@ -1,3 +1,11 @@
+var attrRanges = { fontsize:[1,30],
+                    fontweight:[1,9],
+                    fontfamily:[1,3],
+                    color:[1,6],
+                    bgcolor:[0,6],
+                    marginleft:[-20,20],
+                    margintop:[-5,20]}
+
 $(function() {
   $('#f').on('load', iframeLoaded);
   $('#f').attr('src','view.html');
@@ -13,6 +21,10 @@ function iframeLoaded() {
     var fdocument = fwindow.document;
     var fzone = e.target;
     var charcode = e.charCode;
+
+    if (charcode==13) {
+      return
+    }
 
     var char = String.fromCharCode(charcode);
 
@@ -43,9 +55,46 @@ function iframeLoaded() {
   });
 
 }
+function getDefaults(node) {
+  return { fontsize: 4, fontweight: 4, color:1, bgcolor:0, marginleft:0, margintop:0 };
+}
+function applyFormat(node,attr,fct,value)
+{
+  var defaults = getDefaults(node);
 
-$("#fm").click(function() {
-  var defaults = { fontsize: 4};
+  if ((fct=='increase')||fct=='decrease') {
+    var attrval = parseInt($(node).attr(attr));
+    if ((!attrval)||isNaN(attrval)) attrval = defaults[attr];
+
+    var newval = attrval + (fct=='increase'?1:-1)
+    if (newval<attrRanges[attr][0] || newval>attrRanges[attr][1]) return;
+  } else if (fct=='set') {
+    var newval = value;
+  }
+  $(node).attr(attr,newval);
+}
+
+function lineAction(attr,fct,value,multiline) {
+  var sel = f.contentWindow.getSelection();
+  if (!multiline && (!sel.anchorNode || (sel.anchorNode != sel.focusNode)||(sel.anchorOffset != sel.focusOffset))) {
+    return
+  }
+  if (multiline && (!sel.anchorNode || (sel.anchorNode != sel.focusNode)||(sel.anchorOffset != sel.focusOffset))) {
+    var nodes = getSelectedNodes();
+    for (i=0;i<nodes.length;i++) {
+      if (nodes[i].tagName=='DIV') {
+        applyFormat(nodes[i],attr,fct,value)
+      }
+    }
+  } else {
+    div = $(sel.anchorNode).closest('div');
+    applyFormat(div[0],attr,fct,value)
+  }
+}
+
+function rangeFormat(attr,fct,value)
+{
+
   var targets = Array('SPAN','IMG');
   var sel = f.contentWindow.getSelection();
   var range = sel.getRangeAt(0);
@@ -53,6 +102,7 @@ $("#fm").click(function() {
   var startOffset = sel.anchorOffset;
   var endOffset = sel.extentOffset;
   var nodes = getSelectedNodes();
+  console.log(nodes);
   var startNode = (range.startContainer.nodeType==3)? range.startContainer : range.startContainer.childNodes[range.startOffset] ;
   var endNode = (range.endContainer.nodeType==3)? range.endContainer : range.endContainer.childNodes[range.endOffset] ;
   var started = false;
@@ -78,9 +128,7 @@ $("#fm").click(function() {
     }
     // faire une fonction
     if (targets.includes(node.tagName)) {
-      var fontsize = parseInt($(node).attr('fontsize'));
-      if (!fontsize) fontsize = defaults.fontsize;
-      $(node).attr('fontsize',fontsize+1);
+      applyFormat(node,attr,fct,value)
     }
   } else {
     for (i=0;i<nodes.length;i++) {
@@ -96,10 +144,10 @@ $("#fm").click(function() {
         }
       }
       if (nodes[i] == endNode) {
-        started = false;
         if (nodes[i].nodeType==3) {
           if ((range.endOffset<nodes[i].nodeValue.length) && (range.endOffset>0)) {
             var span = nodes[i].parentNode.cloneNode(false); //document.createElement('span');
+            console.log('clone',span);
             span.innerHTML = nodes[i].nodeValue.substr(range.endOffset);
             nodes[i].nodeValue = nodes[i].nodeValue.substr(0,range.endOffset);
             $(span).insertAfter(nodes[i].parentNode);
@@ -108,130 +156,81 @@ $("#fm").click(function() {
         }
       }
       if ((started == true) && (nodes[i-1] != nodes[i])) {
+        if (nodes[i] == endNode) started = false;
         if (nodes[i].nodeType==3)  {
           var node=nodes[i].parentNode;
         } else {
           var node=nodes[i];
         }
+
         if (targets.includes(node.tagName)) {
-          var fontsize = parseInt($(node).attr('fontsize'));
-          if (!fontsize) fontsize = defaults.fontsize;
-          $(node).attr('fontsize',fontsize+1)
+          console.log(node);
+          applyFormat(node,attr,fct,value)
         }
         //console.log(i,nodes[i]);
       }
     }
   }
+}
+$("#right").click(function() {
+  lineAction('marginleft','increase',1);
+});
+$("#left").click(function() {
+  lineAction('marginleft','decrease',1);
+});
+$("#down").click(function() {
+  lineAction('margintop','increase',1);
+});
+$("#up").click(function() {
+  lineAction('margintop','decrease',1);
+});
+$("#al").click(function() {
+  lineAction('align','set','left',multiline=true);
+});
+$("#ar").click(function() {
+  lineAction('align','set','right',multiline=true);
+});
+$("#ac").click(function() {
+  lineAction('align','set','center',multiline=true);
+});
+$("#aj").click(function() {
+  lineAction('align','set','justify',multiline=true);
+});
 
-
-
-  return
-
-  if (nodes.length>1) {
-
-    // 1ere node
-    if (startOffset>0) {
-      var startnode = 1;
-    } else {
-      var startnode = 0;
-    }
-    // derniere node
-    if ($(nodes[nodes.length-1]).text().length == endOffset) {
-      var nbnodes = nodes.length;
-      console.log('bingo');
-    } else {
-      var nbnodes = nodes.length-1;
-    }
-
-    for(i=startnode;i<nbnodes;i++) {
-      var fontsize = parseInt($(nodes[i]).attr('fontsize'));
-      if (!fontsize) fontsize = defaults.fontsize;
-      $(nodes[i]).attr('fontsize',fontsize+1)
-    }
-  }
-
-  return
-
-
-  var zone = $(start).closest('div.zone');
-  var zoneStyles = getStyles(zone);
-  var parentStyles;
-
-  //var end = f.focusNode;
-  var current = start;
-  while (current) {
-    var parent = sel.anchorNode.parentNode;
-    if ($(parent).attr('style') == undefined) {
-      parentStyles = zoneStyles;
-    } else {
-      parentStyles = getStyles(parent);
-    }
-    if (current.nodeType == 3) { // #text
-        span = document.createElement('span');
-        if (current == start) {
-          $(span).text(current.nodeValue.substr(sel.anchorOffset))
-                 .css('font-size', updateStyle(parentStyles['font-size'],1,'vw'));
-          var partxt = sel.anchorNode.data;
-
-          sel.anchorNode.data =  partxt.substr(0,sel.anchorOffset);
-          if (parent.tagName == 'DIV') {
-             $(sel.anchorNode.nextSibling).before(span);
-          } else {
-             $(sel.anchorNode.parentNode).after(span);
-          }
-          var range = sel.getRangeAt(0);
-          range.setStart(span,0);
-        }
-    } else if ( current.nodeType == 1) {
-      if (current==end) {
-          var partxt = sel.focusNode.data;
-          console.log(partxt);
-
-          $(span).text(partxt.substr(0,sel.focusOffset))
-                 .css('font-size', updateStyle(parentStyles['font-size'],1,'vw'));
-
-
-          sel.focusNode.data =  partxt.substr(sel.focusOffset);
-          if (parent.tagName == 'DIV') {
-             $(sel.focusNode.previousSibling).after(span);
-          } else {
-             $(sel.focusNode.parentNode).before(span);
-          }
-          //var range = sel.getRangeAt(0);
-          //range.setEnd(span,0);
-        } else {
-      var nodeStyles = getStyles(current);
-      var size = (nodeStyles['font-size'] != undefined)?nodeStyles['font-size']:parentStyles['font-size'];
-      $(current).css('font-size',updateStyle(size,1,'vw'));
-        }
-    }
-    console.log(current,end,current.nodeType,current.nodeValue,current.innerText);
-    current = current.nextSibling;
-  }
-
+$("#fm").click(function() {
+  rangeFormat('fontsize','decrease',1);
 });
 $("#fp").click(function() {
-  $.each(getSelectedNodes(),function () { if (this.tagName == 'SPAN') {
-
-   var styles = getStyles(this);
-    styles['font-size'] = (parseInt(styles['font-size'])+1)+'vw';
-   console.log(makeStyleProp(styles)); $(this).attr('style',makeStyleProp(styles));
-  }
-
-  });
-  });
-  var execFontSize = function (size, unit) {
-    var spanString = $('<span/>', {
-        'text': f.contentWindow.getSelection()
-    }).css('font-size', size + unit).prop('outerHTML');
-
-console.log(f.contentWindow.document);   f.contentWindow.document.execCommand('insertHTML', false, spanString);
-};
-$('#test').click(function () {
-
-
-  execFontSize('10','vw');
+  rangeFormat('fontsize','increase',1);
 });
+$("#gm").click(function() {
+  rangeFormat('fontweight','decrease',1);
+});
+$("#gp").click(function() {
+  rangeFormat('fontweight','increase',1);
+});
+$("#f1").click(function() {
+  rangeFormat('fontfamily','set',1);
+});
+$("#f2").click(function() {
+  rangeFormat('fontfamily','set',2);
+});
+$("#f3").click(function() {
+  rangeFormat('fontfamily','set',3);
+});
+$("#cm").click(function() {
+  rangeFormat('color','decrease',1);
+});
+$("#cp").click(function() {
+  rangeFormat('color','increase',1);
+});
+$("#bcm").click(function() {
+  rangeFormat('bgcolor','decrease',1);
+});
+$("#bcp").click(function() {
+  rangeFormat('bgcolor','increase',1);
+});
+
 
 
 function nextNode(node) {
@@ -251,7 +250,8 @@ function nextNode(node) {
 function getRangeSelectedNodes(range) {
     var node = range.startContainer;
     var endNode = range.endContainer;
-
+    var parents = $(endNode).parents();
+    console.log(endNode,$(endNode).parents());
     // Special case for a range that is contained within a single node
     if (node == endNode) {
         return [node];
@@ -261,7 +261,7 @@ function getRangeSelectedNodes(range) {
     var rangeNodes = [];
     while (node) {
         //if (((node.nodeType==3)&&(node.parentNode.tagName=='SPAN'))||((node.nodeType==1)&&(!$(node.parentNode).hasClass('zone'))))
-        rangeNodes.push( node );
+        if ($(node).find(endNode).length==0 || node==endNode) rangeNodes.push( node );
         node = nextNode(node);
     }
 
