@@ -7,6 +7,7 @@ var f = document.getElementById("f");
 document.execCommand('insertBrOnReturn',false);
 function iframeLoaded() {
   $('#f').contents().find('div.zone').keypress(function(e) {
+
     var frame = $('#f')[0];
     var fwindow = frame.contentWindow;
     var fdocument = fwindow.document;
@@ -44,55 +45,92 @@ function iframeLoaded() {
 }
 
 $("#fm").click(function() {
+  var defaults = { fontsize: 4};
+  var targets = Array('SPAN','IMG');
   var sel = f.contentWindow.getSelection();
   var range = sel.getRangeAt(0);
-  console.log(range);
+
   var startOffset = sel.anchorOffset;
   var endOffset = sel.extentOffset;
   var nodes = getSelectedNodes();
   var startNode = (range.startContainer.nodeType==3)? range.startContainer : range.startContainer.childNodes[range.startOffset] ;
   var endNode = (range.endContainer.nodeType==3)? range.endContainer : range.endContainer.childNodes[range.endOffset] ;
   var started = false;
-  for (i=0;i<nodes.length;i++) {
-    if (nodes[i] == startNode) {
-      started = true;
-      if ((nodes[i].nodeType==3)&&(nodes[i-1] != nodes[i])) {
-        if (range.startOffset>0) {
-          var span = document.createElement('span');
-          span.innerHTML = nodes[i].nodeValue.substr(0,range.startOffset);
-          nodes[i].textContent = nodes[i].nodeValue.substr(range.startOffset);
-          $(span).insertBefore(nodes[i].parentNode);
 
+  if ((nodes.length == 1) && ((nodes[0].nodeType == 1)||(startOffset != endOffset))) {
+    if (nodes[0].nodeType == 3) {
+      if (startOffset>0) {
+        var spanbefore = nodes[0].parentNode.cloneNode(false);
+        spanbefore.innerHTML = nodes[0].nodeValue.substr(0,startOffset);
+        $(spanbefore).insertBefore(nodes[0].parentNode);
+      }
+      if (endOffset<nodes[0].nodeValue.length) {
+        var spanafter = nodes[0].parentNode.cloneNode(false);
+        spanafter.innerHTML = nodes[0].nodeValue.substr(endOffset);
+        $(spanafter).insertAfter(nodes[0].parentNode);
+      }
+      nodes[0].textContent = nodes[0].nodeValue.substr(range.startOffset,range.endOffset-range.startOffset);
+      range.setEnd(nodes[0],endOffset-startOffset);
+      range.setStart(nodes[0],0);
+      var node = nodes[0].parentNode;
+    } else {
+      var node = startNode;
+    }
+    // faire une fonction
+    if (targets.includes(node.tagName)) {
+      var fontsize = parseInt($(node).attr('fontsize'));
+      if (!fontsize) fontsize = defaults.fontsize;
+      $(node).attr('fontsize',fontsize+1);
+    }
+  } else {
+    for (i=0;i<nodes.length;i++) {
+      if (nodes[i] == startNode) {
+        started = true;
+        if ((nodes[i].nodeType==3)&&(nodes[i-1] != nodes[i])) {
+          if (range.startOffset>0) {
+            var span = nodes[i].parentNode.cloneNode(false); //document.createElement('span');
+            span.innerHTML = nodes[i].nodeValue.substr(0,range.startOffset);
+            nodes[i].textContent = nodes[i].nodeValue.substr(range.startOffset);
+            $(span).insertBefore(nodes[i].parentNode);
+          }
         }
       }
-    }
-    if (nodes[i] == endNode) {
-      started = false;
-      if (nodes[i].nodeType==3) {
-        if (range.endOffset<nodes[i].nodeValue.length) {
-          var span = document.createElement('span');
-          span.innerHTML = nodes[i].nodeValue.substr(range.endOffset);
-          nodes[i].nodeValue = nodes[i].nodeValue.substr(0,range.endOffset);
-          $(span).insertAfter(nodes[i].parentNode);
-          range.setEnd(span,0);
-
+      if (nodes[i] == endNode) {
+        started = false;
+        if (nodes[i].nodeType==3) {
+          if ((range.endOffset<nodes[i].nodeValue.length) && (range.endOffset>0)) {
+            var span = nodes[i].parentNode.cloneNode(false); //document.createElement('span');
+            span.innerHTML = nodes[i].nodeValue.substr(range.endOffset);
+            nodes[i].nodeValue = nodes[i].nodeValue.substr(0,range.endOffset);
+            $(span).insertAfter(nodes[i].parentNode);
+            range.setEnd(nodes[i],endOffset);
+          }
         }
       }
-    }
-    if ((started == true) && (nodes[i-1] != nodes[i])) {
-
-      console.log(i,nodes[i]);
+      if ((started == true) && (nodes[i-1] != nodes[i])) {
+        if (nodes[i].nodeType==3)  {
+          var node=nodes[i].parentNode;
+        } else {
+          var node=nodes[i];
+        }
+        if (targets.includes(node.tagName)) {
+          var fontsize = parseInt($(node).attr('fontsize'));
+          if (!fontsize) fontsize = defaults.fontsize;
+          $(node).attr('fontsize',fontsize+1)
+        }
+        //console.log(i,nodes[i]);
+      }
     }
   }
-  console.log(nodes);
+
+
+
   return
-  defaults = { fontsize: 4};
+
   if (nodes.length>1) {
 
     // 1ere node
     if (startOffset>0) {
-
-
       var startnode = 1;
     } else {
       var startnode = 0;
