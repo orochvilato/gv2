@@ -1,3 +1,76 @@
+@import url("https://fonts.googleapis.com/css?family=Courgette:100,200,300,400,500,600,700,800,900|Montserrat:100,200,300,400,500,600,700,800,900|Roboto+Slab:100,200,300,400,500,600,700,800,900");
+*[texttransform="none"] {
+   text-transform: none;
+}
+*[texttransform="uppercase"] {
+   text-transform: uppercase;
+}
+*[textdecoration="none"] {
+  text-decoration: none;
+}
+*[textdecoration="underline"] {
+  text-decoration: underline;
+}
+*[textdecoration="linethrough"] {
+  text-decoration: line-through;
+}
+*[fontstyle="normal"] {
+  font-style: normal;
+}
+*[fontstyle="italic"] {
+  font-style: italic;
+}
+
+*[lineheight="0"] {
+  line-height: 0;
+}
+*[lineheight="1"] {
+  line-height: 0.2;
+}
+*[lineheight="2"] {
+  line-height: 0.4;
+}
+*[lineheight="3"] {
+  line-height: 0.6;
+}
+*[lineheight="4"] {
+  line-height: 0.8;
+}
+*[lineheight="5"] {
+  line-height: 1;
+}
+*[lineheight="6"] {
+  line-height: 1.2;
+}
+*[lineheight="7"] {
+  line-height: 1.4;
+}
+*[lineheight="8"] {
+  line-height: 1.6;
+}
+*[lineheight="9"] {
+  line-height: 1.8;
+}
+*[lineheight="10"] {
+  line-height: 2;
+}
+*[lineheight="11"] {
+  line-height: 2.2;
+}
+*[lineheight="12"] {
+  line-height: 2.4;
+}
+*[lineheight="13"] {
+  line-height: 2.6;
+}
+*[lineheight="14"] {
+  line-height: 2.8;
+}
+*[lineheight="15"] {
+  line-height: 3;
+}
+
+
 *[fontsize="1"] {
   font-size: 1vw;
   height:1vw;

@@ -4,16 +4,92 @@ var attrRanges = { fontsize:[1,30],
                     color:[1,6],
                     bgcolor:[0,6],
                     marginleft:[-20,20],
-                    margintop:[-5,20]}
+                    margintop:[-5,20],
+                    lineheight:[0,15]}
+
+var attrDefaults = {
+  fontsize: 4,
+  fontweight: 4,
+  fontfamily: 1,
+  color:1,
+  bgcolor:0,
+  marginleft:0,
+  margintop:0,
+  lineheight:4,
+  align:'left',
+  textdecoration:'none',
+  fontstyle:'normal',
+  texttransform:'none'
+ };
+
+var historyIndex = 0;
 
 $(function() {
   $('#f').on('load', iframeLoaded);
   $('#f').attr('src','view.html');
+  initToolbox();
 });
 var f = document.getElementById("f");
+var frame = $('#f')[0];
+var fwindow = frame.contentWindow;
+var fdocument = fwindow.document;
+var selectionactive = false;
+function initToolbox() {
+  var fonts = getCharteFonts();
+  for(i=0;i<fonts.length;i++) {
+    $('<option value="'+(i+1)+'">'+fonts[i]+'</option>').appendTo('#police');
+  }
+  $('#police').change(function(e) {
+    console.log('change');
+  });
+
+
+
+}
+
+
+var actionHistory = Array();
+function addHistory(item) {
+  actionHistory = actionHistory.slice(0,historyIndex);
+  actionHistory.push(item);
+  historyIndex = actionHistory.length;
+}
 
 document.execCommand('insertBrOnReturn',false);
+function getCharteFonts() {
+  var fonts = Array();
+  var re = /([^",]+)/
+  for (i=1;i<4;i++) {
+    var div = document.createElement('div');
+    div.setAttribute('id','font1');
+    div.style='display:none';
+    div.setAttribute('fontfamily',i);
+    var textnode = document.createTextNode("font");
+    div.appendChild(textnode);
+    document.body.appendChild(div);
+    var font = $('#font1').css('font-family')
+    document.body.removeChild(div);
+    fonts.push(font.match(re)[0]);
+
+  }
+  return fonts;
+}
 function iframeLoaded() {
+
+  $('#f').contents().find('div.zone').mousedown(function(e) {
+    selectionactive = true;
+  });
+  $('#f').contents().find('div.zone').mouseup(function(e) {
+    if (selectionactive) { // selection effectuée dans une zone
+      if ($('#f')[0].contentWindow.getSelection) {
+        var selection = $('#f')[0].contentWindow.getSelection();
+        console.log(getCurrentAttrs(selection.getRangeAt(0).focusNode));
+      }
+    }
+    selectionactive = false;
+  });
+
+
   $('#f').contents().find('div.zone').keypress(function(e) {
 
     var frame = $('#f')[0];
@@ -21,6 +97,11 @@ function iframeLoaded() {
     var fdocument = fwindow.document;
     var fzone = e.target;
     var charcode = e.charCode;
+
+    // Historique
+    var changed = false;
+    var his_item = getHistoryItem(fzone);
+    addHistory(his_item);
 
     if (charcode==13) {
       return
@@ -41,7 +122,6 @@ function iframeLoaded() {
           div.appendChild(span);
           eNode.appendChild(div);
         } else {
-          console.log('add');
           eNode.appendChild(span);
         }
         var range = fdocument.createRange();
@@ -55,46 +135,70 @@ function iframeLoaded() {
   });
 
 }
-function getDefaults(node) {
-  return { fontsize: 4, fontweight: 4, color:1, bgcolor:0, marginleft:0, margintop:0 };
+function getCurrentAttrs(node) {
+  var defaults = {};
+  for (attr in attrDefaults) {
+    var n = node;
+    while (n && (defaults[attr]==undefined) ) {
+      defaults[attr] = $(n).attr(attr);
+      n = $(n).parent().get(0);
+
+    }
+    if (!n) {
+      defaults[attr] = attrDefaults[attr];
+    }
+  }
+
+  return defaults
 }
 function applyFormat(node,attr,fct,value)
 {
-  var defaults = getDefaults(node);
+  var nodeattr = getCurrentAttrs(node);
 
   if ((fct=='increase')||fct=='decrease') {
-    var attrval = parseInt($(node).attr(attr));
-    if ((!attrval)||isNaN(attrval)) attrval = defaults[attr];
-
+    var attrval = parseInt(nodeattr[attr]);
     var newval = attrval + (fct=='increase'?1:-1)
     if (newval<attrRanges[attr][0] || newval>attrRanges[attr][1]) return;
   } else if (fct=='set') {
     var newval = value;
   }
+
   $(node).attr(attr,newval);
 }
-
+function getHistoryItem(node) {
+  var zone = $(node).closest('div.zone');
+  return { zone:zone, content:zone.html()}
+}
 function lineAction(attr,fct,value,multiline) {
   var sel = f.contentWindow.getSelection();
-  if (!multiline && (!sel.anchorNode || (sel.anchorNode != sel.focusNode)||(sel.anchorOffset != sel.focusOffset))) {
-    return
-  }
-  if (multiline && (!sel.anchorNode || (sel.anchorNode != sel.focusNode)||(sel.anchorOffset != sel.focusOffset))) {
+  var changed = false;
+  var his_item = getHistoryItem(sel.anchorNode);
+//  if (!multiline && (!sel.anchorNode || ($(sel.anchorNode).closest('div') != $(sel.focusNode).closest('div')))) {
+//    console.log('nope');
+//    return
+  //}
+  if ($(sel.anchorNode).closest('div').get(0) != $(sel.focusNode).closest('div').get(0)) {
+    console.log($(sel.anchorNode).closest('div').get(0), $(sel.focusNode).closest('div').get(0));
     var nodes = getSelectedNodes();
-    for (i=0;i<nodes.length;i++) {
+    i=0;
+    while ((sel.focusNode != nodes[i])&&(i<nodes.length)) {
       if (nodes[i].tagName=='DIV') {
+        changed = true;
         applyFormat(nodes[i],attr,fct,value)
       }
+      i++;
     }
+    //applyFormat($(sel.focusNode).closest('div'),attr,fct,value);
   } else {
     div = $(sel.anchorNode).closest('div');
+    changed = true;
     applyFormat(div[0],attr,fct,value)
   }
+  if (changed) addHistory(his_item);
 }
 
 function rangeFormat(attr,fct,value)
 {
-
   var targets = Array('SPAN','IMG');
   var sel = f.contentWindow.getSelection();
   var range = sel.getRangeAt(0);
@@ -102,10 +206,15 @@ function rangeFormat(attr,fct,value)
   var startOffset = sel.anchorOffset;
   var endOffset = sel.extentOffset;
   var nodes = getSelectedNodes();
-  console.log(nodes);
   var startNode = (range.startContainer.nodeType==3)? range.startContainer : range.startContainer.childNodes[range.startOffset] ;
   var endNode = (range.endContainer.nodeType==3)? range.endContainer : range.endContainer.childNodes[range.endOffset] ;
   var started = false;
+
+  // Historique
+  var changed = false;
+  var his_item = getHistoryItem(sel.anchorNode);
+
+
 
   if ((nodes.length == 1) && ((nodes[0].nodeType == 1)||(startOffset != endOffset))) {
     if (nodes[0].nodeType == 3) {
@@ -128,6 +237,7 @@ function rangeFormat(attr,fct,value)
     }
     // faire une fonction
     if (targets.includes(node.tagName)) {
+      changed = true;
       applyFormat(node,attr,fct,value)
     }
   } else {
@@ -136,6 +246,7 @@ function rangeFormat(attr,fct,value)
         started = true;
         if ((nodes[i].nodeType==3)&&(nodes[i-1] != nodes[i])) {
           if (range.startOffset>0) {
+            changed = true;
             var span = nodes[i].parentNode.cloneNode(false); //document.createElement('span');
             span.innerHTML = nodes[i].nodeValue.substr(0,range.startOffset);
             nodes[i].textContent = nodes[i].nodeValue.substr(range.startOffset);
@@ -146,6 +257,7 @@ function rangeFormat(attr,fct,value)
       if (nodes[i] == endNode) {
         if (nodes[i].nodeType==3) {
           if ((range.endOffset<nodes[i].nodeValue.length) && (range.endOffset>0)) {
+            changed = true;
             var span = nodes[i].parentNode.cloneNode(false); //document.createElement('span');
             console.log('clone',span);
             span.innerHTML = nodes[i].nodeValue.substr(range.endOffset);
@@ -156,22 +268,47 @@ function rangeFormat(attr,fct,value)
         }
       }
       if ((started == true) && (nodes[i-1] != nodes[i])) {
-        if (nodes[i] == endNode) started = false;
-        if (nodes[i].nodeType==3)  {
-          var node=nodes[i].parentNode;
-        } else {
-          var node=nodes[i];
-        }
+        if ($(nodes[i]).find(endNode).length==0 || nodes[i]==endNode) {
+          if (nodes[i] == endNode) started = false;
+          if (nodes[i].nodeType==3)  {
+            var node=nodes[i].parentNode;
+          } else {
+            var node=nodes[i];
+          }
 
-        if (targets.includes(node.tagName)) {
-          console.log(node);
-          applyFormat(node,attr,fct,value)
+          if (targets.includes(node.tagName)) {
+            changed = true;
+            applyFormat(node,attr,fct,value)
+          }
         }
         //console.log(i,nodes[i]);
       }
     }
   }
+  if (changed) addHistory(his_item);
 }
+
+function backHistory() {
+  if (historyIndex>0) {
+    var item = actionHistory[historyIndex-1];
+    $(item.zone).html(item.content);
+    historyIndex--;
+  }
+}
+function forwardHistory() {
+  if (historyIndex<actionHistory.length) {
+    var item = actionHistory[historyIndex];
+    $(item.zone).html(item.content);
+    historyIndex++;
+  }
+}
+$("#bhis").click(function() {
+  backHistory();
+});
+$("#fhis").click(function() {
+  forwardHistory();
+});
+
 $("#right").click(function() {
   lineAction('marginleft','increase',1);
 });
@@ -185,16 +322,16 @@ $("#up").click(function() {
   lineAction('margintop','decrease',1);
 });
 $("#al").click(function() {
-  lineAction('align','set','left',multiline=true);
+  lineAction('align','set','left');
 });
 $("#ar").click(function() {
-  lineAction('align','set','right',multiline=true);
+  lineAction('align','set','right');
 });
 $("#ac").click(function() {
-  lineAction('align','set','center',multiline=true);
+  lineAction('align','set','center');
 });
 $("#aj").click(function() {
-  lineAction('align','set','justify',multiline=true);
+  lineAction('align','set','justify');
 });
 
 $("#fm").click(function() {
@@ -224,11 +361,34 @@ $("#cm").click(function() {
 $("#cp").click(function() {
   rangeFormat('color','increase',1);
 });
+$("#lhm").click(function() {
+  lineAction('lineheight','decrease',1);
+});
+$("#lhp").click(function() {
+  lineAction('lineheight','increase',1);
+});
 $("#bcm").click(function() {
   rangeFormat('bgcolor','decrease',1);
 });
 $("#bcp").click(function() {
   rangeFormat('bgcolor','increase',1);
+});
+$("#ita").click(function() {
+  rangeFormat('fontstyle','set','italic');
+});
+$("#nor").click(function() {
+  rangeFormat('fontstyle','set','normal');
+  rangeFormat('textdecoration','set','none');
+  rangeFormat('texttransform','set','none');
+});
+$("#sou").click(function() {
+  rangeFormat('textdecoration','set','underline');
+});
+$("#bar").click(function() {
+  rangeFormat('textdecoration','set','linethrough');
+});
+$("#maj").click(function() {
+  rangeFormat('texttransform','set','uppercase');
 });
 
 
@@ -261,7 +421,8 @@ function getRangeSelectedNodes(range) {
     var rangeNodes = [];
     while (node) {
         //if (((node.nodeType==3)&&(node.parentNode.tagName=='SPAN'))||((node.nodeType==1)&&(!$(node.parentNode).hasClass('zone'))))
-        if ($(node).find(endNode).length==0 || node==endNode) rangeNodes.push( node );
+        //if ($(node).find(endNode).length==0 || node==endNode)
+        rangeNodes.push( node );
         node = nextNode(node);
     }
 
