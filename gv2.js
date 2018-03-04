@@ -24,11 +24,31 @@ var attrDefaults = {
 
 var historyIndex = 0;
 
+
 $(function() {
   $('#f').on('load', iframeLoaded);
   $('#f').attr('src','view.html');
   initToolbox();
+
 });
+
+$('#zp').click(function() {
+  var ratio = getRatio('#f');
+  console.log(ratio);
+  $('#f').css('transform','scale('+(ratio+ratio/6)+')');
+  centerVisuel();
+});
+$('#zm').click(function() {
+  var ratio = getRatio('#f');
+  console.log(ratio);
+  $('#f').css('transform','scale('+(ratio-ratio/6)+')');
+  centerVisuel();
+});
+
+
+
+
+
 var f = document.getElementById("f");
 var frame = $('#f')[0];
 var fwindow = frame.contentWindow;
@@ -42,9 +62,6 @@ function initToolbox() {
   $('#police').change(function(e) {
     console.log('change');
   });
-
-
-
 }
 
 
@@ -74,7 +91,74 @@ function getCharteFonts() {
   }
   return fonts;
 }
+function getRatio(node) {
+  re = /matrix\(([0-9\.]+)/;
+  return parseFloat($(node).css('transform').match(re)[1]);
+}
+function centerVisuel() {
+  var ratio = getRatio('#f');
+  var areaWidth = $('.workarea').width();
+  var areaHeight = $('.workarea').height();
+  var fWidth = $('#f').contents().find('body').width()*ratio;
+  var fHeight = $('#f').contents().find('body').height()*ratio;
+
+  console.log(areaWidth,fWidth,areaHeight,fHeight);
+  var top = Math.min(50,Math.max((areaHeight-fHeight)/2,0));
+  var left = Math.max((areaWidth-fWidth)/2,0);
+  $('#f').css('top',top+'px');
+  $('#f').css('left',left+'px');
+}
+
 function iframeLoaded() {
+  centerVisuel();
+  $(".workarea").mousedown(function (e) {
+
+    var cX = e.pageX;
+    var cY = e.pageY;
+
+
+    $(this).css('cursor','move');
+    $(".workarea").mousemove(function (e) {
+      var area = $('.workarea').get(0);
+      var ratio = getRatio('#f');
+      panX = area.scrollLeft + (e.pageX-cX)*ratio;
+      panY = area.scrollTop + (e.pageY-cY)*ratio;
+
+      var maxScrollLeft = area.scrollWidth - area.clientWidth;
+      var maxScrollTop = area.scrollHeight - area.clientHeight;
+      panX = Math.max(0,Math.min(panX,maxScrollLeft))
+      panY = Math.max(0,Math.min(panY,maxScrollTop))
+      console.log(panX,panY);
+      area.scrollLeft = panX;
+      area.scrollTop = panY;
+      cX = e.pageX;
+      cY = e.pageY;
+      e.preventDefault();
+    });
+  }).mouseup(function () {
+    $(this).css('cursor','');
+    $(this).unbind('mousemove');
+  }).mouseout(function () {
+    $(this).unbind('mousemove');
+  });
+
+
+  $("#f").contents().find('html').get(0).addEventListener('wheel', function(e) {
+
+      var ratio = getRatio('#f');
+      if (e.deltaY < 0) {
+        $('#f').css('transform','scale('+(ratio+ratio/10)+')');
+      }
+      if (e.deltaY > 0) {
+        $('#f').css('transform','scale('+(ratio-ratio/10)+')');
+
+      }
+      centerVisuel();
+      //$('.workarea').css('overflow','scroll');
+      e.preventDefault();
+    });
+
+
 
   $('#f').contents().find('div.zone').mousedown(function(e) {
     selectionactive = true;

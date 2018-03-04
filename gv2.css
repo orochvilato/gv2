@@ -1,16 +1,85 @@
+body {
+  margin:0;
+  padding:0;
+}
+.menubar {
+
+  background-color: #9c9c9c;
+  width:100%;
+  height:6vh;
+  /*min-height:50px;*/
+}
+.app {
+  position: relative;
+  width: 100%;
+  height: 94vh;
+  display: flex;
+  flex-flow: row wrap;
+}
+.menushadow {
+  position:absolute;
+  top:0;
+  height:1vh;
+  max-height:4px;
+  width:100%;
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0));
+  z-index:9;
+}
+
+/* ------ Workarea ------ */
+
+.workarea {
+  position:relative;
+
+  flex-grow: 1;
+  height:100%;
+
+  background-color: #3f3f3f;
+  overflow:scroll;
+
+}
+.workarea::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #9c9c9C
+}
+
+.workarea::-webkit-scrollbar-thumb
+{
+
+	background-color: #3f3f3f;
+}
+/* ------- Toolbox ------ */
+.toolbox {
+  /*position: fixed;*/
+  width:300px;
+  height:100%;
+  background-color: #9c9c9c;
+}
+
 .navbar {
   background-color:blue;
   width:100%;
   height:50px;
 }
 
-.wrap { width: 800px; height: 800px; padding: 0; overflow: hidden; background-color: #e88; }
-.view { width: 100%;
-   height: 100%;
-   border: 1px;
-   overflow: hidden;
- }
 .view {
-  transform: scale(0.8);
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height:100%;
+  /*clip: rect(0px,70vw,80vh,0px);*/
+  /*height: 70vw;*/
+  /*overflow:hidden;
+  width:100%;
+  height:100%;*/
+   border:0;
+
+}
+
+
+.view {
+  transform: scale(0.9);
   transform-origin: 0 0;
 }
