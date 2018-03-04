@@ -13,9 +13,23 @@
     <iframe id="f" scrolling="no" class="view" src=""></iframe>
     </div>
     <div class="toolbox">
+      <div class="toolbox-history">
+        <label>Historique</label>
+        <div>
+          <button id="annuler"><i class="fas fa-undo"></i></button>
+          <button id="refaire"><i class="fas fa-redo"></i></button>
+        </div>
+      </div>
       <div class="toolbox-position">
         <label>Position</label>
-        <div><span>X</span><input type="text" id="marginleft" value=""><button id="position-left-button">&larr;</button><button id="position-right-button">&rarr;</button></div>
+        <div><span>X </span><input id="marginleft" type="text" attr="marginleft" value="">
+          <button attr="marginleft" action="decrease"><i class="fas fa-arrow-left"></i></button>
+          <button attr="marginleft" action="increase"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div><span>Y </span><input id="margintop" type="text" attr="margintop" value="">
+          <button attr="margintop" action="decrease"><i class="fas fa-arrow-up"></i></button>
+          <button attr="margintop" action="increase"><i class="fas fa-arrow-down"></i></button>
+        </div>
       </div>
     </div>
 
@@ -35,6 +49,7 @@
   <select id="police"></select>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   <script src="gv2.js"></script>
 
 </body>

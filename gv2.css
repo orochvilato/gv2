@@ -56,14 +56,21 @@ body {
   padding:20px 10px 10px 10px;
   width:300px;
   height:100%;
+  color: #3c3c3c;
   background-color: #9c9c9c;
 }
 .toolbox label {
+
   font-weight: 600;
 }
 .toolbox span {
   padding: 0px 2px 0px 0px;
 }
+
+div.toolbox-history {
+  padding-bottom:10px;
+}
+
 .toolbox-position div {
   margin-top:4px;
   margin-bottom:4px;
@@ -71,6 +78,22 @@ body {
 .toolbox input {
   width:20px;
   border:0;
+  padding: 2px 2px 0px 0px;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+}
+.toolbox button {
+  padding: 4px 4px 4px 4px;
+  background-color: transparent;
+  color: #3c3c3c;
+  border:0;
+}
+.toolbox button:focus {
+  outline:0;
+}
+.toolbox button:hover, .toolbox input:hover {
+  background-color: #acacac;
 }
 .navbar {
   background-color:blue;

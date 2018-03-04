@@ -28,6 +28,7 @@ var attrDefaults = {
  };
 
 var historyIndex = 0;
+var actionHistory = Array();
 
 var f = document.getElementById("f");
 var frame = $('#f')[0];
@@ -51,8 +52,10 @@ document.execCommand('insertBrOnReturn',false);
 // Historique
 // -----------------------------------------------------------
 
-var actionHistory = Array();
-function addHistory(item) {
+
+function addHistory(type,item) {
+  
+  item.type = type;
   actionHistory = actionHistory.slice(0,historyIndex);
   actionHistory.push(item);
   historyIndex = actionHistory.length;
@@ -172,6 +175,13 @@ function iframeLoaded() {
   });
 
   // gestion des suppressions d'éléments et des retours chariots dans les zones
+  $('#f').contents().find('div.zone').keydown(function(e){
+    if ((e.which=46)||(e.which=8)) {
+      var his_item = getHistoryItem(e.target);
+      addHistory('key',his_item);
+    }
+
+  });
   $('#f').contents().find('div.zone').keypress(function(e) {
 
     var frame = $('#f')[0];
@@ -183,7 +193,7 @@ function iframeLoaded() {
     // Historique
     var changed = false;
     var his_item = getHistoryItem(fzone);
-    addHistory(his_item);
+    addHistory('key',his_item);
 
     if (charcode==13) {
       return
@@ -279,7 +289,7 @@ function lineAction(attr,fct,value,multiline) {
     changed = true;
     applyFormat(div[0],attr,fct,value)
   }
-  if (changed) addHistory(his_item);
+  if (changed) addHistory('action',his_item);
 }
 
 // Appliquer le formatage/action à une selection (range)
@@ -370,14 +380,14 @@ function rangeFormat(attr,fct,value)
       }
     }
   }
-  if (changed) addHistory(his_item);
+  if (changed) addHistory('action',his_item);
 }
 
 
-$("#bhis").click(function() {
+$("#annuler").click(function() {
   backHistory();
 });
-$("#fhis").click(function() {
+$("#refaire").click(function() {
   forwardHistory();
 });
 
@@ -389,12 +399,12 @@ function updateToolbox(attrs) {
     $('#'+k).val(attrs[k]);
   }
 }
-$('#marginleft').change(function (e) {
-  lineAction('marginleft','set',$(this).val());
+$(".toolbox input[attr]").change(function (e) {
+  lineAction($(this).attr('attr'),'set',$(this).val());
   updateToolbox();
 });
-$("#position-right-button").click(function() {
-  lineAction('marginleft','increase',1);
+$(".toolbox button[attr]").click(function(e) {
+  lineAction($(this).attr('attr'),$(this).attr('action'),1);
   updateToolbox();
 
 });
