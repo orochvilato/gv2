@@ -1,3 +1,8 @@
+
+// -----------------------------------------------------------
+// initialisation
+// -----------------------------------------------------------
+
 var attrRanges = { fontsize:[1,30],
                     fontweight:[1,9],
                     fontfamily:[1,3],
@@ -24,46 +29,27 @@ var attrDefaults = {
 
 var historyIndex = 0;
 
-
-$(function() {
-  $('#f').on('load', iframeLoaded);
-  $('#f').attr('src','view.html');
-  initToolbox();
-
-});
-
-$('#zp').click(function() {
-  var ratio = getRatio('#f');
-  console.log(ratio);
-  $('#f').css('transform','scale('+(ratio+ratio/6)+')');
-  centerVisuel();
-});
-$('#zm').click(function() {
-  var ratio = getRatio('#f');
-  console.log(ratio);
-  $('#f').css('transform','scale('+(ratio-ratio/6)+')');
-  centerVisuel();
-});
-
-
-
-
-
 var f = document.getElementById("f");
 var frame = $('#f')[0];
 var fwindow = frame.contentWindow;
 var fdocument = fwindow.document;
 var selectionactive = false;
-function initToolbox() {
-  var fonts = getCharteFonts();
-  for(i=0;i<fonts.length;i++) {
-    $('<option value="'+(i+1)+'">'+fonts[i]+'</option>').appendTo('#police');
-  }
-  $('#police').change(function(e) {
-    console.log('change');
-  });
-}
 
+$(function() {
+  // chargement iframe
+  $('#f').on('load', iframeLoaded);
+  $('#f').attr('src','view.html');
+
+
+  initToolbox();
+
+});
+
+document.execCommand('insertBrOnReturn',false);
+
+// -----------------------------------------------------------
+// Historique
+// -----------------------------------------------------------
 
 var actionHistory = Array();
 function addHistory(item) {
@@ -71,8 +57,32 @@ function addHistory(item) {
   actionHistory.push(item);
   historyIndex = actionHistory.length;
 }
+function backHistory() {
+  if (historyIndex>0) {
+    var item = actionHistory[historyIndex-1];
+    $(item.zone).html(item.content);
+    historyIndex--;
+  }
+}
+function forwardHistory() {
+  if (historyIndex<actionHistory.length) {
+    var item = actionHistory[historyIndex];
+    $(item.zone).html(item.content);
+    historyIndex++;
+  }
+}
 
-document.execCommand('insertBrOnReturn',false);
+function getHistoryItem(node) {
+  var zone = $(node).closest('div.zone');
+  return { zone:zone, content:zone.html()}
+}
+
+
+
+// -----------------------------------------------------------
+// Gestion Toolbox
+// -----------------------------------------------------------
+
 function getCharteFonts() {
   var fonts = Array();
   var re = /([^",]+)/
@@ -91,10 +101,28 @@ function getCharteFonts() {
   }
   return fonts;
 }
+
+function initToolbox() {
+  var fonts = getCharteFonts();
+  for(i=0;i<fonts.length;i++) {
+    $('<option value="'+(i+1)+'">'+fonts[i]+'</option>').appendTo('#police');
+  }
+  $('#police').change(function(e) {
+    console.log('change');
+  });
+}
+
+// -----------------------------------------------------------
+// Editeur / iframe
+// -----------------------------------------------------------
+
+// niveau de zoom actuel
 function getRatio(node) {
   re = /matrix\(([0-9\.]+)/;
   return parseFloat($(node).css('transform').match(re)[1]);
 }
+
+// centrage du visuel dans la zone d'édition
 function centerVisuel() {
   var ratio = getRatio('#f');
   var areaWidth = $('.workarea').width();
@@ -109,40 +137,11 @@ function centerVisuel() {
   $('#f').css('left',left+'px');
 }
 
+// une fois la iframe chargée
 function iframeLoaded() {
   centerVisuel();
-  $(".workarea").mousedown(function (e) {
 
-    var cX = e.pageX;
-    var cY = e.pageY;
-
-
-    $(this).css('cursor','move');
-    $(".workarea").mousemove(function (e) {
-      var area = $('.workarea').get(0);
-      var ratio = getRatio('#f');
-      panX = area.scrollLeft + (e.pageX-cX)*ratio;
-      panY = area.scrollTop + (e.pageY-cY)*ratio;
-
-      var maxScrollLeft = area.scrollWidth - area.clientWidth;
-      var maxScrollTop = area.scrollHeight - area.clientHeight;
-      panX = Math.max(0,Math.min(panX,maxScrollLeft))
-      panY = Math.max(0,Math.min(panY,maxScrollTop))
-      console.log(panX,panY);
-      area.scrollLeft = panX;
-      area.scrollTop = panY;
-      cX = e.pageX;
-      cY = e.pageY;
-      e.preventDefault();
-    });
-  }).mouseup(function () {
-    $(this).css('cursor','');
-    $(this).unbind('mousemove');
-  }).mouseout(function () {
-    $(this).unbind('mousemove');
-  });
-
-
+  // gestion du zoom sur le visuel avec la molette de la souris
   $("#f").contents().find('html').get(0).addEventListener('wheel', function(e) {
 
       var ratio = getRatio('#f');
@@ -158,8 +157,7 @@ function iframeLoaded() {
       e.preventDefault();
     });
 
-
-
+  // detection nouvelle selection
   $('#f').contents().find('div.zone').mousedown(function(e) {
     selectionactive = true;
   });
@@ -167,13 +165,13 @@ function iframeLoaded() {
     if (selectionactive) { // selection effectuée dans une zone
       if ($('#f')[0].contentWindow.getSelection) {
         var selection = $('#f')[0].contentWindow.getSelection();
-        console.log(getCurrentAttrs(selection.getRangeAt(0).focusNode));
+        updateToolbox(getCurrentAttrs(selection.getRangeAt(0).focusNode));
       }
     }
     selectionactive = false;
   });
 
-
+  // gestion des suppressions d'éléments et des retours chariots dans les zones
   $('#f').contents().find('div.zone').keypress(function(e) {
 
     var frame = $('#f')[0];
@@ -219,8 +217,16 @@ function iframeLoaded() {
   });
 
 }
+
+
+
 function getCurrentAttrs(node) {
   var defaults = {};
+  if (node==undefined) {
+    if (!f.contentWindow.getSelection) return
+    node = f.contentWindow.getSelection().focusNode;
+
+  }
   for (attr in attrDefaults) {
     var n = node;
     while (n && (defaults[attr]==undefined) ) {
@@ -235,6 +241,7 @@ function getCurrentAttrs(node) {
 
   return defaults
 }
+// appliquer l'action / formatage à une node
 function applyFormat(node,attr,fct,value)
 {
   var nodeattr = getCurrentAttrs(node);
@@ -249,18 +256,13 @@ function applyFormat(node,attr,fct,value)
 
   $(node).attr(attr,newval);
 }
-function getHistoryItem(node) {
-  var zone = $(node).closest('div.zone');
-  return { zone:zone, content:zone.html()}
-}
+
+// appliquer l'action / formatage à une ligne
 function lineAction(attr,fct,value,multiline) {
   var sel = f.contentWindow.getSelection();
   var changed = false;
   var his_item = getHistoryItem(sel.anchorNode);
-//  if (!multiline && (!sel.anchorNode || ($(sel.anchorNode).closest('div') != $(sel.focusNode).closest('div')))) {
-//    console.log('nope');
-//    return
-  //}
+
   if ($(sel.anchorNode).closest('div').get(0) != $(sel.focusNode).closest('div').get(0)) {
     console.log($(sel.anchorNode).closest('div').get(0), $(sel.focusNode).closest('div').get(0));
     var nodes = getSelectedNodes();
@@ -272,7 +274,6 @@ function lineAction(attr,fct,value,multiline) {
       }
       i++;
     }
-    //applyFormat($(sel.focusNode).closest('div'),attr,fct,value);
   } else {
     div = $(sel.anchorNode).closest('div');
     changed = true;
@@ -281,6 +282,7 @@ function lineAction(attr,fct,value,multiline) {
   if (changed) addHistory(his_item);
 }
 
+// Appliquer le formatage/action à une selection (range)
 function rangeFormat(attr,fct,value)
 {
   var targets = Array('SPAN','IMG');
@@ -365,27 +367,13 @@ function rangeFormat(attr,fct,value)
             applyFormat(node,attr,fct,value)
           }
         }
-        //console.log(i,nodes[i]);
       }
     }
   }
   if (changed) addHistory(his_item);
 }
 
-function backHistory() {
-  if (historyIndex>0) {
-    var item = actionHistory[historyIndex-1];
-    $(item.zone).html(item.content);
-    historyIndex--;
-  }
-}
-function forwardHistory() {
-  if (historyIndex<actionHistory.length) {
-    var item = actionHistory[historyIndex];
-    $(item.zone).html(item.content);
-    historyIndex++;
-  }
-}
+
 $("#bhis").click(function() {
   backHistory();
 });
@@ -393,11 +381,27 @@ $("#fhis").click(function() {
   forwardHistory();
 });
 
-$("#right").click(function() {
-  lineAction('marginleft','increase',1);
+function updateToolbox(attrs) {
+  if (attrs==undefined) {
+    attrs = getCurrentAttrs();
+  }
+  for (k in attrs) {
+    $('#'+k).val(attrs[k]);
+  }
+}
+$('#marginleft').change(function (e) {
+  lineAction('marginleft','set',$(this).val());
+  updateToolbox();
 });
-$("#left").click(function() {
+$("#position-right-button").click(function() {
+  lineAction('marginleft','increase',1);
+  updateToolbox();
+
+});
+$("#position-left-button").click(function() {
   lineAction('marginleft','decrease',1);
+  updateToolbox();
+
 });
 $("#down").click(function() {
   lineAction('margintop','increase',1);
@@ -475,6 +479,10 @@ $("#maj").click(function() {
   rangeFormat('texttransform','set','uppercase');
 });
 
+
+// -----------------------------------------------------------
+// Fonctions utilitaires (gestion des selections/ranges)
+// -----------------------------------------------------------
 
 
 function nextNode(node) {
