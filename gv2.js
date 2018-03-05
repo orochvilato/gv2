@@ -336,6 +336,14 @@ function rangeFormat(attr,fct,value)
       changed = true;
       applyFormat(node,attr,fct,value)
     }
+  } else if (nodes.length == 0) {
+    var node = sel.focusNode;
+    if (node.nodeType == 3) node = node.parentNode;
+    
+    if (targets.includes(node.tagName)) {
+      changed = true;
+      applyFormat(node,attr,fct,value)
+    }
   } else {
     for (i=0;i<nodes.length;i++) {
       if (nodes[i] == startNode) {
