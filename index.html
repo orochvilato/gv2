@@ -21,15 +21,22 @@
         </div>
       </div>
       <div class="toolbox-line"></div>
-      <div class="toolbox-position">
+      <div class="toolbox-position box">
         <label>Position</label>
-        <div><span>X </span><input id="marginleft" type="text" attr="marginleft" value="">
-          <button attr="marginleft" action="decrease"><i class="fas fa-arrow-left"></i></button>
-          <button attr="marginleft" action="increase"><i class="fas fa-arrow-right"></i></button>
+        <div><span>X </span><input id="marginleft" type="text" attr="marginleft" focus="line" value="">
+          <button attr="marginleft" action="decrease" focus="line"><i class="fas fa-arrow-left"></i></button>
+          <button attr="marginleft" action="increase" focus="line"><i class="fas fa-arrow-right"></i></button>
         </div>
-        <div><span>Y </span><input id="margintop" type="text" attr="margintop" value="">
-          <button attr="margintop" action="decrease"><i class="fas fa-arrow-up"></i></button>
-          <button attr="margintop" action="increase"><i class="fas fa-arrow-down"></i></button>
+        <div><span>Y </span><input id="margintop" type="text" attr="margintop" focus="line" value="">
+          <button attr="margintop" action="decrease" focus="line"><i class="fas fa-arrow-up"></i></button>
+          <button attr="margintop" action="increase" focus="line"><i class="fas fa-arrow-down"></i></button>
+        </div>
+      </div>
+      <div class="toolbox-taille box">
+        <label>Taille</label>
+        <div><span>T </span><input id="fontsize" type="text" attr="fontsize" focus="range" value="">
+          <button attr="fontsize" action="increase" focus="range">+</button>
+          <button attr="fontsize" action="decrease" focus="range">-</button>
         </div>
       </div>
       <div class="toolbox-line"></div>

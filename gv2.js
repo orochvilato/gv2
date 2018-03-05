@@ -54,7 +54,7 @@ document.execCommand('insertBrOnReturn',false);
 
 
 function addHistory(type,item) {
-  
+
   item.type = type;
   actionHistory = actionHistory.slice(0,historyIndex);
   actionHistory.push(item);
@@ -400,11 +400,19 @@ function updateToolbox(attrs) {
   }
 }
 $(".toolbox input[attr]").change(function (e) {
-  lineAction($(this).attr('attr'),'set',$(this).val());
+  if ($(this).attr('focus')=='line') {
+    lineAction($(this).attr('attr'),'set',$(this).val());
+  } else {
+    rangeFormat($(this).attr('attr'),'set',$(this).val());
+  }
   updateToolbox();
 });
 $(".toolbox button[attr]").click(function(e) {
-  lineAction($(this).attr('attr'),$(this).attr('action'),1);
+  if ($(this).attr('focus')=='line') {
+    lineAction($(this).attr('attr'),$(this).attr('action'),1);
+  } else {
+    rangeFormat($(this).attr('attr'),$(this).attr('action'),1);
+  }
   updateToolbox();
 
 });

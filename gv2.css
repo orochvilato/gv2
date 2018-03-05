@@ -69,8 +69,9 @@ div.toolbox-line {
   width:320px;
 }
 .toolbox label {
-
+  display: block;
   font-weight: 600;
+  margin-bottom: 5px;
 }
 .toolbox span {
   padding: 0px 2px 0px 0px;
@@ -78,13 +79,25 @@ div.toolbox-line {
 
 div.toolbox-history {
   padding-top:20px;
-  
+
+}
+.toolbox-taille {
+  display: inline-block;
+}
+.toolbox-position {
+  display: inline-block;
+  vertical-align: top;
 }
 
 .toolbox-position div {
+  width:120px;
+}
+.box {
   margin-top:4px;
   margin-bottom:4px;
+  margin-right:20px;
 }
+
 .toolbox input {
   width:20px;
   border:0;
