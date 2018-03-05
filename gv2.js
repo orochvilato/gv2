@@ -22,6 +22,7 @@ var attrDefaults = {
   margintop:0,
   lineheight:4,
   align:'left',
+  expind:'',
   textdecoration:'none',
   fontstyle:'normal',
   texttransform:'none'
@@ -106,10 +107,14 @@ function getCharteFonts() {
 }
 
 function initToolbox() {
+
+  // initialisation polices
   var fonts = getCharteFonts();
   for(i=0;i<fonts.length;i++) {
     $('<option value="'+(i+1)+'">'+fonts[i]+'</option>').appendTo('#fontfamily');
   }
+
+
 
 }
 
@@ -174,9 +179,12 @@ function iframeLoaded() {
 
   // gestion des suppressions d'éléments et des retours chariots dans les zones
   $('#f').contents().find('div.zone').keydown(function(e){
-    if ((e.which=46)||(e.which=8)) {
+    if ((e.which==46)||(e.which==8)) {
       var his_item = getHistoryItem(e.target);
       addHistory('key',his_item);
+    }
+    if ((e.which>=33)&&(e.which<=40)) {
+      window.setTimeout(updateToolbox,0);
     }
 
   });
@@ -253,13 +261,20 @@ function getCurrentAttrs(node) {
 function applyFormat(node,attr,fct,value)
 {
   var nodeattr = getCurrentAttrs(node);
-
+  console.log(node,attr,fct,value);
   if ((fct=='increase')||fct=='decrease') {
     var attrval = parseInt(nodeattr[attr]);
     var newval = attrval + (fct=='increase'?1:-1)
     if (newval<attrRanges[attr][0] || newval>attrRanges[attr][1]) return;
   } else if (fct=='set') {
     var newval = value;
+  } else if (fct=='toggle') {
+    console.log('toggle');
+    if ($(node).attr(attr) == value) {
+      var newval = "";
+    } else {
+      var newval = value;
+    }
   }
 
   $(node).attr(attr,newval);
@@ -272,15 +287,14 @@ function lineAction(attr,fct,value,multiline) {
   var his_item = getHistoryItem(sel.anchorNode);
 
   if ($(sel.anchorNode).closest('div').get(0) != $(sel.focusNode).closest('div').get(0)) {
-    console.log($(sel.anchorNode).closest('div').get(0), $(sel.focusNode).closest('div').get(0));
     var nodes = getSelectedNodes();
-    i=0;
-    while ((sel.focusNode != nodes[i])&&(i<nodes.length)) {
-      if (nodes[i].tagName=='DIV') {
+    divs = Array();
+    for (var i=0;i<nodes.length;i++) {
+      var div = $(nodes[i]).closest('div').get(0);
+      if (div&&(!divs.includes(div))&&(!$(div).hasClass('zone'))) {
         changed = true;
-        applyFormat(nodes[i],attr,fct,value)
+        applyFormat(div,attr,fct,value)
       }
-      i++;
     }
   } else {
     div = $(sel.anchorNode).closest('div');
@@ -295,6 +309,9 @@ function rangeFormat(attr,fct,value)
 {
   var targets = Array('SPAN','IMG');
   var sel = f.contentWindow.getSelection();
+  if (sel.focusNode==null) {
+    return;
+  }
   var range = sel.getRangeAt(0);
 
   var startOffset = sel.anchorOffset;
@@ -401,15 +418,23 @@ function updateToolbox(attrs) {
   if (attrs==undefined) {
     attrs = getCurrentAttrs();
   }
+
   for (k in attrs) {
     $('#'+k).val(attrs[k]);
+    // radios
+    $('input[type="radio"][value="'+attrs[k]+'"]').prop("checked", true);
+    // checkbox
+    $('input[type="checkbox"][value="'+attrs[k]+'"][name="'+k+'"]').prop("checked", true);
+
+    $('input[type="checkbox"][value!="'+attrs[k]+'"][name="'+k+'"]').prop("checked", false);
   }
 }
 $(".toolbox input[attr], .toolbox select[attr]").change(function (e) {
   if ($(this).attr('focus')=='line') {
-    lineAction($(this).attr('attr'),'set',$(this).val());
+
+    lineAction($(this).attr('attr'),$(this).attr('action'),$(this).val());
   } else {
-    rangeFormat($(this).attr('attr'),'set',$(this).val());
+    rangeFormat($(this).attr('attr'),$(this).attr('action'),$(this).val());
   }
   updateToolbox();
 });

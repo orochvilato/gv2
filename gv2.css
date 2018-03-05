@@ -110,9 +110,14 @@ div.toolbox-history {
   margin-bottom:4px;
   margin-right:20px;
 }
+.toolbox input[type="text"] {
+    width:20px;
+}
+.toolbox input[type="radio"] {
+  width:30px;
+}
 
 .toolbox input {
-  width:20px;
   border:0;
   padding: 2px 2px 0px 0px;
   background-color: transparent;
@@ -131,10 +136,51 @@ div.toolbox-history {
 .toolbox button:hover, .toolbox input:hover {
   background-color: #acacac;
 }
-.navbar {
-  background-color:blue;
-  width:100%;
-  height:50px;
+.toolbox .align {
+  margin-top:8px;
+  display:inline-block;
+}
+.toolbox .fontstyle {
+  margin-top:8px;
+  display:inline-block;
+}
+
+.toolbox label {
+  display:inline-block;
+  font-size:17px;
+}
+.toolbox label input {
+  display:none;
+}
+.toolbox label input[type=radio]:checked + span {
+  background-color: #acacac;
+}
+.toolbox label input[type=checkbox]:checked + span {
+  background-color: #acacac;
+}
+.toolbox label input[type=checkbox] + span {
+  padding:4px 6px 4px 6px;
+  background-color:white;
+  border-radius: 4px;
+  margin-right:2px;
+}
+
+.toolbox .radiogroup span {
+  padding:4px 6px 4px 6px;
+  margin-right:2px;
+  background-color:white;
+}
+.toolbox .radiogroup label, .toolbox .checkboxes label {
+  font-size: 14px;
+}
+.toolbox .radiogroup span svg, .toolbox .checkboxes span svg {
+  width:16px;
+}
+.toolbox .radiogroup label:first-child input[type=radio] + span {
+  border-radius: 4px 0px 0px 4px;
+}
+.toolbox .radiogroup label:last-child input[type=radio] + span {
+  border-radius: 0px 4px 4px 0px;
 }
 
 .view {

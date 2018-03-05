@@ -42,7 +42,7 @@
       <div class="toolbox-line"></div>
       <div class="toolbox-font box">
         <label>Police</label>
-        <div><select id="fontfamily" attr="fontfamily" action="set" focus="range"></select>
+        <div><select id="fontfamily" attr="fontfamily" action="set" focus="range"></select></div>
         <div><select id="fontweight" attr="fontweight" action="set" focus="range">
           <option value="1">Thin (100)</option>
           <option value="2">Extra-Light (200)</option>
@@ -53,9 +53,25 @@
           <option value="7">Bold (700)</option>
           <option value="8">Extra-Bold (800)</option>
           <option value="9">Black (900)</option>
-        </select>
+          </select>
         </div>
+        <div class="align radiogroup">
+           <label><input type="radio" name="align" attr="align" action="set" focus="line" value="left"><span><i class="fas fa-align-left"></i></span></label><!--
+        --><label><input type="radio" name="align" attr="align" action="set" focus="line" value="center"><span><i class="fas fa-align-center"></i></span></label><!--
+        --><label><input type="radio" name="align" attr="align" action="set" focus="line" value="right"><span><i class="fas fa-align-right"></i></span></label><!--
+        --><label><input type="radio" name="align" attr="align" action="set" focus="line" value="justify"><span><i class="fas fa-align-justify"></i></span></label>
+        </div>
+        <div class="fontstyle checkboxes">
+           <label><input type="checkbox" name="fontstyle" attr="fontstyle" action="toggle" focus="range" value="italic"><span><i class="fas fa-italic"></i></span></label><!--
+       --><label><input type="checkbox" name="expind" attr="expind" action="toggle" focus="range" value="exposant"><span><i class="fas fa-superscript"></i></span></label><!--
+       --><label><input type="checkbox" name="expind" attr="expind" action="toggle" focus="range" value="indice"><span><i class="fas fa-subscript"></i></span></label><!--
+       --><label><input type="checkbox" name="textdecoration" attr="textdecoration" action="toggle" focus="range" value="underline"><span><i class="fas fa-underline"></i></span></label><!--
+       --><label><input type="checkbox" name="texttransform" attr="texttransform" action="toggle" focus="range" value="uppercase"><span><i class="fas fa-font"></i></span></label><!--
+       -->
+        </div>
+
       </div>
+
     </div>
 
 
