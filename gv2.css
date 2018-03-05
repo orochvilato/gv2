@@ -61,6 +61,13 @@ body {
   color: #3c3c3c;
   background-color: #9c9c9c;
 }
+div.toolbox-line {
+  margin-left:-10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-top: 2px solid #7e7e7e;
+  width:320px;
+}
 .toolbox label {
 
   font-weight: 600;
@@ -71,7 +78,7 @@ body {
 
 div.toolbox-history {
   padding-top:20px;
-  padding-bottom:10px;
+  
 }
 
 .toolbox-position div {
