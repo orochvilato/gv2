@@ -61,6 +61,19 @@ body {
   color: #3c3c3c;
   background-color: #9c9c9c;
 }
+.toolbox select {
+  font-family: "Roboto Slab", serif;
+  width: 100%;
+  background-color: white;
+  font-size: 15;
+  border-radius: 4px;
+  margin-bottom:5px;
+  padding:2px;
+  /*-webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;*/
+}
+
 div.toolbox-line {
   margin-left:-10px;
   margin-top: 15px;

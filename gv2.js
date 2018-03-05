@@ -108,11 +108,9 @@ function getCharteFonts() {
 function initToolbox() {
   var fonts = getCharteFonts();
   for(i=0;i<fonts.length;i++) {
-    $('<option value="'+(i+1)+'">'+fonts[i]+'</option>').appendTo('#police');
+    $('<option value="'+(i+1)+'">'+fonts[i]+'</option>').appendTo('#fontfamily');
   }
-  $('#police').change(function(e) {
-    console.log('change');
-  });
+
 }
 
 // -----------------------------------------------------------
@@ -339,7 +337,7 @@ function rangeFormat(attr,fct,value)
   } else if (nodes.length == 0) {
     var node = sel.focusNode;
     if (node.nodeType == 3) node = node.parentNode;
-    
+
     if (targets.includes(node.tagName)) {
       changed = true;
       applyFormat(node,attr,fct,value)
@@ -407,7 +405,7 @@ function updateToolbox(attrs) {
     $('#'+k).val(attrs[k]);
   }
 }
-$(".toolbox input[attr]").change(function (e) {
+$(".toolbox input[attr], .toolbox select[attr]").change(function (e) {
   if ($(this).attr('focus')=='line') {
     lineAction($(this).attr('attr'),'set',$(this).val());
   } else {
