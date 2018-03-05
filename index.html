@@ -1,7 +1,8 @@
 <html>
 <head>
-    <link  rel="stylesheet" href="gv2.css">
     <link  rel="stylesheet" href="charte.css">
+    <link  rel="stylesheet" href="gv2.css">
+
 
 </head>
 <body>
@@ -23,20 +24,20 @@
       <div class="toolbox-line"></div>
       <div class="toolbox-position box">
         <label>Position</label>
-        <div><span>X </span><input id="marginleft" type="text" attr="marginleft" focus="line" value="">
+        <div class="rangeselector"><span>X </span><input id="marginleft" type="text" attr="marginleft" focus="line" value="-">
           <button attr="marginleft" action="decrease" focus="line"><i class="fas fa-arrow-left"></i></button>
           <button attr="marginleft" action="increase" focus="line"><i class="fas fa-arrow-right"></i></button>
         </div>
-        <div><span>Y </span><input id="margintop" type="text" attr="margintop" focus="line" value="">
+        <div class="rangeselector"><span>Y </span><input id="margintop" type="text" attr="margintop" focus="line" value="-">
           <button attr="margintop" action="decrease" focus="line"><i class="fas fa-arrow-up"></i></button>
           <button attr="margintop" action="increase" focus="line"><i class="fas fa-arrow-down"></i></button>
         </div>
       </div>
       <div class="toolbox-taille box">
         <label>Taille</label>
-        <div><span>T </span><input id="fontsize" type="text" attr="fontsize" focus="range" value="">
-          <button attr="fontsize" action="increase" focus="range">+</button>
-          <button attr="fontsize" action="decrease" focus="range">-</button>
+        <div class="rangeselector"><span>T </span><input id="fontsize" type="text" attr="fontsize" focus="range" value="-">
+          <button attr="fontsize" action="increase" focus="range"><i class="fas fa-plus"></i></button>
+          <button attr="fontsize" action="decrease" focus="range"><i class="fas fa-minus"></i></button>
         </div>
       </div>
       <div class="toolbox-line"></div>
@@ -55,12 +56,7 @@
           <option value="9">Black (900)</option>
           </select>
         </div>
-        <div class="align radiogroup">
-           <label><input type="radio" name="align" attr="align" action="set" focus="line" value="left"><span><i class="fas fa-align-left"></i></span></label><!--
-        --><label><input type="radio" name="align" attr="align" action="set" focus="line" value="center"><span><i class="fas fa-align-center"></i></span></label><!--
-        --><label><input type="radio" name="align" attr="align" action="set" focus="line" value="right"><span><i class="fas fa-align-right"></i></span></label><!--
-        --><label><input type="radio" name="align" attr="align" action="set" focus="line" value="justify"><span><i class="fas fa-align-justify"></i></span></label>
-        </div>
+
         <div class="fontstyle checkboxes">
            <label><input type="checkbox" name="fontstyle" attr="fontstyle" action="toggle" focus="range" value="italic"><span><i class="fas fa-italic"></i></span></label><!--
        --><label><input type="checkbox" name="expind" attr="expind" action="toggle" focus="range" value="exposant"><span><i class="fas fa-superscript"></i></span></label><!--
@@ -69,8 +65,37 @@
        --><label><input type="checkbox" name="texttransform" attr="texttransform" action="toggle" focus="range" value="uppercase"><span><i class="fas fa-font"></i></span></label><!--
        -->
         </div>
-
       </div>
+      <!--<div class="toolbox-line"></div>-->
+      <div class="toolbox-spacer"></div>
+      <div class="toolbox-paragraph box">
+        <label>Paragraphe</label>
+        <div class="align radiogroup">
+           <label><input type="radio" name="align" attr="align" action="set" focus="line" value="left"><span><i class="fas fa-align-left"></i></span></label><!--
+        --><label><input type="radio" name="align" attr="align" action="set" focus="line" value="center"><span><i class="fas fa-align-center"></i></span></label><!--
+        --><label><input type="radio" name="align" attr="align" action="set" focus="line" value="right"><span><i class="fas fa-align-right"></i></span></label><!--
+        --><label><input type="radio" name="align" attr="align" action="set" focus="line" value="justify"><span><i class="fas fa-align-justify"></i></span></label>
+        </div>
+      <div class="rangeselector"><span><i class="fas fa-arrows-alt-v"></i><i class="fas fa-align-justify"></i> </span><input id="lineheight" type="text" attr="lineheight" focus="line" value="-">
+        <button attr="lineheight" action="increase" focus="line"><i class="fas fa-plus"></i></button>
+        <button attr="lineheight" action="decrease" focus="line"><i class="fas fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="toolbox-spacer"></div>
+    <div class="toolbox-colors box">
+      <label>Couleurs (texte)</label>
+      <div class="color colorgroup">
+      </div>
+
+    </div>
+    <div class="toolbox-bgcolors box">
+      <label>Couleurs (fond)</label>
+      <div class="bgcolor colorgroup">
+      </div>
+
+    </div>
+
+
 
     </div>
 

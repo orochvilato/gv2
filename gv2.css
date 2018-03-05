@@ -51,7 +51,7 @@ body {
 }
 /* ------- Toolbox ------ */
 .toolbox {
-  font-family: "Roboto Slab", serif;
+  font-family: "Montserrat", serif;
   /*position: fixed;*/
   /*padding:0px 10px 10px 10px;*/
   padding-left:10px;
@@ -73,7 +73,12 @@ body {
   -moz-appearance: none;
   text-indent: 1px;*/
 }
-
+.toolbox div.colorbox {
+  display: inline-block;
+  width:20px;
+  height:20px;
+  margin-right:3px;
+}
 div.toolbox-line {
   margin-left:-10px;
   margin-top: 15px;
@@ -81,10 +86,15 @@ div.toolbox-line {
   border-top: 2px solid #7e7e7e;
   width:320px;
 }
+div.toolbox-spacer {
+  display:block;
+  width:100%;
+  height:10px;
+}
 .toolbox label {
   display: block;
-  font-weight: 600;
-  margin-bottom: 5px;
+  font-weight: 800;
+  margin-bottom: 15px;
 }
 .toolbox span {
   padding: 0px 2px 0px 0px;
@@ -112,6 +122,7 @@ div.toolbox-history {
 }
 .toolbox input[type="text"] {
     width:20px;
+    font-size:18px;
 }
 .toolbox input[type="radio"] {
   width:30px;
@@ -138,13 +149,16 @@ div.toolbox-history {
 }
 .toolbox .align {
   margin-top:8px;
-  display:inline-block;
+  display: block;
 }
 .toolbox .fontstyle {
   margin-top:8px;
   display:inline-block;
 }
-
+.toolbox .rangeselector {
+  font-weight:600;
+  font-size:17px;
+}
 .toolbox label {
   display:inline-block;
   font-size:17px;
@@ -182,7 +196,18 @@ div.toolbox-history {
 .toolbox .radiogroup label:last-child input[type=radio] + span {
   border-radius: 0px 4px 4px 0px;
 }
-
+.toolbox .colorgroup div {
+  width:30px;
+  height:30px;
+  border-radius: 4px;
+  border: 2px solid #9c9c9c;
+}
+.toolbox label input[type=radio]:checked + div {
+  border: 2px solid #3c3c3c;
+}
+.toolbox div[bgcolor="0"] {
+  border: 2px solid #8c8c8c;
+}
 .view {
   position:absolute;
   top:0;

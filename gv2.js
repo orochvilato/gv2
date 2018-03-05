@@ -86,10 +86,9 @@ function getHistoryItem(node) {
 // -----------------------------------------------------------
 // Gestion Toolbox
 // -----------------------------------------------------------
-
 function getCharteFonts() {
   var fonts = Array();
-  var re = /([^",]+)/
+  var re = /([^",]+)/;
   for (i=1;i<4;i++) {
     var div = document.createElement('div');
     div.setAttribute('id','font1');
@@ -101,17 +100,46 @@ function getCharteFonts() {
     var font = $('#font1').css('font-family')
     document.body.removeChild(div);
     fonts.push(font.match(re)[0]);
-
   }
   return fonts;
+}
+function getCharteColors() {
+  var colors = Array();
+  var i=1;
+  var color;
+  out = false;
+  while ((i<100)&&(out == false)) {
+    var div = document.createElement('div');
+    div.setAttribute('id','color1');
+    div.style='display:none';
+    div.setAttribute('color',i);
+    var textnode = document.createTextNode("color");
+    div.appendChild(textnode);
+    document.body.appendChild(div);
+    color = $('#color1').css('color');
+    document.body.removeChild(div);
+
+    if (color===colors[i-2]) {
+      out = true;
+    } else {
+      colors.push(color);
+    }
+    i++;
+  }
+  return colors.slice(0,colors.length-1);
 }
 
 function initToolbox() {
 
   // initialisation polices
   var fonts = getCharteFonts();
-  for(i=0;i<fonts.length;i++) {
+  for(var i=0;i<fonts.length;i++) {
     $('<option value="'+(i+1)+'">'+fonts[i]+'</option>').appendTo('#fontfamily');
+  }
+  var colors = getCharteColors();
+  for (var i=0;i<=colors.length;i++) {
+    if (i>0) $('<label><input type="radio" name="color" attr="color" action="set" focus="range" value="'+i+'"><div bgcolor="'+i+'"></div></label>').appendTo('.color.colorgroup');
+    $('<label><input type="radio" name="bgcolor" attr="bgcolor" action="set" focus="range" value="'+i+'"><div bgcolor="'+i+'"></div></label>').appendTo('.bgcolor.colorgroup');
   }
 
 
@@ -231,6 +259,31 @@ function iframeLoaded() {
       }
     }
   });
+
+  $(".toolbox input[attr], .toolbox select[attr]").change(function (e) {
+    if ($(this).attr('focus')=='line') {
+
+      lineAction($(this).attr('attr'),$(this).attr('action'),$(this).val());
+    } else {
+      rangeFormat($(this).attr('attr'),$(this).attr('action'),$(this).val());
+    }
+    updateToolbox();
+  });
+  $(".toolbox button[attr]").click(function(e) {
+    if ($(this).attr('focus')=='line') {
+      lineAction($(this).attr('attr'),$(this).attr('action'),1);
+    } else {
+      rangeFormat($(this).attr('attr'),$(this).attr('action'),1);
+    }
+    updateToolbox();
+
+  });
+  $("#position-left-button").click(function() {
+    lineAction('marginleft','decrease',1);
+    updateToolbox();
+
+  });
+
 
 }
 
@@ -422,111 +475,14 @@ function updateToolbox(attrs) {
   for (k in attrs) {
     $('#'+k).val(attrs[k]);
     // radios
-    $('input[type="radio"][value="'+attrs[k]+'"]').prop("checked", true);
+    $('input[type="radio"][name="'+k+'"][value="'+attrs[k]+'"]').prop("checked", true);
     // checkbox
     $('input[type="checkbox"][value="'+attrs[k]+'"][name="'+k+'"]').prop("checked", true);
 
     $('input[type="checkbox"][value!="'+attrs[k]+'"][name="'+k+'"]').prop("checked", false);
   }
 }
-$(".toolbox input[attr], .toolbox select[attr]").change(function (e) {
-  if ($(this).attr('focus')=='line') {
 
-    lineAction($(this).attr('attr'),$(this).attr('action'),$(this).val());
-  } else {
-    rangeFormat($(this).attr('attr'),$(this).attr('action'),$(this).val());
-  }
-  updateToolbox();
-});
-$(".toolbox button[attr]").click(function(e) {
-  if ($(this).attr('focus')=='line') {
-    lineAction($(this).attr('attr'),$(this).attr('action'),1);
-  } else {
-    rangeFormat($(this).attr('attr'),$(this).attr('action'),1);
-  }
-  updateToolbox();
-
-});
-$("#position-left-button").click(function() {
-  lineAction('marginleft','decrease',1);
-  updateToolbox();
-
-});
-$("#down").click(function() {
-  lineAction('margintop','increase',1);
-});
-$("#up").click(function() {
-  lineAction('margintop','decrease',1);
-});
-$("#al").click(function() {
-  lineAction('align','set','left');
-});
-$("#ar").click(function() {
-  lineAction('align','set','right');
-});
-$("#ac").click(function() {
-  lineAction('align','set','center');
-});
-$("#aj").click(function() {
-  lineAction('align','set','justify');
-});
-
-$("#fm").click(function() {
-  rangeFormat('fontsize','decrease',1);
-});
-$("#fp").click(function() {
-  rangeFormat('fontsize','increase',1);
-});
-$("#gm").click(function() {
-  rangeFormat('fontweight','decrease',1);
-});
-$("#gp").click(function() {
-  rangeFormat('fontweight','increase',1);
-});
-$("#f1").click(function() {
-  rangeFormat('fontfamily','set',1);
-});
-$("#f2").click(function() {
-  rangeFormat('fontfamily','set',2);
-});
-$("#f3").click(function() {
-  rangeFormat('fontfamily','set',3);
-});
-$("#cm").click(function() {
-  rangeFormat('color','decrease',1);
-});
-$("#cp").click(function() {
-  rangeFormat('color','increase',1);
-});
-$("#lhm").click(function() {
-  lineAction('lineheight','decrease',1);
-});
-$("#lhp").click(function() {
-  lineAction('lineheight','increase',1);
-});
-$("#bcm").click(function() {
-  rangeFormat('bgcolor','decrease',1);
-});
-$("#bcp").click(function() {
-  rangeFormat('bgcolor','increase',1);
-});
-$("#ita").click(function() {
-  rangeFormat('fontstyle','set','italic');
-});
-$("#nor").click(function() {
-  rangeFormat('fontstyle','set','normal');
-  rangeFormat('textdecoration','set','none');
-  rangeFormat('texttransform','set','none');
-});
-$("#sou").click(function() {
-  rangeFormat('textdecoration','set','underline');
-});
-$("#bar").click(function() {
-  rangeFormat('textdecoration','set','linethrough');
-});
-$("#maj").click(function() {
-  rangeFormat('texttransform','set','uppercase');
-});
 
 
 // -----------------------------------------------------------
