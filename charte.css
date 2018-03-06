@@ -1,5 +1,107 @@
 @import url("https://fonts.googleapis.com/css?family=Courgette:100,200,300,400,500,600,700,800,900|Montserrat:100,200,300,400,500,600,700,800,900|Roboto+Slab:100,200,300,400,500,600,700,800,900");
 
+*[letterspacing="0"] {
+  letter-spacing: 0;
+}
+*[letterspacing="1"] {
+  letter-spacing: 0.1vw;
+}
+*[letterspacing="2"] {
+  letter-spacing: 0.2vw;
+}
+*[letterspacing="3"] {
+  letter-spacing: 0.3vw;
+}
+*[letterspacing="4"] {
+  letter-spacing: 0.4vw;
+}
+*[letterspacing="5"] {
+  letter-spacing: 0.5vw;
+}
+*[letterspacing="6"] {
+  letter-spacing: 0.6vw;
+}
+*[letterspacing="7"] {
+  letter-spacing: 0.7vw;
+}
+*[letterspacing="8"] {
+  letter-spacing: 0.8vw;
+}
+*[letterspacing="9"] {
+  letter-spacing: 0.9vw;
+}
+*[letterspacing="10"] {
+  letter-spacing: 1vw;
+}
+
+
+*[padding="0"] {
+  padding:0;
+}
+*[padding="1"] {
+  padding:0.2vw;
+}
+*[padding="2"] {
+  padding:0.4vw;
+}
+*[padding="3"] {
+  padding:0.6vw;
+}
+*[padding="4"] {
+  padding:0.8vw;
+}
+*[padding="5"] {
+  padding:1vw;
+}
+*[padding="6"] {
+  padding:1.2vw;
+}
+*[padding="7"] {
+  padding:1.4vw;
+}
+*[padding="8"] {
+  padding:1.6vw;
+}
+*[padding="9"] {
+  padding:1.8vw;
+}
+*[padding="10"] {
+  padding:2vw;
+}
+*[padding="11"] {
+  padding:2.2vw;
+}
+*[padding="12"] {
+  padding:2.4vw;
+}
+*[padding="13"] {
+  padding:2.6vw;
+}
+*[padding="14"] {
+  padding:2.8vw;
+}
+*[padding="15"] {
+  padding:3vw;
+}
+*[padding="16"] {
+  padding:3.2vw;
+}
+*[padding="17"] {
+  padding:3.4vw;
+}
+*[padding="18"] {
+  padding:3.6vw;
+}
+*[padding="19"] {
+  padding:3.8vw;
+}
+*[padding="20"] {
+  padding:4vw;
+}
+
+
+
+
 
 *[texttransform="none"] {
    text-transform: none;

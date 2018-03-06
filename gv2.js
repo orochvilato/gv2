@@ -10,17 +10,21 @@ var attrRanges = { fontsize:[1,30],
                     bgcolor:[0,6],
                     marginleft:[-20,20],
                     margintop:[-5,20],
+                    padding:[0,20],
+                    letterspacing:[0,20],
                     lineheight:[0,15]}
 
 var attrDefaults = {
+  letterspacing:0,
   fontsize: 4,
+  padding:0,
   fontweight: 4,
   fontfamily: 1,
   color:1,
   bgcolor:0,
   marginleft:0,
   margintop:0,
-  lineheight:4,
+  lineheight:6,
   align:'left',
   expind:'',
   textdecoration:'none',
@@ -40,7 +44,7 @@ var selectionactive = false;
 $(function() {
   // chargement iframe
   $('#f').on('load', iframeLoaded);
-  $('#f').attr('src','view.html');
+  $('#f').attr('src','view2.html');
 
 
   initToolbox();
