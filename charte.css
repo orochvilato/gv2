@@ -471,6 +471,135 @@
   margin-left: -20vw;
 }
 
+
+*[marginright="0"] {
+  margin-right: 0vw;
+}
+*[marginright="1"] {
+  margin-right: 1vw;
+}
+*[marginright="2"] {
+  margin-right: 2vw;
+}
+*[marginright="3"] {
+  margin-right: 3vw;
+}
+*[marginright="4"] {
+  margin-right: 4vw;
+}
+*[marginright="5"] {
+  margin-right: 5vw;
+}
+*[marginright="6"] {
+  margin-right: 6vw;
+}
+*[marginright="7"] {
+  margin-right: 7vw;
+}
+*[marginright="8"] {
+  margin-right: 8vw;
+}
+*[marginright="9"] {
+  margin-right: 9vw;
+}
+*[marginright="10"] {
+  margin-right: 10vw;
+}
+*[marginright="11"] {
+  margin-right: 11vw;
+}
+*[marginright="12"] {
+  margin-right: 12vw;
+}
+*[marginright="13"] {
+  margin-right: 13vw;
+}
+*[marginright="14"] {
+  margin-right: 14vw;
+}
+*[marginright="15"] {
+  margin-right: 15vw;
+}
+*[marginright="16"] {
+  margin-right: 16vw;
+}
+*[marginright="17"] {
+  margin-right: 17vw;
+}
+*[marginright="18"] {
+  margin-right: 18vw;
+}
+*[marginright="19"] {
+  margin-right: 19vw;
+}
+*[marginright="20"] {
+  margin-right: 20vw;
+}
+
+*[marginright="-1"] {
+  margin-right: -1vw;
+}
+*[marginright="-2"] {
+  margin-right: -2vw;
+}
+*[marginright="-3"] {
+  margin-right: -3vw;
+}
+*[marginright="-4"] {
+  margin-right: -4vw;
+}
+*[marginright="-5"] {
+  margin-right: -5vw;
+}
+*[marginright="-6"] {
+  margin-right: -6vw;
+}
+*[marginright="-7"] {
+  margin-right: -7vw;
+}
+*[marginright="-8"] {
+  margin-right: -8vw;
+}
+*[marginright="-9"] {
+  margin-right: -9vw;
+}
+*[marginright="-10"] {
+  margin-right: -10vw;
+}
+*[marginright="-11"] {
+  margin-right: -11vw;
+}
+*[marginright="-12"] {
+  margin-right: -12vw;
+}
+*[marginright="-13"] {
+  margin-right: -13vw;
+}
+*[marginright="-14"] {
+  margin-right: -14vw;
+}
+*[marginright="-15"] {
+  margin-right: -15vw;
+}
+*[marginright="-16"] {
+  margin-right: -16vw;
+}
+*[marginright="-17"] {
+  margin-right: -17vw;
+}
+*[marginright="-18"] {
+  margin-right: -18vw;
+}
+*[marginright="-19"] {
+  margin-right: -19vw;
+}
+*[marginright="-20"] {
+  margin-right: -20vw;
+}
+
+
+
+
 *[margintop="0"] {
   margin-top: 0vw;
 }
@@ -548,6 +677,87 @@
   margin-top: -4vw;
 }
 *[margintop="-5"] {
+  margin-top: -5vw;
+}
+
+
+*[marginbottom="0"] {
+  margin-bottom: 0vw;
+}
+*[marginbottom="1"] {
+  margin-bottom: 1vw;
+}
+*[marginbottom="2"] {
+  margin-bottom: 2vw;
+}
+*[marginbottom="3"] {
+  margin-bottom: 3vw;
+}
+*[marginbottom="4"] {
+  margin-bottom: 4vw;
+}
+*[marginbottom="5"] {
+  margin-bottom: 5vw;
+}
+*[marginbottom="6"] {
+  margin-bottom: 6vw;
+}
+*[marginbottom="7"] {
+  margin-bottom: 7vw;
+}
+*[marginbottom="8"] {
+  margin-bottom: 8vw;
+}
+*[marginbottom="9"] {
+  margin-bottom: 9vw;
+}
+*[marginbottom="10"] {
+  margin-bottom: 10vw;
+}
+*[marginbottom="11"] {
+  margin-bottom: 11vw;
+}
+*[marginbottom="12"] {
+  margin-bottom: 12vw;
+}
+*[marginbottom="13"] {
+  margin-bottom: 13vw;
+}
+*[marginbottom="14"] {
+  margin-bottom: 14vw;
+}
+*[marginbottom="15"] {
+  margin-bottom: 15vw;
+}
+*[marginbottom="16"] {
+  margin-bottom: 16vw;
+}
+*[marginbottom="17"] {
+  margin-bottom: 17vw;
+}
+*[marginbottom="18"] {
+  margin-bottom: 18vw;
+}
+*[marginbottom="19"] {
+  margin-bottom: 19vw;
+}
+*[marginbottom="20"] {
+  margin-bottom: 20vw;
+}
+
+*[marginbottom="-1"] {
+  margin-bottom: -1vw;
+}
+*[marginbottom="-2"] {
+  margin-bottom: -2vw;
+}
+*[marginbottom="-3"] {
+  margin-bottom: -3vw;
+}
+*[marginbottom="-4"] {
+  margin-bottom: -4vw;
+}
+*[marginbottom="-5"] {
   margin-top: -5vw;
 }
 

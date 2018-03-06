@@ -209,7 +209,7 @@ div.toolbox-history {
 .toolbox .colorgroup label {
   margin-bottom:0px;
 }
-.toolbox-colors label.small, .toolbox-bgcolors label.small {
+.toolbox-colors label.small, .toolbox-bgcolors label.small, .box .small {
   font-size: 12px;
     margin-bottom: 4px;
     font-weight: 600;

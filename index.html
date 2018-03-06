@@ -23,19 +23,6 @@
         </div>
       </div>
       <div class="toolbox-line"></div>
-      <div class="toolbox-position box">
-        <label>Position</label>
-        <div class="rangeselector"><span>X </span><input id="marginleft" type="text" attr="marginleft" action="set" focus="line" value="">
-          <button attr="marginleft" action="decrease" focus="line"><i class="fas fa-arrow-left"></i></button>
-          <button attr="marginleft" action="increase" focus="line"><i class="fas fa-arrow-right"></i></button>
-        </div>
-        <div class="rangeselector"><span>Y </span><input id="margintop" type="text" attr="margintop" action="set" focus="line" value="">
-          <button attr="margintop" action="decrease" focus="line"><i class="fas fa-arrow-up"></i></button>
-          <button attr="margintop" action="increase" focus="line"><i class="fas fa-arrow-down"></i></button>
-        </div>
-      </div>
-
-      <div class="toolbox-line"></div>
       <div class="toolbox-font box">
         <label>Caractère</label>
         <div><select id="fontfamily" attr="fontfamily" action="set" focus="range"></select></div>
@@ -72,6 +59,7 @@
        -->
         </div>
       </div>
+
       <!--<div class="toolbox-line"></div>-->
       <div class="toolbox-spacer"></div>
       <div class="toolbox-colors box">
@@ -107,7 +95,30 @@
           <button attr="padding" action="decrease" focus="range"><i class="fas fa-minus"></i></button>
         </div>
         </div>
+        <div class="toolbox-spacer"></div>
+          
+        <div class="box">
+          <div><label class="small">Marges</label></div>
+          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-to-right"></i> </span><input id="marginleft" type="text" attr="marginleft" action="set" focus="line" value="">
+            <button attr="marginleft" action="increase" focus="line"><i class="fas fa-plus"></i></button>
+            <button attr="marginleft" action="decrease" focus="line"><i class="fas fa-minus"></i></button>
+          </div>
+          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-to-bottom"></i> </span><input id="margintop" type="text" attr="margintop" action="set" focus="line" value="">
+            <button attr="margintop" action="increase" focus="line"><i class="fas fa-plus"></i></button>
+            <button attr="margintop" action="decrease" focus="line"><i class="fas fa-minus"></i></button>
+          </div>
 
+          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-to-left"></i> </span><input id="marginright" type="text" attr="marginright" action="set" focus="line" value="">
+            <button attr="marginright" action="increase" focus="line"><i class="fas fa-plus"></i></button>
+            <button attr="marginright" action="decrease" focus="line"><i class="fas fa-minus"></i></button>
+          </div>
+          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-to-top"></i> </span><input id="marginbottom" type="text" attr="marginbottom" action="set" focus="line" value="">
+            <button attr="marginbottom" action="increase" focus="line"><i class="fas fa-plus"></i></button>
+            <button attr="marginbottom" action="decrease" focus="line"><i class="fas fa-minus"></i></button>
+          </div>
+
+
+        </div>
 
 
 
@@ -130,7 +141,8 @@
   <select id="police"></select>
 </div>-->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <!--<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>-->
+  <script defer src="assets/js/fontawesome-all.min.js"></script>
   <script src="gv2.js"></script>
 
 </body>
