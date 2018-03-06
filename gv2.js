@@ -40,7 +40,7 @@ var selectionactive = false;
 $(function() {
   // chargement iframe
   $('#f').on('load', iframeLoaded);
-  $('#f').attr('src','view.html');
+  $('#f').attr('src','view2.html');
 
 
   initToolbox();

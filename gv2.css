@@ -81,8 +81,8 @@ body {
 }
 div.toolbox-line {
   margin-left:-10px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border-top: 2px solid #7e7e7e;
   width:320px;
 }
@@ -94,7 +94,7 @@ div.toolbox-spacer {
 .toolbox label {
   display: block;
   font-weight: 800;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 .toolbox span {
   padding: 0px 2px 0px 0px;
@@ -158,10 +158,11 @@ div.toolbox-history {
 .toolbox .rangeselector {
   font-weight:600;
   font-size:17px;
+  margin-top:4px;
 }
 .toolbox label {
   display:inline-block;
-  font-size:17px;
+  font-size:15px;
 }
 .toolbox label input {
   display:none;
@@ -208,12 +209,18 @@ div.toolbox-history {
 .toolbox div[bgcolor="0"] {
   border: 2px solid #8c8c8c;
 }
+.toolbox .toolbox-colors, .toolbox .toolbox-bgcolors, .toolbox-align, .toolbox-interligne {
+  width: 120px;
+  display: inline-block;
+  vertical-align: top;
+}
+
 .view {
   position:absolute;
   top:0;
   left:0;
-  width: 100%;
-  height:100%;
+  width: 100vh;
+  height:100vh;
   /*clip: rect(0px,70vw,80vh,0px);*/
   /*height: 70vw;*/
   /*overflow:hidden;

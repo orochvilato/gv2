@@ -5,26 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+  
     <link rel="stylesheet" href="charte.css">
 
     <title>FI - Template 01</title>
     <style>
+    div.zone {
+      outline: 1px dashed blue;
+      outline-offset: -1px;
+    }
+
+    div.zone span {
+      outline: 1px dashed red;
+      outline-offset: -1px;
+    }
     body {
       margin: 0;
       padding:0;
       border:0;
-    }
+      background-color: #202020; }
 
     .container {
-      height:100vw;
-      width:100vw;
       position:relative;
       margin: 0 auto;
       background-color: #ffffff;
       overflow: hidden;
       }
 
-    .body {
+    body {
+      overflow-x: hidden;
+      /*overflow-y: hidden;*/
+    }
+    .container {
       width:100vw;
       height: 100vw;
     }
@@ -81,7 +93,7 @@
       position:absolute;
       left: 8vw;
       right: 8vw;
-      top:42vw;
+      top:40vw;
     }
     #bloc4 {
       position:absolute;
@@ -116,15 +128,6 @@
       left:55vw;
       top:35vw;
     }
-    .zone div {
-      outline: 1px dashed blue;
-      outline-offset: -1px;
-    }
-
-    .zone span {
-      outline: 1px dashed red;
-      outline-offset: -1px;
-    }
 
 
     </style>
@@ -140,25 +143,32 @@
         </div>
 
         <div class="content">
-          <div class="zone" id="bloc1">
-            <div class="ligne margintop-10 lineheight-10 align-left"><span class="color-2 reverse font-1 stronger uppercase fontsize-11" contenteditable="true">FRançois RUFFIN</span></div>
-            <div class="ligne margintop-12 lineheight-9 marginleft-10 align-left"><span class="color-3 font-1 reverse stronger uppercase fontsize-9" contenteditable="true">à SAINT-GAUDENS</span></div>
+          <div class="zone" id="bloc1" contenteditable>
+            <div><span bgcolor="6" color="2" fontfamily="1" fontweight="9" texttransform="uppercase" fontsize="6" >&nbsp;FRançois RUFFIN&nbsp;</span></div>
+            <div margintop="1"><span bgcolor="5" color="2" fontfamily="1" fontweight="9" texttransform="uppercase" fontsize="5" >&nbsp;à SAINT-GAUDENS&nbsp;</span></div>
           </div>
-          <div class="zone" id="bloc2">
-            <div class="ligne lineheight-10 marginleft-10 margintop-15 align-left"><span class="color-3 reverse font-1 strong fontsize-12" contenteditable="true">&nbsp;Jeudi 15 février</span></div>
+          <div class="zone" id="bloc2" contenteditable>
+            <div margintop="3"><span bgcolor="5" color="2" fontfamily="1" fontweight="7" fontsize="6" lineheight="5">&nbsp;Jeudi 15 février&nbsp;&nbsp;</span></div>
           </div>
-          <div class="zone" id="bloc3">
-            <div class="ligne align-justify margintop-13 lineheight-0"><span class="color-2 font-1 stronger fontsize-10" contenteditable="true">18h00</span></div><div class="ligne align-justify margintop-13 lineheight-6"><span class="color-1 strong font-1 fontsize-11" contenteditable="true">Match de football</span></div><div class="ligne align-justify margintop-13 lineheight-0"><span class="color-1 strong font-1 fontsize-5" contenteditable="true">France insoumise - Comminges Savès Debout</span></div><div class="ligne align-justify margintop-13 lineheight-3"><span class="color-3 small-spacing tooltipstered size-4 font-1 fontsize-11" contenteditable="true">Stade de Sède</span><span class="color-3 small-spacing tooltipstered size-4 font-1 fontsize-5" contenteditable="true">&nbsp;(Saint-Gaudens)</span></div><div class="ligne align-justify margintop-13 lineheight-13"><span class="color-2 stronger font-1 fontsize-10" contenteditable="true">20h30</span></div><div class="ligne align-justify margintop-13 lineheight-0"><span class="color-1 strong font-1 fontsize-11" contenteditable="true">Réunion publique</span></div><div class="ligne align-justify margintop-13 lineheight-5"><span class="color-3 font-1 fontsize-11" contenteditable="true">Salle du Belvédère</span><span class="color-3 small-spacing tooltipstered font-1 size-4 fontsize-5" contenteditable="true">&nbsp;(Saint-Gaudens)</span></div>
+          <div class="zone" id="bloc3" contenteditable>
+            <div align="justify"><span color="6" fontfamily="1" fontweight="9" fontsize="6">18h00</span></div>
+            <div align="justify"><span color="4" fontweight="7" fontfamily="1" fontsize="6">Match de football</span></div>
+            <div align="justify" margintop="-1"><span color="4" fontweight="6" fontfamily="1" fontsize="3">France insoumise - Comminges Savès Debout</span></div>
+            <div align="justify" margintop="0"><span color="5" fontsize="6" fontfamily="1">Stade de Sède</span>
+              <span color="5" fontsize="3" fontfamily="1">&nbsp;(Saint-Gaudens)</span></div>
+            <div align="justify" margintop="2"><span color="6" fontfamily="1" fontweight="9" fontsize="6">20h30</span></div>
+            <div align="justify"><span color="4" fontweight="7" fontfamily="1" fontsize="6">Réunion publique</span></div>
+            <div align="justify" margintop="0"><span color="5" fontsize="6" fontfamily="1">Salle du Belvédère</span>
+                <span color="5" fontsize="3" fontfamily="1">&nbsp;(Saint-Gaudens)</span></div>
           </div>
 
         </div>
 
 
       <div class="footer">
-        <div class="fi skew2 color-3-bg"></div>
-
-          <div class="textblock" id="bloc4">
-            <div class="ligne align-left margintop-10 lineheight-10"><span class="color-W fontsize-4 font-2" contenteditable="true">Élection législative partielle - 11 et 18 mars 2018</span></div>
+        <div class="fi skew2"  bgcolor="5"></div>
+          <div class="zone" id="bloc4">
+            <div align="left"><span color="2" fontsize="3" fontfamily="2">Élection législative partielle - 11 et 18 mars 2018</span></div>
         </div>
 
     </div>
