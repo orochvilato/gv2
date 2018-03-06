@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link  rel="stylesheet" href="charte.css">
     <link  rel="stylesheet" href="gv2.css">
 
@@ -24,25 +25,19 @@
       <div class="toolbox-line"></div>
       <div class="toolbox-position box">
         <label>Position</label>
-        <div class="rangeselector"><span>X </span><input id="marginleft" type="text" attr="marginleft" focus="line" value="-">
+        <div class="rangeselector"><span>X </span><input id="marginleft" type="text" attr="marginleft" action="set" focus="line" value="-">
           <button attr="marginleft" action="decrease" focus="line"><i class="fas fa-arrow-left"></i></button>
           <button attr="marginleft" action="increase" focus="line"><i class="fas fa-arrow-right"></i></button>
         </div>
-        <div class="rangeselector"><span>Y </span><input id="margintop" type="text" attr="margintop" focus="line" value="-">
+        <div class="rangeselector"><span>Y </span><input id="margintop" type="text" attr="margintop" action="set" focus="line" value="-">
           <button attr="margintop" action="decrease" focus="line"><i class="fas fa-arrow-up"></i></button>
           <button attr="margintop" action="increase" focus="line"><i class="fas fa-arrow-down"></i></button>
         </div>
       </div>
-      <div class="toolbox-taille box">
-        <label>Taille</label>
-        <div class="rangeselector"><span>T </span><input id="fontsize" type="text" attr="fontsize" focus="range" value="-">
-          <button attr="fontsize" action="increase" focus="range"><i class="fas fa-plus"></i></button>
-          <button attr="fontsize" action="decrease" focus="range"><i class="fas fa-minus"></i></button>
-        </div>
-      </div>
+
       <div class="toolbox-line"></div>
       <div class="toolbox-font box">
-        <label>Police</label>
+        <label>Caractère</label>
         <div><select id="fontfamily" attr="fontfamily" action="set" focus="range"></select></div>
         <div><select id="fontweight" attr="fontweight" action="set" focus="range">
           <option value="1">Thin (100)</option>
@@ -56,7 +51,12 @@
           <option value="9">Black (900)</option>
           </select>
         </div>
-
+        <div class="toolbox-taille box">
+          <div class="rangeselector"><span><i class="fas fa-text-height"></i> </span><input id="fontsize" type="text" action="set" attr="fontsize" focus="range" value="-">
+            <button attr="fontsize" action="increase" focus="range"><i class="fas fa-plus"></i></button>
+            <button attr="fontsize" action="decrease" focus="range"><i class="fas fa-minus"></i></button>
+          </div>
+        </div>
         <div class="fontstyle checkboxes">
            <label><input type="checkbox" name="fontstyle" attr="fontstyle" action="toggle" focus="range" value="italic"><span><i class="fas fa-italic"></i></span></label><!--
        --><label><input type="checkbox" name="expind" attr="expind" action="toggle" focus="range" value="exposant"><span><i class="fas fa-superscript"></i></span></label><!--
@@ -79,7 +79,7 @@
       </div>
       <div class="toolbox-interligne box">
         <label>Interligne</label>
-        <div class="rangeselector"><span><i class="fas fa-arrows-alt-v"></i><i class="fas fa-align-justify"></i> </span><input id="lineheight" type="text" attr="lineheight" focus="line" value="-">
+        <div class="rangeselector"><span><i class="fas fa-arrows-alt-v"></i><i class="fas fa-align-justify"></i> </span><input id="lineheight" type="text" action="set" attr="lineheight" focus="line" value="-">
           <button attr="lineheight" action="increase" focus="line"><i class="fas fa-plus"></i></button>
           <button attr="lineheight" action="decrease" focus="line"><i class="fas fa-minus"></i></button>
         </div>

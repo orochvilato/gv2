@@ -262,7 +262,6 @@ function iframeLoaded() {
 
   $(".toolbox input[attr], .toolbox select[attr]").change(function (e) {
     if ($(this).attr('focus')=='line') {
-
       lineAction($(this).attr('attr'),$(this).attr('action'),$(this).val());
     } else {
       rangeFormat($(this).attr('attr'),$(this).attr('action'),$(this).val());
@@ -314,7 +313,7 @@ function getCurrentAttrs(node) {
 function applyFormat(node,attr,fct,value)
 {
   var nodeattr = getCurrentAttrs(node);
-  console.log(node,attr,fct,value);
+
   if ((fct=='increase')||fct=='decrease') {
     var attrval = parseInt(nodeattr[attr]);
     var newval = attrval + (fct=='increase'?1:-1)
@@ -322,29 +321,31 @@ function applyFormat(node,attr,fct,value)
   } else if (fct=='set') {
     var newval = value;
   } else if (fct=='toggle') {
-    console.log('toggle');
     if ($(node).attr(attr) == value) {
       var newval = "";
     } else {
       var newval = value;
     }
   }
-
+  console.log(node,attr,newval);
   $(node).attr(attr,newval);
 }
 
 // appliquer l'action / formatage à une ligne
-function lineAction(attr,fct,value,multiline) {
+function lineAction(attr,fct,value) {
   var sel = f.contentWindow.getSelection();
   var changed = false;
   var his_item = getHistoryItem(sel.anchorNode);
 
+
   if ($(sel.anchorNode).closest('div').get(0) != $(sel.focusNode).closest('div').get(0)) {
     var nodes = getSelectedNodes();
+    console.log(nodes);
     divs = Array();
     for (var i=0;i<nodes.length;i++) {
       var div = $(nodes[i]).closest('div').get(0);
-      if (div&&(!divs.includes(div))&&(!$(div).hasClass('zone'))) {
+
+      if (div&&(!divs.includes(div))&&($(div.parentNode).hasClass('zone'))) {
         changed = true;
         applyFormat(div,attr,fct,value)
       }
@@ -360,6 +361,7 @@ function lineAction(attr,fct,value,multiline) {
 // Appliquer le formatage/action à une selection (range)
 function rangeFormat(attr,fct,value)
 {
+  console.log('range',attr,fct,value);
   var targets = Array('SPAN','IMG');
   var sel = f.contentWindow.getSelection();
   if (sel.focusNode==null) {
@@ -494,7 +496,7 @@ function nextNode(node) {
     if (node.hasChildNodes()) {
         return node.firstChild;
     } else {
-        while (node && !node.nextSibling) {
+        while (node && !node.nextSibling && !$(node).hasClass('zone')) {
             node = node.parentNode;
         }
         if (!node) {
@@ -508,7 +510,6 @@ function getRangeSelectedNodes(range) {
     var node = range.startContainer;
     var endNode = range.endContainer;
     var parents = $(endNode).parents();
-    console.log(endNode,$(endNode).parents());
     // Special case for a range that is contained within a single node
     if (node == endNode) {
         return [node];
@@ -516,21 +517,22 @@ function getRangeSelectedNodes(range) {
 
     // Iterate nodes until we hit the end container
     var rangeNodes = [];
-    while (node) {
+    while (node && node != endNode) {
         //if (((node.nodeType==3)&&(node.parentNode.tagName=='SPAN'))||((node.nodeType==1)&&(!$(node.parentNode).hasClass('zone'))))
         //if ($(node).find(endNode).length==0 || node==endNode)
-        rangeNodes.push( node );
+        if (!rangeNodes.includes(node)) rangeNodes.push( node );
         node = nextNode(node);
+
     }
 
 
     // Add partially selected nodes at the start of the range
     node = range.startContainer;
-    while (node && node != range.commonAncestorContainer) {
-        rangeNodes.unshift(node);
+    while (node && node != range.commonAncestorContainer && !$(node.parentNode).hasClass('zone')) {
+        if (!rangeNodes.includes(node)) rangeNodes.unshift(node);
         node = node.parentNode;
     }
-
+    console.log(rangeNodes);
     return rangeNodes;
 }
 
