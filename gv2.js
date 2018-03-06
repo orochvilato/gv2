@@ -11,7 +11,7 @@ var attrRanges = { fontsize:[1,30],
                     marginleft:[-20,20],
                     margintop:[-5,20],
                     padding:[0,20],
-                    letterspacing:[0,20],
+                    letterspacing:[0,10],
                     lineheight:[0,15]}
 
 var attrDefaults = {
