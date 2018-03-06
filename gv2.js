@@ -40,7 +40,7 @@ var selectionactive = false;
 $(function() {
   // chargement iframe
   $('#f').on('load', iframeLoaded);
-  $('#f').attr('src','view2.html');
+  $('#f').attr('src','view.html');
 
 
   initToolbox();
@@ -327,7 +327,7 @@ function applyFormat(node,attr,fct,value)
       var newval = value;
     }
   }
-  console.log(node,attr,newval);
+
   $(node).attr(attr,newval);
 }
 
@@ -340,12 +340,13 @@ function lineAction(attr,fct,value) {
 
   if ($(sel.anchorNode).closest('div').get(0) != $(sel.focusNode).closest('div').get(0)) {
     var nodes = getSelectedNodes();
-    console.log(nodes);
+
     divs = Array();
     for (var i=0;i<nodes.length;i++) {
       var div = $(nodes[i]).closest('div').get(0);
 
       if (div&&(!divs.includes(div))&&($(div.parentNode).hasClass('zone'))) {
+        divs.push(div);
         changed = true;
         applyFormat(div,attr,fct,value)
       }
@@ -415,8 +416,10 @@ function rangeFormat(attr,fct,value)
       applyFormat(node,attr,fct,value)
     }
   } else {
+    console.log(nodes,startNode);
     for (i=0;i<nodes.length;i++) {
       if (nodes[i] == startNode) {
+        console.log('start');
         started = true;
         if ((nodes[i].nodeType==3)&&(nodes[i-1] != nodes[i])) {
           if (range.startOffset>0) {
@@ -429,6 +432,7 @@ function rangeFormat(attr,fct,value)
         }
       }
       if (nodes[i] == endNode) {
+        console.log('end');
         if (nodes[i].nodeType==3) {
           if ((range.endOffset<nodes[i].nodeValue.length) && (range.endOffset>0)) {
             changed = true;
@@ -441,20 +445,15 @@ function rangeFormat(attr,fct,value)
           }
         }
       }
-      if ((started == true) && (nodes[i-1] != nodes[i])) {
-        if ($(nodes[i]).find(endNode).length==0 || nodes[i]==endNode) {
+      if (started == true)  {
           if (nodes[i] == endNode) started = false;
-          if (nodes[i].nodeType==3)  {
-            var node=nodes[i].parentNode;
-          } else {
+          if (nodes[i].nodeType!=3)  {
             var node=nodes[i];
+            if (targets.includes(node.tagName)) {
+              changed = true;
+              applyFormat(node,attr,fct,value)
+            }
           }
-
-          if (targets.includes(node.tagName)) {
-            changed = true;
-            applyFormat(node,attr,fct,value)
-          }
-        }
       }
     }
   }
@@ -522,17 +521,19 @@ function getRangeSelectedNodes(range) {
         //if ($(node).find(endNode).length==0 || node==endNode)
         if (!rangeNodes.includes(node)) rangeNodes.push( node );
         node = nextNode(node);
-
+    }
+    if (node == endNode) {
+      rangeNodes.push(node);
     }
 
 
     // Add partially selected nodes at the start of the range
     node = range.startContainer;
     while (node && node != range.commonAncestorContainer && !$(node.parentNode).hasClass('zone')) {
-        if (!rangeNodes.includes(node)) rangeNodes.unshift(node);
+        if (!rangeNodes.includes(node)) rangeNodes.splice(1,0,node);
         node = node.parentNode;
     }
-    console.log(rangeNodes);
+
     return rangeNodes;
 }
 
