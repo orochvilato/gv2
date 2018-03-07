@@ -112,9 +112,7 @@ div.toolbox-history {
   vertical-align: top;
 }
 
-.toolbox-position div {
-  width:120px;
-}
+
 .box {
   margin-top:2px;
   margin-bottom:4px;
@@ -164,7 +162,7 @@ div.toolbox-history {
   font-weight:600;
   font-size:16px;
   margin-top:4px;
-  width:110px;
+  /*width:70px;*/
   background-color: white;
   padding: 2px;
   border-radius: 4px;
@@ -227,11 +225,25 @@ div.toolbox-history {
   border: 2px solid #8c8c8c;
 }
 .toolbox .toolbox-colors, .toolbox .toolbox-bgcolors, .toolbox-align, .toolbox-interligne {
-  width: 120px;
+  /*width: 120px;*/
   display: inline-block;
   vertical-align: top;
 }
-
+.toolbox .rangeselector button.mini {
+  font-size: 10px;
+  width:15px;
+  display: block;
+  padding: 0px;
+  vertical-align: text-bottom;
+}
+.toolbox .rangeselector div {
+  display:none;
+  vertical-align: bottom;
+  height: 20px;
+}
+.toolbox .rangeselector:hover  div {
+  display:inline-block;
+}
 .view {
   position:absolute;
   top:0;

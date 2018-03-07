@@ -40,14 +40,18 @@
         </div>
         <div class="toolbox-taille box">
           <div class="rangeselector"><span><i class="fas fa-text-height"></i> </span><input id="fontsize" type="text" action="set" attr="fontsize" focus="range" value="">
-            <button attr="fontsize" action="increase" focus="range"><i class="fas fa-plus"></i></button>
-            <button attr="fontsize" action="decrease" focus="range"><i class="fas fa-minus"></i></button>
+            <div>
+            <button class="mini" attr="fontsize" action="increase" focus="range"><i class="fas fa-chevron-up"></i></i></button>
+            <button class="mini" attr="fontsize" action="decrease" focus="range"><i class="fas fa-chevron-down"></i></i></button>
+          </div>
           </div>
         </div>
         <div class="toolbox-taille box">
           <div class="rangeselector"><span><i class="fas fa-text-width"></i> </span><input id="letterspacing" type="text" action="set" attr="letterspacing" focus="range" value="">
-            <button attr="letterspacing" action="increase" focus="range"><i class="fas fa-plus"></i></button>
-            <button attr="letterspacing" action="decrease" focus="range"><i class="fas fa-minus"></i></button>
+            <div>
+            <button class="mini" attr="letterspacing" action="increase" focus="range"><i class="fas fa-chevron-up"></i></i></button>
+            <button class="mini" attr="letterspacing" action="decrease" focus="range"><i class="fas fa-chevron-down"></i></i></button>
+          </div>
           </div>
         </div>
         <div class="fontstyle checkboxes">
@@ -85,36 +89,71 @@
         </div>
         <div class="toolbox-interligne box">
         <div class="rangeselector"><span><i class="fas fa-arrows-alt-v"></i><i class="fas fa-align-justify"></i> </span><input id="lineheight" type="text" action="set" attr="lineheight" focus="line" value="">
-          <button attr="lineheight" action="increase" focus="line"><i class="fas fa-plus"></i></button>
-          <button attr="lineheight" action="decrease" focus="line"><i class="fas fa-minus"></i></button>
-        </div>
-        </div>
-        <div class="toolbox-padding box">
-        <div class="rangeselector"><span><i class="fas fa-expand"></i> </span><input id="padding" type="text" action="set" attr="padding" focus="range" value="">
-          <button attr="padding" action="increase" focus="range"><i class="fas fa-plus"></i></button>
-          <button attr="padding" action="decrease" focus="range"><i class="fas fa-minus"></i></button>
-        </div>
-        </div>
-        <div class="toolbox-spacer"></div>
-          
-        <div class="box">
-          <div><label class="small">Marges</label></div>
-          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-to-right"></i> </span><input id="marginleft" type="text" attr="marginleft" action="set" focus="line" value="">
-            <button attr="marginleft" action="increase" focus="line"><i class="fas fa-plus"></i></button>
-            <button attr="marginleft" action="decrease" focus="line"><i class="fas fa-minus"></i></button>
+          <div>
+            <button class="mini" attr="lineheight" action="increase" focus="range"><i class="fas fa-chevron-up"></i></i></button>
+            <button class="mini" attr="lineheight" action="decrease" focus="range"><i class="fas fa-chevron-down"></i></i></button>
           </div>
-          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-to-bottom"></i> </span><input id="margintop" type="text" attr="margintop" action="set" focus="line" value="">
-            <button attr="margintop" action="increase" focus="line"><i class="fas fa-plus"></i></button>
-            <button attr="margintop" action="decrease" focus="line"><i class="fas fa-minus"></i></button>
+        </div>
+        </div>
+        
+        <div class="toolbox-spacer"></div>
+        <div class="box toolbox-padding">
+          <div><label class="small">Padding</label></div>
+          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-to-left"></i> </span><input id="paddingleft" type="text" attr="marginleft" action="set" focus="range" value="">
+            <div>
+              <button class="mini" attr="paddingleft" action="increase" focus="range"><i class="fas fa-chevron-up"></i></i></button>
+              <button class="mini" attr="paddingleft" action="decrease" focus="range"><i class="fas fa-chevron-down"></i></i></button>
+            </div>
+          </div>
+          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-to-right"></i> </span><input id="paddingright" type="text" attr="paddingright" action="set" focus="range" value="">
+            <div>
+              <button class="mini" attr="paddingright" action="increase" focus="range"><i class="fas fa-chevron-up"></i></i></button>
+              <button class="mini" attr="paddingright" action="decrease" focus="range"><i class="fas fa-chevron-down"></i></i></button>
+            </div>
           </div>
 
-          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-to-left"></i> </span><input id="marginright" type="text" attr="marginright" action="set" focus="line" value="">
-            <button attr="marginright" action="increase" focus="line"><i class="fas fa-plus"></i></button>
-            <button attr="marginright" action="decrease" focus="line"><i class="fas fa-minus"></i></button>
+
+          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-to-top"></i> </span><input id="paddingtop" type="text" attr="paddingtop" action="set" focus="range" value="">
+            <div>
+              <button class="mini" attr="paddingtop" action="increase" focus="range"><i class="fas fa-chevron-up"></i></i></button>
+              <button class="mini" attr="paddingtop" action="decrease" focus="range"><i class="fas fa-chevron-down"></i></i></button>
+            </div>
           </div>
-          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-to-top"></i> </span><input id="marginbottom" type="text" attr="marginbottom" action="set" focus="line" value="">
-            <button attr="marginbottom" action="increase" focus="line"><i class="fas fa-plus"></i></button>
-            <button attr="marginbottom" action="decrease" focus="line"><i class="fas fa-minus"></i></button>
+          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-to-bottom"></i> </span><input id="paddingbottom" type="text" attr="paddingbottom" action="set" focus="range" value="">
+            <div>
+              <button class="mini" attr="paddingbottom" action="increase" focus="range"><i class="fas fa-chevron-up"></i></i></button>
+              <button class="mini" attr="paddingbottom" action="decrease" focus="range"><i class="fas fa-chevron-down"></i></i></button>
+            </div>
+          </div>
+
+        </div>
+        <div class="toolbox-spacer"></div>
+        <div class="box">
+          <div><label class="small">Marges</label></div>
+          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-from-right"></i> </span><input id="marginleft" type="text" attr="marginleft" action="set" focus="line" value="">
+            <div>
+              <button class="mini" attr="marginleft" action="increase" focus="line"><i class="fas fa-chevron-up"></i></i></button>
+              <button class="mini" attr="marginleft" action="decrease" focus="line"><i class="fas fa-chevron-down"></i></i></button>
+            </div>
+          </div>
+
+          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-from-left"></i> </span><input id="marginright" type="text" attr="marginright" action="set" focus="line" value="">
+            <div>
+              <button class="mini" attr="marginright" action="increase" focus="line"><i class="fas fa-chevron-up"></i></i></button>
+              <button class="mini" attr="marginright" action="decrease" focus="line"><i class="fas fa-chevron-down"></i></i></button>
+            </div>
+          </div>
+          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-from-bottom"></i> </span><input id="margintop" type="text" attr="margintop" action="set" focus="line" value="">
+            <div>
+              <button class="mini" attr="margintop" action="increase" focus="line"><i class="fas fa-chevron-up"></i></i></button>
+              <button class="mini" attr="margintop" action="decrease" focus="line"><i class="fas fa-chevron-down"></i></i></button>
+            </div>
+          </div>
+          <div class="rangeselector toolbox-position"><span><i class="fas fa-arrow-from-top"></i> </span><input id="marginbottom" type="text" attr="marginbottom" action="set" focus="line" value="">
+            <div>
+              <button class="mini" attr="marginbottom" action="increase" focus="line"><i class="fas fa-chevron-up"></i></i></button>
+              <button class="mini" attr="marginbottom" action="decrease" focus="line"><i class="fas fa-chevron-down"></i></i></button>
+            </div>
           </div>
 
 

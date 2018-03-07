@@ -13,10 +13,18 @@ var attrRanges = { fontsize:[1,30],
                     margintop:[-5,20],
                     marginbottom:[-5,20],
                     padding:[0,20],
+                    paddingleft:[0,20],
+                    paddingright:[0,20],
+                    paddingtop:[0,20],
+                    paddingbottom:[0,20],
                     letterspacing:[0,10],
                     lineheight:[0,15]}
 
 var attrDefaults = {
+  paddingleft:0,
+  paddingright:0,
+  paddingtop:0,
+  paddingbottom:0,
   letterspacing:0,
   fontsize: 4,
   padding:0,
@@ -182,7 +190,7 @@ function centerVisuel() {
 // une fois la iframe chargée
 function iframeLoaded() {
   centerVisuel();
-
+  fdocument.execCommand("styleWithCSS", true, null);
   // gestion du zoom sur le visuel avec la molette de la souris
   $("#f").contents().find('html').get(0).addEventListener('wheel', function(e) {
 
@@ -206,6 +214,7 @@ function iframeLoaded() {
   $('#f').contents().find('div.zone').mouseup(function(e) {
     if (selectionactive) { // selection effectuée dans une zone
       if ($('#f')[0].contentWindow.getSelection) {
+
         var selection = $('#f')[0].contentWindow.getSelection();
         updateToolbox(getCurrentAttrs(selection.getRangeAt(0).focusNode));
       }
@@ -285,12 +294,6 @@ function iframeLoaded() {
     updateToolbox();
 
   });
-  $("#position-left-button").click(function() {
-    lineAction('marginleft','decrease',1);
-    updateToolbox();
-
-  });
-
 
 }
 
