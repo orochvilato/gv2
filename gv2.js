@@ -294,7 +294,12 @@ function iframeLoaded() {
     updateToolbox();
 
   });
-
+  $("#f").contents().find("body").bind('copy', function(e) {
+    var clipboardData = e.originalEvent.clipboardData || fwindow.originalEvent.clipboardData;
+    var selectedText = fwindow.getSelection().toHtml();
+    e.preventDefault();
+    console.log(selectedText);
+  });
 }
 
 
@@ -302,10 +307,13 @@ function iframeLoaded() {
 function getCurrentAttrs(node) {
   var defaults = {};
   if (node==undefined) {
-    if (!f.contentWindow.getSelection) return
+    if (!f.contentWindow.getSelection) {
+      return;
+    }
     node = f.contentWindow.getSelection().focusNode;
 
   }
+
   for (attr in attrDefaults) {
     var n = node;
     while (n && (defaults[attr]==undefined) ) {
@@ -483,7 +491,6 @@ function updateToolbox(attrs) {
   if (attrs==undefined) {
     attrs = getCurrentAttrs();
   }
-
   for (k in attrs) {
     $('#'+k).val(attrs[k]);
     // radios
