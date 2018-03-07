@@ -432,8 +432,6 @@
 *[lineheight="15"] {
   line-height: 3;
 }
-
-
 *[fontsize="1"] {
   font-size: 1vw;
   height:1vw;
@@ -554,6 +552,313 @@
   font-size: 55vw;
   height:55vw;
 }
+
+# Exposants
+*[fontsize="1"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 0.6vw;
+  height:0.6vw;
+}
+*[fontsize="2"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 0.72vw;
+  height:0.72vw;
+}
+*[fontsize="3"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 0.84vw;
+  height:0.84vw;
+}
+*[fontsize="4"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 0.96vw;
+  height:0.96vw;
+}
+*[fontsize="5"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 1.08vw;
+  height:1.08vw;
+}
+*[fontsize="6"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 1.2vw;
+  height:1.2vw;
+}
+*[fontsize="7"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 1.35vw;
+  height:1.35vw;
+}
+*[fontsize="8"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 1.5vw;
+  height:1.5vw;
+}
+*[fontsize="9"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 1.65vw;
+  height:1.65vw;
+}
+*[fontsize="10"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 1.8vw;
+  height:1.8vw;
+}
+*[fontsize="11"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 2.1vw;
+  height:2.1vw;
+}
+*[fontsize="12"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 2.4vw;
+  height:2.4vw;
+}
+*[fontsize="13"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 2.7vw;
+  height:2.7vw;
+}
+*[fontsize="14"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 3vw;
+  height:3vw;
+}
+*[fontsize="15"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 3.3vw;
+  height:3.3vw;
+}
+*[fontsize="16"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 3.6vw;
+  height:3.6vw;
+}
+*[fontsize="17"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 3.9vw;
+  height:3.9vw;
+}
+*[fontsize="18"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 4.2vw;
+  height:4.2vw;
+}
+*[fontsize="19"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 4.5vw;
+  height:4.5vw;
+}
+*[fontsize="20"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 4.8vw;
+  height:4.8vw;
+}
+*[fontsize="21"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 5.4vw;
+  height:5.4vw;
+}
+*[fontsize="22"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 6vw;
+  height:6vw;
+}
+*[fontsize="23"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 7.2vw;
+  height:7.2vw;
+}
+*[fontsize="24"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 8.4vw;
+  height:8.4vw;
+}
+*[fontsize="25"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 10.8vw;
+  height:10.8vw;
+}
+*[fontsize="26"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 13.8vw;
+  height:13.8vw;
+}
+*[fontsize="27"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 17.4vw;
+  height:17.4vw;
+}
+*[fontsize="28"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 21.6vw;
+  height:21.6vw;
+}
+*[fontsize="29"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 27vw;
+  height:27vw;
+}
+*[fontsize="30"][expind="exposant"] {
+  vertical-align: top;
+  font-size: 33vw;
+  height:33vw;
+}
+
+# Indices
+*[fontsize="1"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 0.6vw;
+  height:0.6vw;
+}
+*[fontsize="2"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 0.72vw;
+  height:0.72vw;
+}
+*[fontsize="3"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 0.84vw;
+  height:0.84vw;
+}
+*[fontsize="4"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 0.96vw;
+  height:0.96vw;
+}
+*[fontsize="5"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 1.08vw;
+  height:1.08vw;
+}
+*[fontsize="6"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 1.2vw;
+  height:1.2vw;
+}
+*[fontsize="7"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 1.35vw;
+  height:1.35vw;
+}
+*[fontsize="8"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 1.5vw;
+  height:1.5vw;
+}
+*[fontsize="9"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 1.65vw;
+  height:1.65vw;
+}
+*[fontsize="10"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 1.8vw;
+  height:1.8vw;
+}
+*[fontsize="11"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 2.1vw;
+  height:2.1vw;
+}
+*[fontsize="12"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 2.4vw;
+  height:2.4vw;
+}
+*[fontsize="13"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 2.7vw;
+  height:2.7vw;
+}
+*[fontsize="14"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 3vw;
+  height:3vw;
+}
+*[fontsize="15"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 3.3vw;
+  height:3.3vw;
+}
+*[fontsize="16"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 3.6vw;
+  height:3.6vw;
+}
+*[fontsize="17"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 3.9vw;
+  height:3.9vw;
+}
+*[fontsize="18"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 4.2vw;
+  height:4.2vw;
+}
+*[fontsize="19"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 4.5vw;
+  height:4.5vw;
+}
+*[fontsize="20"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 4.8vw;
+  height:4.8vw;
+}
+*[fontsize="21"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 5.4vw;
+  height:5.4vw;
+}
+*[fontsize="22"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 6vw;
+  height:6vw;
+}
+*[fontsize="23"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 7.2vw;
+  height:7.2vw;
+}
+*[fontsize="24"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 8.4vw;
+  height:8.4vw;
+}
+*[fontsize="25"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 10.8vw;
+  height:10.8vw;
+}
+*[fontsize="26"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 13.8vw;
+  height:13.8vw;
+}
+*[fontsize="27"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 17.4vw;
+  height:17.4vw;
+}
+*[fontsize="28"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 21.6vw;
+  height:21.6vw;
+}
+*[fontsize="29"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 27vw;
+  height:27vw;
+}
+*[fontsize="30"][expind="indice"] {
+  vertical-align: bottom;
+  font-size: 33vw;
+  height:33vw;
+}
+
+
+
 *[fontweight="1"] {
   font-weight:100;
 }
@@ -1065,15 +1370,4 @@
 }
 *[bgcolor="6"] {
   background-color:#e23d22;
-}
-
-*[expind="exposant"] {
-  vertical-align:super;
-  font-size: .7em;
-  line-height: .6em;
-}
-*[expind="indice"] {
-  vertical-align:sub;
-  font-size: .7em;
-  line-height: .6em;
 }

@@ -119,7 +119,7 @@ div.toolbox-history {
   margin-right:20px;
 }
 .toolbox input[type="text"] {
-    width:25px;
+    width:22px;
     text-align:center;
     font-size:16px;
 }
@@ -231,13 +231,14 @@ div.toolbox-history {
 }
 .toolbox .rangeselector button.mini {
   font-size: 10px;
-  width:15px;
+  width:12px;
   display: block;
   padding: 0px;
   vertical-align: text-bottom;
 }
 .toolbox .rangeselector div {
   display:none;
+  display:inline-block;
   vertical-align: bottom;
   height: 20px;
 }

@@ -214,11 +214,11 @@ function initToolbox() {
     $('<option value="'+(i+1)+'">'+fonts[i]+'</option>').appendTo('#fontfamily');
   }
   var colors = getCharteColors();
-  for (var i=0;i<=colors.length;i++) {
-    if (i>0) $('<label><input type="radio" name="color" attr="color" action="set" focus="range" value="'+i+'"><div bgcolor="'+i+'"></div></label>').appendTo('.color.colorgroup');
+  for (var i=1;i<=colors.length;i++) {
+    $('<label><input type="radio" name="color" attr="color" action="set" focus="range" value="'+i+'"><div bgcolor="'+i+'"></div></label>').appendTo('.color.colorgroup');
     $('<label><input type="radio" name="bgcolor" attr="bgcolor" action="set" focus="range" value="'+i+'"><div bgcolor="'+i+'"></div></label>').appendTo('.bgcolor.colorgroup');
   }
-
+  $('<label><input type="radio" name="bgcolor" attr="bgcolor" action="set" focus="range" value="0"><div bgcolor="0"></div></label>').appendTo('.bgcolor.colorgroup');
 
 
 }
