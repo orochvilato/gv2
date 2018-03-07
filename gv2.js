@@ -2,6 +2,31 @@
 // -----------------------------------------------------------
 // initialisation
 // -----------------------------------------------------------
+var rstyle = {};
+
+var attrCss = {
+  paddingleft:'padding-left',
+  paddingright:'padding-right',
+  paddingtop:'padding-top',
+  paddingbottom:'padding-bottom',
+  letterspacing:'letter-spacing',
+  fontsize: 'font-size',
+  padding: 'padding',
+  fontweight: 'font-weight',
+  fontfamily: 'font-family',
+  color: 'color',
+  bgcolor: 'background-color',
+  marginleft: 'margin-left',
+  margintop: 'margin-top',
+  marginright: 'margin-right',
+  marginbottom: 'margin-bottom',
+  lineheight: 'line-height',
+  align:'text-align',
+  expind:'vertical-align',
+  textdecoration:'text-decoration',
+  fontstyle:'font-style',
+  texttransform:'text-transform'
+}
 
 var attrRanges = { fontsize:[1,30],
                     fontweight:[1,9],
@@ -19,7 +44,10 @@ var attrRanges = { fontsize:[1,30],
                     paddingbottom:[0,20],
                     letterspacing:[0,10],
                     lineheight:[0,15]}
-
+var attrValues = {
+  align:['left','center','right'],
+  expind:['exposant','indice']
+}
 var attrDefaults = {
   paddingleft:0,
   paddingright:0,
@@ -61,8 +89,41 @@ $(function() {
 
   initToolbox();
 
-});
 
+});
+function reverseStyle() {
+
+  var width = $('html').width();
+  for (var k in attrRanges) {
+    var range = attrRanges[k]
+    for (i=range[0]; i<=range[1]; i++) {
+      var div = document.createElement('div');
+      div.setAttribute('id','rs');
+      div.style='display:none';
+      div.setAttribute(k,i);
+      var textnode = document.createTextNode("rs");
+      div.appendChild(textnode);
+
+      document.body.appendChild(div);
+      var rs = $('#rs').css(attrCss[k]);
+      var fs = parseFloat($('#rs').css('font-size').match(/([0-9\.]+)px/)[1]);
+      var ispx=  rs.match(/([0-9\.]+)px/);
+
+      if (ispx!=null) {
+        if (k==='lineheight') {
+          console.log(Math.round(100*parseFloat(ispx[1])/fs)/100)
+        } else {
+          var value = Math.round(100*100*parseFloat(ispx[1])/width)/100;
+          rs = value + 'vw';
+        }
+      }
+      document.body.removeChild(div);
+      rstyle[attrCss[k]+': '+rs] = [k,i]
+    }
+  }
+  return rstyle
+
+}
 document.execCommand('insertBrOnReturn',false);
 
 // -----------------------------------------------------------
@@ -190,7 +251,8 @@ function centerVisuel() {
 // une fois la iframe chargée
 function iframeLoaded() {
   centerVisuel();
-  fdocument.execCommand("styleWithCSS", true, null);
+  rstyle = reverseStyle();
+  fdocument.execCommand("styleWithCSS", false, null);
   // gestion du zoom sur le visuel avec la molette de la souris
   $("#f").contents().find('html').get(0).addEventListener('wheel', function(e) {
 
@@ -294,11 +356,27 @@ function iframeLoaded() {
     updateToolbox();
 
   });
-  $("#f").contents().find("body").bind('copy', function(e) {
+  $("#f").contents().find("body").bind('paste', function(e) {
+    var zone = $(e.target).closest('div.zone');
     var clipboardData = e.originalEvent.clipboardData || fwindow.originalEvent.clipboardData;
-    var selectedText = fwindow.getSelection().toHtml();
-    e.preventDefault();
-    console.log(selectedText);
+      window.setTimeout( function() {
+        zone.find("div, span, img, i").each(function () {
+          var styles = $(this).attr('style')
+          if (styles) {
+            styles = styles.split(/; ?/);
+            for (var i=0;i<styles.length;i++) {
+              var cv = rstyle[styles[i]];
+              if (cv) {
+                $(this).attr(cv[0],cv[1]).attr('style','');
+              }
+            }
+          }
+          if (this.parentNode.tagName=='SPAN') {
+            $(this).siblings('span').prependTo(this.parentNode.parentNode);
+          }
+        });
+      },0);
+
   });
 }
 
@@ -381,7 +459,7 @@ function lineAction(attr,fct,value) {
 // Appliquer le formatage/action à une selection (range)
 function rangeFormat(attr,fct,value)
 {
-  console.log('range',attr,fct,value);
+
   var targets = Array('SPAN','IMG');
   var sel = f.contentWindow.getSelection();
   if (sel.focusNode==null) {
@@ -435,10 +513,10 @@ function rangeFormat(attr,fct,value)
       applyFormat(node,attr,fct,value)
     }
   } else {
-    console.log(nodes,startNode);
+
     for (i=0;i<nodes.length;i++) {
       if (nodes[i] == startNode) {
-        console.log('start');
+
         started = true;
         if ((nodes[i].nodeType==3)&&(nodes[i-1] != nodes[i])) {
           if (range.startOffset>0) {
@@ -451,12 +529,12 @@ function rangeFormat(attr,fct,value)
         }
       }
       if (nodes[i] == endNode) {
-        console.log('end');
+
         if (nodes[i].nodeType==3) {
           if ((range.endOffset<nodes[i].nodeValue.length) && (range.endOffset>0)) {
             changed = true;
             var span = nodes[i].parentNode.cloneNode(false); //document.createElement('span');
-            console.log('clone',span);
+
             span.innerHTML = nodes[i].nodeValue.substr(range.endOffset);
             nodes[i].nodeValue = nodes[i].nodeValue.substr(0,range.endOffset);
             $(span).insertAfter(nodes[i].parentNode);

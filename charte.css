@@ -434,35 +434,35 @@
 }
 
 
-*[fontsize=1] {
+*[fontsize="1"] {
   font-size: 1vw;
   height:1vw;
 }
-*[fontsize=2] {
+*[fontsize="2"] {
   font-size: 1.2vw;
   height:1.2vw;
 }
-*[fontsize=3] {
+*[fontsize="3"] {
   font-size: 1.4vw;
   height:1.4vw;
 }
-*[fontsize=4] {
+*[fontsize="4"] {
   font-size: 1.6vw;
   height:1.6vw;
 }
-*[fontsize=5] {
+*[fontsize="5"] {
   font-size: 1.8vw;
   height:1.8vw;
 }
-*[fontsize=6] {
+*[fontsize="6"] {
   font-size: 2vw;
   height:2vw;
 }
-*[fontsize=7] {
+*[fontsize="7"] {
   font-size: 2.25vw;
   height:2.25vw;
 }
-*[fontsize=8] {
+*[fontsize="8"] {
   font-size: 2.5vw;
   height:2.5vw;
 }
