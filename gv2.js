@@ -3,7 +3,7 @@
 // initialisation
 // -----------------------------------------------------------
 var rstyle = {};
-var keepRange;
+var nozonefocus;
 var fromToolbox;
 var attrCss = {
   paddingleft:'padding-left',
@@ -144,6 +144,7 @@ function backHistory() {
     var item = actionHistory[historyIndex-1];
     $(item.zone).html(item.content);
     historyIndex--;
+    nozonefocus = true;
   }
 }
 function forwardHistory() {
@@ -151,6 +152,7 @@ function forwardHistory() {
     var item = actionHistory[historyIndex];
     $(item.zone).html(item.content);
     historyIndex++;
+    nozonefocus = true;
   }
 }
 
@@ -288,7 +290,8 @@ function iframeLoaded() {
 
   // visibilité toolbox / selections
   function selectActive() {
-    if (selectionactive!=undefined) {
+    if (selectionactive!=undefined && nozonefocus!=true) {
+      nozonefocus=false;
       window.setTimeout( function() {
         $(selectionactive).removeClass('selected');
         selectionactive.focus();
@@ -396,7 +399,7 @@ function iframeLoaded() {
     }
     updateToolbox();
     selectActive();
-    
+
   });
 
   $(".toolbox button[attr]").click(function(e) {
