@@ -245,6 +245,13 @@ div.toolbox-history {
 .toolbox .rangeselector:hover  div {
   display:inline-block;
 }
+
+.toolbox-zoneitems {
+  display:none;
+}
+.toolbox-zoneitems.active {
+  display:block;
+}
 .view {
   position:absolute;
   top:0;

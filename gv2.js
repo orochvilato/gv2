@@ -3,7 +3,7 @@
 // initialisation
 // -----------------------------------------------------------
 var rstyle = {};
-
+var keepRange;
 var attrCss = {
   paddingleft:'padding-left',
   paddingright:'padding-right',
@@ -271,7 +271,7 @@ function iframeLoaded() {
 
   // detection nouvelle selection
   $('#f').contents().find('div.zone').mousedown(function(e) {
-    selectionactive = true;
+    selectionactive = this;
   });
   $('#f').contents().find('div.zone').mouseup(function(e) {
     if (selectionactive) { // selection effectuée dans une zone
@@ -281,8 +281,29 @@ function iframeLoaded() {
         updateToolbox(getCurrentAttrs(selection.getRangeAt(0).focusNode));
       }
     }
-    selectionactive = false;
+
   });
+
+
+  // visibilité toolbox / selections
+
+  $('#f').contents().find('div.zone').click(function(e){
+    $('.toolbox-zoneitems').addClass('active');
+    e.stopPropagation();
+    console.log('in');
+  });
+  $('.toolbox').click(function(e) {
+    e.stopPropagation();
+    if (selectionactive!=undefined) {
+      window.setTimeout( function() {
+        selectionactive.focus();
+      },0);
+    }
+  });
+  $('body').click(function(e) {
+    $('.toolbox-zoneitems').removeClass('active');
+  });
+
 
   // gestion des suppressions d'éléments et des retours chariots dans les zones
   $('#f').contents().find('div.zone').keydown(function(e){
@@ -340,12 +361,29 @@ function iframeLoaded() {
   });
 
   $(".toolbox input[attr], .toolbox select[attr]").change(function (e) {
+    var val =parseInt($(this).val());
+    var attr = $(this).attr('attr');
+    if (isNaN(val)) {
+      $(this).val('');
+      return;
+    }
+    if (val>attrRanges[attr][1]) {
+      val = attrRanges[attr][1];
+    }
+    if (val<attrRanges[attr][0]) {
+      val = attrRanges[attr][0];
+    }
     if ($(this).attr('focus')=='line') {
-      lineAction($(this).attr('attr'),$(this).attr('action'),$(this).val());
+      lineAction(attr,$(this).attr('action'),val);
     } else {
-      rangeFormat($(this).attr('attr'),$(this).attr('action'),$(this).val());
+      rangeFormat(attr,$(this).attr('action'),val);
     }
     updateToolbox();
+    if (selectionactive!=undefined) {
+      window.setTimeout( function() {
+        selectionactive.focus();
+      },0);
+    }
   });
   $(".toolbox button[attr]").click(function(e) {
     if ($(this).attr('focus')=='line') {
@@ -354,6 +392,13 @@ function iframeLoaded() {
       rangeFormat($(this).attr('attr'),$(this).attr('action'),1);
     }
     updateToolbox();
+
+
+    if (selectionactive!=undefined) {
+      window.setTimeout( function() {
+          selectionactive.focus();
+      },0);
+    }
 
   });
   $("#f").contents().find("body").bind('paste', function(e) {
