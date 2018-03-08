@@ -229,6 +229,10 @@ div.toolbox-history {
   display: inline-block;
   vertical-align: top;
 }
+
+.toolbox .toolbox-bgcolors div[bgcolor="0"] {
+  background-image:url(croix.svg);
+}
 .toolbox .rangeselector button.mini {
   font-size: 10px;
   width:12px;
@@ -245,6 +249,7 @@ div.toolbox-history {
 .toolbox .rangeselector:hover  div {
   display:inline-block;
 }
+
 
 .toolbox-zoneitems {
   display:none;
