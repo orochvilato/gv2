@@ -4,6 +4,7 @@
 // -----------------------------------------------------------
 var rstyle = {};
 var keepRange;
+var fromToolbox;
 var attrCss = {
   paddingleft:'padding-left',
   paddingright:'padding-right',
@@ -286,23 +287,32 @@ function iframeLoaded() {
 
 
   // visibilité toolbox / selections
-
+  function selectActive() {
+    if (selectionactive!=undefined) {
+      window.setTimeout( function() {
+        $(selectionactive).removeClass('selected');
+        selectionactive.focus();
+      },0);
+    }
+  }
   $('#f').contents().find('div.zone').click(function(e){
     $('.toolbox-zoneitems').addClass('active');
     e.stopPropagation();
     console.log('in');
   });
   $('.toolbox').click(function(e) {
-    e.stopPropagation();
-    if (selectionactive!=undefined && $(e.target).attr('type')!='text') {
-      
-      window.setTimeout( function() {
-        selectionactive.focus();
-      },0);
+    if (selectionactive!=undefined && $(e.target).attr('type')!='text' && e.target.tagName!='SELECT') {
+      selectActive();
+      e.stopPropagation();
+    } else {
+
+      $(selectionactive).addClass('selected');
+      fromToolbox = true;
     }
   });
   $('body').click(function(e) {
-    $('.toolbox-zoneitems').removeClass('active');
+    if (!fromToolbox) $('.toolbox-zoneitems').removeClass('active');
+    fromToolbox = false;
   });
 
 
@@ -362,6 +372,7 @@ function iframeLoaded() {
   });
 
   $(".toolbox input[attr], .toolbox select[attr]").change(function (e) {
+
     var val = $(this).val();
     var attr = $(this).attr('attr');
     if ($(this).attr('type')=='text') {
@@ -384,28 +395,20 @@ function iframeLoaded() {
       rangeFormat(attr,$(this).attr('action'),val);
     }
     updateToolbox();
-    if (selectionactive!=undefined) {
-      window.setTimeout( function() {
-        selectionactive.focus();
-      },0);
-    }
+    selectActive();
+    
   });
 
   $(".toolbox button[attr]").click(function(e) {
-    console.log('click');
+
     if ($(this).attr('focus')=='line') {
       lineAction($(this).attr('attr'),$(this).attr('action'),1);
     } else {
       rangeFormat($(this).attr('attr'),$(this).attr('action'),1);
     }
     updateToolbox();
+    selectActive();
 
-
-    if (selectionactive!=undefined) {
-      window.setTimeout( function() {
-          selectionactive.focus();
-      },0);
-    }
 
   });
   $("#f").contents().find("body").bind('paste', function(e) {

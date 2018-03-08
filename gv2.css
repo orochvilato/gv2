@@ -66,7 +66,7 @@ body {
   width: 100%;
   background-color: white;
   font-size: 15;
-  border-radius: 4px;
+  border-radius: 3px;
   margin-bottom:5px;
   padding:2px;
   /*-webkit-appearance: none;
@@ -120,6 +120,7 @@ div.toolbox-history {
 }
 .toolbox input[type="text"] {
     width:22px;
+    vertical-align: middle;
     text-align:center;
     font-size:16px;
 }
@@ -165,7 +166,7 @@ div.toolbox-history {
   /*width:70px;*/
   background-color: white;
   padding: 2px;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 .toolbox label {
   display:inline-block;
@@ -181,14 +182,14 @@ div.toolbox-history {
   background-color: #acacac;
 }
 .toolbox label input[type=checkbox] + span {
-  padding:4px 6px 4px 6px;
+  padding:6px 6px 6px 6px;
   background-color:white;
-  border-radius: 4px;
+  border-radius: 3px;
   margin-right:2px;
 }
 
 .toolbox .radiogroup span {
-  padding:4px 6px 4px 6px;
+  padding:6px 6px 6px 6px;
   margin-right:2px;
   background-color:white;
 }
@@ -215,7 +216,7 @@ div.toolbox-history {
 .toolbox .colorgroup div {
   width:30px;
   height:30px;
-  border-radius: 4px;
+  border-radius: 3px;
   border: 2px solid #9c9c9c;
 }
 .toolbox label input[type=radio]:checked + div {
@@ -243,7 +244,7 @@ div.toolbox-history {
 .toolbox .rangeselector div {
   display:none;
   display:inline-block;
-  vertical-align: bottom;
+  vertical-align: middle;
   height: 20px;
 }
 .toolbox .rangeselector:hover  div {
