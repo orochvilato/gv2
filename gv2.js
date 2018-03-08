@@ -26,7 +26,8 @@ var attrCss = {
   expind:'vertical-align',
   textdecoration:'text-decoration',
   fontstyle:'font-style',
-  texttransform:'text-transform'
+  texttransform:'text-transform',
+  backgroundpositionx:'background-position-x'
 }
 
 var attrRanges = { fontsize:[1,30],
@@ -44,12 +45,14 @@ var attrRanges = { fontsize:[1,30],
                     paddingtop:[0,20],
                     paddingbottom:[0,20],
                     letterspacing:[0,10],
+                    backgroundpositionx:[-10,10],
                     lineheight:[0,15]}
 var attrValues = {
   align:['left','center','right'],
   expind:['exposant','indice']
 }
 var attrDefaults = {
+  backgroundpositionx:0,
   paddingleft:0,
   paddingright:0,
   paddingtop:0,
@@ -81,6 +84,7 @@ var frame = $('#f')[0];
 var fwindow = frame.contentWindow;
 var fdocument = fwindow.document;
 var selectionactive = false;
+var imageactive;
 
 $(function() {
   // chargement iframe
@@ -298,10 +302,31 @@ function iframeLoaded() {
       },0);
     }
   }
+  $('#f').contents().find('div.image').click(function(e) {
+    $('.toolbox-imageitems').addClass('active');
+    $('.toolbox-zoneitems').removeClass('active');
+    var istyle = fwindow.getComputedStyle(this);
+
+    for (var i=0;i<istyle.length;i++) {
+    //  $('#imagepreview').css(istyle[i],istyle.getPropertyValue(istyle[i]));
+    }
+    $('.imagepreview').css('background-image',$(this).css('background-image'));
+    if (!$(this).hasClass('selected')) {
+      imageactive = this;
+      selectionactive = undefined;
+      $(this).addClass('selected');
+
+    }
+  });
   $('#f').contents().find('div.zone').click(function(e){
     $('.toolbox-zoneitems').addClass('active');
+    $('.toolbox-imageitems').removeClass('active');
+    if (imageactive!=undefined) {
+      $(imageactive).removeClass('selected');
+      imageactive = undefined;
+    }
     e.stopPropagation();
-    console.log('in');
+
   });
   $('.toolbox').click(function(e) {
     if (selectionactive!=undefined && $(e.target).attr('type')!='text' && e.target.tagName!='SELECT') {
@@ -403,14 +428,19 @@ function iframeLoaded() {
   });
 
   $(".toolbox button[attr]").click(function(e) {
-
-    if ($(this).attr('focus')=='line') {
+    var focus = $(this).attr('focus');
+    if (focus=='line') {
       lineAction($(this).attr('attr'),$(this).attr('action'),1);
-    } else {
+    } else if (focus=='range') {
       rangeFormat($(this).attr('attr'),$(this).attr('action'),1);
+    } else if (focus=='image') {
+      imageAction($(this).attr('attr'),$(this).attr('action'),1);
     }
     updateToolbox();
-    selectActive();
+    if (focus != 'image') {
+      selectActive();
+    }
+
 
 
   });
@@ -484,6 +514,11 @@ function applyFormat(node,attr,fct,value)
   }
 
   $(node).attr(attr,newval);
+}
+
+// appliquer l'action à une image1
+function imageAction(attr,fct,value) {
+  applyFormat(imageactive,attr,fct,value);
 }
 
 // appliquer l'action / formatage à une ligne

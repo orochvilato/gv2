@@ -252,12 +252,20 @@ div.toolbox-history {
 }
 
 
-.toolbox-zoneitems {
+.toolbox-zoneitems, .toolbox-imageitems {
   display:none;
 }
-.toolbox-zoneitems.active {
+.toolbox-zoneitems.active, .toolbox-imageitems.active {
   display:block;
 }
+.toolbox .toolbox-image div.imagepreview{
+  width:100%;
+  height:150px;
+  border: 1px solid #7e7e7e;
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+
 .view {
   position:absolute;
   top:0;

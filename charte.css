@@ -1338,6 +1338,68 @@
   text-align: justify;
 }
 
+div[backgroundpositionx="0"] {
+  background-position-x: 0vw;
+}
+div[backgroundpositionx="1"] {
+  background-position-x: 1vw;
+}
+div[backgroundpositionx="2"] {
+  background-position-x: 2vw;
+}
+div[backgroundpositionx="3"] {
+  background-position-x: 3vw;
+}
+div[backgroundpositionx="4"] {
+  background-position-x: 4vw;
+}
+div[backgroundpositionx="5"] {
+  background-position-x: 5vw;
+}
+div[backgroundpositionx="6"] {
+  background-position-x: 6vw;
+}
+div[backgroundpositionx="7"] {
+  background-position-x: 7vw;
+}
+div[backgroundpositionx="8"] {
+  background-position-x: 8vw;
+}
+div[backgroundpositionx="9"] {
+  background-position-x: 9vw;
+}
+div[backgroundpositionx="10"] {
+  background-position-x: 10vw;
+}
+div[backgroundpositionx="12"] {
+  background-position-x: 12vw;
+}
+div[backgroundpositionx="13"] {
+  background-position-x: 13vw;
+}
+div[backgroundpositionx="14"] {
+  background-position-x: 14vw;
+}
+div[backgroundpositionx="15"] {
+  background-position-x: 15vw;
+}
+div[backgroundpositionx="16"] {
+  background-position-x: 16vw;
+}
+div[backgroundpositionx="17"] {
+  background-position-x: 17vw;
+}
+div[backgroundpositionx="18"] {
+  background-position-x: 18vw;
+}
+div[backgroundpositionx="19"] {
+  background-position-x: 19vw;
+}
+div[backgroundpositionx="20"] {
+  background-position-x: 20vw;
+}
+
+
 
 
 /* Spécifique */
