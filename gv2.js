@@ -294,7 +294,8 @@ function iframeLoaded() {
   });
   $('.toolbox').click(function(e) {
     e.stopPropagation();
-    if (selectionactive!=undefined) {
+    if (selectionactive!=undefined && $(e.target).attr('type')!='text') {
+      
       window.setTimeout( function() {
         selectionactive.focus();
       },0);
@@ -361,18 +362,22 @@ function iframeLoaded() {
   });
 
   $(".toolbox input[attr], .toolbox select[attr]").change(function (e) {
-    var val =parseInt($(this).val());
+    var val = $(this).val();
     var attr = $(this).attr('attr');
-    if (isNaN(val)) {
-      $(this).val('');
-      return;
+    if ($(this).attr('type')=='text') {
+      val =parseInt(val);
+      if (isNaN(val)) {
+        $(this).val('');
+        return;
+      }
+      if (val>attrRanges[attr][1]) {
+        val = attrRanges[attr][1];
+      }
+      if (val<attrRanges[attr][0]) {
+        val = attrRanges[attr][0];
+      }
     }
-    if (val>attrRanges[attr][1]) {
-      val = attrRanges[attr][1];
-    }
-    if (val<attrRanges[attr][0]) {
-      val = attrRanges[attr][0];
-    }
+
     if ($(this).attr('focus')=='line') {
       lineAction(attr,$(this).attr('action'),val);
     } else {
@@ -385,7 +390,9 @@ function iframeLoaded() {
       },0);
     }
   });
+
   $(".toolbox button[attr]").click(function(e) {
+    console.log('click');
     if ($(this).attr('focus')=='line') {
       lineAction($(this).attr('attr'),$(this).attr('action'),1);
     } else {
