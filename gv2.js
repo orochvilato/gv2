@@ -310,6 +310,7 @@ function iframeLoaded() {
     $('.imagepreview').css('background-image',$(this).css('background-image'));
     if (!$(this).hasClass('selected')) {
       imageactive = this;
+      $('.imagepreviewzone').height($(this).height()/$(this).width() * $('.imagepreviewzone').width());
       selectionactive = undefined;
       $(this).addClass('selected');
 
@@ -396,6 +397,12 @@ function iframeLoaded() {
     }
   });
 
+  var getDimensions = function (item) {
+    var img = new Image();
+    img.src = item.css('background-image').replace(/url\(|\)$|"/ig, '');
+    return { o_w:img.width,o_h:img.height,v_w:item.width(),v_h:item.height()};
+  };
+
   $('.toolbox input[attr][type="range"]').on("input",function(e) {
     var item = $(this).attr('item')
     var val = $(this).val();
@@ -407,6 +414,7 @@ function iframeLoaded() {
       $(imageactive).css(attr,val+unit);
       var width = $('.imagepreview').width();
       var height = $('.imagepreview').height();
+
       if (attr=='background-position-y') {
         $('.imagepreview').css(attr,(width/100)*val+'px');
       } else {
