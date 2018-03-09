@@ -262,7 +262,7 @@ div.toolbox-history {
   width:100%;
   height:100%;
   background-size:cover;
-  
+
   /*background-repeat: no-repeat;*/
 }
 .toolbox .toolbox-image div.imagepreviewzone{
@@ -275,11 +275,18 @@ div.toolbox-history {
   /*background-repeat: no-repeat;*/
 }
 .toolbox .toolbox-imageitems span {
-  width: 20px;
   vertical-align:middle;
 }
-.toolbox .toolbox-imageitems input[type="range"] {
+.toolbox .toolbox-imageitems.xy span {
+  width: 20px;
+}
+
+.toolbox .toolbox-imageitems.xy input[type="range"] {
   width: 265px;
+}
+
+.toolbox .toolbox-imageitems input[type="range"] {
+  width: 100%;
 }
 
 .view {

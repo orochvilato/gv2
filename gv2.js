@@ -397,11 +397,34 @@ function iframeLoaded() {
     }
   });
 
+  function loadFile(image,file) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      //image.src = reader.result;
+      console.log('load');
+      $(image).css('background-image','url('+reader.result+')')
+      $('.imagepreview').css('background-image','url('+reader.result+')')
+    }
+    reader.readAsDataURL(file);
+
+  }
+  $('#uploadimage').change(function(e) {
+
+    var file = this.files[0];
+    console.log('upload',file);
+    loadFile(imageactive,file);
+
+  });
+
   var getDimensions = function (item) {
     var img = new Image();
     img.src = item.css('background-image').replace(/url\(|\)$|"/ig, '');
     return { o_w:img.width,o_h:img.height,v_w:item.width(),v_h:item.height()};
   };
+
+
+
 
   $('.toolbox input[attr][type="range"]').on("input",function(e) {
     var item = $(this).attr('item')
