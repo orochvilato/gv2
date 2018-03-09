@@ -412,7 +412,7 @@ function iframeLoaded() {
 
       var unit=$(this).attr('unit');
       var filters = $(imageactive).css(attr);
-      console.log(filters);
+
       if (filters!='none') {
         filters = filters.split(' ');
       } else {
@@ -435,7 +435,7 @@ function iframeLoaded() {
       }
 
       filters = filters.join(' ');
-      console.log(filters);
+      
       $('.imagepreview').css(attr,filters);
       $(imageactive).css(attr,filters);
     }
