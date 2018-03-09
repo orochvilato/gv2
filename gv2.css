@@ -260,10 +260,25 @@ div.toolbox-history {
 }
 .toolbox .toolbox-image div.imagepreview{
   width:100%;
+  height:100%;
+  background-size:cover;
+  /*background-repeat: no-repeat;*/
+}
+.toolbox .toolbox-image div.imagepreviewzone{
+  width:100%;
   height:150px;
   border: 1px solid #7e7e7e;
-  background-size:cover;
-  background-repeat: no-repeat;
+  overflow: hidden;
+
+
+  /*background-repeat: no-repeat;*/
+}
+.toolbox .toolbox-imageitems span {
+  width: 20px;
+  vertical-align:middle;
+}
+.toolbox .toolbox-imageitems input[type="range"] {
+  width: 265px;
 }
 
 .view {

@@ -27,7 +27,6 @@ var attrCss = {
   textdecoration:'text-decoration',
   fontstyle:'font-style',
   texttransform:'text-transform',
-  backgroundpositionx:'background-position-x'
 }
 
 var attrRanges = { fontsize:[1,30],
@@ -45,14 +44,12 @@ var attrRanges = { fontsize:[1,30],
                     paddingtop:[0,20],
                     paddingbottom:[0,20],
                     letterspacing:[0,10],
-                    backgroundpositionx:[-10,10],
                     lineheight:[0,15]}
 var attrValues = {
   align:['left','center','right'],
   expind:['exposant','indice']
 }
 var attrDefaults = {
-  backgroundpositionx:0,
   paddingleft:0,
   paddingright:0,
   paddingtop:0,
@@ -399,6 +396,53 @@ function iframeLoaded() {
     }
   });
 
+  $('.toolbox input[attr][type="range"]').on("input",function(e) {
+    var item = $(this).attr('item')
+    var val = $(this).val();
+    var attr = $(this).attr('attr');
+
+    if (attr=='background-position-x' || attr=='background-position-y') {
+      $(imageactive).css(attr,val+'vw');
+      var width = $('.imagepreview').width();
+      $('.imagepreview').css(attr,(width/100)*val+'px');
+    } else if (attr=="transform") {
+      $(imageactive).css('transform', 'scale(' + val + ')');
+      $('.imagepreview').css('transform', 'scale(' + val + ')');
+    } else {//if (attr=="filter") {
+
+      var unit=$(this).attr('unit');
+      var filters = $(imageactive).css(attr);
+      console.log(filters);
+      if (filters!='none') {
+        filters = filters.split(' ');
+      } else {
+        filters = Array();
+      }
+      var filter = item+'('+val+unit+')';
+      if (item=='scale') {
+        item = 'matrix';
+      }
+      var repl = false;
+      for(var i=0;i<filters.length;i++) {
+        if (filters[i].includes(item)) {
+          filters[i] = filter;
+          repl = true;
+        }
+      }
+
+      if (!repl) {
+        filters.push(filter);
+      }
+
+      filters = filters.join(' ');
+      console.log(filters);
+      $('.imagepreview').css(attr,filters);
+      $(imageactive).css(attr,filters);
+    }
+
+
+
+  });
   $(".toolbox input[attr], .toolbox select[attr]").change(function (e) {
 
     var val = $(this).val();
@@ -419,11 +463,15 @@ function iframeLoaded() {
 
     if ($(this).attr('focus')=='line') {
       lineAction(attr,$(this).attr('action'),val);
-    } else {
+    } else if ($(this).attr('focus')=='range'){
       rangeFormat(attr,$(this).attr('action'),val);
+    } else if ($(this).attr('focus')=='image') {
+      console.log(imageactive);
     }
-    updateToolbox();
-    selectActive();
+    if ($(this).attr('focus')!='image') {
+      updateToolbox();
+      selectActive();
+    }
 
   });
 
@@ -434,7 +482,7 @@ function iframeLoaded() {
     } else if (focus=='range') {
       rangeFormat($(this).attr('attr'),$(this).attr('action'),1);
     } else if (focus=='image') {
-      imageAction($(this).attr('attr'),$(this).attr('action'),1);
+
     }
     updateToolbox();
     if (focus != 'image') {
@@ -516,10 +564,6 @@ function applyFormat(node,attr,fct,value)
   $(node).attr(attr,newval);
 }
 
-// appliquer l'action à une image1
-function imageAction(attr,fct,value) {
-  applyFormat(imageactive,attr,fct,value);
-}
 
 // appliquer l'action / formatage à une ligne
 function lineAction(attr,fct,value) {
