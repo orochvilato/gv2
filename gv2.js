@@ -402,12 +402,20 @@ function iframeLoaded() {
     var attr = $(this).attr('attr');
 
     if (attr=='background-position-x' || attr=='background-position-y') {
-      $(imageactive).css(attr,val+'vw');
+      var ratio = getRatio(imageactive);
+      var unit=$(this).attr('unit');
+      $(imageactive).css(attr,val+unit);
       var width = $('.imagepreview').width();
-      $('.imagepreview').css(attr,(width/100)*val+'px');
+      var height = $('.imagepreview').height();
+      if (attr=='background-position-y') {
+        $('.imagepreview').css(attr,(width/100)*val+'px');
+      } else {
+        $('.imagepreview').css(attr,(width/100)*val+'px');
+      }
     } else if (attr=="transform") {
       $(imageactive).css('transform', 'scale(' + val + ')');
       $('.imagepreview').css('transform', 'scale(' + val + ')');
+
     } else {//if (attr=="filter") {
 
       var unit=$(this).attr('unit');
@@ -435,7 +443,7 @@ function iframeLoaded() {
       }
 
       filters = filters.join(' ');
-      
+
       $('.imagepreview').css(attr,filters);
       $(imageactive).css(attr,filters);
     }

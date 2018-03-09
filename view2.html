@@ -59,8 +59,11 @@
     .image1 {
       background: url('assets/img/photo.jpg');
       background-size: cover;
+      /*transform-origin: 10px 10px;*/
       transform: scale(1);
-      z-index: 1;
+
+      /*z-index: 1;*/
+
     }
 
     .header {
@@ -70,11 +73,10 @@
 
     }
     .pic {
-      margin-top:-4vw;
       display:block;
       height:100%;
       width:100%;
-      overflow:hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     }
 
     #bloc1 {
@@ -135,9 +137,9 @@
 </head>
 <body>
     <div class="container">
-        <img src="assets/img/filogo.svg" class="optional" id="logofi" nom="Logo FI">
+
         <div class="header">
-          <div class="pic skew">
+          <div class="pic">
             <div class="image image1"></div>
           </div>
 
