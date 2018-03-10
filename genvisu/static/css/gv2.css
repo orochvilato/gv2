@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Courgette:100,200,300,400,500,600,700,800,900|Montserrat:100,200,300,400,500,600,700,800,900|Roboto+Slab:100,200,300,400,500,600,700,800,900");
 body {
   margin:0;
   padding:0;
@@ -7,7 +8,20 @@ body {
   background-color: #9c9c9c;
   width:100%;
   height:6vh;
+  display: flex;
+  align-items: center;
   /*min-height:50px;*/
+}
+.menuitem {
+  font-family: Montserrat, serif;
+  color:white;
+  font-size:2vh;
+  padding-left:10px;
+  padding-right:10px;
+  cursor: pointer;
+}
+.menuitem:hover {
+
 }
 .app {
   position: relative;
@@ -232,7 +246,7 @@ div.toolbox-history {
 }
 
 .toolbox .toolbox-bgcolors div[bgcolor="0"] {
-  background-image:url(croix.svg);
+  background-image:url(/static/img/croix.svg);
 }
 .toolbox .rangeselector button.mini {
   font-size: 10px;
@@ -307,3 +321,55 @@ div.toolbox-history {
   transform: scale(0.9);
   transform-origin: 0 0;
 }
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#overlay-content {
+    position: absolute;
+    font-family: Montserrat, serif;
+    font-weight:600;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    width:600px;
+    height:100px;
+    padding:30px;
+    background-color:#c5c5c5;
+    border:1px solid #3c3c3c;
+
+
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+#overlay-content label {
+    font-size:20px;
+    color: #3c3c3c;
+}
+#overlay-content div.jaugebox {
+  width:500px;
+  height:30px;
+  position:relative;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:20px;
+  background-color:white;
+}
+#overlay-content div.jauge {
+  position:absolute;
+  background-color: #3c3C3c;
+  left:0;
+  top:0;
+  height:30px;
+  width:5%;

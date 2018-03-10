@@ -14,7 +14,9 @@
 
 </head>
 <body>
-  <div class="menubar"></div>
+  <div class="menubar">
+    <div class="menuitem" action="export">Export</div>
+  </div>
   <div class="app">
     <div class="menushadow"></div>
     <div class="workarea">
@@ -224,22 +226,20 @@ filter: sepia(60%);-->
 
 
 
-  </div><!--
-    <div class="navbar"><button id="fp">T+</button><button id="fm">T-</button><button id="gp">G+</button><button id="gm">G-</button>
-
-  <button id="zp">Z+</button><button id="zm">Z-</button>
-  <button id="cp">c+</button><button id="cm">c-</button><button id="bcp">bg+</button><button id="bcm">bg-</button>
-  <button id="left"><</button><button id="right">></button><button id="up">^</button><button id="down">v</button>
-  <button id="al">L</button><button id="ar">R</button><button id="ac">C</button><button id="aj">J</button>
-  <button id="bhis"><-</button><button id="fhis">-></button>
-  <button id="lhp">L+</button><button id="lhm">L-</button>
-  <button id="nor">N</button><button id="ita">I</button><button id="sou">S</button><button id="bar">B</button>
-  <button id="maj">Maj</button>
-  <select id="police"></select>
-</div>-->
+  </div>
+  <div id="overlay">
+    <div id="overlay-content">
+      <label id="etape">En attente</label>
+      <div class="jaugebox">
+        <div class="jauge"></div>
+      </div>
+    </div>
+  </div>
 <script>
   var visuel_path = "{{ visuel_path }}";
 </script>
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script defer src="/static/js/fontawesome-all.min.js"></script>

@@ -90,7 +90,7 @@ $(function() {
   $('#f').attr('src',visuel_path);
 
 
-  initToolbox();
+
 
 
 });
@@ -178,9 +178,9 @@ function getCharteFonts() {
     div.setAttribute('fontfamily',i);
     var textnode = document.createTextNode("font");
     div.appendChild(textnode);
-    document.body.appendChild(div);
-    var font = $('#font1').css('font-family')
-    document.body.removeChild(div);
+    $('#f').contents().find('body').append(div);
+    var font = $(div).css('font-family');
+    $(div).remove();
     fonts.push(font.match(re)[0]);
   }
   return fonts;
@@ -197,9 +197,10 @@ function getCharteColors() {
     div.setAttribute('color',i);
     var textnode = document.createTextNode("color");
     div.appendChild(textnode);
-    document.body.appendChild(div);
-    color = $('#color1').css('color');
-    document.body.removeChild(div);
+    $('#f').contents().find('body').append(div);
+    var color = $(div).css('color');
+
+    $(div).remove();
 
     if (color===colors[i-2]) {
       out = true;
@@ -220,8 +221,8 @@ function initToolbox() {
   }
   var colors = getCharteColors();
   for (var i=1;i<=colors.length;i++) {
-    $('<label><input type="radio" name="color" attr="color" action="set" focus="range" value="'+i+'"><div bgcolor="'+i+'"></div></label>').appendTo('.color.colorgroup');
-    $('<label><input type="radio" name="bgcolor" attr="bgcolor" action="set" focus="range" value="'+i+'"><div bgcolor="'+i+'"></div></label>').appendTo('.bgcolor.colorgroup');
+    $('<label><input type="radio" name="color" attr="color" action="set" focus="range" value="'+i+'"><div style="background-color: '+colors[i-1]+';"></div></label>').appendTo('.color.colorgroup');
+    $('<label><input type="radio" name="bgcolor" attr="bgcolor" action="set" focus="range" value="'+i+'"><div style="background-color: '+colors[i-1]+';"></div></label>').appendTo('.bgcolor.colorgroup');
   }
   $('<label><input type="radio" name="bgcolor" attr="bgcolor" action="set" focus="range" value="0"><div bgcolor="0"></div></label>').appendTo('.bgcolor.colorgroup');
 
@@ -256,6 +257,7 @@ function centerVisuel() {
 // une fois la iframe chargée
 function iframeLoaded() {
   centerVisuel();
+  initToolbox();
   rstyle = reverseStyle();
   fdocument.execCommand("styleWithCSS", false, null);
   // gestion du zoom sur le visuel avec la molette de la souris
@@ -341,9 +343,11 @@ function iframeLoaded() {
     if (!fromToolbox) $('.toolbox-zoneitems').removeClass('active');
     fromToolbox = false;
   });
-  $('div.menubar').click(function(e) {
-    console.log('boom');
-    sendData();
+  $('.menuitem').click(function(e) {
+    var action = $(this).attr('action');
+    if (action=='export') {
+      sendData(action);
+    }
   })
 
 
@@ -836,7 +840,7 @@ function getSelectedNodes() {
 var exportencours = false;
 
 function sendData() {
-  document.body.style.cursor = 'wait';
+  //document.body.style.cursor = 'wait';
   var downloadToken = new Date().getTime();
   var attempts = 30;
   if (exportencours) return
@@ -847,25 +851,30 @@ function sendData() {
     data.zones[$(this).attr('id')] = $(this).html();
   });
   $('#f').contents().find('.image').each(function() {
-    if ($(this).attr('style')) data.images[$(this).attr('id')] = $(this).attr('style');
+    var style = $(this).attr('style');
+    if (!style) style = ""
+    data.images[$(this).attr('id')] = style;
   });
-
+  $('.jauge').css('width','5%');
+  $('#overlay').show();
   $.post( '/senddata', {'data':JSON.stringify(data)}, function(data) {
-      console.log(data);
-      document.body.style.cursor = '';
-      return
-      window.location.replace(url+'?key='+data+'&save');
-      document.body.style.cursor = 'wait';
-      exportencours = true;
-      downloadTimer = window.setInterval( function() {
-        var token = getCookie( "token" );
-        if( (token == downloadToken) || (attempts == 0) ) {
-          unblockSubmit();
-      }
-      attempts--;
-      }, 1000 );
+      window.location.replace('/export?key='+data);
+      //document.body.style.cursor = 'wait';
+      var downloadTimer = window.setInterval(function() {
+        $.get('/check_status?key='+data, function(data) {
+          data = JSON.parse(data);
+          $('#etape').text(data.etat);
+          $('.jauge').css('width',data.avancement+'%');
 
+          if (data.avancement == 100) {
+            clearInterval(downloadTimer);
+            window.setTimeout(function() {
+              $('#overlay').hide();
+            },1000);
 
+          }
 
+        });
+      }, 500);
   });
 }

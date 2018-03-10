@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta dimension="100x100">
+
+
+    <link rel="stylesheet" href="/static/css/basecharte.css">
+    <link rel="stylesheet" href="/css/charte.css">
+
+    <title>FI - Template 01</title>
+    <style>
+    div.zone:hover, div.zone:focus, div.zone.selected {
+      outline: 1px dashed blue;
+      outline-offset: -1px;
+    }
+
+    div.zone:hover span, div.zone:focus span, div.zone.selected span {
+      outline: 1px dashed red;
+      outline-offset: -1px;
+    }
+
+
+
+    body {
+      margin: 0;
+      padding:0;
+      border:0;
+      background-color: #202020; }
+
+    .container {
+      position:relative;
+      margin: 0 auto;
+      background-color: #ffffff;
+      overflow: hidden;
+      }
+
+    body {
+      overflow-x: hidden;
+      /*overflow-y: hidden;*/
+    }
+    .container {
+      width:100vw;
+      height: 100vw;
+    }
+    .skew {
+      transform:skewY(-3deg);
+    }
+    .skew2 {
+      transform:skewY(3deg);
+    }
+    .image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+
+
+    }
+    .image1 {
+      background: url('/img/photo.jpg');
+      background-size: cover;
+      /*transform-origin: 10px 10px;*/
+      transform: scale(1);
+
+      /*z-index: 1;*/
+
+    }
+
+    .header {
+      display:block;
+      height:30%;
+      width:100%;
+
+    }
+    .pic {
+      display:block;
+      height:100%;
+      width:100%;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+
+    #bloc1 {
+      position:absolute;
+      left: 10vw;
+      right: 0;
+      margin: 0 auto;
+      top:6vw;
+    }
+    #bloc2 {
+      position:absolute;
+      left: 0vw;
+      right: 0;
+      top:28vw;
+    }
+    #bloc3 {
+      position:absolute;
+      left: 8vw;
+      right: 8vw;
+      top:40vw;
+    }
+    #bloc4 {
+      position:absolute;
+      bottom:2vw;
+      left: 2vw;
+      right:2vw;
+    }
+    .logofi {
+      display: table;
+      margin: 3vw 8vw;
+      height:70%;
+      display:none;
+
+    }
+    .fi {
+      position:absolute;
+      width:100%;
+      height:15vw;
+      bottom:-7vw;
+
+    }
+    .textefi {
+      display: inline-block;
+      padding-left: 1vw;
+      margin-bottom: 3vw;
+      vertical-align: text-bottom;
+    }
+    #logofi {
+      visibility: visible;
+      position: absolute;
+      width:40vw;
+      left:55vw;
+      top:35vw;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+          <div class="pic">
+            <div class="image image1" id="image1"></div>
+          </div>
+
+        </div>
+
+        <div class="content">
+          <div class="zone" id="bloc1" contenteditable>
+            <div><span paddingleft="2" paddingright="2" paddingtop="2" paddingbottom="2" letterspacing="2" bgcolor="6" color="2" fontfamily="1" fontweight="9" texttransform="uppercase" fontsize="16" >&nbsp;FRançois RUFFIN&nbsp;</span></div>
+            <div margintop="1"><span paddingleft="2" paddingright="2" paddingtop="2" paddingbottom="2" letterspacing="2" bgcolor="5" color="2" fontfamily="1" fontweight="9" texttransform="uppercase" fontsize="14" >&nbsp;à SAINT-GAUDENS&nbsp;</span></div>
+          </div>
+          <div class="zone" id="bloc2" contenteditable>
+            <div margintop="3"><span paddingleft="2" paddingright="2" paddingtop="2" paddingbottom="2" letterspacing="2" bgcolor="5" color="2" fontfamily="1" fontweight="7" fontsize="17" lineheight="5">&nbsp;Jeudi 15 février&nbsp;&nbsp;</span></div>
+          </div>
+          <div class="zone" id="bloc3" contenteditable>
+            <div align="justify"><span color="6" fontfamily="1" fontweight="9" fontsize="15">18h00</span></div>
+            <div align="justify"><span color="4" fontweight="7" fontfamily="1" fontsize="16">Match de football</span></div>
+            <div align="justify" margintop="-1"><span color="4" fontweight="6" fontfamily="1" fontsize="10">France insoumise - Comminges Savès Debout</span></div>
+            <div align="justify" margintop="0"><span color="5" fontsize="16" fontfamily="1">Stade de Sède</span>
+              <span color="5" fontsize="10" fontfamily="1">&nbsp;(Saint-Gaudens)</span></div>
+            <div align="justify" margintop="2"><span color="6" fontfamily="1" fontweight="9" fontsize="15">20h30</span></div>
+            <div align="justify"><span color="4" fontweight="7" fontfamily="1" fontsize="16">Réunion publique</span></div>
+            <div align="justify" margintop="0"><span color="5" fontsize="16" fontfamily="1">Salle du Belvédère</span>
+                <span color="5" fontsize="10" fontfamily="1">&nbsp;(Saint-Gaudens)</span></div>
+          </div>
+
+        </div>
+
+
+      <div class="footer">
+        <div class="fi skew2"  bgcolor="5"></div>
+          <div class="zone" id="bloc4" contenteditable>
+            <div align="left"><span color="2" fontsize="8" fontfamily="2">Élection législative partielle - 11 et 18 mars 2018</span></div>
+        </div>
+
+    </div>
+  </div>
+
+
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+</body></html>
