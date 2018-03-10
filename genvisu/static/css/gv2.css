@@ -293,8 +293,6 @@ div.toolbox-history {
   position:absolute;
   top:0;
   left:0;
-  width: 100vh;
-  height:100vh;
   /*clip: rect(0px,70vw,80vh,0px);*/
   /*height: 70vw;*/
   /*overflow:hidden;

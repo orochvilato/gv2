@@ -49,6 +49,7 @@ var attrValues = {
   align:['left','center','right'],
   expind:['exposant','indice']
 }
+
 var attrDefaults = {
   paddingleft:0,
   paddingright:0,
@@ -86,7 +87,7 @@ var imageactive;
 $(function() {
   // chargement iframe
   $('#f').on('load', iframeLoaded);
-  $('#f').attr('src','view2.html');
+  $('#f').attr('src',visuel_path);
 
 
   initToolbox();
@@ -340,6 +341,10 @@ function iframeLoaded() {
     if (!fromToolbox) $('.toolbox-zoneitems').removeClass('active');
     fromToolbox = false;
   });
+  $('div.menubar').click(function(e) {
+    console.log('boom');
+    sendData();
+  })
 
 
   // gestion des suppressions d'éléments et des retours chariots dans les zones
@@ -553,6 +558,7 @@ function iframeLoaded() {
       },0);
 
   });
+
 }
 
 
@@ -644,7 +650,7 @@ function rangeFormat(attr,fct,value)
   var range = sel.getRangeAt(0);
 
   var startOffset = sel.anchorOffset;
-  var endOffset = sel.extentOffset;
+  var endOffset = sel.focusOffset;
   var nodes = getSelectedNodes();
   var startNode = (range.startContainer.nodeType==3)? range.startContainer : range.startContainer.childNodes[range.startOffset] ;
   var endNode = (range.endContainer.nodeType==3)? range.endContainer : range.endContainer.childNodes[range.endOffset] ;
@@ -660,15 +666,19 @@ function rangeFormat(attr,fct,value)
     if (nodes[0].nodeType == 3) {
       if (startOffset>0) {
         var spanbefore = nodes[0].parentNode.cloneNode(false);
-        spanbefore.innerHTML = nodes[0].nodeValue.substr(0,startOffset);
+        $(spanbefore).html(nodes[0].nodeValue.substr(0,startOffset));
         $(spanbefore).insertBefore(nodes[0].parentNode);
+
       }
+
       if (endOffset<nodes[0].nodeValue.length) {
         var spanafter = nodes[0].parentNode.cloneNode(false);
-        spanafter.innerHTML = nodes[0].nodeValue.substr(endOffset);
+        $(spanafter).html(nodes[0].nodeValue.substr(endOffset));
         $(spanafter).insertAfter(nodes[0].parentNode);
+
       }
-      nodes[0].textContent = nodes[0].nodeValue.substr(range.startOffset,range.endOffset-range.startOffset);
+
+      nodes[0].data = nodes[0].nodeValue.substr(range.startOffset,range.endOffset-range.startOffset);
       range.setEnd(nodes[0],endOffset-startOffset);
       range.setStart(nodes[0],0);
       var node = nodes[0].parentNode;
@@ -818,4 +828,44 @@ function getSelectedNodes() {
         }
     }
     return [];
+}
+
+// -----------------------------------------------------------
+// Sauvegardes / exports / chargements
+// -----------------------------------------------------------
+var exportencours = false;
+
+function sendData() {
+  document.body.style.cursor = 'wait';
+  var downloadToken = new Date().getTime();
+  var attempts = 30;
+  if (exportencours) return
+  var data = {'path':visuel_path,'zones':{},'images':{}};
+
+  // zones
+  $('#f').contents().find('.zone').each(function() {
+    data.zones[$(this).attr('id')] = $(this).html();
+  });
+  $('#f').contents().find('.image').each(function() {
+    if ($(this).attr('style')) data.images[$(this).attr('id')] = $(this).attr('style');
+  });
+
+  $.post( '/senddata', {'data':JSON.stringify(data)}, function(data) {
+      console.log(data);
+      document.body.style.cursor = '';
+      return
+      window.location.replace(url+'?key='+data+'&save');
+      document.body.style.cursor = 'wait';
+      exportencours = true;
+      downloadTimer = window.setInterval( function() {
+        var token = getCookie( "token" );
+        if( (token == downloadToken) || (attempts == 0) ) {
+          unblockSubmit();
+      }
+      attempts--;
+      }, 1000 );
+
+
+
+  });
 }

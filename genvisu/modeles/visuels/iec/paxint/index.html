@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="assets/chartes/iec.css">
+
+    <title>FI - Template 01</title>
+    <style>
+    body {
+      margin: 0;
+      padding:0;
+      border:0;
+      background-color: #202020; }
+
+    .container {
+      position:relative;
+      margin: 0 auto;
+      background-color: #ffffff;
+      overflow: hidden;
+      }
+
+    body {
+      overflow-x: hidden;
+      /*overflow-y: hidden;*/
+    }
+    .container {
+      width:100vw;
+      height: 100vw;
+    }
+    .skew {
+      transform:skewY(-3deg);
+    }
+    .skew2 {
+      transform:skewY(3deg);
+    }
+    .image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+
+
+    }
+    #image1 {
+      background: url('assets/img/photo.jpg');
+      background-size: cover;
+      background-position: 0vw 0vw;
+      transform: scale(1);
+      z-index: 1;
+    }
+
+    .header {
+      display:block;
+      height:30%;
+      width:100%;
+
+    }
+    .pic {
+      margin-top:-4vw;
+      display:block;
+      height:100%;
+      width:100%;
+      overflow:hidden;
+    }
+
+    #bloc1 {
+      position:absolute;
+      left: 10vw;
+      right: 0;
+      margin: 0 auto;
+      top:6vw;
+    }
+    #bloc2 {
+      position:absolute;
+      left: 0vw;
+      right: 0;
+      top:28vw;
+    }
+    #bloc3 {
+      position:absolute;
+      left: 8vw;
+      right: 8vw;
+      top:42vw;
+    }
+    .logofi {
+      display: table;
+      margin: 3vw 8vw;
+      height:70%;
+      display:none;
+
+    }
+    .fi {
+      position:absolute;
+      width:100%;
+      height:15vw;
+      bottom:-7vw;
+
+    }
+    .textefi {
+      display: inline-block;
+      padding-left: 1vw;
+      margin-bottom: 3vw;
+      vertical-align: text-bottom;
+    }
+    #logoiec {
+      visibility: visible;
+      position: absolute;
+      width:20vw;
+      right:1vw;
+      bottom:2vw;
+      z-index:10;
+    }
+    .cercleblanc {
+       border-radius: 50%;
+       position: absolute;
+       right:1vw;
+       bottom:1vw;
+       width:20vw;
+       height:20vw;
+       background-color: white;
+       z-index:9;
+     }
+     .contacts {
+       position: absolute;
+       bottom:2.5vw;
+       left:3vw;
+       color:white;
+     }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="assets/img/logo.svg" id="logoiec" nom="Logo">
+        <div class="cercleblanc"></div>
+        <div class="header">
+          <div class="pic skew">
+            <div class="image" id="image1"></div>
+          </div>
+
+        </div>
+        <div class="content">
+          <div class="textblock" id="bloc1">
+              <div class="ligne margintop-10 lineheight-10 align-left"> <span class="color-2 reverse font-1 fontsize-9 stronger uppercase" contenteditable="true">LA PAIX ET</span></div>
+              <div class="ligne margintop-12 lineheight-9 marginleft-10 align-left"> <span class="color-3 font-1 reverse stronger uppercase fontsize-9" contenteditable="true">L'international</span></div>
+            </div>
+            <div class="textblock" id="bloc2">
+              <div class="ligne lineheight-10 marginleft-10 margintop-15 align-left"> <span class="color-2 reverse strong font-2 fontsize-6" contenteditable="true">&nbsp;La fortune des plus riches progresse</span></div>
+            </div>
+
+            <div class="textblock" id="bloc3">
+                <div class="ligne align-justify marginleft-10 margintop-10 lineheight-14"><span class="color-3 font-2 fontsize-6" contenteditable="true">La</span><span class="color-2 font-2 strong fontsize-6" contenteditable="true">&nbsp;fortune&nbsp;</span><span class="color-3 font-2 fontsize-6" contenteditable="true">des&nbsp;</span><span class="color-3 font-2 strong fontsize-6 italic" contenteditable="true">500 personnes&nbsp;</span><span class="color-3 font-2 fontsize-6" contenteditable="true">les plus</span><span class="color-3 font-2 fontsize-6 strong italic" contenteditable="true">&nbsp;riches</span><span class="color-3 font-2 fontsize-6" contenteditable="true">&nbsp;du monde a progressé de&nbsp;</span><span class="color-2 font-2 fontsize-6 strong" contenteditable="true">1000 milliards de dollars</span><span class="color-3 small-spacing tooltipstered size-4 fontsize-6 font-2" contenteditable="true"> en&nbsp;</span><span class="color-3 small-spacing tooltipstered size-4 fontsize-6 strong italic font-2" contenteditable="true">&nbsp;2017</span><span class="color-3 small-spacing tooltipstered size-4 fontsize-6 font-2" contenteditable="true">, soit quatre fois plus que ce qu'elles avaient gagné en&nbsp;</span><span class="color-B small-spacing tooltipstered size-4 fontsize-6 font-2 strong italic" contenteditable="true">2016</span><span class="color-3 small-spacing tooltipstered size-4 fontsize-6 font-2" contenteditable="true">.</span></div>
+
+                <div class="ligne marginleft-10 lineheight-13 align-justify margintop-13"><span class="color-3 small-spacing tooltipstered size-4 font-2 fontsize-6" contenteditable="true">Elles totalisent</span><span class="color-2 size-4 fontsize-6 font-2 strong" contenteditable="true">&nbsp;5400 milliards de dollars</span><span class="color-3 small-spacing tooltipstered size-4 fontsize-6 font-2" contenteditable="true">&nbsp;soit plus de</span><span class="color-3 small-spacing tooltipstered size-4 fontsize-6 font-2 strong italic" contenteditable="true">&nbsp;deux foix</span><span class="color-3 small-spacing tooltipstered size-4 fontsize-6 font-2" contenteditable="true">&nbsp;le&nbsp;</span><span class="color-2 small-spacing tooltipstered size-4 fontsize-6 font-2 strong" contenteditable="true">PIB</span><span class="color-3 small-spacing tooltipstered size-4 fontsize-6 font-2" contenteditable="true"> de la&nbsp;</span><span class="color-3 small-spacing tooltipstered size-4 fontsize-6 font-2 strong italic" contenteditable="true">France</span></div>
+                <div class="ligne marginleft-10 lineheight-13 align-justify margintop-13"><span class="color-2 font-2 strong fontsize-3" contenteditable="true">Source: Le Figaro</span></div>
+
+
+              </div>
+
+        </div>
+
+
+      <div class="footer">
+        <div class="fi skew2 color-2-bg">
+
+      </div>
+      <div class="fontsize-6 font-2 strong contacts"><span>@InstantEnCommun <i class="fab fa-twitter"></i> <i class="fab fa-facebook"></i></span></div>
+    </div>
+
+    </div>
+
+
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+</body></html>

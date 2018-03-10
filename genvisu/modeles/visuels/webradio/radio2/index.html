@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="assets/chartes/discord.css">
+
+    <title>FI - Template 01</title>
+    <style>
+    body {
+      margin: 0;
+      padding:0;
+      border:0;
+      background-color: #202020; }
+
+    .container {
+      position:relative;
+      margin: 0 auto;
+      background-color: #ffffff;
+      overflow: hidden;
+      }
+
+    body {
+      overflow-x: hidden;
+      /*overflow-y: hidden;*/
+    }
+    .container {
+      width:100vw;
+      height: 56.25vw;
+    }
+    .skew {
+      transform:skewY(2deg);
+    }
+    .skew2 {
+      transform:skewY(-2deg);
+    }
+    .image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+
+
+    }
+    #image1 {
+      background: url('assets/img/photo.jpg');
+      background-size: cover;
+      background-position: -2.232388vw -0.957110vw;
+      transform: scale(1.16);
+      z-index: 0;
+
+    }
+    .pic {
+      position: absolute;
+      top:0vw;
+      height:40vw;
+      width:100%;
+      overflow:hidden;
+
+    }
+    .footer {
+      position:absolute;
+      top:40vw;
+      height:17vw;
+      width:100%;
+      z-index:2;
+    }
+    .textblock {
+    }
+
+    .type_emission {
+
+      position: absolute;
+      left:2vw;
+      top:41.5vw;
+      bottom:4vw;
+      width:28vw;
+      z-index:5;
+      display:flex;
+      justify-content: center;
+
+    }
+    .type_emission img {
+      width:100%;
+      height:100%;
+      max-width:26vw;
+      max-height:18vw;
+    }
+
+    #bloc1 {
+      position:absolute;
+      left: 10vw;
+      right: 70vw;
+      /*top:50vw;*/
+      bottom:1vw;
+      z-index:6;
+    }
+    #bloc2 {
+      position: absolute;
+      left:36vw;
+      right:4vw;
+      bottom:1vw;
+      height:14vw;
+      z-index: 6;
+    }
+
+
+    #footer_line2 {
+      position:absolute;
+      left:32vw;
+      bottom:1vw;
+      height: 14vw;
+      min-width:5px;
+      width:0.6vw;
+      background: white;
+      background: radial-gradient(farthest-side at 0% 50%, #cacaca, white);
+      z-index:6;
+    }
+    .optlist .list {
+        display: none;
+    }
+    .optlist .selected {
+      display:block;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="type_emission optlist">
+          <img class="list selected" id="lentre" nom="Type emission" choix="l'entretien" src="assets/img/lentre.svg">
+          <img class="list" id="libant" nom="Type emission" choix="libre antenne" src="assets/img/libant.svg">
+          <img class="list" id="siecom" nom="Type emission" choix="sience commune" src="assets/img/siecom.svg">
+          <img class="list" id="insquo" nom="Type emission" choix="insoumis au quotidien" src="assets/img/insquo.svg">
+          <img class="list" id="hiscom" nom="Type emission" choix="histoire en commun" src="assets/img/hiscom.svg">
+          <img class="list" id="gropla" nom="Type emission" choix="gros plan" src="assets/img/gropla.svg">
+          <img class="list" id="dervis" nom="Type emission" choix="derrière le viseur" src="assets/img/dervis.svg">
+          <img class="list" id="culins" nom="Type emission" choix="culture insoumise" src="assets/img/culins.svg">
+
+        </div>
+        <div class="textblock" id="bloc1">
+
+            <div class="ligne lineheight-10 marginleft-10 margintop-10 align-right"><span class="color-2 font-1 strong fontsize-6
+               protected" contenteditable="true">14</span></div>
+          </div>
+        <div class="textblock" id="bloc2">
+            <div class="ligne marginleft-10 margintop-10 align-left lineheight-5"><span class="color-1 font-1 fontsize-4" contenteditable="true">avec</span></div><div class="ligne lineheight-10 marginleft-10 align-left margintop-11"><span class="color-3 font-2 fontsize-8" contenteditable="true">MANUEL BOMPARD</span></div><div class="ligne lineheight-10 marginleft-10 align-left margintop-11"><span class="color-2 font-2 fontsize-4" contenteditable="true">Directeur des campagnes</span></div><div class="ligne marginleft-10 align-left lineheight-11 margintop-10"><span class="color-2 font-2 fontsize-4" contenteditable="true">de la France insoumise</span></div>
+          </div>
+
+        <div class="pic">
+          <div class="image" id="image1"></div>
+        </div>
+
+        <div id="footer_line2"></div>
+        <div class="footer color-W-bg">
+        </div>
+
+    </div>
+
+
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</body></html>

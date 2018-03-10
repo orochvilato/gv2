@@ -1403,33 +1403,3 @@ div[backgroundpositionx="20"] {
 
 
 /* Spécifique */
-*[fontfamily="1"] {
-  font-family: "Montserrat", sans-serif;
-}
-*[fontfamily="2"] {
-  font-family: "Roboto Slab", serif;
-}
-*[fontfamily="3"] {
-  font-family: "Courgette", serif;
-}
-
-
-*[color="4"] {
-  color:#1f3356;
-}
-*[color="5"] {
-  color:#0098b6;
-}
-*[color="6"] {
-  color:#e23d22;
-}
-
-*[bgcolor="4"] {
-  background-color:#1f3356;
-}
-*[bgcolor="5"] {
-  background-color:#0098b6;
-}
-*[bgcolor="6"] {
-  background-color:#e23d22;
-}

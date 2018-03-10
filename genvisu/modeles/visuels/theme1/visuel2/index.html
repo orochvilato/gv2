@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="assets/chartes/fi.css">
+
+    <title>FI - Template 01</title>
+    <style>
+    body {
+      margin: 0;
+      padding:0;
+      border:0;
+      background-color: #202020; }
+
+    .container {
+      position:relative;
+      margin: 0 auto;
+      background-color: #ffffff;
+      overflow: hidden;
+      }
+
+    body {
+      overflow-x: hidden;
+      /*overflow-y: hidden;*/
+    }
+    .container {
+      width:100vw;
+      height: 100vw;
+    }
+    .skew {
+      transform:skewY(-4deg);
+    }
+    .image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+
+
+    }
+    #image1 {
+      background: url('assets/img/photo.jpg');
+      background-size: cover;
+      background-position: -3.86vw -3.15vw;
+      transform: scale(1.28);
+      z-index: 7;
+
+    }
+    .header {
+      display:block;
+      height:25%;
+      width:100%;
+
+    }
+    .pic {
+      display:block;
+      height:60%;
+      width:100%;
+      overflow:hidden;
+    }
+
+    .textblock {
+      position:absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      top:2vw;
+    }
+    .logofi {
+      display: table;
+      margin: 0 auto;
+      height:100%;
+    }
+    .fi {
+      position:absolute;
+      width:100%;
+      height:9vw;
+      bottom:0.5vw;
+    }
+    .textefi {
+      display: inline-block;
+      padding-left: 1vw;
+      margin-bottom: 3vw;
+      vertical-align: text-bottom;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+
+          <div class="textblock">
+          <div class="skew ligne align-center margintop-15 lineheight-10"><span class="color-3 fontsize-14 font-1 uppercase stronger" contenteditable="true">la santé n'est pas</span></div>
+          <div class="skew ligne align-center margintop-9 lineheight-10"><span class="color-2 fontsize-14 font-1 uppercase stronger" contenteditable="true">une marchandise</span></div>
+        </div>
+        </div>
+        <div class="pic skew">
+          <div class="image" id="image1"></div>
+        </div>
+
+
+
+      <div class="footer">
+        <div class="fi">
+          <img class="logofi" src="assets/img/fi.png">
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</body></html>
