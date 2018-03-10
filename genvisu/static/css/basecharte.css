@@ -1399,6 +1399,19 @@ div[backgroundpositionx="20"] {
   background-position-x: 20vw;
 }
 
+div.zone:hover, div.zone:focus, div.zone.selected {
+  outline: 1px dashed blue;
+  outline-offset: -1px;
+}
+
+div.zone:hover span, div.zone:focus span, div.zone.selected span {
+  outline: 1px dashed red;
+  outline-offset: -1px;
+}
+div.zone:hover div, div.zone:focus div, div.zone.selected div {
+  outline: 1px dashed orange;
+  outline-offset: -1px;
+}
 
 
 

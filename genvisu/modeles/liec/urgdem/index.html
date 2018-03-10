@@ -11,16 +11,7 @@
 
     <title>FI - Template 01</title>
     <style>
-    div.zone:hover, div.zone:focus, div.zone.selected {
-      outline: 1px dashed blue;
-      outline-offset: -1px;
-    }
-
-    div.zone:hover span, div.zone:focus span, div.zone.selected span {
-      outline: 1px dashed red;
-      outline-offset: -1px;
-    }
-
+  
 
 
     body {
@@ -132,12 +123,37 @@
       left:55vw;
       top:35vw;
     }
-
+    #logoiec {
+      visibility: visible;
+      position: absolute;
+      width:20vw;
+      right:1vw;
+      bottom:2vw;
+      z-index:10;
+    }
+    .cercleblanc {
+       border-radius: 50%;
+       position: absolute;
+       right:1vw;
+       bottom:1vw;
+       width:20vw;
+       height:20vw;
+       background-color: white;
+       z-index:9;
+     }
+     .contacts {
+       position: absolute;
+       bottom:2.5vw;
+       left:3vw;
+       color:white;
+     }
 
     </style>
 </head>
 <body>
     <div class="container">
+      <img src="/img/logo.svg" id="logoiec" nom="Logo">
+      <div class="cercleblanc"></div>
 
         <div class="header">
           <div class="pic">
@@ -147,35 +163,25 @@
         </div>
 
         <div class="content">
-          <div class="zone" id="bloc1" contenteditable>
-            <div><span paddingleft="2" paddingright="2" paddingtop="2" paddingbottom="2" letterspacing="2" bgcolor="6" color="2" fontfamily="1" fontweight="9" texttransform="uppercase" fontsize="16" >&nbsp;FRançois RUFFIN&nbsp;</span></div>
-            <div margintop="1"><span paddingleft="2" paddingright="2" paddingtop="2" paddingbottom="2" letterspacing="2" bgcolor="5" color="2" fontfamily="1" fontweight="9" texttransform="uppercase" fontsize="14" >&nbsp;à SAINT-GAUDENS&nbsp;</span></div>
+          <div class="zone" id="bloc1" contenteditable="">
+            <div><span paddingleft="10" paddingright="10" paddingtop="2" paddingbottom="2" letterspacing="2" bgcolor="5" color="2" fontfamily="1" fontweight="9" texttransform="uppercase" fontsize="16">URGENCE</span></div>
+            <div margintop="1"><span paddingleft="10" paddingright="10" paddingtop="2" paddingbottom="2" letterspacing="2" bgcolor="1" color="2" fontfamily="1" fontweight="9" texttransform="uppercase" fontsize="14">Démocratique</span></div>
           </div>
-          <div class="zone" id="bloc2" contenteditable>
-            <div margintop="3"><span paddingleft="2" paddingright="2" paddingtop="2" paddingbottom="2" letterspacing="2" bgcolor="5" color="2" fontfamily="1" fontweight="7" fontsize="17" lineheight="5">&nbsp;Jeudi 15 février&nbsp;&nbsp;</span></div>
+          <div class="zone" id="bloc2" contenteditable="">
+            <div margintop="3"><span paddingleft="8" paddingright="2" paddingtop="2" paddingbottom="2" letterspacing="1" bgcolor="5" color="2" fontfamily="2" fontweight="7" fontsize="10" lineheight="5">Le fléau du lobbyisme : un exemple parmi tant d'autres</span></div>
           </div>
-          <div class="zone" id="bloc3" contenteditable>
-            <div align="justify"><span color="6" fontfamily="1" fontweight="9" fontsize="15">18h00</span></div>
-            <div align="justify"><span color="4" fontweight="7" fontfamily="1" fontsize="16">Match de football</span></div>
-            <div align="justify" margintop="-1"><span color="4" fontweight="6" fontfamily="1" fontsize="10">France insoumise - Comminges Savès Debout</span></div>
-            <div align="justify" margintop="0"><span color="5" fontsize="16" fontfamily="1">Stade de Sède</span>
-              <span color="5" fontsize="10" fontfamily="1">&nbsp;(Saint-Gaudens)</span></div>
-            <div align="justify" margintop="2"><span color="6" fontfamily="1" fontweight="9" fontsize="15">20h30</span></div>
-            <div align="justify"><span color="4" fontweight="7" fontfamily="1" fontsize="16">Réunion publique</span></div>
-            <div align="justify" margintop="0"><span color="5" fontsize="16" fontfamily="1">Salle du Belvédère</span>
-                <span color="5" fontsize="10" fontfamily="1">&nbsp;(Saint-Gaudens)</span></div>
+          <div class="zone" id="bloc3" contenteditable="">
+            <div align="justify"><span fontsize="11" fontfamily="2" fontweight="6" color="5">ExxonMobil</span><span fontsize="11" fontfamily="2">, la plus grande compagnie pétrolière du monde, à </span><span fontsize="11" fontfamily="2" fontweight="6" bgcolor="0" color="5">nié</span><span fontsize="11" fontfamily="2"> pendant des années la </span><span fontsize="11" fontfamily="2" fontweight="6" color="5">réalité</span><span fontsize="11" fontfamily="2"> du changement climatique.</span></div><div align="justify" marginbottom="0" margintop="4"><span fontsize="11" fontfamily="2">Cette multinationale a </span><span fontsize="11" fontfamily="2" fontweight="6" color="5">versé de l'argent</span><span fontsize="11" fontfamily="2"> à des parlementaires et à des lobbies américains afin qu'ils contestent la réalité du changement climatique.</span></div>
           </div>
 
         </div>
 
 
-      <div class="footer">
-        <div class="fi skew2"  bgcolor="5"></div>
-          <div class="zone" id="bloc4" contenteditable>
-            <div align="left"><span color="2" fontsize="8" fontfamily="2">Élection législative partielle - 11 et 18 mars 2018</span></div>
+        <div class="footer">
+          <div class="fi skew2" bgcolor="5">
+          </div>
+          <div class="contacts" fontsize="11" fontfamily="2" fontweight="600"><span>@InstantEnCommun <i class="fab fa-twitter"></i> <i class="fab fa-facebook"></i></span></div>
         </div>
-
-    </div>
   </div>
 
 
