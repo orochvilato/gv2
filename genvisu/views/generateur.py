@@ -4,6 +4,7 @@ from genvisu import app, app_path, memcache
 from genvisu.tools import image_response, parse_content
 from flask import render_template, url_for, request, Response
 import re
+import requests
 import os
 
 visuels = {
@@ -51,19 +52,36 @@ def js(cssfile):
 
 @app.route('/check_status')
 def checkstate():
-    key = request.args.get('key') +'_status'
+    key = request.args.get('key')
     if not key:
         data = {'etat':'Erreur','avancement':0}
     else:
-        data = memcache.get(key)
+        r = requests.get('http://127.0.0.1:8888/status?key='+key)
+        print r.content
+        data = r.json()
+        print data
         if not data:
             data = {'etat':'Erreur','avancement':0}
     import json
 
     return json.dumps(data)
+
+@app.route('/retrieve_image')
+def retrieve_image():
+    key = request.args.get('key')
+    r = requests.get('http://127.0.0.1:8888/retrieve_snapshot?key='+key)
+    resp = Response(r.content)
+
+    for k,v in r.headers.iteritems():
+        resp.headers[k] = v
+    return resp
+
 @app.route('/export')
 def export():
     key = request.args.get('key')
+    width = request.args.get('width',1024)
+    height = request.args.get('height',1024)
+
     data = None
     if key:
         data = memcache.get(key)
@@ -71,10 +89,12 @@ def export():
             import json
             data = json.loads(data['data'])
     if data:
-        memcache.set(key+'_status',{ 'etat':u'sauvegarde des paramètres','avancement':10} )
-        from genvisu.controllers.generateur import savepage
         url = request.url_root[:-1]+data['path']+'?key='+key
-        return image_response('png',savepage(url,(1024,1024),key=key+'_status'),filename=data['path'].split('/')[-1])
+        watermark = {'ip':request.environ['REMOTE_ADDR']}
+        r = requests.post('http://127.0.0.1:8888/prepare',data={'url':url,'width':width,'height':height, 'name':data['path'].split('/')[-1], 'watermark':watermark})
+        return r.content
+
+
 
 
 

@@ -855,26 +855,38 @@ function sendData() {
     if (!style) style = ""
     data.images[$(this).attr('id')] = style;
   });
-  $('.jauge').css('width','5%');
+  var avc = 0;
+
+
+  $('#etape').text('Envoi des données');
+  var sendTimer = window.setInterval(function() {
+    avc++;
+    $('.jauge').css('width',avc+'%');
+  },500)
   $('#overlay').show();
   $.post( '/senddata', {'data':JSON.stringify(data)}, function(data) {
-      window.location.replace('/export?key='+data);
+      clearInterval(sendTimer);
+      $.get('/export?key='+data, function(data) {
+        var key = data;
+        var downloadTimer = window.setInterval(function() {
+          $.get('/check_status?key='+key, function(data) {
+            data = JSON.parse(data);
+            if (data.position>1) data.etat = data.etat + ' ('+data.position+')';
+            $('#etape').text(data.etat);
+            $('.jauge').css('width',data.avancement+'%');
+
+            if (data.avancement == 100) {
+              clearInterval(downloadTimer);
+              window.setTimeout(function() {
+                window.location.replace('/retrieve_image?key='+key)
+                $('#overlay').hide();
+              },1000);
+            }
+            });
+        }, 500);
+      })
+
       //document.body.style.cursor = 'wait';
-      var downloadTimer = window.setInterval(function() {
-        $.get('/check_status?key='+data, function(data) {
-          data = JSON.parse(data);
-          $('#etape').text(data.etat);
-          $('.jauge').css('width',data.avancement+'%');
 
-          if (data.avancement == 100) {
-            clearInterval(downloadTimer);
-            window.setTimeout(function() {
-              $('#overlay').hide();
-            },1000);
-
-          }
-
-        });
-      }, 500);
   });
 }
