@@ -32,10 +32,11 @@ def savepage(url,size,key):
         wait += 1
         memcache.set(key,{'etat':u'En attente','avancement':wait})
         time.sleep(0.5)
-        chrome_count = memcache.get('chrome_count') or 0
+        chrome_count = int(memcache.get('chrome_count')) or 0
         print wait,chrome_count,int(chrome_count),type(chrome_count)
     print "go"
     memcache.incr('chrome_count',1)
+    print "incr",memcache.get('chrome_count')
     options = webdriver.ChromeOptions()
     options.binary_location = '/usr/bin/google-chrome'
     options.add_argument('headless')
