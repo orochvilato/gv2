@@ -1,0 +1,25 @@
+*[fontfamily="1"] {
+  font-family: "Montserrat", sans-serif;
+}
+*[fontfamily="2"] {
+  font-family: "Roboto Slab", serif;
+}
+*[fontfamily="3"] {
+  font-family: "Courgette", serif;
+}
+
+
+*[color="4"] {
+  color:#c3e1d3;
+}
+*[color="5"] {
+  color:#6bb592;
+}
+
+
+*[bgcolor="4"] {
+  background-color:#c3e1d3;
+}
+*[bgcolor="5"] {
+  background-color:#6bb592;
+}

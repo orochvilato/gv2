@@ -6,7 +6,15 @@ from flask import render_template, url_for, request, Response
 import re
 import os
 
-visuels = {'carre1':'fi/carre1', 'urgdem':'liec/urgdem'}
+visuels = {
+    'carre1':'fi/carre1',
+    'urgdem':'liec/urgdem',
+    'eurque':'liec/eurque',
+    'paxint':'liec/paxint',
+    'prohum':'liec/prohum',
+    'urgeco':'liec/urgeco',
+    'urgsoc':'liec/urgsoc'
+    }
 
 @app.route('/senddata',methods=['POST'])
 def senddata():
