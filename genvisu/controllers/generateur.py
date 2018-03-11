@@ -22,6 +22,7 @@ def savepage(url,size,key):
 
 
     chrome_count = memcache.get('chrome_count')
+    print chrome_count
     if not chrome_count:
         memcache.set('chrome_count',0,120)
         chrome_count = 0
@@ -48,9 +49,9 @@ def savepage(url,size,key):
     memcache.set(key,{'etat':u'Génération du visuel','avancement':40})
     #time.sleep(5) # Let the user actually see something!
 
-    for i in range(3):
-        time.sleep(1)
-        memcache.set(key,{'etat':u'Génération du visuel','avancement':60+i*10})
+    for i in range(6):
+        time.sleep(0.5)
+        memcache.set(key,{'etat':u'Génération du visuel','avancement':60+i*5})
 
     im = Image.open(StringIO.StringIO(driver.get_screenshot_as_png()))
     im2 = im.crop((0,0,size[0],size[1]))
