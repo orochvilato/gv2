@@ -33,7 +33,7 @@ def savepage(url,size,key):
         memcache.set(key,{'etat':u'En attente','avancement':wait})
         time.sleep(0.5)
         chrome_count = memcache.get('chrome_count') or 0
-        print wait,chrome_count
+        print wait,chrome_count,int(chrome_count),type(chrome_count)
     print "go"
     memcache.incr('chrome_count',1)
     options = webdriver.ChromeOptions()
