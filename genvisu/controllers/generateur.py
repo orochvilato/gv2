@@ -23,7 +23,7 @@ def savepage(url,size,key):
 
     chrome_count = memcache.get('chrome_count')
     print chrome_count
-    if not chrome_count:
+    if chrome_count==None:
         memcache.set('chrome_count',0,120)
         chrome_count = 0
     wait = 5
