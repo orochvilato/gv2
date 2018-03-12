@@ -90,8 +90,11 @@ def export():
             data = json.loads(data['data'])
     if data:
         url = request.url_root[:-1]+data['path']+'?key='+key
-        watermark = {'ip':request.environ['REMOTE_ADDR']}
-        r = requests.post('http://127.0.0.1:8888/prepare',data={'url':url,'width':width,'height':height, 'name':data['path'].split('/')[-1], 'watermark':watermark})
+        name = data['path'].split('/')[-1]
+        import datetime
+        watermark = {'ip':request.environ['REMOTE_ADDR'],'visuel':name, 'date':datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S')}
+        import json
+        r = requests.post('http://127.0.0.1:8888/prepare',data={'url':url,'width':width,'height':height, 'name':name, 'watermark':json.dumps(watermark)})
         return r.content
 
 
@@ -133,3 +136,23 @@ def visuel(visuelid):
         from lxml import etree
         html = etree.tostring(xml,method='html')
     return html
+
+def _proxy(*args, **kwargs):
+    resp = requests.request(
+        method=request.method,
+        url='http://127.0.0.1:8888/checkfile',
+        headers={key: value for (key, value) in request.headers if key != 'Host'},
+        data=request.get_data(),
+        cookies=request.cookies,
+        allow_redirects=False)
+
+    excluded_headers = ['content-encoding', 'content-length', 'transfer-encoding', 'connection']
+    headers = [(name, value) for (name, value) in resp.raw.headers.items()
+               if name.lower() not in excluded_headers]
+
+    response = Response(resp.content, resp.status_code, headers)
+    return response
+
+@app.route('/checkvisuel', methods=['GET','POST'])
+def checkvisuel():
+    return _proxy()
