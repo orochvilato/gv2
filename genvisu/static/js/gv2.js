@@ -171,7 +171,9 @@ function getHistoryItem(node) {
 function getCharteFonts() {
   var fonts = Array();
   var re = /([^",]+)/;
-  for (i=1;i<4;i++) {
+  var i=1;
+  out = false;
+  while ((i<100)&&(out == false)) {
     var div = document.createElement('div');
     div.setAttribute('id','font1');
     div.style='display:none';
@@ -181,10 +183,20 @@ function getCharteFonts() {
     $('#f').contents().find('body').append(div);
     var font = $(div).css('font-family');
     $(div).remove();
-    fonts.push(font.match(re)[0]);
+    var _font = font.match(re)[0]
+    if (_font === fonts[i-2]) {
+      fonts.pop();
+      out = true
+    } else {
+      fonts.push(_font);
+    }
+    i++;
+
   }
   return fonts;
 }
+
+
 function getCharteColors() {
   var colors = Array();
   var i=1;
