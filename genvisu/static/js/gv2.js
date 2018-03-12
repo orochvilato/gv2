@@ -545,6 +545,13 @@ function iframeLoaded() {
     var clipboardData = e.originalEvent.clipboardData || fwindow.originalEvent.clipboardData;
       window.setTimeout( function() {
         zone.find("div, span, img, i").each(function () {
+          if (this.tagName=='DIV') {
+            $(this).contents().filter(function() { if (this.nodeType==3) return true;}).each(function() {
+              var span = $(e.target).clone();
+              $(span).text(this.textContent);
+              $(this).replaceWith(span);
+            });
+          }
           var styles = $(this).attr('style')
           if (styles) {
             styles = styles.split(/; ?/);

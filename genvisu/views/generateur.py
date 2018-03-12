@@ -30,6 +30,8 @@ def generateur(visuelid):
         return render_template('generateur.html', visuel_path='/visuel/'+visuelid , width=100, height=100)
 
 def returnfile(folder,_file):
+    if not request.referrer:
+        return ""
     visuelid = request.referrer.split('/')[-1].split('?')[0]
     import mimetypes
     mimetype = mimetypes.guess_type(_file)[0]
