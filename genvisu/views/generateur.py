@@ -26,7 +26,13 @@ def senddata():
 @app.route('/edit/<visuelid>')
 def generateur(visuelid):
     if request.method == 'GET':
-        # !! récuperer les dimensions du visuel (balise META)
+        path_visuel = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'index.html')
+        doc = open(path_visuel,'r').read()
+        import re
+        m = re.search(r'<meta dimension="([0-9]+x[0-9]+)">',doc,re.MULTILINE)
+        if m:
+            width,height = [int(x) for x in m.groups()[0].split('x')]
+        
         return render_template('generateur.html', visuel_path='/visuel/'+visuelid , width=100, height=100)
 
 def returnfile(folder,_file):
