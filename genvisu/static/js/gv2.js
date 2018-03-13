@@ -894,10 +894,10 @@ function sendData() {
             $('#etape').text(data.etat);
             $('.jauge').css('width',data.avancement+'%');
 
-            if (data.avancement == 100) {
+            if ((data.avancement == 100)&&(data.avancement==-1)) {
               clearInterval(downloadTimer);
               window.setTimeout(function() {
-                window.location.replace('/retrieve_image?key='+key)
+                if (data.avancement == 100) window.location.replace('/retrieve_image?key='+key)
                 $('#overlay').hide();
               },1000);
             }
