@@ -1,16 +1,81 @@
-{% extends "base.html" %}
-{% block head %}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/static/css/basecharte.css">
+    <link rel="stylesheet" href="/static/css/gv2.css">
+
  <style>
  .view {
    width: {{ width }}vh;
    height: {{ height }}vh;
  }
  </style>
-{% endblock %}
 
-{% block content %}
+
+</head>
+<body>
+<!--
+<div class="menubar">
+   <div class="menuitem" action="export">Export</div>
+ </div>
+ -->
+
+<ul class="mainnav">
+                <li class="hassubs"><a href="#">Nouveau</a>
+                  <ul class="dropdown">
+                    <li class="subs hassubs"><a href="#">LIEC <i class="fas fa-angle-right menuarrow"></i></a>
+                      <ul class="dropdown">
+                      {% for visuel in ['urgeco','urgdem','urgsoc','prohum','eurque','paxint'] %}
+                        <li class="subs"><a href="/edit/{{ visuel }}">{{ visuel }}</a></li>
+                      {% endfor %}
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="hassubs"><a href="#">Sauvegardes</a>
+                  <ul class="dropdown">
+                    <li class="subs hassubs"><a href="#">Sauvegarder <i class="fas fa-angle-right menuarrow"></i></a>
+                      <ul class="dropdown">
+                      {% for i in range(10) %}
+                        <li class="subs"><a action="save" slot="slot{{ i+1 }}" href="#">{{'slot %d' % (i+1,)}} - {{ saves.get('slot%d' % (i+1,),'-- vide --') }}</a></li>
+                      {% endfor %}
+                      </ul>
+                    </li>
+                    <li class="subs hassubs"><a href="#">Charger <i class="fas fa-angle-right menuarrow"></i></a>
+                      <ul class="dropdown">
+                      {% for i in range(10) %}
+                        {% if 'slot%d' % (i+1,) in saves.keys() %}
+                        <li class="subs"><a action="load" slot="slot{{ i+1 }}" href="#">{{ 'slot %d' % (i+1,) }} - {{ saves.get('slot%d' % (i+1,),'-- vide --') }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                      {% if 'autosave' in saves.keys() %}
+                      <li class="subs"><a action="load" slot="autosave" href="#">autosave - {{ saves.get('autosave','-- vide --')}}</a></li>
+                      {% endif %}
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="hassubs"><a href="#">Export</a>
+                  <ul class="dropdown">
+                  <li class="subs hassubs"><a href="#">Image (PNG) <i class="fas fa-angle-right menuarrow"></i></a>
+                    <ul class="dropdown">
+                        <li class="subs"><a action="export" w="2048" h="2048" href="#">2048x2048</a></li>
+                        <li class="subs"><a action="export" w="1024" h="1024" href="#">1024x1024</a></li>
+                        <li class="subs"><a action="export" w="512" h="512" href="#">512x512</a></li>
+                        <li class="subs"><a action="export" w="256" h="256" href="#">256x256</a></li>
+                    </ul>
+                  </li>
+                  </ul>
+                </li>
+
+                <li class="logout"><a href='/logout'><i class="fas fa-power-off"></i></a></li>
+            </ul>
+
+  <div class="app">
+    <div class="menushadow"></div>
     <div class="workarea">
-      <iframe id="f" scrolling="no" class="view" src=""></iframe>
+
+    <iframe id="f" scrolling="no" class="view" src=""></iframe>
     </div>
     <div class="toolbox">
       <div class="toolbox-history">
@@ -29,7 +94,16 @@
           </div>
 
         </div>
-
+        <!-- filter: blur(5px);
+filter: brightness(0.4);
+filter: contrast(200%);
+filter: drop-shadow(16px 16px 20px blue);
+filter: grayscale(50%);
+filter: hue-rotate(90deg);
+filter: invert(75%);
+filter: opacity(25%);
+filter: saturate(30%);
+filter: sepia(60%);-->
         <div class="toolbox-spacer"></div>
         <input id="uploadimage" type="file">
         <div class="toolbox-spacer"></div>
@@ -203,9 +277,10 @@
 
     </div>
   </div>
- {% endblock %}
 
- {% block body %}
+
+
+  </div>
   <div id="overlay">
     <div id="overlay-content">
       <label id="etape">En attente</label>
@@ -214,11 +289,16 @@
       </div>
     </div>
   </div>
-{% endblock %}
-{% block script %}
 <script>
   var visuel_path = "{{ visuel_path }}";
   var visuel = "{{ visuel }}";
 </script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script defer src="/static/js/fontawesome-all.min.js"></script>
 <script src="/static/js/gv2.js"></script>
-{% endblock %}
+</body>
+
+</html>

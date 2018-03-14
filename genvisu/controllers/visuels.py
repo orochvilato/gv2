@@ -26,17 +26,6 @@ def save_work(userid,slot,data):
         f.write('%s (%s)\n' % (visuel,datetime.datetime.now().strftime('%d/%m/%Y %H:%M')))
         f.write(json.dumps(data.get('data')))
 
-def load_work_name(userid,slot):
-    path = os.path.join(app_path,'data','save',userid,slot+'.json')
-
-    if os.path.exists(path):
-
-        import json
-        with open(path) as f:
-            visuel = f.readline().split(' (')[0]
-        return visuel
-    return None,None
-
 def load_work(userid,slot):
     path = os.path.join(app_path,'data','save',userid,slot+'.json')
 
