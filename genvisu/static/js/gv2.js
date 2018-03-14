@@ -724,7 +724,8 @@ function rangeFormat(attr,fct,value)
       applyFormat(node,attr,fct,value)
     }
   } else {
-
+    var endspan = $(endNode).closest('span').get(0).cloneNode(false);
+    console.log(endspan);
     for (i=0;i<nodes.length;i++) {
       if (nodes[i] == startNode) {
 
@@ -744,8 +745,8 @@ function rangeFormat(attr,fct,value)
         if (nodes[i].nodeType==3) {
           if ((range.endOffset<nodes[i].nodeValue.length) && (range.endOffset>0)) {
             changed = true;
-            var span = nodes[i].parentNode.cloneNode(false); //document.createElement('span');
-
+            //var span = nodes[i].parentNode.cloneNode(false); //document.createElement('span');
+            var span = endspan;
             span.innerHTML = nodes[i].nodeValue.substr(range.endOffset);
             nodes[i].nodeValue = nodes[i].nodeValue.substr(0,range.endOffset);
             $(span).insertAfter(nodes[i].parentNode);
@@ -755,7 +756,7 @@ function rangeFormat(attr,fct,value)
       }
       if (started == true)  {
           if (nodes[i] == endNode) started = false;
-          if (nodes[i].nodeType!=3)  {
+        if (nodes[i].nodeType!=3)  {
             var node=nodes[i];
             if (targets.includes(node.tagName)) {
               changed = true;

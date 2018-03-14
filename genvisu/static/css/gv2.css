@@ -396,7 +396,7 @@ div.toolbox-history {
 li{list-style: none;}
 li a{text-decoration: none;}
 .dropdown { z-index:10;}
-.mainnav { height:48px;margin:0;padding:0; background-color: #9c9c9c; }
+.mainnav { height:50px;margin:0;padding:0; background-color: #9c9c9c; }
 .dropdown{ position: absolute; width: 185px;top: 48px; opacity: 0;visibility: hidden; background-color:#c5c5c5;}
 .mainnav li { padding-top:10px; padding-bottom:10px;}
 .mainnav .dropdown li { font-size:16px;    padding: 3px 0px 3px 0px;}
