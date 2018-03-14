@@ -8,15 +8,16 @@ import datetime
 def load_saves(userid):
     path = os.path.join(app_path,'data','save',userid)
     saves = {}
-    for fname in os.listdir(path):
-        if fname[-5:]=='.json':
-            filepath = os.path.join(path,fname)
-            with open(filepath,'r') as f:
-                saves[fname[:-5]] = f.readline()[:-1]
+    if os.path.exists(path):
+        for fname in os.listdir(path):
+            if fname[-5:]=='.json':
+                filepath = os.path.join(path,fname)
+                with open(filepath,'r') as f:
+                    saves[fname[:-5]] = f.readline()[:-1]
     return saves
 
 def save_work(userid,slot,data):
-    
+
     path = os.path.join(app_path,'data','save',userid)
     if not os.path.exists(path):
         os.makedirs(path)
