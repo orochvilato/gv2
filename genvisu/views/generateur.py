@@ -17,13 +17,26 @@ visuels = {
     'urgsoc':'liec/urgsoc'
     }
 
+domaines = {
+    'liec':{
+        'eurque':{'titre':"L'Europe en question", 'ratio':1},
+        'paxint':{'titre':"La paix et l'international", 'ratio':1},
+        'prohum':{'titre':"Progrès Humain", 'ratio':1},
+        'urgdem':{'titre':"Urgence démocratique", 'ratio':1},
+        'urgeco':{'titre':"Urgence écologique", 'ratio':1},
+        'urgsoc':{'titre':"Urgence sociale", 'ratio':1}
+    }
+}
 
 from genvisu.controllers.backend import save_work,load_work, load_saves, load_work_name
 from genvisu.views.social_auth import require_login
 
 @app.route('/')
+@require_login
 def root():
-    return redirect('/edit/prohum')
+    user = session['userid']
+    return render_template('accueil.html', saves=load_saves(user))
+
 @app.route('/senddata',methods=['POST'])
 def senddata():
     slot = request.form.get('slot','autosave')
@@ -205,10 +218,21 @@ def _proxy(*args, **kwargs):
     return response
 
 @app.route('/checkvisuel', methods=['GET','POST'])
+@require_login
 def checkvisuel():
     return _proxy()
 
-@app.route('/visuels')
-def view_visuels():
+@app.route('/preview/<visuelid>')
+@require_login
+def preview(visuelid):
+    #import mimetypes
+    #mimetype = mimetypes.guess_type('preview.png')[0]
+    path = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'preview.png')
+    return Response(open(path,'r').read(),mimetype='image/png')
+
+@app.route('/visuels/<domaine>')
+@require_login
+def view_visuels(domaine):
     user = session.get('userid')
-    return render_template('visuels.html', saves=load_saves(user))
+
+    return render_template('visuels.html', nomdomaine=domaine, saves=load_saves(user), domaine=domaines[domaine])

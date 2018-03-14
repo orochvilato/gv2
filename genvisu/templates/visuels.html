@@ -1,16 +1,59 @@
 {% extends "base.html" %}
 {% block head %}
 <style>
+
 .viewzone {
   width:100%;
   height:100%;
   background-color:#3f3f3f;
+  overflow: auto;
+
+}
+.visuels {
+  padding:50px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction:row;
+  justify-content: space-evenly;
+}
+.card {
+  width:200px;
+  height:200px;
+  margin:20px;
+}
+.card img {
+  transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  transition: 0.4s;
+  width:100%;
+  height:100%;
+}
+.card:hover img {
+  transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  transition: 0.4s;
+  transform: scale(1.2);
+}
+.titre {
+  font-size:60px;
+  color: #777;
+  padding-top:20px;
+  font-family: "Montserrat", serif;
+  font-weight:600;
+  text-transform: uppercase;
+  text-align:center;
 }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="viewzone">
+  <div class="titre">{{ nomdomaine}}</div>
+  <div class="visuels">
+    {% for k,v in domaine.items() %}
+    <div class="card"><a href='/edit/{{ k}}'><img src="/preview/{{ k }}"></a></div>
+    {% endfor %}
+
+
+  </div>
 </div>
 {% endblock %}
 
