@@ -355,10 +355,12 @@ function iframeLoaded() {
     if (!fromToolbox) $('.toolbox-zoneitems').removeClass('active');
     fromToolbox = false;
   });
-  $('.menuitem').click(function(e) {
+  $('.mainnav a').click(function(e) {
     var action = $(this).attr('action');
     if (action=='export') {
-      sendData(action);
+      var w = $(this).attr('w');
+      var h = $(this).attr('h');
+      sendData(action,w,h);
     }
   })
 
@@ -858,11 +860,11 @@ function getSelectedNodes() {
 // -----------------------------------------------------------
 var exportencours = false;
 
-function sendData() {
+function sendData(action,w,h) {
   //document.body.style.cursor = 'wait';
   var downloadToken = new Date().getTime();
   var attempts = 30;
-  if (exportencours) return
+
   var data = {'path':visuel_path,'zones':{},'images':{}};
 
   // zones
@@ -885,7 +887,7 @@ function sendData() {
   $('#overlay').show();
   $.post( '/senddata', {'data':JSON.stringify(data)}, function(data) {
       clearInterval(sendTimer);
-      $.get('/export?key='+data, function(data) {
+      $.get('/export?key='+data+'&w='+w+'&h='+h, function(data) {
         var key = data;
         var downloadTimer = window.setInterval(function() {
           $.get('/check_status?key='+key, function(data) {
@@ -894,7 +896,7 @@ function sendData() {
             $('#etape').text(data.etat);
             $('.jauge').css('width',data.avancement+'%');
 
-            if ((data.avancement == 100)&&(data.avancement==-1)) {
+            if ((data.avancement == 100)||(data.avancement==-1)) {
               clearInterval(downloadTimer);
               window.setTimeout(function() {
                 if (data.avancement == 100) window.location.replace('/retrieve_image?key='+key)
