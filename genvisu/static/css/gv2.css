@@ -417,3 +417,8 @@ li a{text-decoration: none;}
 .hassubs .hassubs .dropdown .subs{position: relative;width: 214px;top: 0px;     padding-top: 3px;
     padding-bottom: 3px;}
 .hassubs .hassubs .dropdown{position: absolute;width: 175px;left: 225px;top: 0px;opacity: 0;display:none;}
+
+.mainnav li.logout { float:right; padding-top: 10px; padding-bottom: 10px; }
+.mainnav li.logout a { float:right; padding-top: 2px; font-size:24px;}
+
+.mainnav li.logout:hover {background-color:transparent; color:black;}

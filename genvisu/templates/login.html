@@ -1,0 +1,78 @@
+<html lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400);
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form .button {
+  display:block;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #000;
+  border: 0;
+  padding: 10px;
+  margin-bottom:5px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form .button:hover,.form .button:active,.form .button:focus {
+  background: #808080;
+}
+.form .message {
+  margin: 0 0 15px;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+body {
+  background: #202020; /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, #202020, #282828);
+  background: -moz-linear-gradient(right,  #202020, #282828);
+  background: -o-linear-gradient(right,  #202020, #282828);
+  background: linear-gradient(to left,  #202020, #282828);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+</style>
+
+</head>
+<body>
+
+  <div class="login-page">
+    <div class="form">
+      <div class="login-form">
+          <p class="message">Choisissez un mode de connection</p>
+          <a class="button" href="/auth/google"><i class="fab fa-google"></i> google</a>
+          <a class="button" href="/auth/twitter"><i class="fab fa-twitter"></i> twitter</a>
+          <a class="button" href="/auth/github"><i class="fab fa-github"></i> github</a>
+          <a class="button" href="/auth/facebook"><i class="fab fa-facebook"></i> facebook</a>
+
+
+      </div>
+    </div>
+</body>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</html>

@@ -37,7 +37,7 @@ def load_work(userid,slot):
             load = json.loads(f.read())
 
         return visuel,load
-    return None
+    return None,None
 
 
 def save_snapshot(userid,workname,data):

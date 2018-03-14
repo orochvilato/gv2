@@ -2,7 +2,7 @@
 
 from genvisu import app, app_path, memcache
 from genvisu.tools import image_response, parse_content
-from flask import render_template, url_for, request, Response
+from flask import render_template, url_for, request, Response, session, redirect
 import re
 import requests
 import os
@@ -19,12 +19,17 @@ visuels = {
 
 
 from genvisu.controllers.backend import save_work,load_work, load_saves
+from genvisu.views.social_auth import require_login
 
+@app.route('/')
+def root():
+    return redirect('/edit/prohum')
 @app.route('/senddata',methods=['POST'])
 def senddata():
-    user = "test"
     slot = request.form.get('slot','autosave')
-    save_work(user,slot,request.form)
+    if 'userid' in session.keys():
+        user = session['userid']
+        save_work(user,slot,request.form)
     import uuid
     cachekey = str(uuid.uuid4())
     memcache.set(cachekey,request.form.get('data'),time=600);
@@ -43,26 +48,31 @@ def get_dimensions(visuelid):
     return (width,height)
 
 
+
 @app.route('/edit/<visuelid>')
+@require_login
 def editvisuel(visuelid):
-    user = "test"
     if request.method == 'GET':
+        if 'userid' in session.keys():
+            user = session['userid']
         width,height = get_dimensions(visuelid)
         return render_template('generateur.html', saves=load_saves(user), visuel=visuelid, visuel_path='/visuel/'+visuelid , width=width, height=height)
 
 @app.route('/load/<slot>')
+@require_login
 def loadvisuel(slot):
-    user = "test"
     if request.method == 'GET':
-        visuelid,data = load_work('test',slot)
-
-        width,height = get_dimensions(visuelid)
-        import uuid
-        cachekey = str(uuid.uuid4())
-        memcache.set(cachekey,data,time=30);
-        print cachekey
-        return render_template('generateur.html', saves=load_saves(user), visuel=visuelid, visuel_path='/visuel/'+visuelid+'?key='+cachekey , width=width, height=height)
-
+        if 'userid' in session.keys():
+            user = session['userid']
+        visuelid,data = load_work(user,slot)
+        if data:
+            width,height = get_dimensions(visuelid)
+            import uuid
+            cachekey = str(uuid.uuid4())
+            memcache.set(cachekey,data,time=30);
+            return render_template('generateur.html', saves=load_saves(user), visuel=visuelid, visuel_path='/visuel/'+visuelid+'?key='+cachekey , width=width, height=height)
+        else:
+            return "erreur"
 def returnfile(folder,_file):
     if not request.referrer:
         return ""
