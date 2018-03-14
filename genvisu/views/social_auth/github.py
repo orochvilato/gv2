@@ -50,7 +50,7 @@ def github_callback():
     session['oauth_token'] = token
     github = OAuth2Session(client_id, token=session['oauth_token'])
     infos = github.get('https://api.github.com/user').json()
-    
-    session['userid'] = '{id}'.format(id=infos['id'])
+
+    session['userid'] = 'github:{id}'.format(id=infos['id'])
     session['username'] = '{username}'.format(username=infos['name'] or infos['login'])
     return redirect(session['next'])
