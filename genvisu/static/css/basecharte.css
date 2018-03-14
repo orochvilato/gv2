@@ -894,7 +894,7 @@
   color:#fff;
 }
 *[color="3"] {
-  color:#777;
+  color:#2d2d2d;
 }
 *[bgcolor="0"] {
   background-color: unset;
@@ -906,7 +906,7 @@
   background-color:#fff;
 }
 *[bgcolor="3"] {
-  background-color:#777;
+  background-color:#2d2d2d;
 }
 
 
