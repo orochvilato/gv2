@@ -396,17 +396,18 @@ div.toolbox-history {
 li{list-style: none;}
 li a{text-decoration: none;}
 .dropdown { z-index:10;}
-.mainnav { height:50px;margin:0;padding:0; background-color: #9c9c9c; }
+.mainnav { height:48px;margin:0;padding:0; background-color: #9c9c9c; }
 .dropdown{ position: absolute; width: 185px;top: 48px; opacity: 0;visibility: hidden; background-color:#c5c5c5;}
 .mainnav li { padding-top:10px; padding-bottom:10px;}
 .mainnav .dropdown li { font-size:16px;    padding: 3px 0px 3px 0px;}
 .mainnav li{float: left;font-size:20px; }
 .mainnav li:first-child{border: none;}
-.mainnav li a{ display: block;padding: 2px 30px;color: #fff;font-family: "Montserrat", serif; font-weight:500; /*border-left: 1px dotted #fff;*/}
+.mainnav li a{ display: block;padding: 2px 30px; color: #fff;font-family: "Montserrat", serif; font-weight:500; /*border-left: 1px dotted #fff;*/}
 .mainnav li:hover{background: #c5c5c5;}
 .mainnav li:hover a{color: #3c3c3c;}
 
 .subs {left: -40px;position: relative;top: 0px;width: 225px;border-left: none !important; border-bottom: 1px dotted #fff !important;}
+.mainnav .subs li a { padding: 2px 15px; font-size:12px; }
 .subs:last-child{border: none !important;}
 .hassubs:hover .dropdown,.hassubs .hassubs:hover .dropdown{display:block;opacity: 1;visibility: visible; }
 .mainnav li:hover ul a,.mainnav li:hover ul li ul li a{color: #3c3c3c;}

@@ -355,14 +355,19 @@ function iframeLoaded() {
     if (!fromToolbox) $('.toolbox-zoneitems').removeClass('active');
     fromToolbox = false;
   });
-  $('.mainnav a').click(function(e) {
+  $('.mainnav a[action]').click(function(e) {
+    var slot = $(this).attr('slot');
     var action = $(this).attr('action');
     if (action=='export') {
       var w = $(this).attr('w');
       var h = $(this).attr('h');
-      sendData(action,w,h);
+      sendData(action,'autosave',w,h);
+    } else if (action=='save') {
+      sendData(action,slot,w,h);
+    } else if (action=='load') {
+      window.location.replace('/load/'+slot);
     }
-  })
+  });
 
 
   // gestion des suppressions d'éléments et des retours chariots dans les zones
@@ -861,7 +866,7 @@ function getSelectedNodes() {
 // -----------------------------------------------------------
 var exportencours = false;
 
-function sendData(action,w,h) {
+function sendData(action,slot,w,h) {
   //document.body.style.cursor = 'wait';
   var downloadToken = new Date().getTime();
   var attempts = 30;
@@ -886,27 +891,35 @@ function sendData(action,w,h) {
     $('.jauge').css('width',avc+'%');
   },500)
   $('#overlay').show();
-  $.post( '/senddata', {'data':JSON.stringify(data)}, function(data) {
+  $.post( '/senddata', {'visuel':visuel,'slot':slot,'data':JSON.stringify(data)}, function(data) {
       clearInterval(sendTimer);
-      $.get('/export?key='+data+'&w='+w+'&h='+h, function(data) {
-        var key = data;
-        var downloadTimer = window.setInterval(function() {
-          $.get('/check_status?key='+key, function(data) {
-            data = JSON.parse(data);
-            if (data.position>1) data.etat = data.etat + ' ('+data.position+')';
-            $('#etape').text(data.etat);
-            $('.jauge').css('width',data.avancement+'%');
+      if (action=='export') {
+        $.get('/export?key='+data+'&w='+w+'&h='+h, function(data) {
+          var key = data;
+          var downloadTimer = window.setInterval(function() {
+            $.get('/check_status?key='+key, function(data) {
+              data = JSON.parse(data);
+              if (data.position>1) data.etat = data.etat + ' ('+data.position+')';
+              $('#etape').text(data.etat);
+              $('.jauge').css('width',data.avancement+'%');
 
-            if ((data.avancement == 100)||(data.avancement==-1)) {
-              clearInterval(downloadTimer);
-              window.setTimeout(function() {
-                if (data.avancement == 100) window.location.replace('/retrieve_image?key='+key)
-                $('#overlay').hide();
-              },1000);
-            }
-            });
-        }, 500);
-      })
+              if ((data.avancement == 100)||(data.avancement==-1)) {
+                clearInterval(downloadTimer);
+                window.setTimeout(function() {
+                  if (data.avancement == 100) window.location.replace('/retrieve_image?key='+key)
+                  $('#overlay').hide();
+                  $('.jauge').css('width','0%');
+                  window.location.replace('/load/autosave');
+                },1000);
+              }
+              });
+          }, 500);
+        })
+      } else {
+        $('#overlay').hide();
+        $('.jauge').css('width','0%');
+        window.location.replace('/load/'+slot);
+      }
 
       //document.body.style.cursor = 'wait';
 

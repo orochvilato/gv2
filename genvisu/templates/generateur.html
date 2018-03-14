@@ -21,35 +21,33 @@
  -->
 
 <ul class="mainnav">
-                <li><a href="#">Nouveau</a></li>
-                <li class="hassubs"><a href="#">Sauvegarder</a>
+                <li class="hassubs"><a href="#">Nouveau</a>
+                  <ul class="dropdown">
+                    <li class="subs hassubs"><a href="#">LIEC <i class="fas fa-angle-right menuarrow"></i></a>
+                      <ul class="dropdown">
+                      {% for visuel in ['urgeco','urgdem','urgsoc','prohum','eurque','paxint'] %}
+                        <li class="subs"><a href="/edit/{{ visuel }}">{{ visuel }}</a></li>
+                      {% endfor %}
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="hassubs"><a href="#">Sauvegardes</a>
                   <ul class="dropdown">
                     <li class="subs hassubs"><a href="#">Sauvegarder <i class="fas fa-angle-right menuarrow"></i></a>
                       <ul class="dropdown">
-                          <li class="subs"><a href="#">Slot 1</a></li>
-                          <li class="subs"><a href="#">Slot 2</a></li>
-                          <li class="subs"><a href="#">Slot 3</a></li>
-                          <li class="subs"><a href="#">Slot 4</a></li>
-                          <li class="subs"><a href="#">Slot 5</a></li>
-                          <li class="subs"><a href="#">Slot 6</a></li>
-                          <li class="subs"><a href="#">Slot 7</a></li>
-                          <li class="subs"><a href="#">Slot 8</a></li>
-                          <li class="subs"><a href="#">Slot 9</a></li>
-                          <li class="subs"><a href="#">Slot 10</a></li>
+                      {% for i in range(10) %}
+                        <li class="subs"><a action="save" slot="slot{{ i+1 }}" href="#">{{'slot %d' % (i+1,)}} - {{ saves.get('slot%d' % (i+1,),'-- vide --') }}</a></li>
+                      {% endfor %}
                       </ul>
                     </li>
                     <li class="subs hassubs"><a href="#">Charger <i class="fas fa-angle-right menuarrow"></i></a>
                       <ul class="dropdown">
-                          <li class="subs"><a href="#">Slot 1</a></li>
-                          <li class="subs"><a href="#">Slot 2</a></li>
-                          <li class="subs"><a href="#">Slot 3</a></li>
-                          <li class="subs"><a href="#">Slot 4</a></li>
-                          <li class="subs"><a href="#">Slot 5</a></li>
-                          <li class="subs"><a href="#">Slot 6</a></li>
-                          <li class="subs"><a href="#">Slot 7</a></li>
-                          <li class="subs"><a href="#">Slot 8</a></li>
-                          <li class="subs"><a href="#">Slot 9</a></li>
-                          <li class="subs"><a href="#">Slot 10</a></li>
+                      {% for i in range(10) %}
+                        <li class="subs"><a action="load" slot="slot{{ i+1 }}" href="#">{{ 'slot %d' % (i+1,) }} - {{ saves.get('slot%d' % (i+1,),'') }}</a></li>
+                      {% endfor %}
+                      <li class="subs"><a action="load" slot="autosave" href="#">autosave - {{ saves.get('autosave','')}}</a></li>
+
                       </ul>
                     </li>
                   </ul>
@@ -288,6 +286,7 @@ filter: sepia(60%);-->
   </div>
 <script>
   var visuel_path = "{{ visuel_path }}";
+  var visuel = "{{ visuel }}";
 </script>
 
 

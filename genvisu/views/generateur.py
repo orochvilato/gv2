@@ -17,23 +17,51 @@ visuels = {
     'urgsoc':'liec/urgsoc'
     }
 
+
+from genvisu.controllers.backend import save_work,load_work, load_saves
+
 @app.route('/senddata',methods=['POST'])
 def senddata():
+    user = "test"
+    slot = request.form.get('slot','autosave')
+    save_work(user,slot,request.form)
     import uuid
     cachekey = str(uuid.uuid4())
-    memcache.set(cachekey,request.form,time=600);
+    memcache.set(cachekey,request.form.get('data'),time=600);
     return cachekey
-@app.route('/edit/<visuelid>')
-def generateur(visuelid):
-    if request.method == 'GET':
-        path_visuel = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'index.html')
-        doc = open(path_visuel,'r').read()
-        import re
-        m = re.search(r'<meta dimension="([0-9]+x[0-9]+)">',doc,re.MULTILINE)
-        if m:
-            width,height = [int(x) for x in m.groups()[0].split('x')]
 
-        return render_template('generateur.html', visuel_path='/visuel/'+visuelid , width=100, height=100)
+def get_dimensions(visuelid):
+    path_visuel = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'index.html')
+    doc = open(path_visuel,'r').read()
+    import re
+    m = re.search(r'<meta dimension="([0-9]+x[0-9]+)">',doc,re.MULTILINE)
+    if m:
+        width,height = [int(x) for x in m.groups()[0].split('x')]
+    else:
+        width,height = 100,100
+
+    return (width,height)
+
+
+@app.route('/edit/<visuelid>')
+def editvisuel(visuelid):
+    user = "test"
+    if request.method == 'GET':
+        width,height = get_dimensions(visuelid)
+        return render_template('generateur.html', saves=load_saves(user), visuel=visuelid, visuel_path='/visuel/'+visuelid , width=width, height=height)
+
+@app.route('/load/<slot>')
+def loadvisuel(slot):
+    user = "test"
+    if request.method == 'GET':
+        visuelid,data = load_work('test',slot)
+
+        width,height = get_dimensions(visuelid)
+        import uuid
+        cachekey = str(uuid.uuid4())
+        memcache.set(cachekey,data,time=30);
+        print cachekey
+        return render_template('generateur.html', saves=load_saves(user), visuel=visuelid, visuel_path='/visuel/'+visuelid+'?key='+cachekey , width=width, height=height)
 
 def returnfile(folder,_file):
     if not request.referrer:
@@ -95,7 +123,7 @@ def export():
         data = memcache.get(key)
         if data:
             import json
-            data = json.loads(data['data'])
+            data = json.loads(data)
     if data:
         url = request.url_root[:-1]+data['path']+'?key='+key
         name = data['path'].split('/')[-1]
@@ -123,7 +151,7 @@ def visuel(visuelid):
         data = memcache.get(key)
         if data:
             import json
-            data = json.loads(data['data'])
+            data = json.loads(data)
 
     if data:
         zones = data['zones']
