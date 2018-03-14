@@ -18,7 +18,7 @@ visuels = {
     }
 
 
-from genvisu.controllers.backend import save_work,load_work, load_saves
+from genvisu.controllers.backend import save_work,load_work, load_saves, load_work_name
 from genvisu.views.social_auth import require_login
 
 @app.route('/')
@@ -74,9 +74,14 @@ def loadvisuel(slot):
         else:
             return "erreur"
 def returnfile(folder,_file):
+
     if not request.referrer:
         return ""
-    visuelid = request.referrer.split('/')[-1].split('?')[0]
+    if '/load/' in request.referrer:
+        slot = request.referrer.split('/')[-1]
+        visuelid = load_work_name(session.get('userid'),slot)
+    else:
+        visuelid = request.referrer.split('/')[-1].split('?')[0]
     import mimetypes
     mimetype = mimetypes.guess_type(_file)[0]
 
@@ -202,3 +207,8 @@ def _proxy(*args, **kwargs):
 @app.route('/checkvisuel', methods=['GET','POST'])
 def checkvisuel():
     return _proxy()
+
+@app.route('/visuels')
+def view_visuels():
+    user = session.get('userid')
+    return render_template('visuels.html', saves=load_saves(user))
