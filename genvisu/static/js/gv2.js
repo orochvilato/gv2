@@ -355,19 +355,7 @@ function iframeLoaded() {
     if (!fromToolbox) $('.toolbox-zoneitems').removeClass('active');
     fromToolbox = false;
   });
-  $('.mainnav a[action]').click(function(e) {
-    var slot = $(this).attr('slot');
-    var action = $(this).attr('action');
-    if (action=='export') {
-      var w = $(this).attr('w');
-      var h = $(this).attr('h');
-      sendData(action,'autosave',w,h);
-    } else if (action=='save') {
-      sendData(action,slot,w,h);
-    } else if (action=='load') {
-      window.location.replace('/load/'+slot);
-    }
-  });
+  
 
 
   // gestion des suppressions d'éléments et des retours chariots dans les zones

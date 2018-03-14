@@ -69,7 +69,7 @@ def editvisuel(visuelid):
         if 'userid' in session.keys():
             user = session['userid']
         width,height = get_dimensions(visuelid)
-        return render_template('generateur.html', saves=load_saves(user), visuel=visuelid, visuel_path='/visuel/'+visuelid , width=width, height=height)
+        return render_template('generateur.html', saves=load_saves(user), sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , width=width, height=height)
 
 @app.route('/load/<slot>')
 @require_login
@@ -83,7 +83,7 @@ def loadvisuel(slot):
             import uuid
             cachekey = str(uuid.uuid4())
             memcache.set(cachekey,data,time=30);
-            return render_template('generateur.html', saves=load_saves(user), visuel=visuelid, visuel_path='/visuel/'+visuelid+'?key='+cachekey , width=width, height=height)
+            return render_template('generateur.html', saves=load_saves(user), sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid+'?key='+cachekey , width=width, height=height)
         else:
             return "erreur"
 def returnfile(folder,_file):

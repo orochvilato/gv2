@@ -21,7 +21,8 @@ body {
   height:1vh;
   max-height:4px;
   width:100%;
-  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0));
+  /*background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0));*/
+  background: linear-gradient(rgba(40,40,40,0.3), rgba(40,40,40,0)); /* ades */
   z-index:9;
 }
 
@@ -396,7 +397,16 @@ div.toolbox-history {
 li{list-style: none;}
 li a{text-decoration: none;}
 .dropdown { z-index:10;}
-.mainnav { height:48px;margin:0;padding:0; background-color: #9c9c9c; }
+.mainnav {
+  /*
+  background-color: #9c9c9c;
+  height:48px;*/
+  margin:0;
+  padding:0;
+
+  height: 50px; /* ades */
+  background-color: #c5c5c5; /* ades */
+ }
 .dropdown{ position: absolute; width: 185px;top: 48px; opacity: 0;visibility: hidden; background-color:#c5c5c5;}
 .mainnav li { padding-top:10px; padding-bottom:10px;}
 .mainnav .dropdown li { font-size:16px;    padding: 3px 0px 3px 0px;}
@@ -414,6 +424,7 @@ li a{text-decoration: none;}
 .mainnav li ul li:hover,.mainnav li ul li ul li:hover{background: #e5e5e5;}
 .mainnav li ul li:hover a,.mainnav li ul li ul li:hover a{color: #1c1c1c;}
 
+
 .hassubs .hassubs .dropdown .subs{position: relative;width: 214px;top: 0px;     padding-top: 3px;
     padding-bottom: 3px;}
 .hassubs .hassubs .dropdown{position: absolute;width: 175px;left: 225px;top: 0px;opacity: 0;display:none;}
@@ -422,3 +433,13 @@ li a{text-decoration: none;}
 .mainnav li.logout a { float:right; padding-top: 2px; font-size:24px;}
 
 .mainnav li.logout:hover {background-color:transparent; color:black;}
+
+/* ades */
+.hassubs {
+    transition: .3s all;
+}
+
+.mainnav li:hover, .mainnav li:focus {
+    background: #878787;
+    /*box-shadow: 2px 2px 12px 3px #5F5F5F inset;*/
+}

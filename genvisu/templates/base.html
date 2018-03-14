@@ -19,6 +19,7 @@
                 </li>
                 <li class="hassubs"><a href="#">Sauvegardes</a>
                   <ul class="dropdown">
+                    {% if sauvegarder %}
                     <li class="subs hassubs"><a href="#">Sauvegarder <i class="fas fa-angle-right menuarrow"></i></a>
                       <ul class="dropdown">
                       {% for i in range(10) %}
@@ -26,6 +27,7 @@
                       {% endfor %}
                       </ul>
                     </li>
+                    {% endif %}
                     <li class="subs hassubs"><a href="#">Charger <i class="fas fa-angle-right menuarrow"></i></a>
                       <ul class="dropdown">
                       {% for i in range(10) %}
@@ -70,7 +72,23 @@
 <script defer src="/static/js/fontawesome-all.min.js"></script>
 {% block script %}
 {% endblock %}
-
+<script>
+$(document).ready(function() {
+  $('.mainnav a[action]').click(function(e) {
+    var slot = $(this).attr('slot');
+    var action = $(this).attr('action');
+    if (action=='export') {
+      var w = $(this).attr('w');
+      var h = $(this).attr('h');
+      sendData(action,'autosave',w,h);
+    } else if (action=='save') {
+      sendData(action,slot,w,h);
+    } else if (action=='load') {
+      window.location.replace('/load/'+slot);
+    }
+  });
+});
+</script>
 </body>
 
 </html>
