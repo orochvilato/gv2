@@ -44,10 +44,13 @@
                     <li class="subs hassubs"><a href="#">Charger <i class="fas fa-angle-right menuarrow"></i></a>
                       <ul class="dropdown">
                       {% for i in range(10) %}
-                        <li class="subs"><a action="load" slot="slot{{ i+1 }}" href="#">{{ 'slot %d' % (i+1,) }} - {{ saves.get('slot%d' % (i+1,),'') }}</a></li>
+                        {% if 'slot%d' % (i+1,) in saves.keys() %}
+                        <li class="subs"><a action="load" slot="slot{{ i+1 }}" href="#">{{ 'slot %d' % (i+1,) }} - {{ saves.get('slot%d' % (i+1,),'-- vide --') }}</a></li>
+                        {% endif %}
                       {% endfor %}
-                      <li class="subs"><a action="load" slot="autosave" href="#">autosave - {{ saves.get('autosave','')}}</a></li>
-
+                      {% if 'autosave' in saves.keys() %}
+                      <li class="subs"><a action="load" slot="autosave" href="#">autosave - {{ saves.get('autosave','-- vide --')}}</a></li>
+                      {% endif %}
                       </ul>
                     </li>
                   </ul>
