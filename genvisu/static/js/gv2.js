@@ -906,7 +906,7 @@ function sendData(action,slot,w,h) {
               if ((data.avancement == 100)||(data.avancement==-1)) {
                 clearInterval(downloadTimer);
                 window.setTimeout(function() {
-                  if (data.avancement == 100) window.location.replace('/retrieve_image?key='+key)
+                  if (data.avancement == 100) window.open('/retrieve_image?key='+key,'_blank');
                   $('#overlay').hide();
                   $('.jauge').css('width','0%');
                   window.location.replace('/load/autosave');
