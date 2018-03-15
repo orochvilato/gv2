@@ -237,8 +237,28 @@ function initToolbox() {
     $('<label><input type="radio" name="bgcolor" attr="bgcolor" action="set" focus="range" value="'+i+'"><div style="background-color: '+colors[i-1]+';"></div></label>').appendTo('.bgcolor.colorgroup');
   }
   $('<label><input type="radio" name="bgcolor" attr="bgcolor" action="set" focus="range" value="0"><div bgcolor="0"></div></label>').appendTo('.bgcolor.colorgroup');
+  $('#f').contents().find('[option]').each(function() {
+
+    var checked = $(this).attr('visible')=='yes'?"checked":"";
+
+    var check = $('<div><input type="checkbox" '+checked+' name="'+$(this).attr('option')+'"><span>'+$(this).attr('option')+'</span></div>');
+    $('.toolbox-optionitems').append(check);
 
 
+    console.log(this);
+  });
+  $('.toolbox-optionitems input[type="checkbox"]').change(function() {
+    var name = $(this).attr('name');
+
+    if ($(this).prop('checked')==false) {
+      var visible = 'no';
+    } else {
+      var visible = 'yes';
+    }
+    $('#f').contents().find('[option="'+name+'"]').attr('visible',visible);
+
+    console.log('click');
+  });
 }
 
 // -----------------------------------------------------------
@@ -306,7 +326,7 @@ function iframeLoaded() {
 
   // visibilité toolbox / selections
   function selectActive() {
-    if (selectionactive!=undefined && nozonefocus!=true) {
+    if (selectionactive!=undefined && nozonefocus!=true && selectionactive!=false) {
       nozonefocus=false;
       window.setTimeout( function() {
         $(selectionactive).removeClass('selected');
@@ -317,6 +337,7 @@ function iframeLoaded() {
   $('#f').contents().find('div.image').click(function(e) {
     $('.toolbox-imageitems').addClass('active');
     $('.toolbox-zoneitems').removeClass('active');
+    $('.toolbox-optionitems').removeClass('active');
     var istyle = fwindow.getComputedStyle(this);
 
     for (var i=0;i<istyle.length;i++) {
@@ -334,6 +355,7 @@ function iframeLoaded() {
   $('#f').contents().find('div.zone').click(function(e){
     $('.toolbox-zoneitems').addClass('active');
     $('.toolbox-imageitems').removeClass('active');
+    $('.toolbox-optionitems').removeClass('active');
     if (imageactive!=undefined) {
       $(imageactive).removeClass('selected');
       imageactive = undefined;
@@ -341,21 +363,28 @@ function iframeLoaded() {
     e.stopPropagation();
 
   });
+  $('button[id="options"]').click(function(e) {
+    $('.toolbox-optionitems').toggleClass('active');
+    $('.toolbox-zoneitems').removeClass('active');
+    $('.toolbox-imageitems').removeClass('active');
+  });
   $('.toolbox').click(function(e) {
     if (selectionactive!=undefined && $(e.target).attr('type')!='text' && e.target.tagName!='SELECT') {
       selectActive();
       e.stopPropagation();
     } else {
-
       $(selectionactive).addClass('selected');
       fromToolbox = true;
     }
   });
   $('body').click(function(e) {
-    if (!fromToolbox) $('.toolbox-zoneitems').removeClass('active');
+    if (!fromToolbox) {
+    $('.toolbox-zoneitems').removeClass('active');
+    $('.toolbox-imageitems').removeClass('active');
+    }
     fromToolbox = false;
   });
-  
+
 
 
   // gestion des suppressions d'éléments et des retours chariots dans les zones
@@ -859,8 +888,14 @@ function sendData(action,slot,w,h) {
   var downloadToken = new Date().getTime();
   var attempts = 30;
 
-  var data = {'path':visuel_path,'zones':{},'images':{}};
+  var data = {'path':visuel_path,'zones':{},'images':{},'options':{}};
 
+  // options
+  $('#f').contents().find('[option]').each(function() {
+    var option = $(this).attr('option');
+    var value = $(this).attr('visible');
+    data.options[option] = value;
+  });
   // zones
   $('#f').contents().find('.zone').each(function() {
     data.zones[$(this).attr('id')] = $(this).html();

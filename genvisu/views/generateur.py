@@ -185,12 +185,18 @@ def visuel(visuelid):
     if data:
         zones = data['zones']
         images = data['images']
+        options = data['options']
+
         for i,e in enumerate(xml.xpath('//div[contains(@class,"image")]')):
             id = e.attrib['id']
             e.attrib['style'] = images[id]
 
         for i,e in enumerate(xml.xpath('//div[@class="zone"]')):
             id = e.attrib['id']
+            option = e.attrib.get('option',None)
+            if option:
+                e.attrib['visible'] = options[option]
+
             for child in list(e):
                 e.remove(child)
             txml = parse_content(zones[id])
