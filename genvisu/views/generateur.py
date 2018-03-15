@@ -191,11 +191,14 @@ def visuel(visuelid):
             id = e.attrib['id']
             e.attrib['style'] = images[id]
 
-        for i,e in enumerate(xml.xpath('//div[@class="zone"]')):
-            id = e.attrib['id']
+        for i,e in enumerate(xml.xpath('//*[@option]')):
             option = e.attrib.get('option',None)
             if option:
                 e.attrib['visible'] = options[option]
+                
+        for i,e in enumerate(xml.xpath('//div[@class="zone"]')):
+            id = e.attrib['id']
+
 
             for child in list(e):
                 e.remove(child)
