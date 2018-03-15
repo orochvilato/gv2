@@ -153,13 +153,11 @@ def export():
             import json
             data = json.loads(data)
     if data:
-        print key,request.url_root
         path = data['path'].split('?')[0]
         url = request.url_root[:-1]+path+'?key='+key
-        print url
         name = path.split('/')[-1]
         import datetime
-        watermark = {'ip':request.environ['REMOTE_ADDR'],'visuel':name, 'date':datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S')}
+        watermark = {'ip':request.environ['REMOTE_ADDR'],'userid':session.get('userid',None),'username':session.get('username',None),'visuel':name, 'date':datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S')}
         import json
         r = requests.post('http://127.0.0.1:8888/prepare',data={'url':url,'width':width,'height':height, 'name':name, 'watermark':json.dumps(watermark)})
         return r.content
