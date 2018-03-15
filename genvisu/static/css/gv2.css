@@ -444,12 +444,3 @@ li a{text-decoration: none;}
     background: #878787;
     /*box-shadow: 2px 2px 12px 3px #5F5F5F inset;*/
 }
-
-
-/* OPTIONS */
-*[option][visible="yes"] {
-  visibility: visible;
-}
-*[option][visible="no"] {
-  visibility: hidden;
-}

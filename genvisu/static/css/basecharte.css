@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900|Courgette:100,200,300,400,500,600,700,800,900|Montserrat:100,200,300,400,500,600,700,800,900|Roboto+Slab:100,200,300,400,500,600,700,800,900");
 
+/* OPTIONS */
+*[option][visible="yes"] {
+  visibility: visible;
+}
+*[option][visible="no"] {
+  visibility: hidden;
+}
+
+
 *[letterspacing="0"] {
   letter-spacing: 0;
 }
