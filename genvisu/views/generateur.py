@@ -195,7 +195,7 @@ def visuel(visuelid):
             option = e.attrib.get('option',None)
             if option:
                 e.attrib['visible'] = options[option]
-                
+
         for i,e in enumerate(xml.xpath('//div[@class="zone"]')):
             id = e.attrib['id']
 
@@ -203,7 +203,7 @@ def visuel(visuelid):
             for child in list(e):
                 e.remove(child)
             txml = parse_content(zones[id])
-            if len(txml):
+            if txml and len(txml):
                 for child in list(txml)[0]:
                     e.append(child)
 
