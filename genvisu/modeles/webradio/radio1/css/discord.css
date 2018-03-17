@@ -1,6 +1,4 @@
 
-@import url("https://fonts.googleapis.com/css?family=Courgette|Montserrat:400,700,900|Roboto:400,700,900");
-
 .discord-copyright {
   position:absolute;
   height:1.7vw;
@@ -13,16 +11,10 @@
 .discord-copyright img {
   height: 100%;
 }
-.font-1 {
-  font-family: "Montserrat", sans-serif;
-}
-.font-2 {
+
+.font-4 {
   font-family: "Roboto", serif;
 }
-.font-3 {
-  font-family: "Courgette", serif;
-}
-
 
 
 .size-1 {

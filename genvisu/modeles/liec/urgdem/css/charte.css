@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900");
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900|Courgette:100,200,300,400,500,600,700,800,900|Montserrat:100,200,300,400,500,600,700,800,900|Roboto+Slab:100,200,300,400,500,600,700,800,900");
 
 *[fontfamily="1"] {
   font-family: "Montserrat", sans-serif;
@@ -18,7 +18,7 @@
   color:#f8e0ac;
 }
 *[color="5"] {
-  color:#edbd45;
+  color:#faa61a;
 }
 
 
@@ -26,5 +26,5 @@
   background-color:#f8e0ac;
 }
 *[bgcolor="5"] {
-  background-color:#edbd45;
+  background-color:#faa61a;
 }

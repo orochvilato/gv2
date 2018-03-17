@@ -4,27 +4,29 @@
   font-family: "Montserrat", sans-serif;
 }
 *[fontfamily="2"] {
-  font-family: "Roboto Slab", serif;
+  font-family: "Roboto", serif;
 }
 *[fontfamily="3"] {
   font-family: "Courgette", serif;
 }
-*[fontfamily="4"] {
-  font-family: "Roboto", serif;
-}
-
 
 *[color="4"] {
-  color:#b3cae7;
+  color:#656565;
 }
 *[color="5"] {
-  color:#5a8dcc;
+  color:#c9462c;
+}
+*[color="6"] {
+  color:#1eb8d0;
 }
 
 
 *[bgcolor="4"] {
-  background-color:#b3cae7;
+  background-color:#656565;
 }
 *[bgcolor="5"] {
-  background-color:#5a8dcc;
+  background-color:#c9462c;
+}
+*[bgcolor="6"] {
+  background-color:#1eb8d0;
 }

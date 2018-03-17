@@ -42,6 +42,7 @@
   text-align:center;
 }
 </style>
+
 {% endblock %}
 
 {% block content %}
@@ -49,7 +50,7 @@
   <div class="titre">{{ nomdomaine}}</div>
   <div class="visuels">
     {% for k,v in domaine.items() %}
-    <div class="card"><a href='/edit/{{ k}}'><img src="/preview/{{ k }}"></a></div>
+    <div class="card" style="width:{{v['preview_width']}}px; height:{{v['preview_height']}}px;"><a href='/edit/{{ k}}'><img src="/preview/{{ k }}"></a></div>
     {% endfor %}
 
 

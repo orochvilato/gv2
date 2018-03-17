@@ -14,7 +14,9 @@ visuels = {
     'paxint':'liec/paxint',
     'prohum':'liec/prohum',
     'urgeco':'liec/urgeco',
-    'urgsoc':'liec/urgsoc'
+    'urgsoc':'liec/urgsoc',
+    'radio1':'webradio/radio1',
+    'radio2':'webradio/radio2',
     }
 
 domaines = {
@@ -25,6 +27,10 @@ domaines = {
         'urgdem':{'titre':"Urgence démocratique", 'ratio':1},
         'urgeco':{'titre':"Urgence écologique", 'ratio':1},
         'urgsoc':{'titre':"Urgence sociale", 'ratio':1}
+    },
+    'webradio':{
+        'radio1':{'titre':"1x1", 'ratio':1},
+        'radio2':{'titre':"2x1", 'ratio':0.5625}
     }
 }
 
@@ -52,15 +58,17 @@ def get_dimensions(visuelid):
     path_visuel = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'index.html')
     doc = open(path_visuel,'r').read()
     import re
-    m = re.search(r'<meta dimension="([0-9]+x[0-9]+)">',doc,re.MULTILINE)
+    m = re.search(r'<meta dimension="([0-9\.]+x[0-9\.]+)">',doc,re.MULTILINE)
     if m:
-        width,height = [int(x) for x in m.groups()[0].split('x')]
+        width,height = [float(x) for x in m.groups()[0].split('x')]
     else:
         width,height = 100,100
 
     return (width,height)
 
 
+def dimset(width,height):
+    return [(w,int(w*float(height/width))) for w in [2048,1024,512,256]]
 
 @app.route('/edit/<visuelid>')
 @require_login
@@ -69,7 +77,7 @@ def editvisuel(visuelid):
         if 'userid' in session.keys():
             user = session['userid']
         width,height = get_dimensions(visuelid)
-        return render_template('generateur.html', saves=load_saves(user), sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , width=width, height=height)
+        return render_template('generateur.html', saves=load_saves(user), sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , dimset=dimset(width,height),width=width, height=height)
 
 @app.route('/load/<slot>')
 @require_login
@@ -83,7 +91,7 @@ def loadvisuel(slot):
             import uuid
             cachekey = str(uuid.uuid4())
             memcache.set(cachekey,data,time=30);
-            return render_template('generateur.html', saves=load_saves(user), sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid+'?key='+cachekey , width=width, height=height)
+            return render_template('generateur.html', saves=load_saves(user), sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid+'?key='+cachekey , dimset=dimset(width,height),width=width, height=height)
         else:
             return "erreur"
 def returnfile(folder,_file):
@@ -195,7 +203,7 @@ def visuel(visuelid):
             option = e.attrib.get('option',None)
             if option:
                 e.attrib['visible'] = options[option]
-                
+
         for i,e in enumerate(xml.xpath('//div[@class="zone"]')):
             id = e.attrib['id']
 
@@ -244,5 +252,13 @@ def preview(visuelid):
 @require_login
 def view_visuels(domaine):
     user = session.get('userid')
+    dom = domaines[domaine]
+    for k,v in dom.iteritems():
+        if v['ratio']>1:
+            v['preview_height'] = 200
+            v['preview_width'] = 200/v['ratio']
+        else:
+            v['preview_width'] = 200
+            v['preview_height'] = 200*v['ratio']
 
     return render_template('visuels.html', nomdomaine=domaine, saves=load_saves(user), domaine=domaines[domaine])

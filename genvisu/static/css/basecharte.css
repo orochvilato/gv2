@@ -8,6 +8,13 @@
   visibility: hidden;
 }
 
+div[optionlist] * {
+    display: none;
+}
+div[optionlist] *[visible="yes"] {
+  display:block;
+}
+
 
 *[letterspacing="0"] {
   letter-spacing: 0;

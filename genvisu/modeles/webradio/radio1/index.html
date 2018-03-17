@@ -3,9 +3,10 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <meta dimension="100x100">
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
-    <link rel="stylesheet" href="assets/chartes/discord.css">
+    <link rel="stylesheet" href="/static/css/basecharte.css">
+    <link rel="stylesheet" href="/css/charte.css">
 
     <title>FI - Template 01</title>
     <style>
@@ -30,12 +31,7 @@
       width:100vw;
       height: 100vw;
     }
-    .skew {
-      transform:skewY(2deg);
-    }
-    .skew2 {
-      transform:skewY(-2deg);
-    }
+
     .image {
       width: 100%;
       height: 100%;
@@ -45,10 +41,9 @@
 
     }
     #image1 {
-      background: url('assets/img/photo.jpg');
+      background: url('/img/photo.jpg');
       background-size: cover;
-      background-position: -2.232388vw -0.957110vw;
-      transform: scale(1.16);
+      transform: scale(1);
       z-index: 0;
 
     }
@@ -62,7 +57,7 @@
     .pic {
       position: absolute;
       top:14vw;
-      height:57vw;
+      height:53vw;
       width:100%;
       overflow:hidden;
 
@@ -169,54 +164,63 @@
       background: radial-gradient(farthest-side at 0% 50%, #cacaca, white);
       z-index:6;
     }
-    .optlist .list {
-        display: none;
-    }
-    .optlist .selected {
-      display:block;
-    }
+
 
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header color-1-bg">
+        <div class="header" bgcolor="5">
         </div>
-        <img id="logori" src="assets/img/logo_ri.svg" />
+        <img id="logori" src="/img/logo_ri.svg" />
         <div id="logori-text">RADIO<br/>INSOUMISE</span></div>
-        <div class="type_emission optlist">
-          <img class="list selected" id="lentre" nom="Type emission" choix="l'entretien" src="assets/img/lentre.svg">
-          <img class="list" id="libant" nom="Type emission" choix="libre antenne" src="assets/img/libant.svg">
-          <img class="list" id="siecom" nom="Type emission" choix="sience commune" src="assets/img/siecom.svg">
-          <img class="list" id="insquo" nom="Type emission" choix="insoumis au quotidien" src="assets/img/insquo.svg">
-          <img class="list" id="hiscom" nom="Type emission" choix="histoire en commun" src="assets/img/hiscom.svg">
-          <img class="list" id="gropla" nom="Type emission" choix="gros plan" src="assets/img/gropla.svg">
-          <img class="list" id="dervis" nom="Type emission" choix="derrière le viseur" src="assets/img/dervis.svg">
-          <img class="list" id="culins" nom="Type emission" choix="culture insoumise" src="assets/img/culins.svg">
-
+        <div class="type_emission" optionlist="Type emission">
+          <img id="lentre" item="l'entretien" visible="yes" src="/img/lentre.svg">
+          <img id="libant" item="libre antenne" visible="no" src="/img/libant.svg">
+          <img id="siecom" item="science commune" visible="no" src="/img/siecom.svg">
+          <img id="insquo" item="insoumis au quotidien" visible="no" src="/img/insquo.svg">
+          <img id="hiscom" item="histoire en commun" visible="no" src="/img/hiscom.svg">
+          <img id="gropla" item="gros plan" visible="no" src="/img/gropla.svg">
+          <img id="dervis" item="derrière le viseur" visible="no" src="/img/dervis.svg">
+          <img id="culins" item="culture insoumise" visible="no" src="/img/culins.svg">
         </div>
         <div id="header_line"></div>
-        <div class="textblock" id="bloc1">
-
-            <div class="ligne lineheight-10 marginleft-10 margintop-10 align-center"><span class="color-2 font-1 strong fontsize-7
-               protected" contenteditable="true">#14</span></div>
-          </div>
+        <div class="zone" id="bloc1" contenteditable>
+            <div align="center">
+              <span fontfamily="1" color="4" fontweight="6" fontsize="12">#14</span>
+            </div>
+        </div>
         <div id="bloc2">
-          <div class="textblock">
-            <div class="ligne lineheight-10 marginleft-10 margintop-10 align-left"><span class="color-W font-2 fontsize-14" contenteditable="true">20h30</span></div><div class="ligne lineheight-10 marginleft-10 margintop-10 align-left"><span class="color-W font-2 fontsize-7" contenteditable="true">Jeudi 22 février</span></div>
+          <div class="zone" id="bloc2-1" contenteditable>
+            <div align="left">
+              <span color="2" fontfamily="2" fontsize="19">20h30</span>
+            </div>
+            <div align="left">
+              <span color="2" fontfamily="2" fontsize="12">Jeudi 22 février</span>
+            </div>
           </div>
         </div>
-        <div class="textblock" id="bloc3">
-          <div class="ligne lineheight-10 marginleft-10 margintop-10 align-left"><span class="color-1 font-1 fontsize-6" contenteditable="true">avec</span></div><div class="ligne lineheight-10 marginleft-10 margintop-10 align-left"><span class="color-3 font-2 fontsize-10" contenteditable="true">MANUEL BOMPARD</span></div><div class="ligne lineheight-10 marginleft-10 align-left margintop-15"><span class="color-2 font-2 fontsize-7" contenteditable="true">Directeur des campagnes</span></div><div class="ligne marginleft-10 align-left lineheight-11 margintop-11"><span class="color-2 font-2 fontsize-6" contenteditable="true">de la France insoumise</span></div>
-        </div>
+        <div class="zone" id="bloc3" contenteditable="">
+            <div align="left">
+              <span color="5" fontfamily="1" fontsize="11">avec</span>
+            </div>
+            <div>
+              <span color="6" fontfamily="2" fontsize="14">MANUEL BOMPARD</span>
+            </div>
+            <div align="left" margintop="3">
+              <span color="4" fontfamily="2" fontsize="10">Directeur des campagnes</span>
+            </div>
+            <div align="left">
+              <span color="4" fontfamily="2" fontsize="10">de la France insoumise</span>
+            </div>
+          </div>
 
         <div class="pic">
-          <div class="image" id="image1"></div>
+          <div class="image" id="image1" style="background-position: -2.232388vw -0.957110vw; transform: scale(1.16);"></div>
         </div>
-        <div class="color-1-bg" id="footer_line1"></div>
+        <div bgcolor="5" id="footer_line1"></div>
         <div id="footer_line2"></div>
-        <div class="footer color-W-bg">
-        </div>
+        <div class="footer" bgcolor="2"></div>
 
     </div>
 

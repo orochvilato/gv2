@@ -237,6 +237,8 @@ function initToolbox() {
     $('<label><input type="radio" name="bgcolor" attr="bgcolor" action="set" focus="range" value="'+i+'"><div style="background-color: '+colors[i-1]+';"></div></label>').appendTo('.bgcolor.colorgroup');
   }
   $('<label><input type="radio" name="bgcolor" attr="bgcolor" action="set" focus="range" value="0"><div bgcolor="0"></div></label>').appendTo('.bgcolor.colorgroup');
+
+
   $('#f').contents().find('[option]').each(function() {
 
     var checked = $(this).attr('visible')=='yes'?"checked":"";
@@ -246,6 +248,30 @@ function initToolbox() {
 
 
     console.log(this);
+  });
+
+  $('#f').contents().find('[optionlist]').each(function() {
+    var name = $(this).attr('optionlist');
+    var html = '<div><label>'+name+'</label><select name="'+name+'">';
+    $(this).children('[item]').each(function() {
+      var visible = $(this).attr('visible');
+      var item = $(this).attr('item');
+      html += '<option value="'+item+'"'+(visible=='yes'?' selected':'')+'>'+item+'</option>';
+    });
+    $('.toolbox-optionitems').append($(html));
+  });
+  $('.toolbox-optionitems select').change(function() {
+
+    var item = $(this).val();
+    var name = $(this).attr('name');
+
+    $('#f').contents().find('[optionlist="'+name+'"]').children('[item]').each(function() {
+      if ($(this).attr('item')===item) {
+        $(this).attr('visible','yes');
+      } else {
+        $(this).attr('visible','no');
+      }
+    });
   });
   $('.toolbox-optionitems input[type="checkbox"]').change(function() {
     var name = $(this).attr('name');
@@ -259,6 +285,7 @@ function initToolbox() {
 
     console.log('click');
   });
+
 }
 
 // -----------------------------------------------------------
