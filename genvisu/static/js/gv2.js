@@ -664,6 +664,7 @@ function getCurrentAttrs(node) {
 // appliquer l'action / formatage à une node
 function applyFormat(node,attr,fct,value)
 {
+  console.log('apply',node,attr,fct,value);
   var nodeattr = getCurrentAttrs(node);
 
   if ((fct=='increase')||fct=='decrease') {
@@ -689,7 +690,18 @@ function lineAction(attr,fct,value) {
   var sel = f.contentWindow.getSelection();
   var changed = false;
   var his_item = getHistoryItem(sel.anchorNode);
+  if ($(sel.focusNode).hasClass('zone')) {
+    var range = fdocument.createRange();
+    var spans = $(sel.focusNode).find('span')
+    var start = spans[0].childNodes[0];
+    var end = spans[spans.length-1].childNodes[0];
+    console.log(start,end);
+    range.setStart(start,0);
+    range.setEnd(end,end.length);
 
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
 
   if ($(sel.anchorNode).closest('div').get(0) != $(sel.focusNode).closest('div').get(0)) {
     var nodes = getSelectedNodes();
@@ -721,18 +733,36 @@ function rangeFormat(attr,fct,value)
   if (sel.focusNode==null) {
     return;
   }
-  var range = sel.getRangeAt(0);
+  var his_item = getHistoryItem(sel.anchorNode);
 
+
+  if ($(sel.focusNode).hasClass('zone')) {
+    var range = fdocument.createRange();
+    var spans = $(sel.focusNode).find('span')
+    var start = spans[0].childNodes[0];
+    var end = spans[spans.length-1].childNodes[0];
+    console.log(start,end);
+    range.setStart(start,0);
+    range.setEnd(end,end.length);
+
+    sel.removeAllRanges();
+    sel.addRange(range);
+    console.log(sel);
+  } else {
+    var range = sel.getRangeAt(0);
+  }
   var startOffset = sel.anchorOffset;
   var endOffset = sel.focusOffset;
+
   var nodes = getSelectedNodes();
+
   var startNode = (range.startContainer.nodeType==3)? range.startContainer : range.startContainer.childNodes[range.startOffset] ;
   var endNode = (range.endContainer.nodeType==3)? range.endContainer : range.endContainer.childNodes[range.endOffset] ;
   var started = false;
 
   // Historique
   var changed = false;
-  var his_item = getHistoryItem(sel.anchorNode);
+
 
 
 
@@ -774,7 +804,6 @@ function rangeFormat(attr,fct,value)
     }
   } else {
     var endspan = $(endNode).closest('span').get(0).cloneNode(false);
-    console.log(endspan);
     for (i=0;i<nodes.length;i++) {
       if (nodes[i] == startNode) {
 
