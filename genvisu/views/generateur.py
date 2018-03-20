@@ -8,6 +8,7 @@ import requests
 import os
 
 visuels = {
+    '22mars':'fi/affiche',
     'affiche':'fi/affiche',
     'evenement':'fi/evenement',
     'urgdem':'liec/urgdem',
