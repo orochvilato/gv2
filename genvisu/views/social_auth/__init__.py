@@ -7,6 +7,8 @@ def require_login(f):
         ext = request.url.split('.')[-1]
         if 'userid' in session or ext in ['js','css','png','svg','jpg','jpeg']:
             return f(*args,**kwargs)
+        if "publicaccess" in request.url:
+            return 'Nope'
         session['next'] = request.url
         return render_template('login.html')
     return decorated_function

@@ -990,7 +990,7 @@ function sendData(action,slot,w,h) {
                   if (data.avancement == 100) window.open('/retrieve_image?key='+key,'_blank');
                   $('#overlay').hide();
                   $('.jauge').css('width','0%');
-                  window.location.replace('/load/autosave');
+                  if (window.location.href.indexOf('publicaccess')==-1) window.location.replace('/load/autosave');
                 },1000);
               }
               });

@@ -75,6 +75,12 @@ def get_dimensions(visuelid):
 def dimset(width,height):
     return [(w,int(w*float(height/width))) for w in [2048,1024,512,256]]
 
+@app.route('/22mars')
+def publicvisuel():
+    visuelid = 'affiche'
+    width,height = get_dimensions(visuelid)
+    return render_template('generateur.html', public=True, sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , dimset=dimset(width,height),width=width, height=height)
+
 @app.route('/edit/<visuelid>')
 @require_login
 def editvisuel(visuelid):
@@ -174,8 +180,6 @@ def export():
         import json
         r = requests.post('http://127.0.0.1:8888/prepare',data={'url':url,'width':width,'height':height, 'name':name, 'watermark':json.dumps(watermark)})
         return r.content
-
-
 
 
 

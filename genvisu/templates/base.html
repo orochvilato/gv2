@@ -11,6 +11,7 @@
 <body>
 
 <ul class="mainnav">
+                {% if not public %}
                 <li class="hassubs"><a href="#">Nouveau</a>
                   <ul class="dropdown">
                     <li class="subs"><a href="/visuels/fi">FI</a>
@@ -44,6 +45,7 @@
                     </li>
                   </ul>
                 </li>
+                {% endif %}
                 <li class="hassubs"><a href="#">Export</a>
                   <ul class="dropdown">
                   <li class="subs hassubs"><a href="#">Image (PNG) <i class="fas fa-angle-right menuarrow"></i></a>
