@@ -366,10 +366,12 @@ function iframeLoaded() {
     $('.toolbox-zoneitems').removeClass('active');
     $('.toolbox-optionitems').removeClass('active');
     var istyle = fwindow.getComputedStyle(this);
-
+    // a faire
+    /*
     for (var i=0;i<istyle.length;i++) {
-    //  $('#imagepreview').css(istyle[i],istyle.getPropertyValue(istyle[i]));
-    }
+      console.log(istyle[i],istyle.getPropertyValue(istyle[i]));
+      $('#imagepreview').css(istyle[i],istyle.getPropertyValue(istyle[i]));
+    }*/
     $('.imagepreview').css('background-image',$(this).css('background-image'));
     if (!$(this).hasClass('selected')) {
       imageactive = this;

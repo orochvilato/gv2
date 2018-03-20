@@ -8,7 +8,7 @@ import requests
 import os
 
 visuels = {
-    'carre1':'fi/carre1',
+    'evenement':'fi/evenement',
     'urgdem':'liec/urgdem',
     'eurque':'liec/eurque',
     'paxint':'liec/paxint',
@@ -20,6 +20,9 @@ visuels = {
     }
 
 domaines = {
+    'fi':{
+        'evenement':{'titre':'Evènement 1x1', 'ratio':1}
+    },
     'liec':{
         'eurque':{'titre':"L'Europe en question", 'ratio':1},
         'paxint':{'titre':"La paix et l'international", 'ratio':1},
