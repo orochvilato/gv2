@@ -202,23 +202,23 @@ def visuel(visuelid):
 
         for i,e in enumerate(xml.xpath('//div[contains(@class,"image")]')):
             id = e.attrib['id']
-            e.attrib['style'] = images[id]
+            e.attrib['style'] = images.get(id,'')
 
         for i,e in enumerate(xml.xpath('//*[@option]')):
             option = e.attrib.get('option',None)
             if option:
-                e.attrib['visible'] = options[option]
+                e.attrib['visible'] = options.get(option,'yes')
 
         for i,e in enumerate(xml.xpath('//div[@class="zone"]')):
             id = e.attrib['id']
 
-
-            for child in list(e):
-                e.remove(child)
-            txml = parse_content(zones[id])
-            if txml and len(txml):
-                for child in list(txml)[0]:
-                    e.append(child)
+            if id in zones.keys():
+                for child in list(e):
+                    e.remove(child)
+                txml = parse_content(zones[id])
+                if txml and len(txml):
+                    for child in list(txml)[0]:
+                        e.append(child)
 
         from lxml import etree
         html = etree.tostring(xml,method='html')
