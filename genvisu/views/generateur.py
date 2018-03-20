@@ -8,6 +8,7 @@ import requests
 import os
 
 visuels = {
+    'affiche':'fi/affiche',
     'evenement':'fi/evenement',
     'urgdem':'liec/urgdem',
     'eurque':'liec/eurque',
@@ -21,7 +22,8 @@ visuels = {
 
 domaines = {
     'fi':{
-        'evenement':{'titre':'Evènement 1x1', 'ratio':1}
+        'evenement':{'titre':'Evènement 1x1', 'ratio':1},
+        'affiche':{'titre':'affiche 1x1', 'ratio':1}
     },
     'liec':{
         'eurque':{'titre':"L'Europe en question", 'ratio':1},
@@ -194,9 +196,9 @@ def visuel(visuelid):
             data = json.loads(data)
 
     if data:
-        zones = data['zones']
-        images = data['images']
-        options = data['options']
+        zones = data.get('zones',{})
+        images = data.get('images',{})
+        options = data.get('options',{})
 
         for i,e in enumerate(xml.xpath('//div[contains(@class,"image")]')):
             id = e.attrib['id']
