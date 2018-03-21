@@ -8,8 +8,9 @@ import requests
 import os
 
 visuels = {
-    '22mars':'fi/affiche',
+    '22mars':'fi/affiche2',
     'affiche':'fi/affiche',
+    'affiche2':'fi/affiche2',
     'evenement':'fi/evenement',
     'urgdem':'liec/urgdem',
     'eurque':'liec/eurque',
@@ -24,7 +25,8 @@ visuels = {
 domaines = {
     'fi':{
         'evenement':{'titre':'Evènement 1x1', 'ratio':1},
-        'affiche':{'titre':'affiche 1x1', 'ratio':1}
+        'affiche':{'titre':'affiche 1x1', 'ratio':1},
+        'affiche2':{'titre':'affiche2 1x1', 'ratio':1}
     },
     'liec':{
         'eurque':{'titre':"L'Europe en question", 'ratio':1},
@@ -78,7 +80,7 @@ def dimset(width,height):
 
 @app.route('/22mars')
 def publicvisuel():
-    visuelid = 'affiche'
+    visuelid = 'affiche2'
     width,height = get_dimensions(visuelid)
     return render_template('generateur.html', public=True, sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , dimset=dimset(width,height),width=width, height=height)
 
