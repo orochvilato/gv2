@@ -216,7 +216,7 @@ def visuel(visuelid):
             if option:
                 e.attrib['visible'] = options.get(option,'yes')
 
-        for i,e in enumerate(xml.xpath('//div[@class="zone"]')):
+        for i,e in enumerate(xml.xpath('//div[contains(@class,"zone")]')):
             id = e.attrib['id']
 
             if id in zones.keys():
