@@ -1429,6 +1429,12 @@ div.zone:hover div, div.zone:focus div, div.zone.selected div {
   outline-offset: -1px;
 }
 
+.zone img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 .05em 0 .1em;
+  vertical-align: -0.1em;
+}
 
 
 /* Spécifique */

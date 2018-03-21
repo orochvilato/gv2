@@ -444,3 +444,41 @@ li a{text-decoration: none;}
     background: #878787;
     /*box-shadow: 2px 2px 12px 3px #5F5F5F inset;*/
 }
+
+.eselectwrapper {
+  position: relative;
+  display: inline-block;
+  padding-right:5px;
+}
+#emojiselect {
+  visibility: hidden;
+  position:absolute;
+  top:30px;
+  width:250px;
+  height:300px;
+  overflow-y:auto;
+  background-color: white;
+  border: 1px solid #7e7e7e;
+}
+#emojiselect ul {
+  padding:5px;
+}
+#emojiselect li {
+  display:inline;
+  height:24px;
+  padding:2px;
+}
+#emojiselect img:hover {
+  transform: scale(1.2);
+}
+.emoji-list img {
+  height:24px;
+}
+#emojiselect.active {
+  visibility: visible;
+}
+.eselectwrapper button img.emoji {
+  height:20px;
+  width:20px;
+  vertical-align:middle;
+}

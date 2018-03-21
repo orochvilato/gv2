@@ -224,6 +224,30 @@ function getCharteColors() {
   return colors.slice(0,colors.length-1);
 }
 
+function insertNodeAtCursor(node) {
+    var sel, range, html;
+    if ($('#f')[0].contentWindow.getSelection()) {
+        sel = $('#f')[0].contentWindow.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            var focus = sel.focusNode;
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+            //var textnode =  document.createTextNode(text)
+            //range.insertNode(textnode);
+            range.insertNode(node);
+            var range = fdocument.createRange();
+            range.setStart(node,0);
+            range.setEnd(node,0);
+            sel.removeAllRanges();
+            sel.addRange(range);
+            console.log(range);
+
+        }
+    } else if (document.selection && document.selection.createRange) {
+
+        //document.selection.createRange().text = text;
+    }
+}
 function initToolbox() {
 
   // initialisation polices
@@ -247,7 +271,7 @@ function initToolbox() {
     $('.toolbox-optionitems').append(check);
 
 
-    console.log(this);
+
   });
 
   $('#f').contents().find('[optionlist]').each(function() {
@@ -283,8 +307,25 @@ function initToolbox() {
     }
     $('#f').contents().find('[option="'+name+'"]').attr('visible',visible);
 
-    console.log('click');
   });
+  $('#emoji').click(function() {
+    $('#emojiselect').toggleClass('active');
+
+  });
+  $('#emojiselect').load("/static/emojis.html", function() {
+    twemoji.parse($('.emoji-list').get(0), {"size":72});
+    $('#emojiselect img').click(function() {
+        var code = $(this).attr('alt');
+        var span = $('<span>'+code+'</span>');
+        twemoji.parse(span.get(0),{'folder':'svg','ext':'.svg'});
+        //var img = span.children().get(0).cloneNode();
+        insertNodeAtCursor(span.get(0));
+
+        //if (selectionactive)
+        //console.log(img);
+    });
+  });
+
 
 }
 
@@ -730,7 +771,7 @@ function lineAction(attr,fct,value) {
 function rangeFormat(attr,fct,value)
 {
 
-  var targets = Array('SPAN','IMG');
+  var targets = Array('SPAN'); //,'IMG');
   var sel = f.contentWindow.getSelection();
   if (sel.focusNode==null) {
     return;
@@ -743,7 +784,6 @@ function rangeFormat(attr,fct,value)
     var spans = $(sel.focusNode).find('span')
     var start = spans[0].childNodes[0];
     var end = spans[spans.length-1].childNodes[0];
-    console.log(start,end);
     range.setStart(start,0);
     range.setEnd(end,end.length);
 
@@ -765,7 +805,7 @@ function rangeFormat(attr,fct,value)
   // Historique
   var changed = false;
 
-
+  console.log(nodes);
 
 
   if ((nodes.length == 1) && ((nodes[0].nodeType == 1)||(startOffset != endOffset))) {
@@ -789,6 +829,7 @@ function rangeFormat(attr,fct,value)
       range.setStart(nodes[0],0);
       var node = nodes[0].parentNode;
     } else {
+
       var node = startNode;
     }
     // faire une fonction
@@ -896,6 +937,7 @@ function nextNode(node) {
 function getRangeSelectedNodes(range) {
     var node = range.startContainer;
     var endNode = range.endContainer;
+
     var parents = $(endNode).parents();
     // Special case for a range that is contained within a single node
     if (node == endNode) {

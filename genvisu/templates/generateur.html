@@ -84,6 +84,10 @@
           <option value="9">Black (900)</option>
           </select>
         </div>
+        <div class="eselectwrapper">
+          <button id="emoji"><img draggable="false" class="emoji" alt="😀" src="https://twemoji.maxcdn.com/2/svg/1f600.svg"></button>
+          <div id="emojiselect"></div>
+        </div>
         <div class="toolbox-taille box">
           <div class="rangeselector"><span><i class="fas fa-text-height"></i> </span><input id="fontsize" type="text" action="set" attr="fontsize" focus="range" value="">
             <div>
@@ -100,6 +104,7 @@
           </div>
           </div>
         </div>
+
         <div class="fontstyle checkboxes">
            <label><input type="checkbox" name="fontstyle" attr="fontstyle" action="toggle" focus="range" value="italic"><span><i class="fas fa-italic"></i></span></label><!--
          --><label><input type="checkbox" name="textdecoration" attr="textdecoration" action="toggle" focus="range" value="underline"><span><i class="fas fa-underline"></i></span></label><!--
@@ -222,6 +227,7 @@
   </div>
 {% endblock %}
 {% block script %}
+<script src="https://twemoji.maxcdn.com/2/twemoji.min.js?2.5"></script>
 <script>
   var visuel_path = "{{ visuel_path }}";
   var visuel = "{{ visuel }}";
