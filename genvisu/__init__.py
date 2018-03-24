@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from config_private import smtp,privatekey
+from config_private import smtp,privatekey, mongo_read_user,mongo_read_password,mongo_write_user,mongo_write_password
 
 import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
+
+
 
 
 from flask import Flask
@@ -19,6 +21,14 @@ app.secret_key = privatekey
 
 import os
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+import pymongo
+client = pymongo.MongoClient('mongodb://%s:%s@observatoire-assemblee.orvdev.fr:27017/genvisu' %(mongo_read_user,mongo_read_password))
+mdb = client.genvisu
+
+clientrw = pymongo.MongoClient('mongodb://%s:%s@observatoire-assemblee.orvdev.fr:27017/genvisu' %(mongo_write_user,mongo_write_password))
+mdbrw = clientrw.genvisu
+
+
 
 @app.route('/testerror')
 def testerror():

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from genvisu import app, app_path, memcache
+from genvisu import app, app_path, memcache,mdbrw,mdb
 from genvisu.tools import image_response, parse_content
 from flask import render_template, url_for, request, Response, session, redirect
 import re
@@ -174,16 +174,18 @@ def export():
         if data:
             import json
             data = json.loads(data)
-    if data:
-        path = data['path'].split('?')[0]
-        url = request.url_root[:-1]+path+'?key='+key
-        name = path.split('/')[-1]
-        import datetime
-        watermark = {'ip':request.environ['REMOTE_ADDR'],'userid':session.get('userid',None),'username':session.get('username',None),'visuel':name, 'date':datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S')}
-        import json
-        r = requests.post('http://127.0.0.1:8888/prepare',data={'url':url,'width':width,'height':height, 'name':name, 'watermark':json.dumps(watermark)})
-        return r.content
-
+            path = data['path'].split('?')[0]
+            url = request.url_root[:-1]+path+'?key='+key
+            name = path.split('/')[-1]
+            import datetime
+            watermark = {'ip':request.environ['REMOTE_ADDR'],'userid':session.get('userid',None),'username':session.get('username',None),'visuel':name, 'date':datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S')}
+            log = dict(watermark)
+            log.update(data)
+            mdbrw.exports.insert_one(log)
+            import json
+            r = requests.post('http://127.0.0.1:8888/prepare',data={'url':url,'width':width,'height':height, 'name':name, 'watermark':json.dumps(watermark)})
+            return r.content
+    return "Nope"
 
 
 @app.route('/visuel/<visuelid>')
