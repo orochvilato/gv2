@@ -1244,6 +1244,7 @@ div[optionlist] *[visible="yes"] {
   margin-top: 20vw;
 }
 
+
 *[margintop="-1"] {
   margin-top: -1vw;
 }
@@ -1259,6 +1260,22 @@ div[optionlist] *[visible="yes"] {
 *[margintop="-5"] {
   margin-top: -5vw;
 }
+*[margintop="-6"] {
+  margin-top: -6vw;
+}
+*[margintop="-7"] {
+  margin-top: -7vw;
+}
+*[margintop="-8"] {
+  margin-top: -8vw;
+}
+*[margintop="-9"] {
+  margin-top: -9vw;
+}
+*[margintop="-10"] {
+  margin-top: -10vw;
+}
+
 
 
 *[marginbottom="0"] {
@@ -1338,8 +1355,24 @@ div[optionlist] *[visible="yes"] {
   margin-bottom: -4vw;
 }
 *[marginbottom="-5"] {
-  margin-top: -5vw;
+  margin-bottom: -5vw;
 }
+*[marginbottom="-6"] {
+  margin-bottom: -6vw;
+}
+*[marginbottom="-7"] {
+  margin-bottom: -7vw;
+}
+*[marginbottom="-8"] {
+  margin-bottom: -8vw;
+}
+*[marginbottom="-9"] {
+  margin-bottom: -9vw;
+}
+*[marginbottom="-10"] {
+  margin-bottom: -10vw;
+}
+
 
 *[align="center"] {
   text-align: center;

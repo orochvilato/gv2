@@ -6,6 +6,7 @@ from flask import render_template, url_for, request, Response, session, redirect
 import re
 import requests
 import os
+import time
 
 visuels = {
     '22mars':'fi/affiche2',
@@ -82,7 +83,8 @@ def dimset(width,height):
 def publicvisuel():
     visuelid = 'affiche2'
     width,height = get_dimensions(visuelid)
-    return render_template('generateur.html', public=True, sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , dimset=dimset(width,height),width=width, height=height)
+
+    return render_template('generateur.html',  public=True, sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , dimset=dimset(width,height),width=width, height=height)
 
 @app.route('/edit/<visuelid>')
 @require_login
@@ -91,7 +93,7 @@ def editvisuel(visuelid):
         if 'userid' in session.keys():
             user = session['userid']
         width,height = get_dimensions(visuelid)
-        return render_template('generateur.html', saves=load_saves(user), sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , dimset=dimset(width,height),width=width, height=height)
+        return render_template('generateur.html',  saves=load_saves(user), sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , dimset=dimset(width,height),width=width, height=height)
 
 @app.route('/load/<slot>')
 @require_login
