@@ -1,0 +1,68 @@
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900|Courgette:100,200,300,400,500,600,700,800,900|Montserrat:100,200,300,400,500,600,700,800,900|Roboto+Slab:100,200,300,400,500,600,700,800,900");
+  body {
+    background-color: #3f3f3f;
+    font-family: Montserrat, serif;
+    margin-top:60px;
+  }
+  .exports {
+    display:flex;
+    flex-wrap:wrap;
+    background-color: #3f3f3f;
+  }
+  .day {
+    color:white;
+    font-weight:600;
+    font-size:20px;
+  }
+  li {
+    list-style:none;
+  }
+  .exports li {
+    transition: transform .4s;
+    width:150px;
+    margin:10px;
+
+  }
+  .exports li img {
+    width:100%;
+  }
+  .exports li div {
+    background-color: #7e7e7e;
+    color:#fff;
+    height:16px;
+    text-align:justify;
+    font-size:14px;
+    margin-top:-5px;
+    padding:3px;
+  }
+  .exports li span {
+    background-color: #7e7e7e;
+  }
+  .user {
+    float:right;
+  }
+  .time {
+    float:left;
+  }
+  .exports li:hover {
+    transform: scale(1.6);
+  }
+
+</style>
+</head>
+<body>
+  <ul>
+  {% for day,exs in exports %}
+    <li><div class="day">{{ day }}</div><ul class="exports">{% for ex in exs %}
+    <li><img src="/log/preview/{{ ex['_id'] }}"><div><span class="time">{{ ex['timestamp'].time().strftime('%H:%M') }}</span><span class="user">{{ ex['username'] or "Anonyme" }}</span></div></li>
+    {% endfor %}
+  </ul></li>{% endfor %}
+  </ul>
+</body>
+</html>

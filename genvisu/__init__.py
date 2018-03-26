@@ -82,4 +82,4 @@ Message:
     app.logger.addHandler(mail_handler)
     app.logger.addHandler(eai_handler)
 
-from views import generateur,social_auth,base
+from views import generateur, social_auth, base, admin

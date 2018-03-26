@@ -183,6 +183,7 @@ def export():
             watermark = {'ip':request.environ['REMOTE_ADDR'],'userid':session.get('userid',None),'username':session.get('username',None),'visuel':name, 'date':datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S')}
             log = dict(watermark)
             log.update(data)
+            log['timestamp'] = datetime.datetime.now()
             mdbrw.exports.insert_one(log)
             import json
             r = requests.post('http://127.0.0.1:8888/prepare',data={'url':url,'width':width,'height':height, 'name':name, 'watermark':json.dumps(watermark)})
