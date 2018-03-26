@@ -9,6 +9,7 @@
     background-color: #3f3f3f;
     font-family: Montserrat, serif;
     margin-top:60px;
+    color: white;
   }
   .exports {
     display:flex;
@@ -19,6 +20,9 @@
     color:white;
     font-weight:600;
     font-size:20px;
+  }
+  ul.main {
+
   }
   li {
     list-style:none;
@@ -57,7 +61,14 @@
 </style>
 </head>
 <body>
-  <ul>
+  <h1>Top</h1>
+  <ul class="top">
+    {% for i,nom,count in top %}
+    <li>{{i}}. {{nom}} ({{count}})</li>
+    {% endfor %}
+  </ul>
+  <h1>Historique</h1>
+  <ul class="main">
   {% for day,exs in exports %}
     <li><div class="day">{{ day }}</div><ul class="exports">{% for ex in exs %}
     <li><img src="/log/preview/{{ ex['_id'] }}"><div><span class="time">{{ ex['timestamp'].time().strftime('%H:%M') }}</span><span class="user">{{ ex['username'] or "Anonyme" }}</span></div></li>

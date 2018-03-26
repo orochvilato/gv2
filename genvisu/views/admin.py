@@ -55,7 +55,11 @@ def logs():
     exports = []
     curday = None
     day = []
+    top = {}
     for export in mdb.exports.find({},{'username':1,'timestamp':1}).sort('timestamp',-1):
+        if export['username']:
+            top[export['username']] = top.get(export['username'],0)+1
+
         if export['timestamp'].date() != curday:
             if day:
                 exports.append((curday,day))
@@ -63,5 +67,4 @@ def logs():
         curday = export['timestamp'].date()
         day.append(export)
     exports.append((curday,day))
-    print exports
-    return render_template('timeline.html', exports=exports)
+    return render_template('timeline.html', exports=exports,top=[ (i+1,x[0],x[1]) for i,x in enumerate(sorted(top.items(),key=lambda x:x[1],reverse=True)[:10])])
