@@ -13,6 +13,7 @@ visuels = {
     'affiche':'fi/affiche',
     'affiche2':'fi/affiche2',
     'evenement':'fi/evenement',
+    'evenement2':'fi/evenement2',
     'urgdem':'liec/urgdem',
     'eurque':'liec/eurque',
     'paxint':'liec/paxint',
@@ -26,6 +27,7 @@ visuels = {
 domaines = {
     'fi':{
         'evenement':{'titre':'Evènement 1x1', 'ratio':1},
+        'evenement2':{'titre':'Evènement 2x1', 'ratio':0.5},
         'affiche':{'titre':'affiche 1x1', 'ratio':1},
         'affiche2':{'titre':'affiche2 1x1', 'ratio':1}
     },

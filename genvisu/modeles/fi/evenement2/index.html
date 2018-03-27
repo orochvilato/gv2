@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta dimension="100x50">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="/static/css/basecharte.css">
+    <link rel="stylesheet" href="/css/charte.css">
+
+    <title>FI - Template 02</title>
+    <style>
+    body {
+      margin: 0;
+      padding:0;
+      border:0;
+      background-color: #202020; }
+
+    .container {
+      position:relative;
+      margin: 0 auto;
+      background-color: #ffffff;
+      overflow: hidden;
+      }
+
+    body {
+      overflow-x: hidden;
+      /*overflow-y: hidden;*/
+    }
+    .container {
+      width:100vw;
+      height: 50vw;
+    }
+
+    .image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      overflow:hidden;
+
+
+    }
+    #image1 {
+      background: url('/img/photo.jpg');
+      background-size: cover;
+      transform: scale(1);
+      z-index: 0;
+
+    }
+    .header {
+      position:absolute;
+      top:4vw;
+      left:3vw;
+      right:3vw;
+      display:block;
+      height:29vw;
+    }
+    .pic {
+      display:block;
+      position:absolute;
+      top:0;
+      left:0;
+      height:50vw;
+      width:100vw;
+    }
+    #bloc1 {
+      position:absolute;
+      top:2vw;
+      left:2vw;
+      width:46vw;
+      height:46vw;
+      background-color: #0098b6;
+      opacity:0.8;
+    }
+    #bloc2 {
+      position:absolute;
+      left:0vw;
+      top:14vw;
+      width:50vw;
+      height:14vw;
+      background-color: #fff;
+      opacity:0.95;
+    }
+    #ombre {
+      position:absolute;
+      top:27.8vw;
+      left:-1.5vw;
+      width: 0;
+      height: 0;
+      border-top: 4vw solid #555;
+      border-left: 50vw solid transparent;
+	    filter:blur(3px);
+      opacity:0.2;
+    }
+
+    #zone1 {
+      position:absolute;
+      left:2.5vw;
+      top:2.5vw;
+      height:13vw;
+      width:45vw;
+    }
+    #zone2 {
+      position: absolute;
+      left:0.5vw;
+      top:14.5vw;
+      width:49vw;
+      height:13vw;
+    }
+    .textblock {
+      position:absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      top:2vw;
+    }
+    .logofi {
+      display: table;
+      margin: 0 auto;
+      height:100%;
+    }
+    .fi {
+      position:absolute;
+      width:100%;
+      height:9vw;
+      bottom:0.5vw;
+    }
+    .textefi {
+      display: inline-block;
+      padding-left: 1vw;
+      margin-bottom: 3vw;
+      vertical-align: text-bottom;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pic">
+          <div class="image" id="image1" style="background-position: -4vw -7vw; transform: scale(1.1); filter: grayscale(100%);"></div>
+        </div>
+        <div id="bloc1"></div>
+        <div class="zone" id="zone1" contenteditable="">
+          <div align="center">
+            <span fontweight="9" fontsize="12" color="2">Jean-Luc</span>
+          </div>
+          <div align="center">
+            <span texttransform="uppercase" fontsize="15" fontweight="9" lineheight="5" color="2">mélenchon</span>
+          </div>
+        </div>
+
+        <div id="ombre"></div>
+        <div id="bloc2"></div>
+        <div class="zone" id="zone2" contenteditable=""><div></div><div align="center"><span fontweight="9" fontfamily="2" fontsize="14" color="4">Jeudi 22 Mars</span></div><div align="center"><span fontweight="9" fontfamily="2" fontsize="17" lineheight="4" bgcolor="0" color="6">08h35</span></div></div>
+    </div>
+
+
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</body></html>

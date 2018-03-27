@@ -29,6 +29,7 @@ var attrCss = {
   texttransform:'text-transform',
 }
 
+
 var attrRanges = { fontsize:[1,30],
                     fontweight:[1,9],
                     fontfamily:[1,3],
@@ -44,11 +45,13 @@ var attrRanges = { fontsize:[1,30],
                     paddingtop:[0,20],
                     paddingbottom:[0,20],
                     letterspacing:[0,10],
-                    lineheight:[0,15]}
+                    lineheight:[0,15],
+                    }
 var attrValues = {
   align:['left','center','right'],
   expind:['exposant','indice']
 }
+var rangeUnits = {};
 
 var attrDefaults = {
   paddingleft:0,
@@ -263,6 +266,8 @@ function initToolbox() {
   $('<label><input type="radio" name="bgcolor" attr="bgcolor" action="set" focus="range" value="0"><div bgcolor="0"></div></label>').appendTo('.bgcolor.colorgroup');
 
 
+
+
   $('#f').contents().find('[option]').each(function() {
 
     var checked = $(this).attr('visible')=='yes'?"checked":"";
@@ -272,6 +277,13 @@ function initToolbox() {
 
 
 
+  });
+  $('.toolbox input[attr][type="range"]').each(function() {
+    var item = $(this).attr('item');
+    if (!item) {
+      item = $(this).attr('attr');
+    }
+    rangeUnits[item] = $(this).attr('unit');
   });
 
   $('#f').contents().find('[optionlist]').each(function() {
@@ -406,20 +418,53 @@ function iframeLoaded() {
     $('.toolbox-imageitems').addClass('active');
     $('.toolbox-zoneitems').removeClass('active');
     $('.toolbox-optionitems').removeClass('active');
-    var istyle = fwindow.getComputedStyle(this);
-    // a faire
-    /*
-    for (var i=0;i<istyle.length;i++) {
-      console.log(istyle[i],istyle.getPropertyValue(istyle[i]));
-      $('#imagepreview').css(istyle[i],istyle.getPropertyValue(istyle[i]));
-    }*/
     $('.imagepreview').css('background-image',$(this).css('background-image'));
     if (!$(this).hasClass('selected')) {
+      var width = $('.imagepreview').width();
+      var height = $('.imagepreview').height();
+
+
+      var items = $(this).attr('style').split('; ');
+      var re_bp = /(-?[\.0-9]+)vw (-?[\.0-9]+)vw/;
+      var re_fct = /([a-z]+)\((-?[\.0-9]+)[a-z%]*\)/;
+      for(i=0;i<items.length;i++) {
+        var style = items[i].split(': ');
+        if (style[0] == 'background-position') {
+          var res = re_bp.exec(style[1]);
+          var px = parseFloat(res[1]);
+          var py = parseFloat(res[2]);
+          $('.toolbox-imageitems input[attr="background-position-x"]').val(px);
+          $('.toolbox-imageitems input[attr="background-position-y"]').val(py);
+          $('.imagepreview').css('background-position-x',(width/100)*px+'px').css('background-position-y',(width/100)*py+'px');
+        } else {
+          var fct = style[0];
+          var ops = style[1].split(' ');
+          var filter = '';
+          for(j=0;j<ops.length;j++) {
+            var res = re_fct.exec(ops[j]);
+            var op = res[1];
+            var value = parseFloat(res[2]);
+            if (fct=='transform' && op=='scale') {
+              $('.toolbox-imageitems input[attr="transform"][item="scale"]').val(value);
+              $('.imagepreview').css('transform','scale('+value+')');
+            } else if (fct=='filter') {
+              var unit = op=='blur'?'px':'';
+              $('.toolbox-imageitems input[attr="filter"][item="'+op+'"]').val(value);
+              filter += ' '+op+'('+value+unit+')';
+            }
+          }
+          $('.imagepreview').css('filter',filter);
+
+        }
+        //console.log();
+      }
+      //console.log(rangeUnits);
+
+
       imageactive = this;
       $('.imagepreviewzone').height($(this).height()/$(this).width() * $('.imagepreviewzone').width());
       selectionactive = undefined;
       $(this).addClass('selected');
-
     }
   });
   $('#f').contents().find('div.zone').click(function(e){
@@ -789,7 +834,7 @@ function rangeFormat(attr,fct,value)
 
     sel.removeAllRanges();
     sel.addRange(range);
-    console.log(sel);
+
   } else {
     var range = sel.getRangeAt(0);
   }
@@ -805,7 +850,7 @@ function rangeFormat(attr,fct,value)
   // Historique
   var changed = false;
 
-  console.log(nodes);
+
 
 
   if ((nodes.length == 1) && ((nodes[0].nodeType == 1)||(startOffset != endOffset))) {
