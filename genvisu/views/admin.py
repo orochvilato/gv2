@@ -43,6 +43,7 @@ def logs():
         export_id = export['_id']
         path = os.path.join(app_path,'data','exports')
         del export['_id']
+        del export['timestamp']
         import uuid
         import json
         print export
