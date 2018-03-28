@@ -76,7 +76,7 @@
     #bloc2 {
       position:absolute;
       left:0vw;
-      top:14vw;
+      top:13vw;
       width:50vw;
       height:14vw;
       background-color: #fff;
@@ -84,16 +84,24 @@
     }
     #ombre {
       position:absolute;
-      top:27.8vw;
+      top:26.8vw;
       left:-1.5vw;
       width: 0;
       height: 0;
-      border-top: 4vw solid #555;
+      border-top: 4vw solid #333;
       border-left: 50vw solid transparent;
 	    filter:blur(3px);
       opacity:0.2;
     }
-
+    #bloc3 {
+      position: absolute;
+      top:40vw;
+      height:8vw;
+      left:2vw;
+      width:46vw;
+      background-color: #fff;
+      opacity:0.8;
+    }
     #zone1 {
       position:absolute;
       left:2.5vw;
@@ -104,10 +112,18 @@
     #zone2 {
       position: absolute;
       left:0.5vw;
-      top:14.5vw;
+      top:13.5vw;
       width:49vw;
       height:13vw;
     }
+    #zone3 {
+      position: absolute;
+      top:28vw;
+      left:2.5vw;
+      width:45vw;
+      height:19vw;
+    }
+
     .textblock {
       position:absolute;
       left: 0;
@@ -132,6 +148,41 @@
       margin-bottom: 3vw;
       vertical-align: text-bottom;
     }
+    #logofi {
+      position: absolute;
+    top: 40vw;
+    left: 4vw;
+    width: 15vw;
+    height: 8vw;
+    }
+    .separator {
+      position: absolute;
+      top:41vw;
+      left:22vw;
+      width:0.2vw;
+      height:6vw;
+      background-color:#e23d22;
+    }
+    #zone4 {
+      position: absolute;
+      top:40.5vw;
+      left:23vw;
+      width:24vw;
+      height:3vw;
+    }
+    #partagez {
+      text-align: center;
+      position: absolute;
+      top:44.5vw;
+      left:23vw;
+      width:24vw;
+      height:3vw;
+      font-size:2.5vw;
+      font-weight:600;
+      font-family: Roboto Slab, serif;
+      color: #1f3356;
+    }
+
     </style>
 </head>
 <body>
@@ -142,20 +193,28 @@
         <div id="bloc1"></div>
         <div class="zone" id="zone1" contenteditable="">
           <div align="center">
-            <span fontweight="9" fontsize="12" color="2">Jean-Luc</span>
+            <span fontweight="9" fontsize="12" color="2" lineheight="6">Jean-Luc</span>
           </div>
           <div align="center">
             <span texttransform="uppercase" fontsize="15" fontweight="9" lineheight="5" color="2">mélenchon</span>
           </div>
         </div>
-
         <div id="ombre"></div>
+        <div class="zone" id="zone3" contenteditable=""><div></div><div align="center"><span color="2" fontsize="11" fontweight="9" lineheight="6">PARIS</span></div><div align="center"><span color="2" fontsize="8" fontweight="5">Salle des cérémonies</span></div><div align="center"><span color="2" fontsize="8" fontweight="5">12 rue machin</span></div></div>
+
+
         <div id="bloc2"></div>
         <div class="zone" id="zone2" contenteditable=""><div></div><div align="center"><span fontweight="9" fontfamily="2" fontsize="14" color="4">Jeudi 22 Mars</span></div><div align="center"><span fontweight="9" fontfamily="2" fontsize="17" lineheight="4" bgcolor="0" color="6">08h35</span></div></div>
+        <div id="bloc3"></div>
+        <img id="logofi" src="/img/FI_logo.svg" />
+        <div class="separator"></div>
+        <div class="RS">
+        <div class="zone" id="zone4" contenteditable=""><div></div><div align="center"><span fontweight="9" fontsize="10" color="5">#Manif</span></div></div>
+        <div id="partagez">Partagez <i class="far fa-arrow-circle-down"></i></div>
     </div>
 
 
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script defer src="/static/js/fontawesome-all.min.js"></script>
 </body></html>
