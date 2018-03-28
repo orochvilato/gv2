@@ -320,6 +320,7 @@ function initToolbox() {
     $('#f').contents().find('[option="'+name+'"]').attr('visible',visible);
 
   });
+
   $('#emoji').click(function() {
     $('#emojiselect').toggleClass('active');
 
@@ -440,13 +441,19 @@ function iframeLoaded() {
             var fct = style[0];
             var ops = style[1].split(' ');
             var filter = '';
+            var transform = '';
             for(j=0;j<ops.length;j++) {
               var res = re_fct.exec(ops[j]);
               var op = res[1];
               var value = parseFloat(res[2]);
-              if (fct=='transform' && op=='scale') {
-                $('.toolbox-imageitems input[attr="transform"][item="scale"]').val(value);
-                $('.imagepreview').css('transform','scale('+value+')');
+              if (fct=='transform') {
+                var tbelt = $('.toolbox-imageitems input[attr="transform"][item="'+op+'"]');
+                if (op=='scaleX') {
+                  tbelt.prop('checked',(value==-1));
+                } else {
+                  tbelt.val(value);
+                }
+                transform += ' '+op+'('+value+')';
               } else if (fct=='filter') {
                 var unit = op=='blur'?'px':'';
                 $('.toolbox-imageitems input[attr="filter"][item="'+op+'"]').val(value);
@@ -454,6 +461,7 @@ function iframeLoaded() {
               }
             }
             $('.imagepreview').css('filter',filter);
+            $('.imagepreview').css('transform',transform);
 
           }
         //console.log();
@@ -584,6 +592,33 @@ function iframeLoaded() {
   };
 
 
+  $('.toolbox-imageitems input[type="checkbox"]').change(function() {
+    var attr = $(this).attr('attr');
+    var item = $(this).attr('item');
+    var checked = $(this).prop('checked');
+
+    var css  = $(imageactive).css(attr);
+    if (css) {
+      var elts = css.split(' ');
+    } else {
+      var elts = [];
+    }
+    console.log(elts);
+    for (i=0;i<elts.length;i++) {
+      var op = elts[i].split('(')[0];
+      console.log(elts[i],op);
+
+    }
+    return
+
+    if ($(this).prop('checked')==false) {
+      var visible = 'no';
+    } else {
+      var visible = 'yes';
+    }
+    $('#f').contents().find('[option="'+name+'"]').attr('visible',visible);
+
+  });
 
 
   $('.toolbox input[attr][type="range"]').on("input",function(e) {
@@ -604,8 +639,32 @@ function iframeLoaded() {
         $('.imagepreview').css(attr,(width/100)*val+'px');
       }
     } else if (attr=="transform") {
-      $(imageactive).css('transform', 'scale(' + val + ')');
-      $('.imagepreview').css('transform', 'scale(' + val + ')');
+      if ($(imageactive).attr('style')) {
+        var elts = $(imageactive).attr('style').split('; ');
+      } else {
+        var elts = [];
+      }
+      var transform =""
+      for (i=0;i<elts.length;i++) {
+        var style = elts[i].split(': ');
+        if (style[0]=='transform') {
+          var telts = style[1].split(' ');
+          for (j=0;j<telts.length;j++) {
+            var op = telts[j].split('(')[0];
+            console.log(op);
+            if (op=="scale") {
+              transform += ' scale(' + val + ')'
+            } else {
+              transform += ' '+telts[j];
+            }
+          }
+          console.log(transform);
+        }
+      }
+      $(imageactive).css('transform',transform);
+      $('.imagepreview').css('transform', transform);
+      //$(imageactive).css('transform', 'scale(' + val + ')');
+      //$('.imagepreview').css('transform', 'scale(' + val + ')');
 
     } else {//if (attr=="filter") {
 

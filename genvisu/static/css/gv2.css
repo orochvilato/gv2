@@ -250,7 +250,12 @@ div.toolbox-history {
 .toolbox .rangeselector:hover  div {
   display:inline-block;
 }
-
+.toolbox .toolbox-imageitems .imagecheck input {
+  display:inline-block;
+}
+.toolbox .toolbox-imageitems label {
+  font-weight:400;
+}
 
 .toolbox-zoneitems, .toolbox-imageitems, .toolbox-optionitems {
   display:none;
