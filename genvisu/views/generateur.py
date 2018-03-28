@@ -221,8 +221,15 @@ def visuel(visuelid):
 
         for i,e in enumerate(xml.xpath('//*[@option]')):
             option = e.attrib.get('option',None)
-            if option:
-                e.attrib['visible'] = options.get(option,'yes')
+            e.attrib['visible'] = options.get(option,'yes' if option else 'no')
+
+
+        for i,e in enumerate(xml.xpath('//*[@optionlist]')):
+            option = e.attrib.get('optionlist',None)
+            for se in e.xpath('*[@item]'):
+                item = se.attrib.get('item',None)
+                
+                se.attrib['visible'] = 'yes' if options.get(option,None)==item else 'no'
 
         for i,e in enumerate(xml.xpath('//*[@optiontoggle]')):
             option = e.attrib.get('optiontoggle',None)
