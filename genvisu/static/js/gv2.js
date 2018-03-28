@@ -273,12 +273,21 @@ function initToolbox() {
 
     var checked = $(this).attr('visible')=='yes'?"checked":"";
 
-    var check = $('<div><input type="checkbox" '+checked+' name="'+$(this).attr('option')+'"><span>'+$(this).attr('option')+'</span></div>');
+    var check = $('<div><input type="checkbox" '+checked+' mode="visibility" name="'+$(this).attr('option')+'"><span>'+$(this).attr('option')+'</span></div>');
+    $('.toolbox-optionitems').append(check);
+  });
+  $('#f').contents().find('[optiontoggle]').each(function() {
+    var value = $(this).attr('value');
+    var checked = $(this).hasClass(value)?"checked":"";
+
+    var check = $('<div><input type="checkbox" '+checked+' mode="toggle" clval="'+value+'" name="'+$(this).attr('optiontoggle')+'"><span>'+$(this).attr('optiontoggle')+'</span></div>');
     $('.toolbox-optionitems').append(check);
 
 
 
   });
+
+
   $('.toolbox input[attr][type="range"]').each(function() {
     var item = $(this).attr('item');
     if (!item) {
@@ -312,13 +321,23 @@ function initToolbox() {
   });
   $('.toolbox-optionitems input[type="checkbox"]').change(function() {
     var name = $(this).attr('name');
+    var mode = $(this).attr('mode');
 
-    if ($(this).prop('checked')==false) {
-      var visible = 'no';
+    if (mode=='toggle') {
+
+      var clval = $(this).attr('clval');
+
+      $('#f').contents().find('[optiontoggle="'+name+'"]').toggleClass(clval);
     } else {
-      var visible = 'yes';
+      if ($(this).prop('checked')==false) {
+        var visible = 'no';
+      } else {
+        var visible = 'yes';
+      }
+      $('#f').contents().find('[option="'+name+'"]').attr('visible',visible);
     }
-    $('#f').contents().find('[option="'+name+'"]').attr('visible',visible);
+
+
 
   });
 
@@ -361,7 +380,7 @@ function centerVisuel() {
   var fWidth = $('#f').contents().find('body').width()*ratio;
   var fHeight = $('#f').contents().find('body').height()*ratio;
 
-  
+
   var top = Math.min(50,Math.max((areaHeight-fHeight)/2,0));
   var left = Math.max((areaWidth-fWidth)/2,0);
   $('#f').css('top',top+'px');

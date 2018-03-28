@@ -182,6 +182,14 @@
       font-family: Roboto Slab, serif;
       color: #1f3356;
     }
+    #blocparent {
+      position:relative;
+      left:0vw;
+      top:0vw;
+    }
+    #blocparent.droite {
+      left:50vw;
+    }
 
     </style>
 </head>
@@ -190,6 +198,7 @@
         <div class="pic">
           <div class="image" id="image1" style="background-position: -4vw -7vw; transform: scale(1.1); filter: grayscale(100%);"></div>
         </div>
+        <div id="blocparent" optiontoggle="Droite" value="droite">
         <div id="bloc1"></div>
         <div class="zone" id="zone1" contenteditable="">
           <div align="center">
@@ -211,6 +220,7 @@
         <div class="RS">
         <div class="zone" id="zone4" contenteditable=""><div></div><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#Manif</span></div></div>
         <div id="partagez">Partagez <i class="far fa-arrow-circle-down"></i></div>
+      </div>
     </div>
 
 
