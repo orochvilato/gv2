@@ -448,6 +448,9 @@ function iframeLoaded() {
         var items = $(this).attr('style').split('; ');
         var re_bp = /(-?[\.0-9]+)vw (-?[\.0-9]+)vw/;
         var re_fct = /([a-zA-Z]+)\((-?[\.0-9]+)[a-zA-Z%]*\)/;
+        var filter = '';
+        var transform = '';
+
         for(i=0;i<items.length;i++) {
           var style = items[i].split(': ');
           if (style[0] == 'background-position') {
@@ -460,32 +463,34 @@ function iframeLoaded() {
           } else {
             var fct = style[0];
             var ops = style[1].split(' ');
-            var filter = '';
-            var transform = '';
             for(j=0;j<ops.length;j++) {
               var res = re_fct.exec(ops[j]);
-              var op = res[1];
-              var value = parseFloat(res[2]);
-              if (fct=='transform') {
-                var tbelt = $('.toolbox-imageitems input[attr="transform"][item="'+op+'"]');
-                if (op=='scaleX') {
-                  tbelt.prop('checked',(value==-1));
-                } else {
-                  tbelt.val(value);
+              if (res) {
+                var op = res[1];
+                var value = parseFloat(res[2]);
+                if (fct=='transform') {
+                  var tbelt = $('.toolbox-imageitems input[attr="transform"][item="'+op+'"]');
+                  if (op=='scaleX') {
+                    tbelt.prop('checked',(value==-1));
+                  } else {
+                    tbelt.val(value);
+                  }
+                  transform += ' '+op+'('+value+')';
+                } else if (fct=='filter') {
+                  var unit = op=='blur'?'px':'';
+                  $('.toolbox-imageitems input[attr="filter"][item="'+op+'"]').val(value);
+                  filter += ' '+op+'('+value+unit+')';
                 }
-                transform += ' '+op+'('+value+')';
-              } else if (fct=='filter') {
-                var unit = op=='blur'?'px':'';
-                $('.toolbox-imageitems input[attr="filter"][item="'+op+'"]').val(value);
-                filter += ' '+op+'('+value+unit+')';
               }
-            }
-            $('.imagepreview').css('filter',filter);
-            $('.imagepreview').css('transform',transform);
 
+            }
           }
-        //console.log();
         }
+        $('.imagepreview').css('filter',filter);
+        $('.imagepreview').css('transform',transform);
+
+                  //console.log();
+
         //console.log(rangeUnits);
       }
 
@@ -651,7 +656,7 @@ function iframeLoaded() {
     var attr = $(this).attr('attr');
 
     if (attr=='background-position-x' || attr=='background-position-y') {
-      var ratio = getRatio(imageactive);
+      //var ratio = getRatio(imageactive);
       var unit=$(this).attr('unit');
       $(imageactive).css(attr,val+unit);
       var width = $('.imagepreview').width();
@@ -725,7 +730,7 @@ function iframeLoaded() {
     } else if ($(this).attr('focus')=='range'){
       rangeFormat(attr,$(this).attr('action'),val);
     } else if ($(this).attr('focus')=='image') {
-      console.log(imageactive);
+      //console.log(imageactive);
     }
     if ($(this).attr('focus')!='image') {
       updateToolbox();
