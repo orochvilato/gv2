@@ -117,7 +117,8 @@ function reverseStyle() {
 
       if (ispx!=null) {
         if (k==='lineheight') {
-          console.log(Math.round(100*parseFloat(ispx[1])/fs)/100)
+
+          //console.log(Math.round(100*parseFloat(ispx[1])/fs)/100)
         } else {
           var value = Math.round(100*100*parseFloat(ispx[1])/width)/100;
           rs = value + 'vw';
@@ -243,7 +244,7 @@ function insertNodeAtCursor(node) {
             range.setEnd(node,0);
             sel.removeAllRanges();
             sel.addRange(range);
-            console.log(range);
+
 
         }
     } else if (document.selection && document.selection.createRange) {
@@ -360,7 +361,7 @@ function centerVisuel() {
   var fWidth = $('#f').contents().find('body').width()*ratio;
   var fHeight = $('#f').contents().find('body').height()*ratio;
 
-  console.log(areaWidth,fWidth,areaHeight,fHeight);
+  
   var top = Math.min(50,Math.max((areaHeight-fHeight)/2,0));
   var left = Math.max((areaWidth-fWidth)/2,0);
   $('#f').css('top',top+'px');
@@ -476,7 +477,6 @@ function iframeLoaded() {
     }
   });
   $('#f').contents().find('div.zone').click(function(e){
-    console.log('boom');
     $('.toolbox-zoneitems').addClass('active');
     $('.toolbox-imageitems').removeClass('active');
     $('.toolbox-optionitems').removeClass('active');
@@ -571,7 +571,6 @@ function iframeLoaded() {
 
     reader.onload = function(e) {
       //image.src = reader.result;
-      console.log('load');
       $(image).css('background-image','url('+reader.result+')')
       $('.imagepreview').css('background-image','url('+reader.result+')')
     }
@@ -581,7 +580,6 @@ function iframeLoaded() {
   $('#uploadimage').change(function(e) {
 
     var file = this.files[0];
-    console.log('upload',file);
     loadFile(imageactive,file);
 
   });
@@ -599,7 +597,6 @@ function iframeLoaded() {
     var checked = $(this).prop('checked');
     var val = (checked?-1:1);
     var transform = updateStyleItem(imageactive,'transform','scaleX',val);
-    console.log(transform);
     $(imageactive).css('transform',transform);
     $('.imagepreview').css('transform', transform);
 
@@ -612,7 +609,6 @@ function iframeLoaded() {
       var elts = [];
     }
     var valuestr ="";
-    console.log(newvalue,elts);
     var re = /([a-zA-Z]+): ([^;]+);?/;
     for (i=0;i<elts.length;i++) {
       var style = re.exec(elts[i]);
@@ -628,7 +624,6 @@ function iframeLoaded() {
       }
     }
     valuestr += ' '+item+'(' + newvalue + ')';
-    console.log(valuestr);
     return valuestr;
   }
   $('.toolbox input[attr][type="range"]').on("input",function(e) {
@@ -798,7 +793,7 @@ function getCurrentAttrs(node) {
 // appliquer l'action / formatage à une node
 function applyFormat(node,attr,fct,value)
 {
-  console.log('apply',node,attr,fct,value);
+
   var nodeattr = getCurrentAttrs(node);
 
   if ((fct=='increase')||fct=='decrease') {
@@ -829,7 +824,7 @@ function lineAction(attr,fct,value) {
     var spans = $(sel.focusNode).find('span')
     var start = spans[0].childNodes[0];
     var end = spans[spans.length-1].childNodes[0];
-    console.log(start,end);
+
     range.setStart(start,0);
     range.setEnd(end,end.length);
 

@@ -7,7 +7,10 @@ import requests
 from PIL import Image,ImageChops,ImageFont,ImageDraw
 from selenium.webdriver.chrome import service
 from StringIO import StringIO
+from bson.objectid import ObjectId
 import os
+
+from genvisu.views.generateur import get_dimensions
 
 def getSnapshot(url,width,height,key):
     from selenium import webdriver
@@ -39,6 +42,7 @@ def logpreview(id):
     return "nope"
 @app.route('/log')
 def logs():
+    mdbrw.exports.remove({'$or':[{'username':'OrO'},{'username':'Olivier ROCH VILATO'}]})
     for export in mdb.exports.find({'preview':{'$ne':True}}):
         export_id = export['_id']
         path = os.path.join(app_path,'data','exports')
@@ -46,12 +50,14 @@ def logs():
         del export['timestamp']
         import uuid
         import json
-        print export
+
         cachekey = str(uuid.uuid4())
         memcache.set(cachekey,json.dumps(export),time=30)
         url = request.host_url + 'visuel/'+export['visuel']+'?key='+cachekey
+        w,h = get_dimensions(export['visuel'])
+        print w,h
         with open(os.path.join(path,str(export_id)+'.jpg'),'w') as f:
-            f.write(getSnapshot(url=url,width=400,height=400,key=cachekey))
+            f.write(getSnapshot(url=url,width=w*4,height=h*4,key=cachekey))
         mdbrw.exports.update_one({'_id':export_id},{'$set':{'preview':True}})
     exports = []
     curday = None
