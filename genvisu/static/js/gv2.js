@@ -427,7 +427,7 @@ function iframeLoaded() {
       if ($(this).attr('style')) {
         var items = $(this).attr('style').split('; ');
         var re_bp = /(-?[\.0-9]+)vw (-?[\.0-9]+)vw/;
-        var re_fct = /([a-z]+)\((-?[\.0-9]+)[a-z%]*\)/;
+        var re_fct = /([a-zA-Z]+)\((-?[\.0-9]+)[a-zA-Z%]*\)/;
         for(i=0;i<items.length;i++) {
           var style = items[i].split(': ');
           if (style[0] == 'background-position') {
@@ -476,6 +476,7 @@ function iframeLoaded() {
     }
   });
   $('#f').contents().find('div.zone').click(function(e){
+    console.log('boom');
     $('.toolbox-zoneitems').addClass('active');
     $('.toolbox-imageitems').removeClass('active');
     $('.toolbox-optionitems').removeClass('active');
@@ -596,31 +597,40 @@ function iframeLoaded() {
     var attr = $(this).attr('attr');
     var item = $(this).attr('item');
     var checked = $(this).prop('checked');
-
-    var css  = $(imageactive).css(attr);
-    if (css) {
-      var elts = css.split(' ');
-    } else {
-      var elts = [];
-    }
-    console.log(elts);
-    for (i=0;i<elts.length;i++) {
-      var op = elts[i].split('(')[0];
-      console.log(elts[i],op);
-
-    }
-    return
-
-    if ($(this).prop('checked')==false) {
-      var visible = 'no';
-    } else {
-      var visible = 'yes';
-    }
-    $('#f').contents().find('[option="'+name+'"]').attr('visible',visible);
+    var val = (checked?-1:1);
+    var transform = updateStyleItem(imageactive,'transform','scaleX',val);
+    console.log(transform);
+    $(imageactive).css('transform',transform);
+    $('.imagepreview').css('transform', transform);
 
   });
 
+  function updateStyleItem(elt,attr,item,newvalue) {
+    if ($(elt).attr('style')) {
+      var elts = $(elt).attr('style').split('; ');
+    } else {
+      var elts = [];
+    }
+    var valuestr ="";
+    console.log(newvalue,elts);
+    var re = /([a-zA-Z]+): ([^;]+);?/;
+    for (i=0;i<elts.length;i++) {
+      var style = re.exec(elts[i]);
+      if (style[1]==attr) {
+        var telts = style[2].split(' ');
+        for (j=0;j<telts.length;j++) {
+          var op = telts[j].split('(')[0];
+          if (op!=item) {
+            valuestr += ' '+telts[j];
+          }
+        }
 
+      }
+    }
+    valuestr += ' '+item+'(' + newvalue + ')';
+    console.log(valuestr);
+    return valuestr;
+  }
   $('.toolbox input[attr][type="range"]').on("input",function(e) {
     var item = $(this).attr('item')
     var val = $(this).val();
@@ -639,32 +649,9 @@ function iframeLoaded() {
         $('.imagepreview').css(attr,(width/100)*val+'px');
       }
     } else if (attr=="transform") {
-      if ($(imageactive).attr('style')) {
-        var elts = $(imageactive).attr('style').split('; ');
-      } else {
-        var elts = [];
-      }
-      var transform =""
-      for (i=0;i<elts.length;i++) {
-        var style = elts[i].split(': ');
-        if (style[0]=='transform') {
-          var telts = style[1].split(' ');
-          for (j=0;j<telts.length;j++) {
-            var op = telts[j].split('(')[0];
-            console.log(op);
-            if (op=="scale") {
-              transform += ' scale(' + val + ')'
-            } else {
-              transform += ' '+telts[j];
-            }
-          }
-          console.log(transform);
-        }
-      }
+      var transform = updateStyleItem(imageactive,'transform','scale',val);
       $(imageactive).css('transform',transform);
       $('.imagepreview').css('transform', transform);
-      //$(imageactive).css('transform', 'scale(' + val + ')');
-      //$('.imagepreview').css('transform', 'scale(' + val + ')');
 
     } else {//if (attr=="filter") {
 
