@@ -123,6 +123,26 @@
       width:45vw;
       height:11.5vw;
     }
+    #medias {
+      position: absolute;
+      top:28vw;
+      left:2.5vw;
+      width:45vw;
+      height:11.5vw;
+
+    }
+
+    div.media[visible="yes"] {
+      display:flex;
+      justify-content: center;
+    }
+    .media img {
+      height:9vw;
+      margin-left:1vw;
+      margin-right:1vw;
+      padding:1vw;
+      background-color:#fff;
+    }
 
     .textblock {
       position:absolute;
@@ -163,8 +183,8 @@
       height:6vw;
       background-color:#e23d22;
     }
-    #zone4 {
-      position: absolute;
+    .zone4 {
+      position: fixed;
       top:40.5vw;
       left:23vw;
       width:24vw;
@@ -209,17 +229,34 @@
           </div>
         </div>
         <div id="ombre"></div>
-        <div class="zone" id="zone3" contenteditable=""><div></div><div align="center"><span color="2" fontsize="11" fontweight="8" lineheight="6" fontfamily="1">PARIS</span></div><div align="center"><span color="2" fontsize="8" fontweight="6" fontfamily="1">Salle des cérémonies</span></div><div align="center"><span color="2" fontsize="8" fontweight="6" fontfamily="1">12 rue machin</span></div></div>
-
-
-        <div id="bloc2"></div>
-        <div class="zone" id="zone2" contenteditable=""><div></div><div align="center"><span fontweight="9" fontfamily="2" fontsize="14" color="4">Jeudi 22 Mars</span></div><div align="center"><span fontweight="9" fontfamily="2" fontsize="17" lineheight="4" bgcolor="0" color="6">08h35</span></div></div>
         <div id="bloc3"></div>
         <img id="logofi" src="/img/FI_logo.svg" />
         <div class="separator"></div>
         <div class="RS">
-        <div class="zone" id="zone4" contenteditable=""><div></div><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#Manif</span></div></div>
         <div id="partagez">Partagez <i class="far fa-arrow-circle-down"></i></div>
+
+        <div class="typeevement" optionlist="Type evenement">
+          <div item="lieu" visible="yes">
+            <div class="zone" id="zone3" contenteditable=""><div align="center"><span color="2" fontsize="11" fontweight="8" lineheight="6" fontfamily="1">PARIS</span></div><div align="center"><span color="2" fontsize="8" fontweight="6" fontfamily="1">Salle des cérémonies</span></div><div align="center"><span color="2" fontsize="8" fontweight="6" fontfamily="1">12 rue machin</span></div></div>
+            <div class="zone zone4" contenteditable=""><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#Manif</span></div></div>
+          </div>
+          <div id="medias" item="media" visible="no">
+            <div class="emission" optionlist="Emission">
+              <div class="media" item="ONPC" visible="yes">
+                <img src="/static/img/logos/chaines/tele/Fr_2_2018.png">
+                <img src="/static/img/logos/emissions/onpc.png">
+                <div class="zone zone4" contenteditable=""><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#ONPC</span></div></div>
+              </div>
+              <div class="media" item="L'emission politique" visible="no">
+                <img src="/static/img/logos/chaines/tele/Fr_2_2018.png">
+                <img src="/static/img/logos/emissions/emissionpolitique.png">
+                <div class="zone zone4" contenteditable=""><div align="center" margintop="1"><span fontweight="6" fontsize="6" color="5" fontfamily="1">#LEmissionPolitique</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="bloc2"></div>
+        <div class="zone" id="zone2" contenteditable=""><div align="center"><span fontweight="9" fontfamily="2" fontsize="14" color="4">Jeudi 22 Mars</span></div><div align="center"><span fontweight="9" fontfamily="2" fontsize="17" lineheight="4" bgcolor="0" color="6">08h35</span></div></div>
       </div>
     </div>
 

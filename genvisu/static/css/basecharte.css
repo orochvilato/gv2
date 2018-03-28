@@ -8,7 +8,7 @@
   visibility: hidden;
 }
 
-div[optionlist] * {
+div[optionlist] > * {
     display: none;
 }
 div[optionlist] *[visible="yes"] {
