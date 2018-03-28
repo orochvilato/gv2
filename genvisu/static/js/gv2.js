@@ -1093,13 +1093,18 @@ function sendData(action,slot,w,h) {
   var downloadToken = new Date().getTime();
   var attempts = 30;
 
-  var data = {'path':visuel_path,'zones':{},'images':{},'options':{}};
+  var data = {'path':visuel_path,'zones':{},'images':{},'options':{},'optionstoggle':{}};
 
   // options
   $('#f').contents().find('[option]').each(function() {
     var option = $(this).attr('option');
     var value = $(this).attr('visible');
     data.options[option] = value;
+  });
+  $('#f').contents().find('[optiontoggle]').each(function() {
+    var option = $(this).attr('optiontoggle');
+    var value = $(this).attr('value');
+    data.optionstoggle[option] = $(this).hasClass(value);
   });
   // zones
   $('#f').contents().find('.zone').each(function() {

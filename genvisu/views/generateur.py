@@ -213,6 +213,7 @@ def visuel(visuelid):
         zones = data.get('zones',{})
         images = data.get('images',{})
         options = data.get('options',{})
+        optionstoggle = data.get('optionstoggle',{})
 
         for i,e in enumerate(xml.xpath('//div[contains(@class,"image")]')):
             id = e.attrib['id']
@@ -222,6 +223,12 @@ def visuel(visuelid):
             option = e.attrib.get('option',None)
             if option:
                 e.attrib['visible'] = options.get(option,'yes')
+
+        for i,e in enumerate(xml.xpath('//*[@optiontoggle]')):
+            option = e.attrib.get('optiontoggle',None)
+            value = e.attrib.get('value','')
+            if optionstoggle.get(option):
+                e.attrib['class'] = e.attrib.get('class','')+' '+value
 
         for i,e in enumerate(xml.xpath('//div[contains(@class,"zone")]')):
             id = e.attrib['id']
