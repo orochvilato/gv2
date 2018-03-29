@@ -61,6 +61,7 @@ body {
   height:100%;
   color: #3c3c3c;
   background-color: #c5c5c5;
+  overflow-y: scroll;
 }
 .toolbox select {
   font-family: "Roboto Slab", serif;

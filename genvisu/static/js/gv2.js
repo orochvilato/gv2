@@ -1106,7 +1106,7 @@ function sendData(action,slot,w,h) {
     var value = $(this).attr('visible');
     data.options[option] = value;
   });
-  $('#f').contents().find('[optionlist] > [item]').each(function() {
+  $('#f').contents().find('[optionlist] > [item][visible="yes"]').each(function() {
     var option = $(this).parent().attr('optionlist');
     var value = $(this).attr('item');
     data.options[option] = value;

@@ -228,7 +228,7 @@ def visuel(visuelid):
             option = e.attrib.get('optionlist',None)
             for se in e.xpath('*[@item]'):
                 item = se.attrib.get('item',None)
-                
+
                 se.attrib['visible'] = 'yes' if options.get(option,None)==item else 'no'
 
         for i,e in enumerate(xml.xpath('//*[@optiontoggle]')):
@@ -244,7 +244,7 @@ def visuel(visuelid):
                 for child in list(e):
                     e.remove(child)
                 txml = parse_content(zones[id])
-                if txml and len(txml):
+                if len(txml):
                     for child in list(txml)[0]:
                         e.append(child)
 
