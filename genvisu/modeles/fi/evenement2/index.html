@@ -73,7 +73,7 @@
       height:46vw;
       background-color: #0098b6;*/
       top:26.95vw;
-      height:13.10vw;
+      height:13.15vw;
       background-color: #c5f6ff;
       left:2vw;
       width:46vw;
@@ -81,14 +81,17 @@
 
       opacity:0.8;
     }
-    #bloc2 {
-      position:absolute;
+    .bloc2 {
+      position:fixed;
       left:0vw;
       top:13vw;
       width:50vw;
       height:14vw;
       background-color: #fff;
       opacity:0.95;
+    }
+    .droite .bloc2 {
+      left:50vw;
     }
     #ombre {
       position:absolute;
@@ -330,12 +333,19 @@
 
         <!--<div id="partagez">Partagez <i class="far fa-arrow-circle-down"></i></div>-->
 
+
         <div class="typeevement" optionlist="Type evenement">
           <div id="lieu" item="lieu" visible="yes">
+            <div class="bloc2">
+              <div class="zone zone2" id="zone21" contenteditable=""><div align="center" marginright="0" margintop="1"><span fontweight="6" fontfamily="2" fontsize="10" color="4" lineheight="8" texttransform="uppercase">Réunion Publique</span></div><div align="center" margintop="0"><span fontweight="9" fontfamily="2" fontsize="12" color="4" paddingtop="0" lineheight="7">Vendredi 30 mars - </span><span fontweight="9" fontfamily="2" fontsize="12" color="6">19h</span></div></div>
+            </div>
             <div class="zone" id="zone3" contenteditable=""><div align="center" margintop="0"><span color="4" fontsize="13" fontweight="8" lineheight="5" fontfamily="1">CAMBRAI</span></div><div align="center"><span color="4" fontsize="8" fontweight="6" fontfamily="1">Salle des cérémonies</span></div><div align="center"><span color="4" fontsize="8" fontweight="6" fontfamily="1">Place Aristide Briand</span></div></div>
             <div class="zone zone4" id="zone41" contenteditable=""><div align="center"><span fontweight="8" fontsize="8" color="5" fontfamily="1">#Hashtag</span></div></div>
           </div>
           <div id="medias" item="media" visible="no">
+            <div class="bloc2">
+              <div class="zone zone2" id="zone22" contenteditable=""><div align="center" marginright="0" margintop="1"><span fontweight="9" fontfamily="2" fontsize="13" color="4" paddingtop="0" lineheight="6">Vendredi 30 mars</span></div><div align="center" marginright="0" margintop="0"><span fontweight="9" fontfamily="2" fontsize="16" color="6" lineheight="5">19h</span><br></div></div>
+            </div>
             <div class="emission" optionlist="Emission">
               <div class="media" item="ONPC" visible="yes">
                 <img src="/static/img/logos/chaines/tele/Fr_2_2018.png">
@@ -345,13 +355,12 @@
               <div class="media" item="L'emission politique" visible="no">
                 <img src="/static/img/logos/chaines/tele/Fr_2_2018.png">
                 <img src="/static/img/logos/emissions/emissionpolitique.png">
-                <div class="zone zone4" id="zone43" contenteditable=""><div align="center" margintop="1"><span fontweight="6" fontsize="6" color="5" fontfamily="1">#LEmissionPolitique</span></div></div>
+                <div class="zone zone4" id="zone43" contenteditable=""><div align="center" margintop="0"><span fontweight="6" fontsize="6" color="5" fontfamily="1">#LEmissionPolitique</span></div></div>
               </div>
             </div>
           </div>
         </div>
-        <div id="bloc2"></div>
-        <div class="zone" id="zone2" contenteditable=""><div align="center" marginright="0" margintop="1"><span fontweight="6" fontfamily="2" fontsize="10" color="4" lineheight="8" texttransform="uppercase">Réunion Publique</span></div><div align="center" margintop="0"><span fontweight="9" fontfamily="2" fontsize="12" color="4" paddingtop="0" lineheight="7">Vendredi 30 mars - </span><span fontweight="9" fontfamily="2" fontsize="12" color="6">19h</span></div></div>
+
       </div>
     </div>
 
