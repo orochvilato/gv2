@@ -29,7 +29,8 @@ def getSnapshot(url,width,height,key):
     driver.quit()
     cdservice.stop()
     output = StringIO()
-    im2.save(output,'JPEG')
+
+    im2.convert('RGB').save(output,'JPEG')
 
     return output.getvalue()
 

@@ -41,7 +41,7 @@
 
 
     }
-    #image1 {
+    .image1 {
       background: url('/img/photo.jpg');
       background-size: cover;
       transform: scale(1);
@@ -61,7 +61,7 @@
     }
     .pic {
       display:block;
-      position:absolute;
+      position:fixed;
       top:0;
       left:0;
       height:50vw;
@@ -110,12 +110,15 @@
       background-color: #fff;
       opacity:0.90;
     }
-    #zone1 {
+    .zone1 {
       position:absolute;
       left:2.5vw;
       top:2.5vw;
       height:13vw;
       width:45vw;
+    }
+    .droite .zone1 {
+      left:52.5vw;
     }
     #zone2 {
       position: absolute;
@@ -193,7 +196,7 @@
     }
     .zone4 {
       position: absolute;
-      top: 12.5vw;
+      top: 14.5vw;
       left: 20.5vw;
       width:24vw;
       height:3vw;
@@ -223,19 +226,103 @@
 </head>
 <body>
     <div class="container">
-        <div class="pic">
-          <div class="image" id="image1" style="background-position: -4vw -7vw; transform: scale(1.1); filter: grayscale(100%);"></div>
-        </div>
+
         <div id="blocparent" optiontoggle="Droite" value="droite">
+          <div optionlist="Deputé">
+            <!-- Ugo bernalicis -->
+            <div class="pic" item="Ugo Bernalicis" visible="yes">
+              <div class="image image1"  id="image11" style="background-image: url(/img/bernalicis.jpg); background-position: 1.5vw 1.5vw; transform: scale(1.1); filter: grayscale(0%);"></div>
+              <div class="zone textshadow zone1" id="zone1_1" contenteditable="">
+                <div align="center" margintop="-1">
+                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Ugo</span></div>
+                <div align="center">
+                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Bernalicis</span></div>
+              </div>
+            </div>
+            <!-- Danielle Obono -->
+            <div class="pic" item="Danièle Obono" visible="no">
+              <div class="image image1"  id="image12" style="background-image: url(/img/obono.jpg); background-position: -11vw -8vw; transform: scaleX(-1) scale(1.3);"></div>
+              <div class="zone textshadow zone1" id="zone1_2" contenteditable="">
+                <div align="center" margintop="-1">
+                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Danièle</span></div>
+                <div align="center">
+                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Obono</span></div>
+              </div>
+            </div>
+            <!-- Eric Coquerel -->
+            <div class="pic" item="Eric Coquerel" visible="no">
+              <div class="image image1"  id="image13" style="background-image: url(/img/coquerel.jpg); background-position: -1vw -5vw; transform: scaleX(1) scale(1.5);"></div>
+              <div class="zone textshadow zone1" id="zone1_3" contenteditable="">
+                <div align="center" margintop="-1">
+                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Eric</span></div>
+                <div align="center">
+                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Coquerel</span></div>
+              </div>
+            </div>
+            <!-- Eric Coquerel (2) -->
+            <div class="pic" item="Eric Coquerel (2)" visible="no">
+              <div class="image image1"  id="image14" style="background-image: url(/img/coquerel2.jpg); background-position: -10vw 5vw; transform: scaleX(-1) scale(1.3);"></div>
+              <div class="zone textshadow zone1" id="zone1_4" contenteditable="">
+                <div align="center" margintop="-1">
+                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Eric</span></div>
+                <div align="center">
+                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Coquerel</span></div>
+              </div>
+            </div>
+            <!-- Alexis Corbiere -->
+            <div class="pic" item="Alexis Corbière" visible="no">
+              <div class="image image1"  id="image15" style="background-image: url(/img/corbiere.jpg); background-position: -2vw -1.5vw; transform: scaleX(1) scale(1.1);"></div>
+              <div class="zone textshadow zone1" id="zone1_5" contenteditable="">
+                <div align="center" margintop="-1">
+                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Alexis</span></div>
+                <div align="center">
+                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Corbière</span></div>
+              </div>
+            </div>
+            <!-- Clémentine Autain -->
+            <div class="pic" item="Clémentine Autain" visible="no">
+              <div class="image image1"  id="image16" style="background-image: url(/img/autain.jpg); background-position: 4.5vw 1.5vw; transform: scaleX(1) scale(1.1);"></div>
+              <div class="zone textshadow zone1" id="zone1_6" contenteditable="">
+                <div align="center" margintop="-1">
+                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Clémentine</span></div>
+                <div align="center">
+                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Autain</span></div>
+              </div>
+            </div>
+            <!-- Caroline Fiat -->
+            <div class="pic" item="Caroline Fiat" visible="no">
+              <div class="image image1"  id="image17" style="background-image: url(/img/fiat.jpg); background-position: 8vw -2.5vw; transform: scaleX(1) scale(1.2);"></div>
+              <div class="zone textshadow zone1" id="zone1_7" contenteditable="">
+                <div align="center" margintop="-1">
+                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Caroline</span></div>
+                <div align="center">
+                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Fiat</span></div>
+              </div>
+            </div>
+            <!-- Adrien Quatennens -->
+            <div class="pic" item="Adrien Quatennens" visible="no">
+              <div class="image image1"  id="image18" style="background-image: url(/img/quatennens.jpg); background-position: -11.5vw -3.5vw; transform: scaleX(-1) scale(1.3);"></div>
+              <div class="zone textshadow zone1" id="zone1_8" contenteditable="">
+                <div align="center" margintop="-1">
+                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Adrien</span></div>
+                <div align="center">
+                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Quatennens</span></div>
+              </div>
+            </div>
+            <!-- François Ruffin -->
+            <div class="pic" item="François Ruffin" visible="no">
+              <div class="image image1"  id="image19" style="background-image: url(/img/ruffin.jpg); background-position: 2.5vw 5vw; transform: scaleX(1) scale(1.3);"></div>
+              <div class="zone textshadow zone1" id="zone1_9" contenteditable="">
+                <div align="center" margintop="-1">
+                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">François</span></div>
+                <div align="center">
+                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Ruffin</span></div>
+              </div>
+            </div>
+
+
+          </div>
         <div id="bloc1"></div>
-        <div class="zone textshadow" id="zone1" contenteditable="">
-          <div align="center">
-            <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Jean-Luc</span>
-          </div>
-          <div align="center">
-            <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">mélenchon</span>
-          </div>
-        </div>
         <!--<div id="ombre"></div>-->
         <div id="bloc3"></div>
         <img id="logofi" src="/img/FI_logo.svg" />
@@ -245,8 +332,8 @@
 
         <div class="typeevement" optionlist="Type evenement">
           <div id="lieu" item="lieu" visible="yes">
-            <div class="zone" id="zone3" contenteditable=""><div align="center"><span color="4" fontsize="11" fontweight="8" lineheight="6" fontfamily="1">PARIS</span></div><div align="center"><span color="4" fontsize="8" fontweight="6" fontfamily="1">Salle des cérémonies</span></div><div align="center"><span color="4" fontsize="8" fontweight="6" fontfamily="1">12 rue machin</span></div></div>
-            <div class="zone zone4" id="zone41" contenteditable=""><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#Manif</span></div></div>
+            <div class="zone" id="zone3" contenteditable=""><div align="center" margintop="0"><span color="4" fontsize="13" fontweight="8" lineheight="5" fontfamily="1">CAMBRAI</span></div><div align="center"><span color="4" fontsize="8" fontweight="6" fontfamily="1">Salle des cérémonies</span></div><div align="center"><span color="4" fontsize="8" fontweight="6" fontfamily="1">Place Aristide Briand</span></div></div>
+            <div class="zone zone4" id="zone41" contenteditable=""><div align="center"><span fontweight="8" fontsize="8" color="5" fontfamily="1">#Hashtag</span></div></div>
           </div>
           <div id="medias" item="media" visible="no">
             <div class="emission" optionlist="Emission">
@@ -264,7 +351,7 @@
           </div>
         </div>
         <div id="bloc2"></div>
-        <div class="zone" id="zone2" contenteditable=""><div align="center"><span fontweight="9" fontfamily="2" fontsize="14" color="4">Jeudi 22 Mars</span></div><div align="center"><span fontweight="9" fontfamily="2" fontsize="17" lineheight="4" bgcolor="0" color="6">08h35</span></div></div>
+        <div class="zone" id="zone2" contenteditable=""><div align="center" marginright="0" margintop="1"><span fontweight="6" fontfamily="2" fontsize="10" color="4" lineheight="8" texttransform="uppercase">Réunion Publique</span></div><div align="center" margintop="0"><span fontweight="9" fontfamily="2" fontsize="12" color="4" paddingtop="0" lineheight="7">Vendredi 30 mars - </span><span fontweight="9" fontfamily="2" fontsize="12" color="6">19h</span></div></div>
       </div>
     </div>
 
