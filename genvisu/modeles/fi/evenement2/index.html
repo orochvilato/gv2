@@ -67,6 +67,7 @@
       height:50vw;
       width:100vw;
     }
+    
     #bloc1 {
       position:absolute;
       /*top:2vw;
@@ -230,6 +231,7 @@
 {% set deputes = [
   {'item':'Clémentine Autain','nom':'Autain','prenom':'Clémentine','style':'background-image: url(/static/img/deputes/autain.jpg); background-position: 4.5vw 1.5vw; transform: scaleX(1) scale(1.1);'},
   {'item':'Clémentine Autain (2)','nom':'Autain','prenom':'Clémentine','style':'background-image: url(/static/img/deputes/autain2.jpg); background-position: 4.5vw 1.5vw; transform: scaleX(1) scale(1.1);'},
+  {'item':'Manuel Bompard','nom':'Bompard','prenom':'Manuel','style':'background-image: url(/static/img/deputes/bompard.jpg); background-position: -3vw 8vw; transform: scale(1.5);'},
   {'item':'Ugo Bernalicis','nom':'Bernalicis','prenom':'Ugo','style':'background-image: url(/static/img/deputes/bernalicis.jpg); background-position: 1.5vw 1.5vw; transform: scale(1.1); filter: grayscale(0%);'},
   {'item':'Ugo Bernalicis (2)','nom':'Bernalicis','prenom':'Ugo','style':'background-image: url(/static/img/deputes/bernalicis2.jpg); background-position: 14.5vw 6.5vw; transform: scale(1.4);'},
   {'item':'Ugo Bernalicis (3)','nom':'Bernalicis','prenom':'Ugo','style':'background-image: url(/static/img/deputes/bernalicis3.jpg);     background-position: 15vw 3.5vw; transform: scale(1.5);'},
@@ -241,24 +243,35 @@
   {'item':'Alexis Corbière (3)','nom':'Corbière','prenom':'Alexis','style':'background-image: url(/static/img/deputes/corbiere3.jpg); background-position: 11.5vw -2vw; transform: scaleX(1) scale(1.3);'},
   {'item':'Caroline Fiat','nom':'Fiat','prenom':'Caroline','style':'background-image: url(/static/img/deputes/fiat.jpg); background-position: 8vw -2.5vw; transform: scaleX(1) scale(1.2);'},
   {'item':'Caroline Fiat (2)','nom':'Fiat','prenom':'Caroline','style':'background-image: url(/static/img/deputes/fiat2.jpg); background-position: 12vw 0.5vw; transform: scaleX(1) scale(1.5);'},
+  {'item':'Charlotte Girard','nom':'Girard','prenom':'Charlotte','style':'background-image: url(/static/img/deputes/girard1.jpg); background-position: 1.5vw -5vw; transform: scaleX(1) scale(1.2);'},
+  {'item':'Charlotte Girard (2)','nom':'Girard','prenom':'Charlotte','style':'background-image: url(/static/img/deputes/girard2.jpg); background-position: 8vw 5vw; transform: scaleX(-1) scale(1.3);'},
+  {'item':'Liem Hoang Ngoc','nom':'Hoang Ngoc','prenom':'Liem','style':'background-image: url(/static/img/deputes/liem.jpg); background-position: -2vw -1vw; transform: scaleX(-1) scale(1.1);'},
+  {'item':'Liem Hoang Ngoc (2)','nom':'Hoang Ngoc','prenom':'Liem','style':'background-image: url(/static/img/deputes/liem2.jpg); background-position: -1.5vw -1.5vw; transform: scaleX(1) scale(1.7);'},
+  {'item':'Bastien Lachaud','nom':'Lachaud','prenom':'Bastien','style':'background-image: url(/static/img/deputes/lachaud.jpg); background-position: -1vw 1.5vw; transform: scaleX(-1) scale(1.6);'},
   {'item':'Danielle Obono','nom':'Obono','prenom':'Danièle','style':'background-image: url(/static/img/deputes/obono.jpg); background-position: -11vw -8vw; transform: scaleX(-1) scale(1.3);'},
   {'item':'Danielle Obono (2)','nom':'Obono','prenom':'Danièle','style':'background-image: url(/static/img/deputes/obono2.jpg); background-position: -2.5vw -2.5vw; transform: scaleX(-1) scale(1.3);'},
   {'item':'Danielle Obono (3)','nom':'Obono','prenom':'Danièle','style':'background-image: url(/static/img/deputes/obono3.jpg); background-position: 3vw -3vw; transform: scale(1.3) scaleX(1);'},
   {'item':"Loïc Prud'homme",'nom':"Prud'homme",'prenom':'Loïc','style':'background-image: url(/static/img/deputes/prudhomme.jpg);     background-position: -1vw 0.5vw; transform: scaleX(1) scale(1.6);'},
-  {'item':'François Ruffin','nom':'Ruffin','prenom':'François','style':'background-image: url(/static/img/deputes/ruffin.jpg); background-position: 2.5vw 5vw; transform: scaleX(1) scale(1.3);'},
-  {'item':'François Ruffin (2)','nom':'Ruffin','prenom':'François','style':'background-image: url(/static/img/deputes/ruffin2.jpg); background-position: -1vw 3vw; transform: scaleX(1) scale(1.6);'},
   {'item':'Adrien Quatennens','nom':'Quatennens','prenom':'Adrien','style':'background-image: url(/static/img/deputes/quatennens.jpg); background-position: -11.5vw -3.5vw; transform: scaleX(-1) scale(1.3);'},
   {'item':'Adrien Quatennens (2)','nom':'Quatennens','prenom':'Adrien','style':'background-image: url(/static/img/deputes/quatennens2.jpg); background-position: -13.5vw 1vw; transform: scaleX(-1) scale(1.4);'},
   {'item':'Adrien Quatennens (3)','nom':'Quatennens','prenom':'Adrien','style':'background-image: url(/static/img/deputes/quatennens3.jpg); background-position: -16vw 1.5vw;  transform: scaleX(-1) scale(1.7);'},
+  {'item':'Muriel Ressiguier','nom':'Ressiguier','prenom':'Muriel','style':'background-image: url(/static/img/deputes/ressiguier.jpg);     background-position: -4vw 3.5vw; transform: scaleX(-1) scale(1.3);'},
+  {'item':'Jean-Hugues Ratenon','nom':'Ratenon','prenom':'Jean-Hugues','style':'background-image: url(/static/img/deputes/ratenon.jpg); background-position: 4.5vw 2vw; transform: scaleX(1) scale(1.2);'},
+  {'item':'François Ruffin','nom':'Ruffin','prenom':'François','style':'background-image: url(/static/img/deputes/ruffin.jpg); background-position: 2.5vw 5vw; transform: scaleX(1) scale(1.3);'},
+  {'item':'François Ruffin (2)','nom':'Ruffin','prenom':'François','style':'background-image: url(/static/img/deputes/ruffin2.jpg); background-position: -1vw 3vw; transform: scaleX(1) scale(1.6);'},
+  {'item':'Danielle Simonnet','nom':'Simonnet','prenom':'Danielle','style':'background-image: url(/static/img/deputes/simonnet1.jpg); background-position: 3vw -5vw; transform: scaleX(1) scale(1.2);'},
+  {'item':'Danielle Simonnet (2)','nom':'Simonnet','prenom':'Danielle','style':'background-image: url(/static/img/deputes/simonnet2.jpg); background-position: -1.5vw -10vw; transform: scaleX(1) scale(1.3);'},
+  {'item':'Bénédicte Taurine','nom':'Taurine','prenom':'Bénédicte','style':'background-image: url(/static/img/deputes/taurine.jpg); background-position: 4.5vw 0.5vw; transform: scaleX(1) scale(1.3);'},
 
 ] %}
 <body>
     <div class="container">
         <div id="blocparent" optiontoggle="Droite" value="droite">
-              <div optionlist="Deputé">
+              <div optionlist="Personnalité">
               {% for d in deputes %}
                 <div class="pic" item="{{ d['item'] }}" visible="{% if loop.index==1 %}yes{% else %}no{% endif %}">
               <div class="image image1"  id="image1{{ loop.index }}" style="{{ d['style'] }}"></div>
+
               <div class="zone textshadow zone1" id="zone1_{{ loop.index }}" contenteditable="">
                 <div align="center" margintop="-1">
                   <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">{{ d['prenom'] }}</span></div>
