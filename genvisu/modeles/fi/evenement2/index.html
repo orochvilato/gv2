@@ -227,102 +227,46 @@
 
     </style>
 </head>
+{% set deputes = [
+  {'item':'Clémentine Autain','nom':'Autain','prenom':'Clémentine','style':'background-image: url(/static/img/deputes/autain.jpg); background-position: 4.5vw 1.5vw; transform: scaleX(1) scale(1.1);'},
+  {'item':'Clémentine Autain (2)','nom':'Autain','prenom':'Clémentine','style':'background-image: url(/static/img/deputes/autain2.jpg); background-position: 4.5vw 1.5vw; transform: scaleX(1) scale(1.1);'},
+  {'item':'Ugo Bernalicis','nom':'Bernalicis','prenom':'Ugo','style':'background-image: url(/static/img/deputes/bernalicis.jpg); background-position: 1.5vw 1.5vw; transform: scale(1.1); filter: grayscale(0%);'},
+  {'item':'Ugo Bernalicis (2)','nom':'Bernalicis','prenom':'Ugo','style':'background-image: url(/static/img/deputes/bernalicis2.jpg); background-position: 14.5vw 6.5vw; transform: scale(1.4);'},
+  {'item':'Ugo Bernalicis (3)','nom':'Bernalicis','prenom':'Ugo','style':'background-image: url(/static/img/deputes/bernalicis3.jpg);     background-position: 15vw 3.5vw; transform: scale(1.5);'},
+  {'item':'Eric Coquerel','nom':'Coquerel','prenom':'Éric','style':'background-image: url(/static/img/deputes/coquerel.jpg); background-position: -1vw -5vw; transform: scaleX(1) scale(1.5);'},
+  {'item':'Eric Coquerel (2)','nom':'Coquerel','prenom':'Éric','style':'background-image: url(/static/img/deputes/coquerel2.jpg); background-position: -10vw 5vw; transform: scaleX(-1) scale(1.3);'},
+  {'item':'Eric Coquerel (3)','nom':'Coquerel','prenom':'Éric','style':'background-image: url(/static/img/deputes/coquerel3.jpg); background-position: 4.5vw -0.5vw; transform: scaleX(-1) scale(1.2);'},
+  {'item':'Alexis Corbière','nom':'Corbière','prenom':'Alexis','style':'background-image: url(/static/img/deputes/corbiere.jpg); background-position: -2vw -1.5vw; transform: scaleX(1) scale(1.1);'},
+  {'item':'Alexis Corbière (2)','nom':'Corbière','prenom':'Alexis','style':'background-image: url(/static/img/deputes/corbiere2.jpg); background-position: 6.5vw -1.5vw; transform: scaleX(1) scale(1.2);'},
+  {'item':'Alexis Corbière (3)','nom':'Corbière','prenom':'Alexis','style':'background-image: url(/static/img/deputes/corbiere3.jpg); background-position: 11.5vw -2vw; transform: scaleX(1) scale(1.3);'},
+  {'item':'Caroline Fiat','nom':'Fiat','prenom':'Caroline','style':'background-image: url(/static/img/deputes/fiat.jpg); background-position: 8vw -2.5vw; transform: scaleX(1) scale(1.2);'},
+  {'item':'Caroline Fiat (2)','nom':'Fiat','prenom':'Caroline','style':'background-image: url(/static/img/deputes/fiat2.jpg); background-position: 12vw 0.5vw; transform: scaleX(1) scale(1.5);'},
+  {'item':'Danielle Obono','nom':'Obono','prenom':'Danièle','style':'background-image: url(/static/img/deputes/obono.jpg); background-position: -11vw -8vw; transform: scaleX(-1) scale(1.3);'},
+  {'item':'Danielle Obono (2)','nom':'Obono','prenom':'Danièle','style':'background-image: url(/static/img/deputes/obono2.jpg); background-position: -2.5vw -2.5vw; transform: scaleX(-1) scale(1.3);'},
+  {'item':'Danielle Obono (3)','nom':'Obono','prenom':'Danièle','style':'background-image: url(/static/img/deputes/obono3.jpg); background-position: 3vw -3vw; transform: scale(1.3) scaleX(1);'},
+  {'item':"Loïc Prud'homme",'nom':"Prud'homme",'prenom':'Loïc','style':'background-image: url(/static/img/deputes/prudhomme.jpg);     background-position: -1vw 0.5vw; transform: scaleX(1) scale(1.6);'},
+  {'item':'François Ruffin','nom':'Ruffin','prenom':'François','style':'background-image: url(/static/img/deputes/ruffin.jpg); background-position: 2.5vw 5vw; transform: scaleX(1) scale(1.3);'},
+  {'item':'François Ruffin (2)','nom':'Ruffin','prenom':'François','style':'background-image: url(/static/img/deputes/ruffin2.jpg); background-position: -1vw 3vw; transform: scaleX(1) scale(1.6);'},
+  {'item':'Adrien Quatennens','nom':'Quatennens','prenom':'Adrien','style':'background-image: url(/static/img/deputes/quatennens.jpg); background-position: -11.5vw -3.5vw; transform: scaleX(-1) scale(1.3);'},
+  {'item':'Adrien Quatennens (2)','nom':'Quatennens','prenom':'Adrien','style':'background-image: url(/static/img/deputes/quatennens2.jpg); background-position: -13.5vw 1vw; transform: scaleX(-1) scale(1.4);'},
+  {'item':'Adrien Quatennens (3)','nom':'Quatennens','prenom':'Adrien','style':'background-image: url(/static/img/deputes/quatennens3.jpg); background-position: -16vw 1.5vw;  transform: scaleX(-1) scale(1.7);'},
+
+] %}
 <body>
     <div class="container">
-
         <div id="blocparent" optiontoggle="Droite" value="droite">
-          <div optionlist="Deputé">
-            <!-- Ugo bernalicis -->
-            <div class="pic" item="Ugo Bernalicis" visible="yes">
-              <div class="image image1"  id="image11" style="background-image: url(/img/bernalicis.jpg); background-position: 1.5vw 1.5vw; transform: scale(1.1); filter: grayscale(0%);"></div>
-              <div class="zone textshadow zone1" id="zone1_1" contenteditable="">
+              <div optionlist="Deputé">
+              {% for d in deputes %}
+                <div class="pic" item="{{ d['item'] }}" visible="{% if loop.index==1 %}yes{% else %}no{% endif %}">
+              <div class="image image1"  id="image1{{ loop.index }}" style="{{ d['style'] }}"></div>
+              <div class="zone textshadow zone1" id="zone1_{{ loop.index }}" contenteditable="">
                 <div align="center" margintop="-1">
-                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Ugo</span></div>
+                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">{{ d['prenom'] }}</span></div>
                 <div align="center">
-                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Bernalicis</span></div>
+                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">{{ d['nom'] }}</span></div>
               </div>
             </div>
-            <!-- Danielle Obono -->
-            <div class="pic" item="Danièle Obono" visible="no">
-              <div class="image image1"  id="image12" style="background-image: url(/img/obono.jpg); background-position: -11vw -8vw; transform: scaleX(-1) scale(1.3);"></div>
-              <div class="zone textshadow zone1" id="zone1_2" contenteditable="">
-                <div align="center" margintop="-1">
-                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Danièle</span></div>
-                <div align="center">
-                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Obono</span></div>
-              </div>
-            </div>
-            <!-- Eric Coquerel -->
-            <div class="pic" item="Eric Coquerel" visible="no">
-              <div class="image image1"  id="image13" style="background-image: url(/img/coquerel.jpg); background-position: -1vw -5vw; transform: scaleX(1) scale(1.5);"></div>
-              <div class="zone textshadow zone1" id="zone1_3" contenteditable="">
-                <div align="center" margintop="-1">
-                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Eric</span></div>
-                <div align="center">
-                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Coquerel</span></div>
-              </div>
-            </div>
-            <!-- Eric Coquerel (2) -->
-            <div class="pic" item="Eric Coquerel (2)" visible="no">
-              <div class="image image1"  id="image14" style="background-image: url(/img/coquerel2.jpg); background-position: -10vw 5vw; transform: scaleX(-1) scale(1.3);"></div>
-              <div class="zone textshadow zone1" id="zone1_4" contenteditable="">
-                <div align="center" margintop="-1">
-                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Eric</span></div>
-                <div align="center">
-                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Coquerel</span></div>
-              </div>
-            </div>
-            <!-- Alexis Corbiere -->
-            <div class="pic" item="Alexis Corbière" visible="no">
-              <div class="image image1"  id="image15" style="background-image: url(/img/corbiere.jpg); background-position: -2vw -1.5vw; transform: scaleX(1) scale(1.1);"></div>
-              <div class="zone textshadow zone1" id="zone1_5" contenteditable="">
-                <div align="center" margintop="-1">
-                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Alexis</span></div>
-                <div align="center">
-                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Corbière</span></div>
-              </div>
-            </div>
-            <!-- Clémentine Autain -->
-            <div class="pic" item="Clémentine Autain" visible="no">
-              <div class="image image1"  id="image16" style="background-image: url(/img/autain.jpg); background-position: 4.5vw 1.5vw; transform: scaleX(1) scale(1.1);"></div>
-              <div class="zone textshadow zone1" id="zone1_6" contenteditable="">
-                <div align="center" margintop="-1">
-                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Clémentine</span></div>
-                <div align="center">
-                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Autain</span></div>
-              </div>
-            </div>
-            <!-- Caroline Fiat -->
-            <div class="pic" item="Caroline Fiat" visible="no">
-              <div class="image image1"  id="image17" style="background-image: url(/img/fiat.jpg); background-position: 8vw -2.5vw; transform: scaleX(1) scale(1.2);"></div>
-              <div class="zone textshadow zone1" id="zone1_7" contenteditable="">
-                <div align="center" margintop="-1">
-                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Caroline</span></div>
-                <div align="center">
-                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Fiat</span></div>
-              </div>
-            </div>
-            <!-- Adrien Quatennens -->
-            <div class="pic" item="Adrien Quatennens" visible="no">
-              <div class="image image1"  id="image18" style="background-image: url(/img/quatennens.jpg); background-position: -11.5vw -3.5vw; transform: scaleX(-1) scale(1.3);"></div>
-              <div class="zone textshadow zone1" id="zone1_8" contenteditable="">
-                <div align="center" margintop="-1">
-                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">Adrien</span></div>
-                <div align="center">
-                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Quatennens</span></div>
-              </div>
-            </div>
-            <!-- François Ruffin -->
-            <div class="pic" item="François Ruffin" visible="no">
-              <div class="image image1"  id="image19" style="background-image: url(/img/ruffin.jpg); background-position: 2.5vw 5vw; transform: scaleX(1) scale(1.3);"></div>
-              <div class="zone textshadow zone1" id="zone1_9" contenteditable="">
-                <div align="center" margintop="-1">
-                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">François</span></div>
-                <div align="center">
-                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">Ruffin</span></div>
-              </div>
-            </div>
-
+      {% endfor %}
 
           </div>
         <div id="bloc1"></div>

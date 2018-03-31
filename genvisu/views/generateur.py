@@ -125,7 +125,10 @@ def returnfile(folder,_file):
     mimetype = mimetypes.guess_type(_file)[0]
 
     path = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],folder,_file)
-    return Response(open(path,'r').read(),mimetype=mimetype)
+    if os.path.exists(path):
+        return Response(open(path,'r').read(),mimetype=mimetype)
+    else:
+        return "Nope"
 
 @app.route('/css/<cssfile>')
 def css(cssfile):
@@ -195,11 +198,13 @@ def export():
 
 @app.route('/visuel/<visuelid>')
 def visuel(visuelid):
+    from genvisu.tools import render
     key = request.args.get('key')
     visuelid = visuelid.split('?')[0]
     # validation visuelid
-    path = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'index.html')
-    html = open(path,'r').read()
+    #path = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'index.html')
+    #html = open(path,'r').read()
+    html = render(os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'index.html'),{'test':[]})
     xml = parse_content(html)
 
     data = None

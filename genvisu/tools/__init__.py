@@ -2,6 +2,13 @@ from flask import Response,request,make_response
 import json
 #from genvisu import use_cache
 import datetime
+import os
+def render(tpl_path, context):
+    import jinja2
+    path, filename = os.path.split(tpl_path)
+    return jinja2.Environment(
+        loader=jinja2.FileSystemLoader(path or './')
+    ).get_template(filename).render(context)
 
 
 def parse_content(content):
