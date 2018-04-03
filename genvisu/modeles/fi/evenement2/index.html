@@ -67,7 +67,7 @@
       height:50vw;
       width:100vw;
     }
-    
+
     #bloc1 {
       position:absolute;
       /*top:2vw;
@@ -152,7 +152,7 @@
       justify-content: center;
     }
     .media img {
-      height:9vw;
+      height:7vw;
       margin-left:1vw;
       margin-right:1vw;
       padding:1vw;
@@ -224,6 +224,14 @@
     }
     #blocparent.droite {
       left:50vw;
+    }
+    .emission {
+      padding-top:1vw;
+    }
+    .nomemission {
+      margin:auto;
+      border-left: 0.5vw solid #000;
+      padding-left:1vw;
     }
 
     </style>
@@ -304,10 +312,29 @@
               <div class="zone zone2" id="zone22" contenteditable=""><div align="center" marginright="0" margintop="1"><span fontweight="9" fontfamily="2" fontsize="13" color="4" paddingtop="0" lineheight="6">Vendredi 30 mars</span></div><div align="center" marginright="0" margintop="0"><span fontweight="9" fontfamily="2" fontsize="16" color="6" lineheight="5">19h</span><br></div></div>
             </div>
             <div class="emission" optionlist="Emission">
-              <div class="media" item="ONPC" visible="yes">
-                <img src="/static/img/logos/chaines/tele/Fr_2_2018.png">
-                <img src="/static/img/logos/emissions/onpc.png">
+              <div class="media" item="C8 - Les Terriens du dimanche !" visible="yes">
+                <img src="/static/img/logos/chaines/tele/C8.svg">
+                <img src="/static/img/logos/emissions/ltd.png">
+                <!--<img src="/static/img/logos/emissions/onpc.png">-->
                 <div class="zone zone4" id="zone42" contenteditable=""><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#ONPC</span></div></div>
+              </div>
+              <div class="media" item="ONPC" visible="no">
+                <img src="/static/img/logos/chaines/tele/Fr_2_2018.png">
+                <div class="nomemission"><div><span fontweight="7" fontfamily="4" fontsize="12" color="1"  lineheight="4" texttransform="uppercase">On est pas couché</span></div>
+                <div><span fontweight="4" fontsize="5" color="1" fontstyle="italic" fontfamily="4">Laurent Ruquier</span></div>
+                </div>
+
+                <!--<img src="/static/img/logos/emissions/onpc.png">-->
+                <div class="zone zone4" id="zone43" contenteditable=""><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#ONPC</span></div></div>
+              </div>
+              <div class="media" item="Europe 1 - Interview de 8h15" visible="no">
+                <img src="/static/img/logos/chaines/radio/Europe_1.png">
+                <div class="nomemission"><div><span fontweight="7" fontfamily="4" fontsize="11" color="1"  lineheight="4" texttransform="uppercase">L'interview de 8h15</span></div>
+                <div><span fontweight="4" fontsize="5" color="1" fontstyle="italic" fontfamily="4">Patrick Cohen</span></div>
+                </div>
+
+                <!--<img src="/static/img/logos/emissions/onpc.png">-->
+                <div class="zone zone4" id="zone44" contenteditable=""><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#E1Matin</span></div></div>
               </div>
               <div class="media" item="L'emission politique" visible="no">
                 <img src="/static/img/logos/chaines/tele/Fr_2_2018.png">
