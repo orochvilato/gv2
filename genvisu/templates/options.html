@@ -1,0 +1,47 @@
+<html>
+<body>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+  {% for id,opt in options.iteritems() %}
+  {% if opt['type'] == 'select' %}
+    <label>{{ opt['label'] }}
+    <input type="hidden" id="{{ id }}">
+    {% for i in range(opt['maxdepth']) %}
+    <select sel="{{id}}" id="sel_{{ id }}_{{ loop.index }}" depth={{ loop.index }}>
+      <option selected value="">Choisir</option>
+      {% if loop.index == 1 %}
+        {% for it in opt['lists'][id] %}
+          <option value="{{it['id']}}">{{it['label']}}</option>
+        {% endfor %}
+      {% endif %}
+    </select>
+    {% endfor %}
+    <script>
+      var {{id}}_lists = JSON.parse('{{ opt["lists"]|tojson }}');
+      for (var i=1;i<={{ opt['maxdepth']}};i++) {
+        $("#sel_{{id}}_"+i).change(function() {
+          var depth = parseInt($(this).attr('depth'));
+          var key = $(this).val();
+          var items = {{id}}_lists[key];
+          $('select[sel="{{id}}"]').filter(function() { return $(this).attr('depth') > depth}).hide();
+          if (items != undefined) {
+            var $sublist = $("#sel_{{id}}_"+(depth+1));
+            $sublist.empty();
+            $sublist.append('<option selected value="">Choisir</option>');
+            $.each(items, function(index,value) {
+                $sublist.append('<option value="'+value.id+'">' + value.label + "</option>");
+            });
+            $('select[sel="{{id}}"]').filter(function() { return $(this).attr('depth') == (depth+1)}).show();
+          } else {
+            $("#{{id}}").val(key);
+            console.log(key);
+          }
+        });
+      }
+      $('select[sel="{{id}}"]').filter(function() { return $(this).attr('depth') > 1}).hide();
+    </script>
+  {% endif %}
+  {% endfor %}
+
+</body>
+</html>

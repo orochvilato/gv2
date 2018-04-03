@@ -1,0 +1,72 @@
+id: testlist
+label: Test List
+type: select
+items:
+  - label: Elem 1
+    id: elem1
+    items:
+      - label: Elem 1-1
+        id: elem11
+      - label: Elem 1-2
+        id: elem12
+      - label: Elem 1-3
+        id: elem33
+  - label: Elem 2
+    id: elem2
+    items:
+      - label: Elem 2-1
+        id: elem21
+      - label: Elem 2-2
+        id: elem22
+        items:
+          - label: Elem 2-2-1
+            id: elem221
+          - label: Elem 2-2-2
+            id: elem222
+          - label: Elem 2-2-3
+            id: elem223
+      - label: Elem 2-3
+        id: elem23
+  - label: Elem 3
+    id: elem3
+    items:
+      - label: Elem 3-1
+        id: elem31
+      - label: Elem 3-2
+        id: elem32
+      - label: Elem 3-3
+        id: elem33
+---
+id: testlist2
+label: Test List2
+type: select
+items:
+  - label: xElem 1
+    id: xelem1
+    items:
+      - label: xElem 1-1
+        id: xelem11
+      - label: xElem 1-2
+        id: xelem12
+  - label: xElem 2
+    id: xelem2
+    items:
+      - label: xElem 2-2
+        id: xelem22
+        items:
+          - label: xElem 2-2-1
+            id: xelem221
+          - label: xElem 2-2-2
+            id: xelem222
+          - label: xElem 2-2-3
+            id: xelem223
+            items:
+              - label: wElem 3-1
+                id: welem31
+              - label: wElem 3-2
+                id: welem32
+              - label: wElem 3-3
+                id: welem33
+      - label: xElem 2-3
+        id: xelem23
+  

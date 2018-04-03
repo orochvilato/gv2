@@ -1,0 +1,19 @@
+- id: testlist
+  value: elem1
+  targets:
+    - class: class1
+      actions:
+        toggleClass: cl
+        attrs:
+            attr1: toto
+            attr2: titi
+        content: Replace
+    - id: id1
+      actions:
+        content: rrpld
+- id: testlist2
+  value: elem2
+  targets:
+    - class: class2
+      actions:
+        toggleClass: tc

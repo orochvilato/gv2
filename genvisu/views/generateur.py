@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from genvisu import app, app_path, memcache,mdbrw,mdb
-from genvisu.tools import image_response, parse_content
+from genvisu.tools import image_response, parse_content, json_response
 from flask import render_template, url_for, request, Response, session, redirect
 import re
 import requests
@@ -9,6 +9,7 @@ import os
 import time
 
 visuels = {
+    'test':'fi/test',
     '22mars':'fi/affiche2',
     'affiche':'fi/affiche',
     'affiche2':'fi/affiche2',
@@ -87,6 +88,40 @@ def publicvisuel():
     width,height = get_dimensions(visuelid)
 
     return render_template('generateur.html',  public=True, sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , dimset=dimset(width,height),width=width, height=height)
+
+
+def parseSelectItems(data,item,depth=0):
+    if 'items' in item.keys():
+        depth += 1
+        data['lists'][item['id']] = []
+        for it in item['items']:
+            data['lists'][item['id']].append({'id':it['id'],'label':it['label'],'depth':depth})
+            data['maxdepth'] = max(data['maxdepth'],depth)
+            parseSelectItems(data,it,depth)
+        depth -= 1
+
+def parseOptions(visuelid):
+    import json
+    option_path = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'options.yml')
+    import yaml
+    options = {}
+    for option in yaml.load_all(open(option_path).read()):
+        if option['type']=='select':
+            select = options[option['id']] = {'type':'select','label':option['label'],'lists':{},'maxdepth':0}
+            parseSelectItems(select,option)
+    return options
+
+def parseActions(visuelid):
+    import json
+    action_path = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'actions.yml')
+    import yaml
+    actions = {}
+    print yaml.load(open(action_path).read())
+
+@app.route('/testopt')
+def testopt():
+    parseActions('test')
+    return render_template('options.html',options=parseOptions('test'))
 
 @app.route('/edit/<visuelid>')
 @require_login

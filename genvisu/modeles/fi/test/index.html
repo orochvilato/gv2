@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta dimension="100x100">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="/static/css/basecharte.css">
+    <link rel="stylesheet" href="/css/charte.css">
+
+    <title>FI - Template 02</title>
+    <style>
+    body {
+      margin: 0;
+      padding:0;
+      border:0;
+      background-color: #202020; }
+
+    .container {
+      position:relative;
+      margin: 0 auto;
+      background-color: #ffffff;
+      overflow: hidden;
+      }
+
+    body {
+      overflow-x: hidden;
+      /*overflow-y: hidden;*/
+    }
+    .container {
+      width:100vw;
+      height: 100vw;
+    }
+    .skew {
+      transform:skewY(-4deg);
+    }
+    .image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+
+
+    }
+    #image1 {
+      background: url('/img/photo.jpg');
+      background-size: cover;
+      transform: scale(1);
+      z-index: 7;
+
+    }
+    .header {
+      position:absolute;
+      top:4vw;
+      left:3vw;
+      right:3vw;
+      display:block;
+      height:29vw;
+    }
+    .pic {
+      display:block;
+      position:absolute;
+      top:25vw;
+      height:50vw;
+      width:100%;
+      overflow:hidden;
+    }
+    .footer {
+      position:absolute;
+      top:75vw;
+      left:3vw;
+      right:3vw;
+      height:30vw;
+
+      display:block;
+    }
+    .zone {
+      height:20vw;
+    }
+    .textblock {
+      position:absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      top:2vw;
+    }
+    .logofi {
+      display: table;
+      margin: 0 auto;
+      height:100%;
+    }
+    .fi {
+      position:absolute;
+      width:100%;
+      height:9vw;
+      bottom:0.5vw;
+    }
+    .textefi {
+      display: inline-block;
+      padding-left: 1vw;
+      margin-bottom: 3vw;
+      vertical-align: text-bottom;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+
+          <div class="zone skew" id="zone1" contenteditable="">
+
+          <div align="center" margintop="5"><span fontweight="9" fontsize="18" fontfamily="1" texttransform="uppercase" lineheight="3" color="5">la santé n'est pas</span></div><div align="center" margintop="0"><span fontweight="9" fontsize="18" fontfamily="1" texttransform="uppercase" bgcolor="0" color="6">une marchandise</span></div></div>
+        </div>
+        <div class="pic skew">
+          <div class="image" id="image1" style="background-position: -3.86vw -3.15vw; transform: scale(1.28);"></div>
+        </div>
+
+
+
+      <div class="footer">
+        <div id="zone2" class="zone skew" contenteditable="">
+            <div align="center" margintop="2"><span fontfamily="1" fontweight="9" texttransform="uppercase" bgcolor="0" color="4" fontsize="13">N'importe quel texte ici</span></div>
+        </div>
+
+        <!--<div class="fi">
+          <img class="logofi" src="/img/fi.png">
+        </div>-->
+      </div>
+
+    </div>
+
+
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</body></html>

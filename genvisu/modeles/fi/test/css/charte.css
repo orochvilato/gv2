@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900|Courgette:100,200,300,400,500,600,700,800,900|Montserrat:100,200,300,400,500,600,700,800,900|Roboto+Slab:100,200,300,400,500,600,700,800,900");
+
+*[fontfamily="1"] {
+  font-family: "Montserrat", sans-serif;
+}
+*[fontfamily="2"] {
+  font-family: "Roboto Slab", serif;
+}
+*[fontfamily="3"] {
+  font-family: "Courgette", serif;
+}
+*[fontfamily="4"] {
+  font-family: "Roboto", serif;
+}
+
+
+*[color="4"] {
+  color:#1f3356;
+}
+*[color="5"] {
+  color:#0098b6;
+}
+*[color="6"] {
+  color:#e23d22;
+}
+
+*[bgcolor="4"] {
+  background-color:#1f3356;
+}
+*[bgcolor="5"] {
+  background-color:#0098b6;
+}
+*[bgcolor="6"] {
+  background-color:#e23d22;
+}
