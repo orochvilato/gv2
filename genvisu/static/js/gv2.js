@@ -1104,7 +1104,7 @@ function sendData(action,slot,w,h) {
   var data = {'path':visuel_path,'zones':{},'images':{},'options':{},'optionstoggle':{}};
 
   // options
-  /*
+
   $('#f').contents().find('[option]').each(function() {
     var option = $(this).attr('option');
     var value = $(this).attr('visible');
@@ -1119,14 +1119,14 @@ function sendData(action,slot,w,h) {
     var option = $(this).attr('optiontoggle');
     var value = $(this).attr('value');
     data.optionstoggle[option] = $(this).hasClass(value);
-  });*/
+  });
   $('input[opttype]').each(function() {
     if ($(this).attr('type')=='checkbox') {
       data.options[$(this).attr('id')] = $(this).prop('checked');
     } else {
       data.options[$(this).attr('id')] = $(this).val();
     }
-    
+
   })
   // zones
   $('#f').contents().find('.zone').each(function() {

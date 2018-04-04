@@ -83,7 +83,7 @@
       opacity:0.8;
     }
     .bloc2 {
-      position:fixed;
+      position:absolute;
       left:0vw;
       top:13vw;
       width:50vw;
@@ -91,9 +91,7 @@
       background-color: #fff;
       opacity:0.95;
     }
-    .droite .bloc2 {
-      left:50vw;
-    }
+
     #ombre {
       position:absolute;
       top:26.8vw;
@@ -121,33 +119,25 @@
       height:13vw;
       width:45vw;
     }
-    .droite .zone1 {
-      left:52.5vw;
-    }
-    #zone2 {
+
+    .zone2 {
       position: absolute;
       left:0.5vw;
       top:13.5vw;
       width:49vw;
       height:13vw;
     }
-    #zone3 {
+    .zone3 {
       position: absolute;
-      top:0vw;
-      left:0vw;
-      width:45vw;
-      height:11.5vw;
-    }
-    #medias, #lieu {
-      position: absolute;
-      top:28vw;
-      left:2.5vw;
-      width:45vw;
-      height:11.5vw;
-
+      top: 28vw;
+      left: 2vw;
+      width: 46vw;
+      height: 11.5vw;
     }
 
-    div.media[visible="yes"] {
+
+    div.media {
+      margin-top:1vw;
       display:flex;
       justify-content: center;
     }
@@ -200,10 +190,10 @@
     }
     .zone4 {
       position: absolute;
-      top: 14.5vw;
-      left: 20.5vw;
-      width:24vw;
-      height:3vw;
+      top: 42.5vw;
+      left: 23.5vw;
+      width: 23vw;
+      height: 3vw;
     }
     #partagez {
       text-align: center;
@@ -233,61 +223,102 @@
       border-left: 0.5vw solid #000;
       padding-left:1vw;
     }
+    .hide {
+      display:none;
+    }
+    .show {
+      display:block;
+    }
+    #lieu_media[type="media"] #lieu {
+      display: none;
+    }
+    #lieu_media[type="lieu"] #media{
+      display:none;
+    }
+    #lieu_media[type="lieu"] #lieu{
+      display:block;
+    }
+    #lieu_media[type="media"] #media{
+      display:block;
+    }
+    #loc_media[emission="logo"] #logoemission {
+      display:block;
+    }
+    #loc_media[emission="logo"] #nomemission {
+      display:none;
+    }
+    #loc_media[emission="nom"] #nomemission {
+      display:block;
+    }
+    #loc_media[emission="nom"] #logoemission {
+      display:none;
+    }
 
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div id="blocparent" optiontoggle="Droite" value="droite">
-              <div>
-                <div class="pic">
-                  <div class="image image1" id="image1"></div>
-
-                  <div class="zone textshadow zone1" id="zone1" contenteditable="">
-                    <div align="center" margintop="-1">
-                      <span id="prenom" fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">prénom</span></div>
-                    <div align="center">
-                        <span id="nom" texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">nom</span></div>
-                  </div>
+        <div class="pic">
+            <div class="image image1" id="image1"></div>
+        </div>
+        <div id="blocparent">
+            <div class="zone textshadow zone1" id="zone1" contenteditable="">
+                <div align="center" margintop="-1">
+                  <span id="prenom" fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">prénom</span>
                 </div>
-             </div>
-        <div id="bloc1"></div>
+                <div align="center">
+                  <span id="nom" texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">nom</span>
+                </div>
+            </div>
+            <div id="bloc1"></div>
         <!--<div id="ombre"></div>-->
-        <div id="bloc3"></div>
-        <img id="logofi" src="/img/FI_logo.svg" />
-        <div class="separator"></div>
+            <div id="bloc3"></div>
+            <img id="logofi" src="/img/FI_logo.svg" />
+            <div class="separator"></div>
+            <div class="bloc2"></div>
 
         <!--<div id="partagez">Partagez <i class="far fa-arrow-circle-down"></i></div>-->
-
-
-        <div class="typeevement" optionlist="Type evenement">
-          <div id="lieu">
-            <div class="bloc2">
-              <div class="zone zone2" id="zone21" contenteditable=""><div align="center" marginright="0" margintop="1"><span fontweight="6" fontfamily="2" fontsize="10" color="4" lineheight="8" texttransform="uppercase">Réunion Publique</span></div><div align="center" margintop="0"><span fontweight="9" fontfamily="2" fontsize="12" color="4" paddingtop="0" lineheight="7">Vendredi 30 mars - </span><span fontweight="9" fontfamily="2" fontsize="12" color="6">19h</span></div></div>
-            </div>
-            <div class="zone" id="zone3" contenteditable=""><div align="center" margintop="0"><span color="4" fontsize="13" fontweight="8" lineheight="5" fontfamily="1">CAMBRAI</span></div><div align="center"><span color="4" fontsize="8" fontweight="6" fontfamily="1">Salle des cérémonies</span></div><div align="center"><span color="4" fontsize="8" fontweight="6" fontfamily="1">Place Aristide Briand</span></div></div>
-            <div class="zone zone4" id="zone41" contenteditable=""><div align="center"><span fontweight="8" fontsize="8" color="5" fontfamily="1">#Hashtag</span></div></div>
-          </div>
-          <div id="medias">
-            <div class="bloc2">
-              <div class="zone zone2" id="zone22" contenteditable=""><div align="center" marginright="0" margintop="1"><span fontweight="9" fontfamily="2" fontsize="13" color="4" paddingtop="0" lineheight="6">Vendredi 30 mars</span></div><div align="center" marginright="0" margintop="0"><span fontweight="9" fontfamily="2" fontsize="16" color="6" lineheight="5">19h</span><br></div></div>
-            </div>
-            <div class="emission">
-              <div class="media" item="C8 - Les Terriens du dimanche !">
-                <img src="/static/img/logos/chaines/tele/C8.svg">
-                <img src="/static/img/logos/emissions/ltd.png">
-                <!--<img src="/static/img/logos/emissions/onpc.png">-->
-                <div class="zone zone4" id="zone4" contenteditable=""><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#ONPC</span></div></div>
+            <div id="lieu_media" type="lieu">
+            <div id="lieu">
+              <div class="zone zone2" id="dh_lieu" contenteditable="">
+                <div align="center" marginright="0" margintop="1">
+                  <span id="typelieu" fontweight="6" fontfamily="2" fontsize="10" color="4" lineheight="8" texttransform="uppercase">Réunion Publique</span>
+                </div>
+                <div align="center" margintop="0">
+                  <span texttransform="capitalize" class="lieudate" fontweight="9" fontfamily="2" fontsize="12" color="4" paddingtop="0" lineheight="7">Vendredi 30 mars</span>
+                  <span fontweight="9" fontfamily="2" fontsize="12" color="4" paddingtop="0" lineheight="7"> - </span>
+                  <span class="lieuheure" fontweight="9" fontfamily="2" fontsize="12" color="6">19h</span>
+                </div>
               </div>
+              <div class="zone zone3" id="loc_lieu" contenteditable=""><div align="center" margintop="0"><span color="4" fontsize="13" fontweight="8" lineheight="5" fontfamily="1">CAMBRAI</span></div><div align="center"><span color="4" fontsize="8" fontweight="6" fontfamily="1">Salle des cérémonies</span></div><div align="center"><span color="4" fontsize="8" fontweight="6" fontfamily="1">Place Aristide Briand</span></div></div>
+            </div>
+            <div id="media">
+              <div class="zone zone2" id="dh_media" contenteditable="">
+                <div align="center" marginright="0" margintop="1">
+                  <span texttransform="capitalize" class="lieudate" fontweight="9" fontfamily="2" fontsize="13" color="4" paddingtop="0" lineheight="6">Vendredi 30 mars</span>
+                </div>
+                <div align="center" marginright="0" margintop="0">
+                  <span class="lieuheure" fontweight="9" fontfamily="2" fontsize="16" color="6" lineheight="5">19h</span>
+                </div>
+              </div>
+              <div class="zone3 media" id="loc_media" emission='logo'>
+                <img id="logomedia" src="">
+                <img id="logoemission" src="">
+                <div id="nomemission">
+                <div class="nomemission"><div><span fontweight="7" fontfamily="4" fontsize="10" color="1"  lineheight="4" texttransform="uppercase">L'interview de 8h15</span></div>
+                <div><span fontweight="4" fontsize="5" color="1" fontstyle="italic" fontfamily="4">Patrick Cohen</span></div>
+                </div>
+                </div>
 
-
+              </div>
             </div>
           </div>
+
+            <div class="zone zone4" id="zone41" contenteditable=""><div align="center"><span id="hashtag" fontweight="8" fontsize="8" color="5" fontfamily="1">#Hashtag</span></div></div>
         </div>
 
       </div>
-    </div>
 
 
 

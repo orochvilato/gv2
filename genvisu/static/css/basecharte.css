@@ -384,6 +384,9 @@ div[optionlist] *[visible="yes"] {
 *[texttransform="uppercase"] {
    text-transform: uppercase;
 }
+*[texttransform="capitalize"] {
+   text-transform: capitalize;
+}
 *[textdecoration="none"] {
   text-decoration: none;
 }

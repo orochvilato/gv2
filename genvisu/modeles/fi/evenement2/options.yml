@@ -95,7 +95,7 @@ items:
         id: taurine
         items:
           - label: photo 1
-            id: taurine
+            id: taurine1
   - label: Cadre FI
     id: cadres
     items:
@@ -125,3 +125,42 @@ items:
             id: simonnet1
           - label: photo 2
             id: simonnet2
+---
+id: evt
+label: "Évènement"
+type: select
+items:
+  - label: Lieu
+    id: lieu
+    items:
+      - label: "Réunion publique"
+        id: reunion
+      - label: "Manifestation"
+        id: manif
+  - label: Média
+    id: media
+    items:
+      - label: Télé
+        id: tele
+        items:
+          - label: C8
+            id: c8
+            items:
+              - label: "Les Terriens du Dimanche !"
+                id: ltd
+      - label: Radio
+        id: radio
+        items:
+          - label: Europe 1
+            id: europe1
+            items:
+              - label: "L'interview de 8h15"
+                id: e1_itv815
+---
+id: evt_date
+label: "Date évènement"
+type: date
+---
+id: evt_heure
+label: "Heure évènement"
+type: time

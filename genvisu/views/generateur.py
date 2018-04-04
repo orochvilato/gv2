@@ -295,23 +295,23 @@ def visuel(visuelid):
             id = e.attrib['id']
             e.attrib['style'] = images.get(id,'')
 
-        #for i,e in enumerate(xml.xpath('//*[@option]')):
-        #    option = e.attrib.get('option',None)
-        #    e.attrib['visible'] = options.get(option,'yes' if option else 'no')
+        for i,e in enumerate(xml.xpath('//*[@option]')):
+            option = e.attrib.get('option',None)
+            e.attrib['visible'] = options.get(option,'yes' if option else 'no')
 
 
-        #for i,e in enumerate(xml.xpath('//*[@optionlist]')):
-        #    option = e.attrib.get('optionlist',None)
-        #    for se in e.xpath('*[@item]'):
-        #        item = se.attrib.get('item',None)
-        #
-        #        se.attrib['visible'] = 'yes' if options.get(option,None)==item else 'no'
+        for i,e in enumerate(xml.xpath('//*[@optionlist]')):
+            option = e.attrib.get('optionlist',None)
+            for se in e.xpath('*[@item]'):
+                item = se.attrib.get('item',None)
 
-        #for i,e in enumerate(xml.xpath('//*[@optiontoggle]')):
-        #    option = e.attrib.get('optiontoggle',None)
-        #    value = e.attrib.get('value','')
-        #    if optionstoggle.get(option):
-        #        e.attrib['class'] = e.attrib.get('class','')+' '+value
+                se.attrib['visible'] = 'yes' if options.get(option,None)==item else 'no'
+
+        for i,e in enumerate(xml.xpath('//*[@optiontoggle]')):
+            option = e.attrib.get('optiontoggle',None)
+            value = e.attrib.get('value','')
+            if optionstoggle.get(option):
+                e.attrib['class'] = e.attrib.get('class','')+' '+value
 
         for i,e in enumerate(xml.xpath('//div[contains(@class,"zone")]')):
             id = e.attrib['id']

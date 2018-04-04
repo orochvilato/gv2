@@ -14,6 +14,15 @@ function doAction(id,key) {
       var date  = new Date(key);
       key = date.toLocaleDateString("fr-FR",dopts);
     }
+  } else if (type=='time') {
+    if (key) {
+      var heure = key.split(':');
+      key = heure[0]+'h'
+      if (heure[1]!='00') {
+        key += heure[1];
+      }
+
+    }
   }
 
   if (actions_defs[id] == undefined) {
@@ -40,7 +49,7 @@ function doAction(id,key) {
     var actions = tgt.actions;
     for (act in actions) {
       if (act=='toggleClass') {
-        sel.toggleClass(actions.toggleClass);
+        sel.addClass(actions.toggleClass);
       } else if (act=='addClass') {
         sel.addClass(actions.addClass);
       } else if (act=='removeClass') {
@@ -58,6 +67,7 @@ function doAction(id,key) {
 
 }
 $(document).ready( function() {
+
   for (id in options) {
     console.log(id,options[id]);
     doAction(id,options[id]);

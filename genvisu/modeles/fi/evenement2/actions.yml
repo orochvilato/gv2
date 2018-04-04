@@ -167,4 +167,317 @@ personnalite:
       - sel: "#prenom"
         actions:
           content: "Caroline"
-  
+  girard1:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/girard1.jpg); background-position: 1.5vw -5vw; transform: scaleX(1) scale(1.2);"
+      - sel: "#nom"
+        actions:
+          content: "Girard"
+      - sel: "#prenom"
+        actions:
+          content: "Fiat"
+  girard2:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/girard2.jpg); background-position: 8vw 5vw; transform: scaleX(-1) scale(1.3);"
+      - sel: "#nom"
+        actions:
+          content: "Girard"
+      - sel: "#prenom"
+        actions:
+          content: "Fiat"
+  liem1:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/liem.jpg); background-position: -2vw -1vw; transform: scaleX(-1) scale(1.1);"
+      - sel: "#nom"
+        actions:
+          content: "Hoang Ngoc"
+      - sel: "#prenom"
+        actions:
+          content: "Liem"
+  liem2:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/liem2.jpg); background-position: -1.5vw -1.5vw; transform: scaleX(1) scale(1.7);"
+      - sel: "#nom"
+        actions:
+          content: "Hoang Ngoc"
+      - sel: "#prenom"
+        actions:
+          content: "Liem"
+  lachaud1:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/lachaud.jpg); background-position: -1vw 1.5vw; transform: scaleX(-1) scale(1.6);"
+      - sel: "#nom"
+        actions:
+          content: "Lachaud"
+      - sel: "#prenom"
+        actions:
+          content: "Bastien"
+  obono1:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/obono.jpg); background-position: -11vw -8vw; transform: scaleX(-1) scale(1.3);"
+      - sel: "#nom"
+        actions:
+          content: "Obono"
+      - sel: "#prenom"
+        actions:
+          content: "Danièle"
+  obono2:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/obono2.jpg); background-position: -2.5vw -2.5vw; transform: scaleX(-1) scale(1.3);"
+      - sel: "#nom"
+        actions:
+          content: "Obono"
+      - sel: "#prenom"
+        actions:
+          content: "Danièle"
+  obono3:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/obono3.jpg); background-position: 3vw -3vw; transform: scale(1.3) scaleX(1);"
+      - sel: "#nom"
+        actions:
+          content: "Obono"
+      - sel: "#prenom"
+        actions:
+          content: "Danièle"
+  prudhomme1:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/prudhomme.jpg); background-position: -1vw 0.5vw; transform: scaleX(1) scale(1.6);"
+      - sel: "#nom"
+        actions:
+          content: "Prud'homme"
+      - sel: "#prenom"
+        actions:
+          content: "Loïc"
+  quatennens1:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/quatennens.jpg); background-position: -11.5vw -3.5vw; transform: scaleX(-1) scale(1.3);"
+      - sel: "#nom"
+        actions:
+          content: "Quatennens"
+      - sel: "#prenom"
+        actions:
+          content: "Adrien"
+  quatennens2:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/quatennens2.jpg); background-position: -13.5vw 1vw; transform: scaleX(-1) scale(1.4);"
+      - sel: "#nom"
+        actions:
+          content: "Quatennens"
+      - sel: "#prenom"
+        actions:
+          content: "Adrien"
+  quatennens3:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/quatennens3.jpg); background-position: -16vw 1.5vw;  transform: scaleX(-1) scale(1.7);"
+      - sel: "#nom"
+        actions:
+          content: "Quatennens"
+      - sel: "#prenom"
+        actions:
+          content: "Adrien"
+  ressiguier1:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/ressiguier.jpg); background-position: -4vw 3.5vw; transform: scaleX(-1) scale(1.3);"
+      - sel: "#nom"
+        actions:
+          content: "Ressiguier"
+      - sel: "#prenom"
+        actions:
+          content: "Muriel"
+  ratenon1:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/ratenon.jpg); background-position: 4.5vw 2vw; transform: scaleX(1) scale(1.2);"
+      - sel: "#nom"
+        actions:
+          content: "Ratenon"
+      - sel: "#prenom"
+        actions:
+          content: "Jean-Hugues"
+  ruffin1:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/ruffin.jpg); background-position: 2.5vw 5vw; transform: scaleX(1) scale(1.3);"
+      - sel: "#nom"
+        actions:
+          content: "Ruffin"
+      - sel: "#prenom"
+        actions:
+          content: "François"
+  ruffin2:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/ruffin2.jpg); background-position: -1vw 3vw; transform: scaleX(1) scale(1.6);"
+      - sel: "#nom"
+        actions:
+          content: "Ruffin"
+      - sel: "#prenom"
+        actions:
+          content: "François"
+  simonnet1:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/simonnet1.jpg); background-position: 3vw -5vw; transform: scaleX(1) scale(1.2);"
+      - sel: "#nom"
+        actions:
+          content: "Simonnet"
+      - sel: "#prenom"
+        actions:
+          content: "Danielle"
+  simonnet2:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/simonnet2.jpg); background-position: -1.5vw -10vw; transform: scaleX(1) scale(1.3);"
+      - sel: "#nom"
+        actions:
+          content: "Simonnet"
+      - sel: "#prenom"
+        actions:
+          content: "Danielle"
+  taurine1:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/taurine.jpg); background-position: 4.5vw 0.5vw; transform: scaleX(1) scale(1.3);"
+      - sel: "#nom"
+        actions:
+          content: "Taurine"
+      - sel: "#prenom"
+        actions:
+          content: "Bénédicte"
+evt_date:
+  any:
+    targets:
+      - sel: ".lieudate"
+        actions:
+          content: key
+  empty:
+    targets:
+      - sel: ".lieudate"
+        actions:
+          content: "Date"
+evt_heure:
+  any:
+    targets:
+      - sel: ".lieuheure"
+        actions:
+          content: key
+  empty:
+    targets:
+      - sel: ".lieuheure"
+        actions:
+          content: "Heure"
+evt:
+  manif:
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: lieu
+      - sel: "#typelieu"
+        actions:
+          content: "Manifestation"
+  reunion:
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: lieu
+      - sel: "#typelieu"
+        actions:
+          content: "Réunion Publique"
+
+  ltd:
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: media
+      - sel: "#loc_media"
+        actions:
+          attrs:
+            emission: logo
+      - sel: "#logoemission"
+        actions:
+          attrs:
+            src: "/static/img/logos/emissions/ltd.png"
+      - sel: ".lieuheure"
+        actions:
+          content: "19h"
+      - sel: "#logomedia"
+        actions:
+          attrs:
+            src: "/static/img/logos/chaines/tele/C8.svg"
+      - sel: "#hashtag"
+        actions:
+          content: '#LTD'
+  e1_itv815:
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: media
+      - sel: "#loc_media"
+        actions:
+          attrs:
+            emission: nom
+      - sel: "#logomedia"
+        actions:
+          attrs:
+            src: "/static/img/logos/chaines/radio/Europe_1.png"
+      - sel: ".lieuheure"
+        actions:
+          content: "8h15"
+      - sel: "#hashtag"
+        actions:
+          content: '#E1Matin'

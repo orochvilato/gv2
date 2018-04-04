@@ -4,10 +4,6 @@ doAction = document.getElementById('f').contentWindow.doAction;
     {% if opt['type'] == 'time' %}
       $("#{{id}}").change(function() {
         var val=$(this).val();
-        if (val) {
-          val = val.split(':');
-          val = val[0]+'h'+val[1];
-        }
         doAction($(this).attr('id'),val);
       });
     {% elif opt['type'] == 'date' %}
