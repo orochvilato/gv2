@@ -69,4 +69,15 @@ items:
                 id: welem33
       - label: xElem 2-3
         id: xelem23
-  
+---
+id: checkbox1
+label: Test checkbox1
+type: checkbox
+---
+id: date1
+label: Test date
+type: date
+---
+id: time1
+label: Test time
+type: time

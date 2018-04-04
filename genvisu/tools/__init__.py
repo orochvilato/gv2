@@ -1,13 +1,15 @@
 from flask import Response,request,make_response
 import json
+from genvisu import app_path
 #from genvisu import use_cache
 import datetime
 import os
 def render(tpl_path, context):
     import jinja2
     path, filename = os.path.split(tpl_path)
+    print os.path.join(app_path,'templates')
     return jinja2.Environment(
-        loader=jinja2.FileSystemLoader(path or './')
+        loader=jinja2.FileSystemLoader([path,os.path.join(app_path,'genvisu','templates'),'./'])
     ).get_template(filename).render(context)
 
 

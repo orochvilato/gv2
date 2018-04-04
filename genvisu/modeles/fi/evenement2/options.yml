@@ -1,0 +1,127 @@
+id: personnalite
+label: Personnalité
+type: select
+items:
+  - label: Député
+    id: depute
+    items:
+      - label: Clémentine Autain
+        id: autain
+        items:
+          - label: photo 1
+            id: autain1
+          - label: photo 2
+            id: autain2
+      - label: Ugo Bernalicis
+        id: bernalicis
+        items:
+          - label: photo 1
+            id: bernalicis1
+          - label: photo 2
+            id: bernalicis2
+          - label: photo 3
+            id: bernalicis3
+      - label: Eric Coquerel
+        id: coquerel
+        items:
+          - label: photo 1
+            id: coquerel1
+          - label: photo 2
+            id: coquerel2
+          - label: photo 3
+            id: coquerel3
+      - label: Alexis Corbière
+        id: corbiere
+        items:
+          - label: photo 1
+            id: corbiere1
+          - label: photo 2
+            id: corbiere2
+          - label: photo 3
+            id: corbiere3
+      - label: Caroline Fiat
+        id: fiat
+        items:
+          - label: photo 1
+            id: fiat1
+          - label: photo 2
+            id: fiat2
+      - label: Bastien Lachaud
+        id: lachaud
+        items:
+          - label: photo 1
+            id: lachaud1
+      - label: Dianièle Obono
+        id: obono
+        items:
+          - label: photo 1
+            id: obono1
+          - label: photo 2
+            id: obono2
+          - label: photo 3
+            id: obono3
+      - label: Loïc Prud'homme
+        id: prudhomme
+        items:
+          - label: photo 1
+            id: prudhomme1
+      - label: Adrien Quatennens
+        id: quatennens
+        items:
+          - label: photo 1
+            id: quatennens1
+          - label: photo 2
+            id: quatennens2
+          - label: photo 3
+            id: quatennens3
+      - label: Muriel Ressiguier
+        id: ressiguier
+        items:
+          - label: photo 1
+            id: ressiguier1
+      - label: Jean-Hugues Ratenon
+        id: ratenon
+        items:
+          - label: photo 1
+            id: ratenon1
+      - label: François Ruffin
+        id: ruffin
+        items:
+          - label: photo 1
+            id: ruffin1
+          - label: photo 2
+            id: ruffin2
+      - label: Bénédicte Taurine
+        id: taurine
+        items:
+          - label: photo 1
+            id: taurine
+  - label: Cadre FI
+    id: cadres
+    items:
+      - label: Manuel Bompard
+        id: bompard
+        items:
+          - label: photo 1
+            id: bompard1
+      - label: Charlotte Girard
+        id: girard
+        items:
+          - label: photo 1
+            id: girard1
+          - label: photo 2
+            id: girard2
+      - label: Liem Hoang Ngoc
+        id: liem
+        items:
+          - label: photo 1
+            id: liem1
+          - label: photo 2
+            id: liem2
+      - label: Danielle Simonnet
+        id: simonnet
+        items:
+          - label: photo 1
+            id: simonnet1
+          - label: photo 2
+            id: simonnet2

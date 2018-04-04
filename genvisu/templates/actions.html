@@ -1,0 +1,66 @@
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+var actions_defs = JSON.parse('{{ actions|tojson }}');
+var options_defs = JSON.parse('{{ optionsdefs|tojson }}');
+var options = JSON.parse('{{ options|tojson }}');
+
+
+
+function doAction(id,key) {
+  var type = options_defs[id].type;
+  if (type=='date') {
+    if (key) {
+      var dopts = { weekday: 'long',  month: 'long', day: 'numeric',timeZone: 'UTC' };
+      var date  = new Date(key);
+      key = date.toLocaleDateString("fr-FR",dopts);
+    }
+  }
+
+  if (actions_defs[id] == undefined) {
+    return
+  }
+  var targets = actions_defs[id][key];
+  if (targets == undefined) {
+    var any = actions_defs[id].any;
+    var empty = actions_defs[id].empty;
+    if (empty!=undefined && key=="") {
+      targets = empty;
+    } else if (any!=undefined) {
+      targets = any;
+    } else {
+      return
+    }
+  }
+
+
+  targets = targets.targets;
+  for (tgtid in targets) {
+    var tgt = targets[tgtid];
+    var sel = $(tgt.sel);
+    var actions = tgt.actions;
+    for (act in actions) {
+      if (act=='toggleClass') {
+        sel.toggleClass(actions.toggleClass);
+      } else if (act=='addClass') {
+        sel.addClass(actions.addClass);
+      } else if (act=='removeClass') {
+        sel.removeClass(actions.removeClass);
+      } else if (act=='attrs') {
+        for (att in actions.attrs) {
+          sel.attr(att,actions.attrs[att]);
+        }
+      } else if (act=='content') {
+        var content = (actions.content=='key'?key:actions.content);
+        sel.html(content);
+      }
+    }
+  }
+
+}
+$(document).ready( function() {
+  for (id in options) {
+    console.log(id,options[id]);
+    doAction(id,options[id]);
+  }
+});
+</script>

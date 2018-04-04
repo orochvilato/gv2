@@ -236,60 +236,22 @@
 
     </style>
 </head>
-{% set deputes = [
-  {'item':'Clémentine Autain','nom':'Autain','prenom':'Clémentine','style':'background-image: url(/static/img/deputes/autain.jpg); background-position: 4.5vw 1.5vw; transform: scaleX(1) scale(1.1);'},
-  {'item':'Clémentine Autain (2)','nom':'Autain','prenom':'Clémentine','style':'background-image: url(/static/img/deputes/autain2.jpg); background-position: 4.5vw 1.5vw; transform: scaleX(1) scale(1.1);'},
-  {'item':'Manuel Bompard','nom':'Bompard','prenom':'Manuel','style':'background-image: url(/static/img/deputes/bompard.jpg); background-position: -3vw 8vw; transform: scale(1.5);'},
-  {'item':'Ugo Bernalicis','nom':'Bernalicis','prenom':'Ugo','style':'background-image: url(/static/img/deputes/bernalicis.jpg); background-position: 1.5vw 1.5vw; transform: scale(1.1); filter: grayscale(0%);'},
-  {'item':'Ugo Bernalicis (2)','nom':'Bernalicis','prenom':'Ugo','style':'background-image: url(/static/img/deputes/bernalicis2.jpg); background-position: 14.5vw 6.5vw; transform: scale(1.4);'},
-  {'item':'Ugo Bernalicis (3)','nom':'Bernalicis','prenom':'Ugo','style':'background-image: url(/static/img/deputes/bernalicis3.jpg);     background-position: 15vw 3.5vw; transform: scale(1.5);'},
-  {'item':'Eric Coquerel','nom':'Coquerel','prenom':'Éric','style':'background-image: url(/static/img/deputes/coquerel.jpg); background-position: -1vw -5vw; transform: scaleX(1) scale(1.5);'},
-  {'item':'Eric Coquerel (2)','nom':'Coquerel','prenom':'Éric','style':'background-image: url(/static/img/deputes/coquerel2.jpg); background-position: -10vw 5vw; transform: scaleX(-1) scale(1.3);'},
-  {'item':'Eric Coquerel (3)','nom':'Coquerel','prenom':'Éric','style':'background-image: url(/static/img/deputes/coquerel3.jpg); background-position: 4.5vw -0.5vw; transform: scaleX(-1) scale(1.2);'},
-  {'item':'Alexis Corbière','nom':'Corbière','prenom':'Alexis','style':'background-image: url(/static/img/deputes/corbiere.jpg); background-position: -2vw -1.5vw; transform: scaleX(1) scale(1.1);'},
-  {'item':'Alexis Corbière (2)','nom':'Corbière','prenom':'Alexis','style':'background-image: url(/static/img/deputes/corbiere2.jpg); background-position: 6.5vw -1.5vw; transform: scaleX(1) scale(1.2);'},
-  {'item':'Alexis Corbière (3)','nom':'Corbière','prenom':'Alexis','style':'background-image: url(/static/img/deputes/corbiere3.jpg); background-position: 11.5vw -2vw; transform: scaleX(1) scale(1.3);'},
-  {'item':'Caroline Fiat','nom':'Fiat','prenom':'Caroline','style':'background-image: url(/static/img/deputes/fiat.jpg); background-position: 8vw -2.5vw; transform: scaleX(1) scale(1.2);'},
-  {'item':'Caroline Fiat (2)','nom':'Fiat','prenom':'Caroline','style':'background-image: url(/static/img/deputes/fiat2.jpg); background-position: 12vw 0.5vw; transform: scaleX(1) scale(1.5);'},
-  {'item':'Charlotte Girard','nom':'Girard','prenom':'Charlotte','style':'background-image: url(/static/img/deputes/girard1.jpg); background-position: 1.5vw -5vw; transform: scaleX(1) scale(1.2);'},
-  {'item':'Charlotte Girard (2)','nom':'Girard','prenom':'Charlotte','style':'background-image: url(/static/img/deputes/girard2.jpg); background-position: 8vw 5vw; transform: scaleX(-1) scale(1.3);'},
-  {'item':'Liem Hoang Ngoc','nom':'Hoang Ngoc','prenom':'Liem','style':'background-image: url(/static/img/deputes/liem.jpg); background-position: -2vw -1vw; transform: scaleX(-1) scale(1.1);'},
-  {'item':'Liem Hoang Ngoc (2)','nom':'Hoang Ngoc','prenom':'Liem','style':'background-image: url(/static/img/deputes/liem2.jpg); background-position: -1.5vw -1.5vw; transform: scaleX(1) scale(1.7);'},
-  {'item':'Bastien Lachaud','nom':'Lachaud','prenom':'Bastien','style':'background-image: url(/static/img/deputes/lachaud.jpg); background-position: -1vw 1.5vw; transform: scaleX(-1) scale(1.6);'},
-  {'item':'Danielle Obono','nom':'Obono','prenom':'Danièle','style':'background-image: url(/static/img/deputes/obono.jpg); background-position: -11vw -8vw; transform: scaleX(-1) scale(1.3);'},
-  {'item':'Danielle Obono (2)','nom':'Obono','prenom':'Danièle','style':'background-image: url(/static/img/deputes/obono2.jpg); background-position: -2.5vw -2.5vw; transform: scaleX(-1) scale(1.3);'},
-  {'item':'Danielle Obono (3)','nom':'Obono','prenom':'Danièle','style':'background-image: url(/static/img/deputes/obono3.jpg); background-position: 3vw -3vw; transform: scale(1.3) scaleX(1);'},
-  {'item':"Loïc Prud'homme",'nom':"Prud'homme",'prenom':'Loïc','style':'background-image: url(/static/img/deputes/prudhomme.jpg);     background-position: -1vw 0.5vw; transform: scaleX(1) scale(1.6);'},
-  {'item':'Adrien Quatennens','nom':'Quatennens','prenom':'Adrien','style':'background-image: url(/static/img/deputes/quatennens.jpg); background-position: -11.5vw -3.5vw; transform: scaleX(-1) scale(1.3);'},
-  {'item':'Adrien Quatennens (2)','nom':'Quatennens','prenom':'Adrien','style':'background-image: url(/static/img/deputes/quatennens2.jpg); background-position: -13.5vw 1vw; transform: scaleX(-1) scale(1.4);'},
-  {'item':'Adrien Quatennens (3)','nom':'Quatennens','prenom':'Adrien','style':'background-image: url(/static/img/deputes/quatennens3.jpg); background-position: -16vw 1.5vw;  transform: scaleX(-1) scale(1.7);'},
-  {'item':'Muriel Ressiguier','nom':'Ressiguier','prenom':'Muriel','style':'background-image: url(/static/img/deputes/ressiguier.jpg);     background-position: -4vw 3.5vw; transform: scaleX(-1) scale(1.3);'},
-  {'item':'Jean-Hugues Ratenon','nom':'Ratenon','prenom':'Jean-Hugues','style':'background-image: url(/static/img/deputes/ratenon.jpg); background-position: 4.5vw 2vw; transform: scaleX(1) scale(1.2);'},
-  {'item':'François Ruffin','nom':'Ruffin','prenom':'François','style':'background-image: url(/static/img/deputes/ruffin.jpg); background-position: 2.5vw 5vw; transform: scaleX(1) scale(1.3);'},
-  {'item':'François Ruffin (2)','nom':'Ruffin','prenom':'François','style':'background-image: url(/static/img/deputes/ruffin2.jpg); background-position: -1vw 3vw; transform: scaleX(1) scale(1.6);'},
-  {'item':'Danielle Simonnet','nom':'Simonnet','prenom':'Danielle','style':'background-image: url(/static/img/deputes/simonnet1.jpg); background-position: 3vw -5vw; transform: scaleX(1) scale(1.2);'},
-  {'item':'Danielle Simonnet (2)','nom':'Simonnet','prenom':'Danielle','style':'background-image: url(/static/img/deputes/simonnet2.jpg); background-position: -1.5vw -10vw; transform: scaleX(1) scale(1.3);'},
-  {'item':'Bénédicte Taurine','nom':'Taurine','prenom':'Bénédicte','style':'background-image: url(/static/img/deputes/taurine.jpg); background-position: 4.5vw 0.5vw; transform: scaleX(1) scale(1.3);'},
 
-] %}
 <body>
     <div class="container">
         <div id="blocparent" optiontoggle="Droite" value="droite">
-              <div optionlist="Personnalité">
-              {% for d in deputes %}
-                <div class="pic" item="{{ d['item'] }}" visible="{% if loop.index==1 %}yes{% else %}no{% endif %}">
-              <div class="image image1"  id="image1{{ loop.index }}" style="{{ d['style'] }}"></div>
+              <div>
+                <div class="pic">
+                  <div class="image image1" id="image1"></div>
 
-              <div class="zone textshadow zone1" id="zone1_{{ loop.index }}" contenteditable="">
-                <div align="center" margintop="-1">
-                  <span fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">{{ d['prenom'] }}</span></div>
-                <div align="center">
-                  <span texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">{{ d['nom'] }}</span></div>
-              </div>
-            </div>
-      {% endfor %}
-
-          </div>
+                  <div class="zone textshadow zone1" id="zone1" contenteditable="">
+                    <div align="center" margintop="-1">
+                      <span id="prenom" fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">prénom</span></div>
+                    <div align="center">
+                        <span id="nom" texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">nom</span></div>
+                  </div>
+                </div>
+             </div>
         <div id="bloc1"></div>
         <!--<div id="ombre"></div>-->
         <div id="bloc3"></div>
@@ -300,47 +262,26 @@
 
 
         <div class="typeevement" optionlist="Type evenement">
-          <div id="lieu" item="lieu" visible="yes">
+          <div id="lieu">
             <div class="bloc2">
               <div class="zone zone2" id="zone21" contenteditable=""><div align="center" marginright="0" margintop="1"><span fontweight="6" fontfamily="2" fontsize="10" color="4" lineheight="8" texttransform="uppercase">Réunion Publique</span></div><div align="center" margintop="0"><span fontweight="9" fontfamily="2" fontsize="12" color="4" paddingtop="0" lineheight="7">Vendredi 30 mars - </span><span fontweight="9" fontfamily="2" fontsize="12" color="6">19h</span></div></div>
             </div>
             <div class="zone" id="zone3" contenteditable=""><div align="center" margintop="0"><span color="4" fontsize="13" fontweight="8" lineheight="5" fontfamily="1">CAMBRAI</span></div><div align="center"><span color="4" fontsize="8" fontweight="6" fontfamily="1">Salle des cérémonies</span></div><div align="center"><span color="4" fontsize="8" fontweight="6" fontfamily="1">Place Aristide Briand</span></div></div>
             <div class="zone zone4" id="zone41" contenteditable=""><div align="center"><span fontweight="8" fontsize="8" color="5" fontfamily="1">#Hashtag</span></div></div>
           </div>
-          <div id="medias" item="media" visible="no">
+          <div id="medias">
             <div class="bloc2">
               <div class="zone zone2" id="zone22" contenteditable=""><div align="center" marginright="0" margintop="1"><span fontweight="9" fontfamily="2" fontsize="13" color="4" paddingtop="0" lineheight="6">Vendredi 30 mars</span></div><div align="center" marginright="0" margintop="0"><span fontweight="9" fontfamily="2" fontsize="16" color="6" lineheight="5">19h</span><br></div></div>
             </div>
-            <div class="emission" optionlist="Emission">
-              <div class="media" item="C8 - Les Terriens du dimanche !" visible="yes">
+            <div class="emission">
+              <div class="media" item="C8 - Les Terriens du dimanche !">
                 <img src="/static/img/logos/chaines/tele/C8.svg">
                 <img src="/static/img/logos/emissions/ltd.png">
                 <!--<img src="/static/img/logos/emissions/onpc.png">-->
-                <div class="zone zone4" id="zone42" contenteditable=""><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#ONPC</span></div></div>
+                <div class="zone zone4" id="zone4" contenteditable=""><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#ONPC</span></div></div>
               </div>
-              <div class="media" item="ONPC" visible="no">
-                <img src="/static/img/logos/chaines/tele/Fr_2_2018.png">
-                <div class="nomemission"><div><span fontweight="7" fontfamily="4" fontsize="12" color="1"  lineheight="4" texttransform="uppercase">On est pas couché</span></div>
-                <div><span fontweight="4" fontsize="5" color="1" fontstyle="italic" fontfamily="4">Laurent Ruquier</span></div>
-                </div>
 
-                <!--<img src="/static/img/logos/emissions/onpc.png">-->
-                <div class="zone zone4" id="zone43" contenteditable=""><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#ONPC</span></div></div>
-              </div>
-              <div class="media" item="Europe 1 - Interview de 8h15" visible="no">
-                <img src="/static/img/logos/chaines/radio/Europe_1.png">
-                <div class="nomemission"><div><span fontweight="7" fontfamily="4" fontsize="11" color="1"  lineheight="4" texttransform="uppercase">L'interview de 8h15</span></div>
-                <div><span fontweight="4" fontsize="5" color="1" fontstyle="italic" fontfamily="4">Patrick Cohen</span></div>
-                </div>
 
-                <!--<img src="/static/img/logos/emissions/onpc.png">-->
-                <div class="zone zone4" id="zone44" contenteditable=""><div align="center"><span fontweight="8" fontsize="10" color="5" fontfamily="1">#E1Matin</span></div></div>
-              </div>
-              <div class="media" item="L'emission politique" visible="no">
-                <img src="/static/img/logos/chaines/tele/Fr_2_2018.png">
-                <img src="/static/img/logos/emissions/emissionpolitique.png">
-                <div class="zone zone4" id="zone43" contenteditable=""><div align="center" margintop="0"><span fontweight="6" fontsize="6" color="5" fontfamily="1">#LEmissionPolitique</span></div></div>
-              </div>
             </div>
           </div>
         </div>

@@ -26,6 +26,7 @@
       <div class="toolbox-line"></div>
       <div class="toolbox-optionitems">
         <div class="toolbox-spacer"></div>
+        {% include "options.html" %}
       </div>
       <div class="toolbox-imageitems">
         <div class="toolbox-image">
@@ -231,10 +232,17 @@
   </div>
 {% endblock %}
 {% block script %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://twemoji.maxcdn.com/2/twemoji.min.js?2.5"></script>
 <script>
   var visuel_path = "{{ visuel_path }}";
   var visuel = "{{ visuel }}";
+  var actions_defs = JSON.parse('{{ actions|tojson }}');
+  var doAction;
+  var initOptions;
+  $(document).ready(function() {
+      {% include "options.js" %}
+    });
 </script>
 <script src="/static/js/gv2.js"></script>
 {% endblock %}

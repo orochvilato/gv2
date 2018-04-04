@@ -2,7 +2,7 @@
 
 from genvisu import app, app_path, memcache,mdbrw,mdb
 from genvisu.tools import image_response, parse_content, json_response
-from flask import render_template, url_for, request, Response, session, redirect
+from flask import render_template, url_for, request, Response, session, redirect, render_template_string
 import re
 import requests
 import os
@@ -89,39 +89,50 @@ def publicvisuel():
 
     return render_template('generateur.html',  public=True, sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , dimset=dimset(width,height),width=width, height=height)
 
-
-def parseSelectItems(data,item,depth=0):
+depth = []
+def parseSelectItems(data,item):
+    global depth
+    depth.append(item['id'])
+    data['paths'][item['id']] = ','.join(depth)
     if 'items' in item.keys():
-        depth += 1
         data['lists'][item['id']] = []
         for it in item['items']:
-            data['lists'][item['id']].append({'id':it['id'],'label':it['label'],'depth':depth})
-            data['maxdepth'] = max(data['maxdepth'],depth)
-            parseSelectItems(data,it,depth)
-        depth -= 1
+            data['lists'][item['id']].append({'id':it['id'],'label':it['label'],'path':','.join(depth)})
+            data['maxdepth'] = max(data['maxdepth'],len(depth))
+            parseSelectItems(data,it)
+    depth = depth[:-1]
+
 
 def parseOptions(visuelid):
     import json
     option_path = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'options.yml')
+    if not os.path.exists(option_path):
+        return {}
+
     import yaml
     options = {}
     for option in yaml.load_all(open(option_path).read()):
         if option['type']=='select':
-            select = options[option['id']] = {'type':'select','label':option['label'],'lists':{},'maxdepth':0}
+            select = options[option['id']] = {'type':'select','label':option['label'],'lists':{},'paths':{},'maxdepth':0}
             parseSelectItems(select,option)
+        elif option['type'] in ('checkbox','date','time'):
+            options[option['id']] = option
     return options
 
 def parseActions(visuelid):
     import json
     action_path = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'actions.yml')
+    if not os.path.exists(action_path):
+        return {}
+
     import yaml
     actions = {}
-    print yaml.load(open(action_path).read())
+    return yaml.load(open(action_path).read())
 
 @app.route('/testopt')
 def testopt():
-    parseActions('test')
-    return render_template('options.html',options=parseOptions('test'))
+
+    return render_template('options.html',options=parseOptions('test'),actions=parseActions('test'))
 
 @app.route('/edit/<visuelid>')
 @require_login
@@ -130,7 +141,16 @@ def editvisuel(visuelid):
         if 'userid' in session.keys():
             user = session['userid']
         width,height = get_dimensions(visuelid)
-        return render_template('generateur.html',  saves=load_saves(user), sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , dimset=dimset(width,height),width=width, height=height)
+        return render_template('generateur.html',
+                            saves=load_saves(user),
+                            sauvegarder=True,
+                            visuel=visuelid,
+                            visuel_path='/visuel/'+visuelid ,
+                            dimset=dimset(width,height),
+                            width=width,
+                            height=height,
+                            options=parseOptions(visuelid),
+                            actions=parseActions(visuelid))
 
 @app.route('/load/<slot>')
 @require_login
@@ -144,7 +164,17 @@ def loadvisuel(slot):
             import uuid
             cachekey = str(uuid.uuid4())
             memcache.set(cachekey,data,time=30);
-            return render_template('generateur.html', saves=load_saves(user), sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid+'?key='+cachekey , dimset=dimset(width,height),width=width, height=height)
+            return render_template('generateur.html',
+             saves=load_saves(user),
+             sauvegarder=True,
+             visuel=visuelid,
+             visuel_path='/visuel/'+visuelid+'?key='+cachekey ,
+             dimset=dimset(width,height),
+             width=width,
+             height=height,
+             options=parseOptions(visuelid),
+             actions=parseActions(visuelid))
+
         else:
             return "erreur"
 def returnfile(folder,_file):
@@ -237,45 +267,51 @@ def visuel(visuelid):
     key = request.args.get('key')
     visuelid = visuelid.split('?')[0]
     # validation visuelid
-    #path = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'index.html')
-    #html = open(path,'r').read()
-    html = render(os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'index.html'),{'test':[]})
-    xml = parse_content(html)
 
+    options = {}
     data = None
     if key:
         data = memcache.get(key)
         if data:
             import json
             data = json.loads(data)
+            zones = data.get('zones',{})
+            images = data.get('images',{})
+            options = data.get('options',{})
 
+
+    path = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'index.html')
+    templ = open(path,'r').read().decode('utf8').replace('</body>','{% include "actions.html" %}</body>')
+    html = render_template_string(templ,options=options,actions=parseActions(visuelid),optionsdefs = parseOptions(visuelid))
+    #html = render(os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'index.html'),{'options':{},'actions':parseActions(visuelid)})
+    xml = parse_content(html)
     if data:
         zones = data.get('zones',{})
         images = data.get('images',{})
-        options = data.get('options',{})
-        optionstoggle = data.get('optionstoggle',{})
+        #options = data.get('options',{})
+        #optionstoggle = data.get('optionstoggle',{})
 
         for i,e in enumerate(xml.xpath('//div[contains(@class,"image")]')):
             id = e.attrib['id']
             e.attrib['style'] = images.get(id,'')
 
-        for i,e in enumerate(xml.xpath('//*[@option]')):
-            option = e.attrib.get('option',None)
-            e.attrib['visible'] = options.get(option,'yes' if option else 'no')
+        #for i,e in enumerate(xml.xpath('//*[@option]')):
+        #    option = e.attrib.get('option',None)
+        #    e.attrib['visible'] = options.get(option,'yes' if option else 'no')
 
 
-        for i,e in enumerate(xml.xpath('//*[@optionlist]')):
-            option = e.attrib.get('optionlist',None)
-            for se in e.xpath('*[@item]'):
-                item = se.attrib.get('item',None)
+        #for i,e in enumerate(xml.xpath('//*[@optionlist]')):
+        #    option = e.attrib.get('optionlist',None)
+        #    for se in e.xpath('*[@item]'):
+        #        item = se.attrib.get('item',None)
+        #
+        #        se.attrib['visible'] = 'yes' if options.get(option,None)==item else 'no'
 
-                se.attrib['visible'] = 'yes' if options.get(option,None)==item else 'no'
-
-        for i,e in enumerate(xml.xpath('//*[@optiontoggle]')):
-            option = e.attrib.get('optiontoggle',None)
-            value = e.attrib.get('value','')
-            if optionstoggle.get(option):
-                e.attrib['class'] = e.attrib.get('class','')+' '+value
+        #for i,e in enumerate(xml.xpath('//*[@optiontoggle]')):
+        #    option = e.attrib.get('optiontoggle',None)
+        #    value = e.attrib.get('value','')
+        #    if optionstoggle.get(option):
+        #        e.attrib['class'] = e.attrib.get('class','')+' '+value
 
         for i,e in enumerate(xml.xpath('//div[contains(@class,"zone")]')):
             id = e.attrib['id']
