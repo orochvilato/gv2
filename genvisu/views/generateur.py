@@ -82,12 +82,28 @@ def get_dimensions(visuelid):
 def dimset(width,height):
     return [(w,int(w*float(height/width))) for w in [2048,1024,512,256]]
 
+@app.route('/demo')
+def demo():
+    return publicvisuel('evenement2')
+    
 @app.route('/22mars')
-def publicvisuel():
-    visuelid = 'affiche2'
-    width,height = get_dimensions(visuelid)
+def mars22():
+    return publicvisuel('affiche2')
 
-    return render_template('generateur.html',  public=True, sauvegarder=True, visuel=visuelid, visuel_path='/visuel/'+visuelid , dimset=dimset(width,height),width=width, height=height)
+def publicvisuel(visuelid):
+    width,height = get_dimensions(visuelid)
+    return render_template('generateur.html',
+                            public=True,
+                            demo=True,
+                            sauvegarder=True,
+                            visuel=visuelid,
+                            visuel_path='/visuel/'+visuelid,
+                            dimset=dimset(width,height),
+                            width=width,
+                            height=height,
+                            options=parseOptions(visuelid),
+                            actions=parseActions(visuelid)
+                            )
 
 depth = []
 def parseSelectItems(data,item):
@@ -147,6 +163,7 @@ def editvisuel(visuelid):
                             visuel=visuelid,
                             visuel_path='/visuel/'+visuelid ,
                             dimset=dimset(width,height),
+                            demo=False,
                             width=width,
                             height=height,
                             options=parseOptions(visuelid),
@@ -170,6 +187,7 @@ def loadvisuel(slot):
              visuel=visuelid,
              visuel_path='/visuel/'+visuelid+'?key='+cachekey ,
              dimset=dimset(width,height),
+             demo=False,
              width=width,
              height=height,
              options=parseOptions(visuelid),
