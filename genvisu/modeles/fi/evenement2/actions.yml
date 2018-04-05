@@ -481,3 +481,14 @@ evt:
       - sel: "#hashtag"
         actions:
           content: '#E1Matin'
+droite:
+  True:
+    targets:
+      - sel: "#blocparent"
+        actions:
+          addClass: "droite"
+  False:
+    targets:
+      - sel: "#blocparent"
+        actions:
+          removeClass: "droite"

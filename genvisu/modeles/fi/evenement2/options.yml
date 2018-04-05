@@ -164,3 +164,7 @@ type: date
 id: evt_heure
 label: "Heure évènement"
 type: time
+---
+id: droite
+label: "Texte a droite"
+type: checkbox
