@@ -1,412 +1,282 @@
+templates:
+  photo_personnalite:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "$STYLE"
+      - sel: "#nom"
+        actions:
+          content: "$NOM"
+      - sel: "#prenom"
+        actions:
+          content: "$PRENOM"
+  evenement_lieu:
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: lieu
+      - sel: "#typelieu"
+        actions:
+          content: "$TYPEEVT"
+  evenement_media:
+    defaults:
+      $HEURE: heure
+      $HASHTAG: "#hashtag"
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: media
+      - sel: ".lieuheure"
+        actions:
+          content: "$HEURE"
+      - sel: "#logomedia"
+        actions:
+          attrs:
+            src: "/static/img/logos/chaines/$LOGOMEDIA"
+            style: ""
+      - sel: "#hashtag"
+        actions:
+          content: '$HASHTAG'
+  emission_logo:
+    targets:
+      - sel: "#loc_media"
+        actions:
+          attrs:
+            emission: logo
+      - sel: "#logoemission"
+        actions:
+          attrs:
+            src: "/static/img/logos/emissions/$LOGOEMI"
+            style: ""
+  emission_txt:
+    targets:
+      - sel: "#loc_media"
+        actions:
+          attrs:
+            emission: nom
+      - sel: "#labelemission"
+        actions:
+          content: "$NOMEMI"
+      - sel: "#animateur"
+        actions:
+          content: "$ANIEMI"
+  media_cnews:
+    targets:
+      - sel: "#logomedia"
+        actions:
+          attrs:
+            src: "/static/img/logos/chaines/tele/CNews.png"
+            style: "height: 5vw; margin-top: 1vw;"
+
+
 personnalite:
   autain1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/autain.jpg); background-position: 4.5vw 1.5vw; transform: scaleX(1) scale(1.1);"
-      - sel: "#nom"
-        actions:
-          content: "Autain"
-      - sel: "#prenom"
-        actions:
-          content: "Clémentine"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/autain.jpg); background-position: 4.5vw 1.5vw; transform: scaleX(1) scale(1.1);"
+        $NOM: "Autain"
+        $PRENOM: "Clémentine"
   autain2:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/autain2.jpg); background-position: 4.5vw 1.5vw; transform: scaleX(1) scale(1.1);"
-      - sel: "#nom"
-        actions:
-          content: "Autain"
-      - sel: "#prenom"
-        actions:
-          content: "Clémentine"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/autain2.jpg); background-position: 4.5vw 1.5vw; transform: scaleX(1) scale(1.1);"
+        $NOM: "Autain"
+        $PRENOM: "Clémentine"
   bompard1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/bompard.jpg); background-position: -3vw 8vw; transform: scale(1.5);"
-      - sel: "#nom"
-        actions:
-          content: "Bompard"
-      - sel: "#prenom"
-        actions:
-          content: "Manuel"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/bompard.jpg); background-position: -3vw 8vw; transform: scale(1.5);"
+        $NOM: "Bompard"
+        $PRENOM: "Manuel"
   bernalicis1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/bernalicis.jpg); background-position: 1.5vw 1.5vw; transform: scale(1.1);"
-      - sel: "#nom"
-        actions:
-          content: "Bernalicis"
-      - sel: "#prenom"
-        actions:
-          content: "Ugo"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/bernalicis.jpg); background-position: 1.5vw 1.5vw; transform: scale(1.1);"
+        $NOM: "Bernalicis"
+        $PRENOM: "Ugo"
   bernalicis2:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/bernalicis2.jpg); background-position: 14.5vw 6.5vw; transform: scale(1.4);"
-      - sel: "#nom"
-        actions:
-          content: "Bernalicis"
-      - sel: "#prenom"
-        actions:
-          content: "Ugo"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/bernalicis2.jpg); background-position: 14.5vw 6.5vw; transform: scale(1.4);"
+        $NOM: "Bernalicis"
+        $PRENOM: "Ugo"
   bernalicis3:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/bernalicis3.jpg); background-position: 15vw 3.5vw; transform: scale(1.5);"
-      - sel: "#nom"
-        actions:
-          content: "Bernalicis"
-      - sel: "#prenom"
-        actions:
-          content: "Ugo"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/bernalicis3.jpg); background-position: 15vw 3.5vw; transform: scale(1.5);"
+        $NOM: "Bernalicis"
+        $PRENOM: "Ugo"
   coquerel1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/coquerel.jpg); background-position: -1vw -5vw; transform: scaleX(1) scale(1.5);"
-      - sel: "#nom"
-        actions:
-          content: "Coquerel"
-      - sel: "#prenom"
-        actions:
-          content: "Éric"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/coquerel.jpg); background-position: -1vw -5vw; transform: scaleX(1) scale(1.5);"
+        $NOM: "Coquerel"
+        $PRENOM: "Éric"
   coquerel2:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/coquerel2.jpg); background-position: -10vw 5vw; transform: scaleX(-1) scale(1.3);"
-      - sel: "#nom"
-        actions:
-          content: "Coquerel"
-      - sel: "#prenom"
-        actions:
-          content: "Éric"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/coquerel2.jpg); background-position: -10vw 5vw; transform: scaleX(-1) scale(1.3);"
+        $NOM: "Coquerel"
+        $PRENOM: "Éric"
   coquerel3:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/coquerel3.jpg); background-position: 4.5vw -0.5vw; transform: scaleX(-1) scale(1.2);"
-      - sel: "#nom"
-        actions:
-          content: "Coquerel"
-      - sel: "#prenom"
-        actions:
-          content: "Éric"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/coquerel3.jpg); background-position: 4.5vw -0.5vw; transform: scaleX(-1) scale(1.2);"
+        $NOM: "Coquerel"
+        $PRENOM: "Éric"
   corbiere1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/corbiere.jpg); background-position: -2vw -1.5vw; transform: scaleX(1) scale(1.1);"
-      - sel: "#nom"
-        actions:
-          content: "Corbière"
-      - sel: "#prenom"
-        actions:
-          content: "Alexis"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/corbiere.jpg); background-position: -2vw -1.5vw; transform: scaleX(1) scale(1.1);"
+        $NOM: "Corbière"
+        $PRENOM: "Alexis"
   corbiere2:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/corbiere2.jpg); background-position: 6.5vw -1.5vw; transform: scaleX(1) scale(1.2);"
-      - sel: "#nom"
-        actions:
-          content: "Corbière"
-      - sel: "#prenom"
-        actions:
-          content: "Alexis"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/corbiere2.jpg); background-position: 6.5vw -1.5vw; transform: scaleX(1) scale(1.2);"
+        $NOM: "Corbière"
+        $PRENOM: "Alexis"
   corbiere3:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/corbiere3.jpg); background-position: 11.5vw -2vw; transform: scaleX(1) scale(1.3);"
-      - sel: "#nom"
-        actions:
-          content: "Corbière"
-      - sel: "#prenom"
-        actions:
-          content: "Alexis"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/corbiere3.jpg); background-position: 11.5vw -2vw; transform: scaleX(1) scale(1.3);"
+        $NOM: "Corbière"
+        $PRENOM: "Alexis"
   fiat1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/fiat.jpg); background-position: 8vw -2.5vw; transform: scaleX(1) scale(1.2);"
-      - sel: "#nom"
-        actions:
-          content: "Fiat"
-      - sel: "#prenom"
-        actions:
-          content: "Caroline"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/fiat.jpg); background-position: 8vw -2.5vw; transform: scaleX(1) scale(1.2);"
+        $NOM: "Fiat"
+        $PRENOM: "Caroline"
   fiat2:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/fiat2.jpg); background-position: 12vw 0.5vw; transform: scaleX(1) scale(1.5);"
-      - sel: "#nom"
-        actions:
-          content: "Fiat"
-      - sel: "#prenom"
-        actions:
-          content: "Caroline"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/fiat2.jpg); background-position: 12vw 0.5vw; transform: scaleX(1) scale(1.5);"
+        $NOM: "Fiat"
+        $PRENOM: "Caroline"
   fiat3:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/fiat3.jpg); background-position: -13.5vw -17vw; transform: scaleX(-1) scale(1.4);"
-      - sel: "#nom"
-        actions:
-          content: "Fiat"
-      - sel: "#prenom"
-        actions:
-          content: "Caroline"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/fiat3.jpg); background-position: -13.5vw -17vw; transform: scaleX(-1) scale(1.4);"
+        $NOM: "Fiat"
+        $PRENOM: "Caroline"
   girard1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/girard1.jpg); background-position: 1.5vw -5vw; transform: scaleX(1) scale(1.2);"
-      - sel: "#nom"
-        actions:
-          content: "Girard"
-      - sel: "#prenom"
-        actions:
-          content: "Charlotte"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/girard1.jpg); background-position: 1.5vw -5vw; transform: scaleX(1) scale(1.2);"
+        $NOM: "Girard"
+        $PRENOM: "Charlotte"
   girard2:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/girard2.jpg); background-position: 8vw 5vw; transform: scaleX(-1) scale(1.3);"
-      - sel: "#nom"
-        actions:
-          content: "Girard"
-      - sel: "#prenom"
-        actions:
-          content: "Charlotte"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/girard2.jpg); background-position: 8vw 5vw; transform: scaleX(-1) scale(1.3);"
+        $NOM: "Girard"
+        $PRENOM: "Charlotte"
   liem1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/liem.jpg); background-position: -2vw -1vw; transform: scaleX(-1) scale(1.1);"
-      - sel: "#nom"
-        actions:
-          content: "Hoang Ngoc"
-      - sel: "#prenom"
-        actions:
-          content: "Liem"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/liem.jpg); background-position: -2vw -1vw; transform: scaleX(-1) scale(1.1);"
+        $NOM: "Hoang Ngoc"
+        $PRENOM: "Liem"
   liem2:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/liem2.jpg); background-position: -1.5vw -1.5vw; transform: scaleX(1) scale(1.7);"
-      - sel: "#nom"
-        actions:
-          content: "Hoang Ngoc"
-      - sel: "#prenom"
-        actions:
-          content: "Liem"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/liem2.jpg); background-position: -1.5vw -1.5vw; transform: scaleX(1) scale(1.7);"
+        $NOM: "Hoang Ngoc"
+        $PRENOM: "Liem"
   lachaud1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/lachaud.jpg); background-position: -1vw 1.5vw; transform: scaleX(-1) scale(1.6);"
-      - sel: "#nom"
-        actions:
-          content: "Lachaud"
-      - sel: "#prenom"
-        actions:
-          content: "Bastien"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/lachaud.jpg); background-position: -1vw 1.5vw; transform: scaleX(-1) scale(1.6);"
+        $NOM: "Lachaud"
+        $PRENOM: "Bastien"
   obono1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/obono.jpg); background-position: -11vw -8vw; transform: scaleX(-1) scale(1.3);"
-      - sel: "#nom"
-        actions:
-          content: "Obono"
-      - sel: "#prenom"
-        actions:
-          content: "Danièle"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/obono.jpg); background-position: -11vw -8vw; transform: scaleX(-1) scale(1.3);"
+        $NOM: "Obono"
+        $PRENOM: "Danièle"
   obono2:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/obono2.jpg); background-position: -2.5vw -2.5vw; transform: scaleX(-1) scale(1.3);"
-      - sel: "#nom"
-        actions:
-          content: "Obono"
-      - sel: "#prenom"
-        actions:
-          content: "Danièle"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/obono2.jpg); background-position: -2.5vw -2.5vw; transform: scaleX(-1) scale(1.3);"
+        $NOM: "Obono"
+        $PRENOM: "Danièle"
   obono3:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/obono3.jpg); background-position: 3vw -3vw; transform: scale(1.3) scaleX(1);"
-      - sel: "#nom"
-        actions:
-          content: "Obono"
-      - sel: "#prenom"
-        actions:
-          content: "Danièle"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/obono3.jpg); background-position: 3vw -3vw; transform: scale(1.3) scaleX(1);"
+        $NOM: "Obono"
+        $PRENOM: "Danièle"
   prudhomme1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/prudhomme.jpg); background-position: -1vw 0.5vw; transform: scaleX(1) scale(1.6);"
-      - sel: "#nom"
-        actions:
-          content: "Prud'homme"
-      - sel: "#prenom"
-        actions:
-          content: "Loïc"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/prudhomme.jpg); background-position: -1vw 0.5vw; transform: scaleX(1) scale(1.6);"
+        $NOM: "Prud'homme"
+        $PRENOM: "Loïc"
   quatennens1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/quatennens.jpg); background-position: -11.5vw -3.5vw; transform: scaleX(-1) scale(1.3);"
-      - sel: "#nom"
-        actions:
-          content: "Quatennens"
-      - sel: "#prenom"
-        actions:
-          content: "Adrien"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/quatennens.jpg); background-position: -11.5vw -3.5vw; transform: scaleX(-1) scale(1.3);"
+        $NOM: "Quatennens"
+        $PRENOM: "Adrien"
   quatennens2:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/quatennens2.jpg); background-position: -13.5vw 1vw; transform: scaleX(-1) scale(1.4);"
-      - sel: "#nom"
-        actions:
-          content: "Quatennens"
-      - sel: "#prenom"
-        actions:
-          content: "Adrien"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/quatennens2.jpg); background-position: -13.5vw 1vw; transform: scaleX(-1) scale(1.4);"
+        $NOM: "Quatennens"
+        $PRENOM: "Adrien"
   quatennens3:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/quatennens3.jpg); background-position: -16vw 1.5vw;  transform: scaleX(-1) scale(1.7);"
-      - sel: "#nom"
-        actions:
-          content: "Quatennens"
-      - sel: "#prenom"
-        actions:
-          content: "Adrien"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/quatennens3.jpg); background-position: -16vw 1.5vw;  transform: scaleX(-1) scale(1.7);"
+        $NOM: "Quatennens"
+        $PRENOM: "Adrien"
   ressiguier1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/ressiguier.jpg); background-position: -4vw 3.5vw; transform: scaleX(-1) scale(1.3);"
-      - sel: "#nom"
-        actions:
-          content: "Ressiguier"
-      - sel: "#prenom"
-        actions:
-          content: "Muriel"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/ressiguier.jpg); background-position: -4vw 3.5vw; transform: scaleX(-1) scale(1.3);"
+        $NOM: "Ressiguier"
+        $PRENOM: "Muriel"
   ratenon1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/ratenon.jpg); background-position: 4.5vw 2vw; transform: scaleX(1) scale(1.2);"
-      - sel: "#nom"
-        actions:
-          content: "Ratenon"
-      - sel: "#prenom"
-        actions:
-          content: "Jean-Hugues"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/ratenon.jpg); background-position: 4.5vw 2vw; transform: scaleX(1) scale(1.2);"
+        $NOM: "Ratenon"
+        $PRENOM: "Jean-Hugues"
   ruffin1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/ruffin.jpg); background-position: 2.5vw 5vw; transform: scaleX(1) scale(1.3);"
-      - sel: "#nom"
-        actions:
-          content: "Ruffin"
-      - sel: "#prenom"
-        actions:
-          content: "François"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/ruffin.jpg); background-position: 2.5vw 5vw; transform: scaleX(1) scale(1.3);"
+        $NOM: "Ruffin"
+        $PRENOM: "François"
   ruffin2:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/ruffin2.jpg); background-position: -1vw 3vw; transform: scaleX(1) scale(1.6);"
-      - sel: "#nom"
-        actions:
-          content: "Ruffin"
-      - sel: "#prenom"
-        actions:
-          content: "François"
-  simonnet1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/simonnet1.jpg); background-position: 3vw -5vw; transform: scaleX(1) scale(1.2);"
-      - sel: "#nom"
-        actions:
-          content: "Simonnet"
-      - sel: "#prenom"
-        actions:
-          content: "Danielle"
-  simonnet2:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/simonnet2.jpg); background-position: -1.5vw -10vw; transform: scaleX(1) scale(1.3);"
-      - sel: "#nom"
-        actions:
-          content: "Simonnet"
-      - sel: "#prenom"
-        actions:
-          content: "Danielle"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/ruffin2.jpg); background-position: -1vw 3vw; transform: scaleX(1) scale(1.6);"
+        $NOM: "Ruffin"
+        $PRENOM: "François"
+  simmonet1:
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/simonnet1.jpg); background-position: 3vw -5vw; transform: scaleX(1) scale(1.2);"
+        $NOM: "Simonnet"
+        $PRENOM: "Danielle"
+  simmonet2:
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/simonnet2.jpg); background-position: -1.5vw -10vw; transform: scaleX(1) scale(1.3);"
+        $NOM: "Simonnet"
+        $PRENOM: "Danielle"
   taurine1:
-    targets:
-      - sel: "#image1"
-        actions:
-          attrs:
-            style: "background-image: url(/static/img/deputes/taurine.jpg); background-position: 4.5vw 0.5vw; transform: scaleX(1) scale(1.3);"
-      - sel: "#nom"
-        actions:
-          content: "Taurine"
-      - sel: "#prenom"
-        actions:
-          content: "Bénédicte"
+    templates:
+      - name: photo_personnalite
+        $STYLE: "background-image: url(/static/img/deputes/taurine.jpg); background-position: 4.5vw 0.5vw; transform: scaleX(1) scale(1.3);"
+        $NOM: "Taurine"
+        $PRENOM: "Bénédicte"
 evt_date:
   any:
     targets:
@@ -431,266 +301,103 @@ evt_heure:
           content: "Heure"
 evt:
   manif:
-    targets:
-      - sel: "#lieu_media"
-        actions:
-          attrs:
-            type: lieu
-      - sel: "#typelieu"
-        actions:
-          content: "Manifestation"
+    templates:
+      - name: evenement_lieu
+        $TYPEEVT: "Manifestation"
   reunion:
-    targets:
-      - sel: "#lieu_media"
-        actions:
-          attrs:
-            type: lieu
-      - sel: "#typelieu"
-        actions:
-          content: "Réunion Publique"
-
+    templates:
+      - name: evenement_lieu
+        $TYPEEVT: "Réunion Publique"
   c8_ltd:
-    targets:
-      - sel: "#lieu_media"
-        actions:
-          attrs:
-            type: media
-      - sel: "#loc_media"
-        actions:
-          attrs:
-            emission: logo
-      - sel: "#logoemission"
-        actions:
-          attrs:
-            src: "/static/img/logos/emissions/ltd.png"
-            style: ""
-      - sel: ".lieuheure"
-        actions:
-          content: "19h"
-      - sel: "#logomedia"
-        actions:
-          attrs:
-            src: "/static/img/logos/chaines/tele/C8.svg"
-            style: ""
-      - sel: "#hashtag"
-        actions:
-          content: '#LTD'
-  c8_lne:
-    targets:
-      - sel: "#lieu_media"
-        actions:
-          attrs:
-            type: media
-      - sel: "#loc_media"
-        actions:
-          attrs:
-            emission: logo
-      - sel: "#logoemission"
-        actions:
-          attrs:
-            src: "/static/img/logos/emissions/lne.jpg"
-            style: ""
-      - sel: ".lieuheure"
-        actions:
-          content: "11h55"
-      - sel: "#logomedia"
-        actions:
-          attrs:
-            src: "/static/img/logos/chaines/tele/C8.svg"
-            style: ""
-      - sel: "#hashtag"
-        actions:
-          content: '#LTD'
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "tele/C8.svg"
+        $HEURE: "19h"
+        $HASHTAG: "#LTD"
+      - name: emission_logo
+        $LOGOEMI: "ltd.png"
   e1_itv815:
-    targets:
-      - sel: "#lieu_media"
-        actions:
-          attrs:
-            type: media
-      - sel: "#loc_media"
-        actions:
-          attrs:
-            emission: nom
-      - sel: "#logomedia"
-        actions:
-          attrs:
-            src: "/static/img/logos/chaines/radio/Europe_1.png"
-            style: ""
-      - sel: ".lieuheure"
-        actions:
-          content: "8h15"
-      - sel: "#hashtag"
-        actions:
-          content: '#E1Matin'
-      - sel: "#labelemission"
-        actions:
-          content: "L'interview<br>de 8h15"
-      - sel: "#animateur"
-        actions:
-          content: "Patrick Cohen"
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/Europe_1.png"
+        $HEURE: "8h15"
+        $HASHTAG: "#E1Matin"
+      - name: emission_txt
+        $NOMEMI: "L'interview<br>de 8h15"
+        $ANIEMI: "Patrick Cohen"
   e1_emidi:
-    targets:
-      - sel: "#lieu_media"
-        actions:
-          attrs:
-            type: media
-      - sel: "#loc_media"
-        actions:
-          attrs:
-            emission: nom
-      - sel: "#logomedia"
-        actions:
-          attrs:
-            src: "/static/img/logos/chaines/radio/Europe_1.png"
-            style: ""
-      - sel: ".lieuheure"
-        actions:
-          content: "12h"
-      - sel: "#hashtag"
-        actions:
-          content: '#E1Midi'
-      - sel: "#labelemission"
-        actions:
-          content: "Europe Midi"
-      - sel: "#animateur"
-        actions:
-          content: "Maxime Switek"
-  e1_hondelatte:
-    targets:
-      - sel: "#lieu_media"
-        actions:
-          attrs:
-            type: media
-      - sel: "#loc_media"
-        actions:
-          attrs:
-            emission: nom
-      - sel: "#logomedia"
-        actions:
-          attrs:
-            src: "/static/img/logos/chaines/radio/Europe_1.png"
-            style: ""
-      - sel: ".lieuheure"
-        actions:
-          content: "17h"
-      - sel: "#hashtag"
-        actions:
-          content: '#HondelatteRaconte'
-      - sel: "#labelemission"
-        actions:
-          content: "Hondelatte Raconte"
-      - sel: "#animateur"
-        actions:
-          content: "Christophe Hondelatte"
-  e1_itvsoir:
-    targets:
-      - sel: "#lieu_media"
-        actions:
-          attrs:
-            type: media
-      - sel: "#loc_media"
-        actions:
-          attrs:
-            emission: nom
-      - sel: "#logomedia"
-        actions:
-          attrs:
-            src: "/static/img/logos/chaines/radio/Europe_1.png"
-            style: ""
-      - sel: ".lieuheure"
-        actions:
-          content: "18h40"
-      - sel: "#hashtag"
-        actions:
-          content: '#E1Soir'
-      - sel: "#labelemission"
-        actions:
-          content: "L'interview d'Europe 1 soir"
-      - sel: "#animateur"
-        actions:
-          content: "Nicolas Poincaré"
-  e1_clubpresse:
-    targets:
-      - sel: "#lieu_media"
-        actions:
-          attrs:
-            type: media
-      - sel: "#loc_media"
-        actions:
-          attrs:
-            emission: nom
-      - sel: "#logomedia"
-        actions:
-          attrs:
-            src: "/static/img/logos/chaines/radio/Europe_1.png"
-            style: ""
-      - sel: ".lieuheure"
-        actions:
-          content: "19h00"
-      - sel: "#hashtag"
-        actions:
-          content: '#E1Soir'
-      - sel: "#labelemission"
-        actions:
-          content: "Club de la presse"
-      - sel: "#animateur"
-        actions:
-          content: "Nicolas Poincaré"
-  e1_nuit:
-    targets:
-      - sel: "#lieu_media"
-        actions:
-          attrs:
-            type: media
-      - sel: "#loc_media"
-        actions:
-          attrs:
-            emission: nom
-      - sel: "#logomedia"
-        actions:
-          attrs:
-            src: "/static/img/logos/chaines/radio/Europe_1.png"
-            style: ""
-      - sel: ".lieuheure"
-        actions:
-          content: "22h"
-      - sel: "#hashtag"
-        actions:
-          content: '#europenuit'
-      - sel: "#labelemission"
-        actions:
-          content: "Europe Nuit"
-      - sel: "#animateur"
-        actions:
-          content: "Pierre de Vilno"
-  cnews_invpol:
-    targets:
-      - sel: "#lieu_media"
-        actions:
-          attrs:
-            type: media
-      - sel: "#loc_media"
-        actions:
-          attrs:
-            emission: nom
-      - sel: "#logomedia"
-        actions:
-          attrs:
-            src: "/static/img/logos/chaines/tele/CNews.png"
-            style: "height: 5vw; margin-top: 1vw;"
-      - sel: ".lieuheure"
-        actions:
-          content: "7h30"
-      - sel: "#hashtag"
-        actions:
-          content: '#LaMatinale'
-      - sel: "#labelemission"
-        actions:
-          content: "L'invité politique"
-      - sel: "#animateur"
-        actions:
-          content: "Jean-Pierre Elkabbach"
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/Europe_1.png"
+        $HEURE: "12h"
+        $HASHTAG: "#E1Midi"
+      - name: emission_txt
+        $NOMEMI: "Europe Midi"
+        $ANIEMI: "Maxime Switek"
 
+  e1_hondelatte:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/Europe_1.png"
+        $HEURE: "17h"
+        $HASHTAG: "#HondelatteRaconte"
+      - name: emission_txt
+        $NOMEMI: "Hondelatte Raconte"
+        $ANIEMI: "Christophe Hondelatte"
+  e1_itvsoir:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/Europe_1.png"
+        $HEURE: "18h40"
+        $HASHTAG: "#E1Soir"
+      - name: emission_txt
+        $NOMEMI: "L'interview d'Europe 1 soir"
+        $ANIEMI: "Nicolas Poincaré"
+  e1_clubpresse:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/Europe_1.png"
+        $HEURE: "19h00"
+        $HASHTAG: "#E1Soir"
+      - name: emission_txt
+        $NOMEMI: "Club de la presse"
+        $ANIEMI: "Nicolas Poincaré"
+  e1_nuit:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/Europe_1.png"
+        $HEURE: "22h"
+        $HASHTAG: "#europenuit"
+      - name: emission_txt
+        $NOMEMI: "Europe Nuit"
+        $ANIEMI: "Pierre de Vilno"
+  cnews_invpol:
+    templates:
+      - name: evenement_media
+        $HEURE: "7h30"
+        $HASHTAG: "#LaMatinale"
+      - name: media_cnews
+      - name: emission_txt
+        $NOMEMI: "L'invité politique"
+        $ANIEMI: "Jean-pierre Elkabbach"
+  cnews_heurepros:
+    templates:
+      - name: evenement_media
+        $HEURE: "9h"
+        $HASHTAG: "#HDPros"
+      - name: media_cnews
+      - name: emission_txt
+        $NOMEMI: "L'Heure des pros"
+        $ANIEMI: "Pascal Praud"
+  cnews_voixinfo:
+    templates:
+      - name: evenement_media
+        $HEURE: "17h"
+        $HASHTAG: "#Lesvoixdelinfo"
+      - name: media_cnews
+      - name: emission_txt
+        $NOMEMI: "Les voix de l'info"
+        $ANIEMI: "Sonia Mabrouk"
 droite:
   True:
     targets:

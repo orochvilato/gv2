@@ -1,4 +1,30 @@
+templates:
+  tmpl1:
+    defaults:
+      $ATT: defautATT
+      $REPL: defaultREPL
+    targets:
+      - sel: ".class1"
+        actions:
+          addClass: cl
+          attrs:
+              attr1: "$ATT"
+              attr2: titi
+          content: "$REPL"
+      - sel: "#id1"
+        actions:
+          content: rrpld
+
 testlist:
+  elem12:
+    templates:
+      - name: "tmpl1"
+        $ATT: "test template"
+        $REPL: "test remplace template"
+    targets:
+      - sel: ".class1"
+        actions:
+          content: "testrepl"
   elem11:
     targets:
       - sel: ".class1"

@@ -453,7 +453,6 @@ function iframeLoaded() {
         var re_fct = /([a-zA-Z]+)\((-?[\.0-9]+)[a-zA-Z%]*\)/;
         var filter = '';
         var transform = '';
-
         for(i=0;i<items.length;i++) {
           var style = items[i].split(': ');
           if (style[0] == 'background-position') {
@@ -530,8 +529,8 @@ function iframeLoaded() {
   });
   $('body').click(function(e) {
     if (!fromToolbox) {
-    $('.toolbox-zoneitems').removeClass('active');
-    $('.toolbox-imageitems').removeClass('active');
+    $('.toolbox-zoneitems').removeClass('active').removeClass('selected');
+    $('.toolbox-imageitems').removeClass('active').removeClass('selected');
     }
     fromToolbox = false;
   });

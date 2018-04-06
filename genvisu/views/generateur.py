@@ -85,7 +85,7 @@ def dimset(width,height):
 @app.route('/demo')
 def demo():
     return publicvisuel('evenement2')
-    
+
 @app.route('/22mars')
 def mars22():
     return publicvisuel('affiche2')
@@ -126,8 +126,9 @@ def parseOptions(visuelid):
         return {}
 
     import yaml
-    options = {}
+    options = {'_order':[]}
     for option in yaml.load_all(open(option_path).read()):
+        options['_order'].append(option['id'])
         if option['type']=='select':
             select = options[option['id']] = {'type':'select','label':option['label'],'lists':{},'paths':{},'maxdepth':0}
             parseSelectItems(select,option)
@@ -143,7 +144,29 @@ def parseActions(visuelid):
 
     import yaml
     actions = {}
-    return yaml.load(open(action_path).read())
+    actions_cfg = yaml.load(open(action_path).read())
+    templates =  actions_cfg.get('templates',{})
+    for id,values in actions_cfg.iteritems():
+        if id=="templates":
+            continue
+
+        actions[id] = {}
+        for val,act in values.iteritems():
+
+            actions[id][val] = {'targets':[],'params':{}}
+            if 'templates' in act.keys():
+                for tmpl in act['templates']:
+                    if tmpl['name'] in templates.keys():
+                        template = templates[tmpl['name']]
+                        defaults = template.get('defaults',{})
+                        params = dict(tmpl)
+                        del params['name']
+                        actions[id][val]['params'].update(params)
+                        current_tgts = actions[id][val].get('targets',[])
+                        actions[id][val].update({'targets':current_tgts+template.get('targets',[])})
+            for tgt in act.get('targets',[]):
+                actions[id][val]['targets'].append(tgt)
+    return actions
 
 @app.route('/testopt')
 def testopt():

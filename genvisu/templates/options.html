@@ -1,4 +1,5 @@
-  {% for id,opt in options.iteritems() %}
+  {% for id in options['_order'] %}
+  {% set opt = options[id] %}
   <div class="option">
     {% if opt['type'] == 'time' %}
       <label>{{ opt['label'] }}</label>

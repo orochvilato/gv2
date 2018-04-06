@@ -150,13 +150,22 @@ items:
             items:
               - label: "Les Terriens du Dimanche !"
                 id: c8_ltd
-              - label: "La Nouvelle édition"
-                id: c8_lne
           - label: CNEWS
             id: cnews
             items:
-              - label : "L'invité politique"
+              - label: "L'invité politique"
                 id: cnews_invpol
+              - label: "L'Heure des pros"
+                id: cnews_heurepros
+              - label: "Les voix de l'info"
+                id: cnews_voixinfo
+              - label: "Intégrale week-end"
+                id: cnews_integralewe
+              - label: "Punchline"
+                id: cnews_punchline
+              - label: "Le grand journal"
+                id: cnews_grandjournal
+
       - label: Radio
         id: radio
         items:

@@ -1,6 +1,7 @@
 doAction = document.getElementById('f').contentWindow.doAction;
   var paths = {};
-  {% for id,opt in options.iteritems() %}
+  {% for id in options['_order'] %}
+  {% set opt = options[id] %}
     {% if opt['type'] == 'time' %}
       $("#{{id}}").change(function() {
         var val=$(this).val();
@@ -43,22 +44,29 @@ doAction = document.getElementById('f').contentWindow.doAction;
   {% endfor %}
 
 initOptions = function() {
+  var opt_order = JSON.parse('{{ options['_order']|tojson }}');
   var opts = document.getElementById('f').contentWindow.options;
-  for (opt in opts) {
+  for (var j=0;j<opt_order.length;j++) {
+    var opt = opt_order[j];
     var optelt = $('#'+opt)
     var type = optelt.attr('opttype');
     if (type=='select') {
-      path = paths[opt][opts[opt]].split(',');
-      for (i=1;i<path.length;i++) {
-        $('option[value="'+path[i]+'"]').parent().val(path[i]).trigger('change');
+
+      path = paths[opt][opts[opt]];
+      if (path != undefined) {
+        path = path.split(',');
+        for (i=1;i<path.length;i++) {
+          $('option[value="'+path[i]+'"]').parent().val(path[i]).trigger('change');
+        }
       }
+
       optelt.val(opts[opt]);
     } else if (type=='date') {
-      optelt.val(opts[opt]) //.trigger('change');
+      optelt.val(opts[opt]).trigger('change');
     } else if (type=='time') {
-      optelt.val(opts[opt]) // .trigger('change');
+      optelt.val(opts[opt]).trigger('change');
     } else if (type=='checkbox') {
-      optelt.prop('checked',opts[opt]) //.trigger('change');
+      optelt.prop('checked',opts[opt]).trigger('change');
     }
 
   }

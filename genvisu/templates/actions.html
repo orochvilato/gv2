@@ -41,25 +41,35 @@ function doAction(id,key) {
     }
   }
 
-
+  params = targets.params;
   targets = targets.targets;
+
+  function substitute(str,params) {
+    if (params) {
+      for (p in params) {
+        str = str.replace(p,params[p]);
+      }
+    }
+    return str;
+  }
+
   for (tgtid in targets) {
     var tgt = targets[tgtid];
     var sel = $(tgt.sel);
     var actions = tgt.actions;
     for (act in actions) {
       if (act=='toggleClass') {
-        sel.addClass(actions.toggleClass);
+        sel.addClass(substitute(actions.toggleClass),params);
       } else if (act=='addClass') {
-        sel.addClass(actions.addClass);
+        sel.addClass(substitute(actions.addClass),params);
       } else if (act=='removeClass') {
-        sel.removeClass(actions.removeClass);
+        sel.removeClass(substitute(actions.removeClass),params);
       } else if (act=='attrs') {
         for (att in actions.attrs) {
-          sel.attr(att,actions.attrs[att]);
+          sel.attr(att,substitute(actions.attrs[att],params));
         }
       } else if (act=='content') {
-        var content = (actions.content=='key'?key:actions.content);
+        var content = (actions.content=='key'?key:substitute(actions.content,params));
         sel.html(content);
       }
     }
