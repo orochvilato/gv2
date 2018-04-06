@@ -46,6 +46,8 @@ items:
             id: fiat1
           - label: photo 2
             id: fiat2
+          - label: photo hemicycle
+            id: fiat3
       - label: Bastien Lachaud
         id: lachaud
         items:

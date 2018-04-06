@@ -167,6 +167,18 @@ personnalite:
       - sel: "#prenom"
         actions:
           content: "Caroline"
+  fiat3:
+    targets:
+      - sel: "#image1"
+        actions:
+          attrs:
+            style: "background-image: url(/static/img/deputes/fiat3.jpg); background-position: -13.5vw -17vw; transform: scaleX(-1) scale(1.4);"
+      - sel: "#nom"
+        actions:
+          content: "Fiat"
+      - sel: "#prenom"
+        actions:
+          content: "Caroline"
   girard1:
     targets:
       - sel: "#image1"

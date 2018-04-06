@@ -35,14 +35,14 @@
     .image {
       width: 100%;
       height: 100%;
-      background-repeat: repeat;
+      background-repeat: no-repeat;
       background-position: 50% 50%;
       overflow:hidden;
 
 
     }
     .image1 {
-
+      background: url('/img/photo.jpg');
       background-size: cover;
       transform: scale(1);
       z-index: 0;
@@ -61,7 +61,7 @@
     }
     .pic {
       display:block;
-      position:absolute;
+      position:fixed;
       top:0;
       left:0;
       height:50vw;
@@ -118,6 +118,15 @@
       top:2.5vw;
       height:13vw;
       width:45vw;
+    }
+    #blocnom {
+      position:absolute;
+      left:2.5vw;
+      top:1.5vw;
+      height:13vw;
+      width:45vw;
+      background-color: #c5f6ff;
+      opacity:0.8;
     }
 
     .zone2 {
@@ -264,6 +273,7 @@
             <div class="image image1" id="image1"></div>
         </div>
         <div id="blocparent">
+            
             <div class="zone textshadow zone1" id="zone1" contenteditable="">
                 <div align="center" margintop="-1">
                   <span id="prenom" fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">prénom</span>
@@ -272,6 +282,7 @@
                   <span id="nom" texttransform="uppercase" fontsize="15" fontweight="8" lineheight="5" color="2" fontfamily="1">nom</span>
                 </div>
             </div>
+
             <div id="bloc1"></div>
         <!--<div id="ombre"></div>-->
             <div id="bloc3"></div>
