@@ -35,14 +35,14 @@
     .image {
       width: 100%;
       height: 100%;
-      background-repeat: no-repeat;
+      background-repeat: repeat;
       background-position: 50% 50%;
       overflow:hidden;
 
 
     }
     .image1 {
-      background: url('/img/photo.jpg');
+
       background-size: cover;
       transform: scale(1);
       z-index: 0;
@@ -61,7 +61,7 @@
     }
     .pic {
       display:block;
-      position:fixed;
+      position:absolute;
       top:0;
       left:0;
       height:50vw;
@@ -219,7 +219,8 @@
       padding-top:1vw;
     }
     .nomemission {
-      margin:auto;
+      height: 7vw;
+      margin-top: 1vw;
       border-left: 0.5vw solid #000;
       padding-left:1vw;
     }
@@ -306,8 +307,8 @@
                 <img id="logomedia" src="">
                 <img id="logoemission" src="">
                 <div id="nomemission">
-                <div class="nomemission"><div><span fontweight="7" fontfamily="4" fontsize="10" color="1"  lineheight="4" texttransform="uppercase">L'interview de 8h15</span></div>
-                <div><span fontweight="4" fontsize="5" color="1" fontstyle="italic" fontfamily="4">Patrick Cohen</span></div>
+                <div class="nomemission"><div><span id="labelemission" fontweight="7" fontfamily="4" fontsize="8" color="1"  lineheight="4" texttransform="uppercase">L'interview de 8h15</span></div>
+                <div><span id="animateur" fontweight="4" fontsize="5" color="1" fontstyle="italic" fontfamily="4">Patrick Cohen</span></div>
                 </div>
                 </div>
 
@@ -315,7 +316,7 @@
             </div>
           </div>
 
-            <div class="zone zone4" id="zone41" contenteditable=""><div align="center"><span id="hashtag" fontweight="8" fontsize="8" color="5" fontfamily="1">#Hashtag</span></div></div>
+            <div class="zone zone4" id="zone41" contenteditable=""><div align="center"><span id="hashtag" fontweight="8" fontsize="6" color="5" fontfamily="1">#Hashtag</span></div></div>
         </div>
 
       </div>

@@ -178,7 +178,7 @@ personnalite:
           content: "Girard"
       - sel: "#prenom"
         actions:
-          content: "Fiat"
+          content: "Charlotte"
   girard2:
     targets:
       - sel: "#image1"
@@ -190,7 +190,7 @@ personnalite:
           content: "Girard"
       - sel: "#prenom"
         actions:
-          content: "Fiat"
+          content: "Charlotte"
   liem1:
     targets:
       - sel: "#image1"
@@ -437,7 +437,7 @@ evt:
         actions:
           content: "Réunion Publique"
 
-  ltd:
+  c8_ltd:
     targets:
       - sel: "#lieu_media"
         actions:
@@ -451,6 +451,7 @@ evt:
         actions:
           attrs:
             src: "/static/img/logos/emissions/ltd.png"
+            style: ""
       - sel: ".lieuheure"
         actions:
           content: "19h"
@@ -458,6 +459,33 @@ evt:
         actions:
           attrs:
             src: "/static/img/logos/chaines/tele/C8.svg"
+            style: ""
+      - sel: "#hashtag"
+        actions:
+          content: '#LTD'
+  c8_lne:
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: media
+      - sel: "#loc_media"
+        actions:
+          attrs:
+            emission: logo
+      - sel: "#logoemission"
+        actions:
+          attrs:
+            src: "/static/img/logos/emissions/lne.jpg"
+            style: ""
+      - sel: ".lieuheure"
+        actions:
+          content: "11h55"
+      - sel: "#logomedia"
+        actions:
+          attrs:
+            src: "/static/img/logos/chaines/tele/C8.svg"
+            style: ""
       - sel: "#hashtag"
         actions:
           content: '#LTD'
@@ -475,12 +503,182 @@ evt:
         actions:
           attrs:
             src: "/static/img/logos/chaines/radio/Europe_1.png"
+            style: ""
       - sel: ".lieuheure"
         actions:
           content: "8h15"
       - sel: "#hashtag"
         actions:
           content: '#E1Matin'
+      - sel: "#labelemission"
+        actions:
+          content: "L'interview<br>de 8h15"
+      - sel: "#animateur"
+        actions:
+          content: "Patrick Cohen"
+  e1_emidi:
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: media
+      - sel: "#loc_media"
+        actions:
+          attrs:
+            emission: nom
+      - sel: "#logomedia"
+        actions:
+          attrs:
+            src: "/static/img/logos/chaines/radio/Europe_1.png"
+            style: ""
+      - sel: ".lieuheure"
+        actions:
+          content: "12h"
+      - sel: "#hashtag"
+        actions:
+          content: '#E1Midi'
+      - sel: "#labelemission"
+        actions:
+          content: "Europe Midi"
+      - sel: "#animateur"
+        actions:
+          content: "Maxime Switek"
+  e1_hondelatte:
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: media
+      - sel: "#loc_media"
+        actions:
+          attrs:
+            emission: nom
+      - sel: "#logomedia"
+        actions:
+          attrs:
+            src: "/static/img/logos/chaines/radio/Europe_1.png"
+            style: ""
+      - sel: ".lieuheure"
+        actions:
+          content: "17h"
+      - sel: "#hashtag"
+        actions:
+          content: '#HondelatteRaconte'
+      - sel: "#labelemission"
+        actions:
+          content: "Hondelatte Raconte"
+      - sel: "#animateur"
+        actions:
+          content: "Christophe Hondelatte"
+  e1_itvsoir:
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: media
+      - sel: "#loc_media"
+        actions:
+          attrs:
+            emission: nom
+      - sel: "#logomedia"
+        actions:
+          attrs:
+            src: "/static/img/logos/chaines/radio/Europe_1.png"
+            style: ""
+      - sel: ".lieuheure"
+        actions:
+          content: "18h40"
+      - sel: "#hashtag"
+        actions:
+          content: '#E1Soir'
+      - sel: "#labelemission"
+        actions:
+          content: "L'interview d'Europe 1 soir"
+      - sel: "#animateur"
+        actions:
+          content: "Nicolas Poincaré"
+  e1_clubpresse:
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: media
+      - sel: "#loc_media"
+        actions:
+          attrs:
+            emission: nom
+      - sel: "#logomedia"
+        actions:
+          attrs:
+            src: "/static/img/logos/chaines/radio/Europe_1.png"
+            style: ""
+      - sel: ".lieuheure"
+        actions:
+          content: "19h00"
+      - sel: "#hashtag"
+        actions:
+          content: '#E1Soir'
+      - sel: "#labelemission"
+        actions:
+          content: "Club de la presse"
+      - sel: "#animateur"
+        actions:
+          content: "Nicolas Poincaré"
+  e1_nuit:
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: media
+      - sel: "#loc_media"
+        actions:
+          attrs:
+            emission: nom
+      - sel: "#logomedia"
+        actions:
+          attrs:
+            src: "/static/img/logos/chaines/radio/Europe_1.png"
+            style: ""
+      - sel: ".lieuheure"
+        actions:
+          content: "22h"
+      - sel: "#hashtag"
+        actions:
+          content: '#europenuit'
+      - sel: "#labelemission"
+        actions:
+          content: "Europe Nuit"
+      - sel: "#animateur"
+        actions:
+          content: "Pierre de Vilno"
+  cnews_invpol:
+    targets:
+      - sel: "#lieu_media"
+        actions:
+          attrs:
+            type: media
+      - sel: "#loc_media"
+        actions:
+          attrs:
+            emission: nom
+      - sel: "#logomedia"
+        actions:
+          attrs:
+            src: "/static/img/logos/chaines/tele/CNews.png"
+            style: "height: 5vw; margin-top: 1vw;"
+      - sel: ".lieuheure"
+        actions:
+          content: "7h30"
+      - sel: "#hashtag"
+        actions:
+          content: '#LaMatinale'
+      - sel: "#labelemission"
+        actions:
+          content: "L'invité politique"
+      - sel: "#animateur"
+        actions:
+          content: "Jean-Pierre Elkabbach"
+
 droite:
   True:
     targets:

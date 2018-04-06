@@ -147,7 +147,14 @@ items:
             id: c8
             items:
               - label: "Les Terriens du Dimanche !"
-                id: ltd
+                id: c8_ltd
+              - label: "La Nouvelle édition"
+                id: c8_lne
+          - label: CNEWS
+            id: cnews
+            items:
+              - label : "L'invité politique"
+                id: cnews_invpol
       - label: Radio
         id: radio
         items:
@@ -156,6 +163,16 @@ items:
             items:
               - label: "L'interview de 8h15"
                 id: e1_itv815
+              - label: "Europe Midi"
+                id: e1_emidi
+              - label: "Hondelatte Raconte"
+                id: e1_hondelatte
+              - label: "L'interview d'Europe 1 soir"
+                id: e1_itvsoir
+              - label: "Club de la presse"
+                id: e1_clubpresse
+              - label: "Europe Nuit"
+                id: e1_nuit
 ---
 id: evt_date
 label: "Date évènement"
