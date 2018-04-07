@@ -199,6 +199,18 @@ items:
                 id: inter_jourmonde
               - label: "Le téléphone sonne"
                 id: inter_telsonne
+          - label: Radio Classique
+            id: radioclassique
+            items:
+              - label: "L'invité de l'économie"
+                id: rc_inveco
+              - label: "L'invité du matin"
+                id: rc_invmat
+              - label: "L'invité politique"
+                id: rc_invpol
+              - label: "Accords / Désaccords"
+                id: rc_accdes
+
 ---
 id: evt_date
 label: "Date évènement"

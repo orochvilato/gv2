@@ -37,6 +37,11 @@ templates:
           attrs:
             src: "/static/img/logos/chaines/$LOGOMEDIA"
             style: ""
+      - sel: "#logomedia2"
+        actions:
+          attrs:
+            src: ""
+            style: "display:none;"
       - sel: "#hashtag"
         actions:
           content: '$HASHTAG'
@@ -332,7 +337,7 @@ evt:
         $HEURE: "12h"
         $HASHTAG: "#E1Midi"
       - name: emission_txt
-        $NOMEMI: "Europe Midi"
+        $NOMEMI: "Europe<br>Midi"
         $ANIEMI: "Maxime Switek"
 
   e1_hondelatte:
@@ -342,7 +347,7 @@ evt:
         $HEURE: "17h"
         $HASHTAG: "#HondelatteRaconte"
       - name: emission_txt
-        $NOMEMI: "Hondelatte Raconte"
+        $NOMEMI: "Hondelatte<br>Raconte"
         $ANIEMI: "Christophe Hondelatte"
   e1_itvsoir:
     templates:
@@ -351,7 +356,7 @@ evt:
         $HEURE: "18h40"
         $HASHTAG: "#E1Soir"
       - name: emission_txt
-        $NOMEMI: "L'interview d'Europe 1 soir"
+        $NOMEMI: "L'interview<br>d'Europe 1 soir"
         $ANIEMI: "Nicolas Poincaré"
   e1_clubpresse:
     templates:
@@ -360,7 +365,7 @@ evt:
         $HEURE: "19h00"
         $HASHTAG: "#E1Soir"
       - name: emission_txt
-        $NOMEMI: "Club de la presse"
+        $NOMEMI: "Club de<br>la presse"
         $ANIEMI: "Nicolas Poincaré"
   e1_nuit:
     templates:
@@ -369,7 +374,7 @@ evt:
         $HEURE: "22h"
         $HASHTAG: "#europenuit"
       - name: emission_txt
-        $NOMEMI: "Europe Nuit"
+        $NOMEMI: "Europe<br>Nuit"
         $ANIEMI: "Pierre de Vilno"
   cnews_invpol:
     templates:
@@ -378,7 +383,7 @@ evt:
         $HASHTAG: "#LaMatinale"
       - name: media_cnews
       - name: emission_txt
-        $NOMEMI: "L'invité politique"
+        $NOMEMI: "L'invité<br>politique"
         $ANIEMI: "Jean-pierre Elkabbach"
   cnews_heurepros:
     templates:
@@ -387,7 +392,7 @@ evt:
         $HASHTAG: "#HDPros"
       - name: media_cnews
       - name: emission_txt
-        $NOMEMI: "L'Heure des pros"
+        $NOMEMI: "L'Heure<br>des pros"
         $ANIEMI: "Pascal Praud"
   cnews_voixinfo:
     templates:
@@ -396,7 +401,7 @@ evt:
         $HASHTAG: "#Lesvoixdelinfo"
       - name: media_cnews
       - name: emission_txt
-        $NOMEMI: "Les voix de l'info"
+        $NOMEMI: "Les voix<br>de l'info"
         $ANIEMI: "Sonia Mabrouk"
   cnews_integralewe:
     templates:
@@ -405,7 +410,7 @@ evt:
         $HASHTAG: "#IntegraleWE"
       - name: media_cnews
       - name: emission_txt
-        $NOMEMI: "Intégrale week-end"
+        $NOMEMI: "Intégrale<br>week-end"
         $ANIEMI: "Patrice Boisfer"
   cnews_punchline:
     templates:
@@ -423,7 +428,7 @@ evt:
         $HASHTAG: "#LeGrandJT"
       - name: media_cnews
       - name: emission_txt
-        $NOMEMI: "Le grand journal"
+        $NOMEMI: "Le grand<br>journal"
         $ANIEMI: "Laurence Ferrari"
   inter_invite57:
     templates:
@@ -432,7 +437,7 @@ evt:
         $HEURE: "6h20"
         $HASHTAG: "#le57inter"
       - name: emission_txt
-        $NOMEMI: "L'invité du 5/7"
+        $NOMEMI: "L'invité<br>du 5/7"
         $ANIEMI: "Hélène Roussel"
   inter_invite750:
     templates:
@@ -441,7 +446,7 @@ evt:
         $HEURE: "7h50"
         $HASHTAG: "#le79Inter"
       - name: emission_txt
-        $NOMEMI: "L'invité de 7h50"
+        $NOMEMI: "L'invité<br>de 7h50"
         $ANIEMI: "Léa Salamé"
   inter_invite79:
     templates:
@@ -450,13 +455,14 @@ evt:
         $HEURE: "8h20"
         $HASHTAG: "#le79Inter"
       - name: emission_txt
-        $NOMEMI: "L'invité du 7/9"
+        $NOMEMI: "L'invité<br>du 7/9"
         $ANIEMI: "Nicolas Demorand"
   inter_semainefrance:
     templates:
       - name: evenement_media
         $LOGOMEDIA: "radio/france_inter.png"
         $HEURE: "18h15"
+        $HASHTAG: "#Hashtag"
       - name: emission_txt
         $NOMEMI: "Une semaine<br>en france"
         $ANIEMI: "Claire Servajean"
@@ -465,6 +471,7 @@ evt:
       - name: evenement_media
         $LOGOMEDIA: "radio/france_inter.png"
         $HEURE: "18h15"
+        $HASHTAG: "#Hashtag"
       - name: emission_txt
         $NOMEMI: "Un jour dans<br>le monde"
         $ANIEMI: "Fabienne Sintes"
@@ -477,7 +484,49 @@ evt:
       - name: emission_txt
         $NOMEMI: "Le téléphone<br>sonne"
         $ANIEMI: "Fabienne Sintes"
-
+  rc_inveco:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/radio_classique.png"
+        $HEURE: "7h20"
+        $HASHTAG: "#Hashtag"
+      - name: emission_txt
+        $NOMEMI: "L'invité de<br>l'économie"
+        $ANIEMI: "Dimitri Pavlenko"
+  rc_invmat:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/radio_classique.png"
+        $HEURE: "7h50"
+        $HASHTAG: "#Hashtag"
+      - name: emission_txt
+        $NOMEMI: "L'invité<br>de matin"
+        $ANIEMI: "Guillaume Durand"
+  rc_invpol:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/radio_classique.png"
+        $HEURE: "8h16"
+        $HASHTAG: "#Hashtag"
+      - name: emission_txt
+        $NOMEMI: "L'invité<br>politique"
+        $ANIEMI: "Guillaume Durand"
+    targets:
+      - sel: "#logomedia2"
+        actions:
+          attrs:
+            src: "/static/img/logos/chaines/tele/paris_premiere.png"
+            style: ""
+  rc_accdes:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/radio_classique.png"
+        $HEURE: "8h40"
+        $HASHTAG: "#Hashtag"
+      - name: emission_txt
+        $NOMEMI: "Accords<br>Désaccords"
+        $ANIEMI: "Guillaume Durand"
+    
 droite:
   True:
     targets:

@@ -151,8 +151,9 @@
       justify-content: center;
     }
     .media img {
-      height:7vw;
-      margin-left:1vw;
+      max-height:7vw;
+      max-width:12vw;
+      object-fit: contain;
       margin-right:1vw;
       padding:1vw;
       /*background-color:#fff;*/
@@ -273,7 +274,7 @@
             <div class="image image1" id="image1"></div>
         </div>
         <div id="blocparent">
-            
+
             <div class="zone textshadow zone1" id="zone1" contenteditable="">
                 <div align="center" margintop="-1">
                   <span id="prenom" fontweight="8" fontsize="12" color="2" lineheight="6" fontfamily="1">prénom</span>
@@ -315,7 +316,7 @@
                 </div>
               </div>
               <div class="zone3 media" id="loc_media" emission='logo'>
-                <img id="logomedia" src="">
+                <img id="logomedia" src=""><img id="logomedia2" src="">
                 <img id="logoemission" src="">
                 <div id="nomemission">
                 <div class="nomemission"><div><span id="labelemission" fontweight="7" fontfamily="4" fontsize="8" color="1"  lineheight="4" texttransform="uppercase">L'interview de 8h15</span></div>
