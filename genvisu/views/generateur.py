@@ -122,11 +122,12 @@ def parseSelectItems(data,item):
 def parseOptions(visuelid):
     import json
     option_path = os.path.join(app_path,'genvisu','modeles',visuels[visuelid],'options.yml')
+    options = {'_order':[]}
+
     if not os.path.exists(option_path):
-        return {}
+        return options
 
     import yaml
-    options = {'_order':[]}
     for option in yaml.load_all(open(option_path).read()):
         options['_order'].append(option['id'])
         if option['type']=='select':
@@ -154,7 +155,7 @@ def parseActions(visuelid):
         for val,act in values.iteritems():
 
             actions[id][val] = {'targets':[],'params':{}}
-            
+
             if 'templates' in act.keys():
                 for tmpl in act['templates']:
                     if tmpl['name'] in templates.keys():
