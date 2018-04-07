@@ -430,6 +430,22 @@ evt:
       - name: emission_txt
         $NOMEMI: "Le grand<br>journal"
         $ANIEMI: "Laurence Ferrari"
+  f2_les4v:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "tele/Fr_2_2018.png"
+        $HEURE: "7h35"
+        $HASHTAG: "#Les4V"
+      - name: emission_logo
+        $LOGOEMI: "les4v.png"
+  f2_13h:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "tele/Fr_2_2018.png"
+        $HEURE: "13h"
+        $HASHTAG: "#JT #13h"
+      - name: emission_logo
+        $LOGOEMI: "f2_13h.png"
   inter_invite57:
     templates:
       - name: evenement_media
@@ -526,7 +542,52 @@ evt:
       - name: emission_txt
         $NOMEMI: "Accords<br>Désaccords"
         $ANIEMI: "Guillaume Durand"
-    
+  rc_gds:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/radio_classique.png"
+        $HEURE: "19h15"
+        $HASHTAG: "#Hashtag"
+      - name: emission_txt
+        $NOMEMI: "Le Grand Débat<br>du soir"
+        $ANIEMI: "Patrick Poivre-d'Arvor"
+  rtl_invyc:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/rtl.png"
+        $HEURE: "7h20"
+        $HASHTAG: "#RTLMatin"
+      - name: emission_txt
+        $NOMEMI: "L'invité<br>d'Yves Calvi"
+        $ANIEMI: "Yves Calvi"
+  rtl_invite:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/rtl.png"
+        $HEURE: "7h45"
+        $HASHTAG: "#RTLMatin"
+      - name: emission_txt
+        $NOMEMI: "L'invité<br>de RTL"
+        $ANIEMI: "Elizabeth Martichoux"
+  rtl_midi:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/rtl.png"
+        $HEURE: "12h30"
+        $HASHTAG: "#RTLMidi"
+      - name: emission_txt
+        $NOMEMI: "RTL Midi"
+        $ANIEMI: "Christelle Rebière<br>et Vincent Parizot"
+  rtl_soir:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/rtl.png"
+        $HEURE: "18h"
+        $HASHTAG: "#RTLSoir"
+      - name: emission_txt
+        $NOMEMI: "RTL Soir"
+        $ANIEMI: "Marc-Olivier Fogiel"
+
 droite:
   True:
     targets:

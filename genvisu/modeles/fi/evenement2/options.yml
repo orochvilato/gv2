@@ -165,7 +165,13 @@ items:
                 id: cnews_punchline
               - label: "Le grand journal"
                 id: cnews_grandjournal
-
+          - label: France 2
+            id: france2
+            items:
+              - label: "Les 4 vérités"
+                id: f2_les4v
+              - label: "Le journal de 13h"
+                id: f2_13h
       - label: Radio
         id: radio
         items:
@@ -210,6 +216,19 @@ items:
                 id: rc_invpol
               - label: "Accords / Désaccords"
                 id: rc_accdes
+              - label: "Le Grand Débat du soir"
+                id: rc_gds
+          - label: RTL
+            id: rtl
+            items:
+              - label: "L'invité d'Yves Calvi"
+                id: rtl_invyc
+              - label: "L'invité de RTL"
+                id: rtl_invite
+              - label: "RTL Midi"
+                id: rtl_midi
+              - label: "RTL Soir"
+                id: rtl_soir
 
 ---
 id: evt_date
