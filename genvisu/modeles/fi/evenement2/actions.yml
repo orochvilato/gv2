@@ -398,6 +398,86 @@ evt:
       - name: emission_txt
         $NOMEMI: "Les voix de l'info"
         $ANIEMI: "Sonia Mabrouk"
+  cnews_integralewe:
+    templates:
+      - name: evenement_media
+        $HEURE: "19h"
+        $HASHTAG: "#IntegraleWE"
+      - name: media_cnews
+      - name: emission_txt
+        $NOMEMI: "Intégrale week-end"
+        $ANIEMI: "Patrice Boisfer"
+  cnews_punchline:
+    templates:
+      - name: evenement_media
+        $HEURE: "19h10"
+        $HASHTAG: "#Punchline"
+      - name: media_cnews
+      - name: emission_txt
+        $NOMEMI: "Punchline"
+        $ANIEMI: "Laurence Ferrari"
+  cnews_grandjournal:
+    templates:
+      - name: evenement_media
+        $HEURE: "21h00"
+        $HASHTAG: "#LeGrandJT"
+      - name: media_cnews
+      - name: emission_txt
+        $NOMEMI: "Le grand journal"
+        $ANIEMI: "Laurence Ferrari"
+  inter_invite57:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/france_inter.png"
+        $HEURE: "6h20"
+        $HASHTAG: "#le57inter"
+      - name: emission_txt
+        $NOMEMI: "L'invité du 5/7"
+        $ANIEMI: "Hélène Roussel"
+  inter_invite750:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/france_inter.png"
+        $HEURE: "7h50"
+        $HASHTAG: "#le79Inter"
+      - name: emission_txt
+        $NOMEMI: "L'invité de 7h50"
+        $ANIEMI: "Léa Salamé"
+  inter_invite79:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/france_inter.png"
+        $HEURE: "8h20"
+        $HASHTAG: "#le79Inter"
+      - name: emission_txt
+        $NOMEMI: "L'invité du 7/9"
+        $ANIEMI: "Nicolas Demorand"
+  inter_semainefrance:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/france_inter.png"
+        $HEURE: "18h15"
+      - name: emission_txt
+        $NOMEMI: "Une semaine<br>en france"
+        $ANIEMI: "Claire Servajean"
+  inter_jourmonde:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/france_inter.png"
+        $HEURE: "18h15"
+      - name: emission_txt
+        $NOMEMI: "Un jour dans<br>le monde"
+        $ANIEMI: "Fabienne Sintes"
+  inter_telsonne:
+    templates:
+      - name: evenement_media
+        $LOGOMEDIA: "radio/france_inter.png"
+        $HEURE: "19h20"
+        $HASHTAG: "#Telsonne"
+      - name: emission_txt
+        $NOMEMI: "Le téléphone<br>sonne"
+        $ANIEMI: "Fabienne Sintes"
+
 droite:
   True:
     targets:

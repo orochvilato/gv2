@@ -184,6 +184,21 @@ items:
                 id: e1_clubpresse
               - label: "Europe Nuit"
                 id: e1_nuit
+          - label: France Inter
+            id: franceinter
+            items:
+              - label: "L'invité du 5/7"
+                id: inter_invite57
+              - label: "L'invité de 7h50"
+                id: inter_invite750
+              - label: "L'invité du 7/9"
+                id: inter_invite79
+              - label: "Une semaine en france"
+                id: inter_semainefrance
+              - label: "Un jour dans le monde"
+                id: inter_jourmonde
+              - label: "Le téléphone sonne"
+                id: inter_telsonne
 ---
 id: evt_date
 label: "Date évènement"

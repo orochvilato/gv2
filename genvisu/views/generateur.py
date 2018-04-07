@@ -154,6 +154,7 @@ def parseActions(visuelid):
         for val,act in values.iteritems():
 
             actions[id][val] = {'targets':[],'params':{}}
+            
             if 'templates' in act.keys():
                 for tmpl in act['templates']:
                     if tmpl['name'] in templates.keys():
