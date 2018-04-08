@@ -153,6 +153,8 @@ items:
           - label: CNEWS
             id: cnews
             items:
+              - label: "L'invité de la matinale WE"
+                id: cnews_invmatwe
               - label: "L'invité politique"
                 id: cnews_invpol
               - label: "L'Heure des pros"

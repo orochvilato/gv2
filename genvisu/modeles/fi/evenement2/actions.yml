@@ -385,6 +385,15 @@ evt:
       - name: emission_txt
         $NOMEMI: "L'invité<br>politique"
         $ANIEMI: "Jean-pierre Elkabbach"
+  cnews_invmatwe:
+    templates:
+      - name: evenement_media
+        $HEURE: "9h00"
+        $HASHTAG: "#LaMatinaleWE"
+      - name: media_cnews
+      - name: emission_txt
+        $NOMEMI: "L'invité de<br>la matinale"
+        $ANIEMI: "Thomas Lequertier"
   cnews_heurepros:
     templates:
       - name: evenement_media
