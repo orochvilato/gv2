@@ -363,7 +363,7 @@ def visuel(visuelid):
                 for child in list(e):
                     e.remove(child)
                 txml = parse_content(zones[id])
-                if len(txml):
+                if txml and len(txml):
                     for child in list(txml)[0]:
                         e.append(child)
 
