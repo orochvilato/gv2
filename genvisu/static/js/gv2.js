@@ -555,7 +555,7 @@ function iframeLoaded() {
     var fdocument = fwindow.document;
     var fzone = e.target;
     var charcode = e.charCode;
-
+    
     // Historique
     var changed = false;
     var his_item = getHistoryItem(fzone);
