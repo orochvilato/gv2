@@ -9,6 +9,7 @@ import os
 import time
 
 visuels = {
+    'bingo':'fi/bingo',
     'test':'fi/test',
     '22mars':'fi/affiche2',
     'affiche':'fi/affiche',
@@ -247,7 +248,7 @@ def img(imgfile):
     return returnfile('img',imgfile)
 
 @app.route('/js/<jsfile>')
-def js(cssfile):
+def js(jsfile):
     return returnfile('js',jsfile)
 
 
@@ -302,6 +303,14 @@ def export():
             r = requests.post('http://127.0.0.1:8888/prepare',data={'url':url,'width':width,'height':height, 'name':name, 'watermark':json.dumps(watermark)})
             return r.content
     return "Nope"
+
+@app.route('/bingo')
+def bingo():
+    path = os.path.join(app_path,'genvisu','modeles',visuels['bingo'],'index.html')
+    templ = open(path,'r').read().decode('utf8')
+    slots = ['test']*20
+    return render_template_string(templ,slots=slots)
+
 
 
 @app.route('/visuel/<visuelid>')

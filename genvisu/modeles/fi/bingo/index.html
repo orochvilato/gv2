@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<style>
+
+
+
+  .shape {
+    width:300px;
+    height:200px;
+    font-family: Verdana;
+    font-weight: bold;
+    background-color: #eee;
+    font-size:150px;
+    padding:20px;
+    box-sizing: border-box;
+  }
+  #text {
+    width:100%;
+    height:100%;
+    background-color:white;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+
+</style>
+<div class="shape">
+<div id="text">Tes</div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    console.log($('#text').innerWidth(),$('#text').innerHeight())
+    var s = findSize($('#text'),$('#text').html(),250);
+
+    $('#text').css('font-size',s+'px');
+    function findSize(elt,text,initialsize) {
+        var tag = document.createElement("div");
+        tag.style.width = $(elt).innerWidth()+'px';
+        tag.style.height = $(elt).innerHeight()+'px';
+        tag.style.position = "absolute";
+        tag.style.left = "-999em";
+        tag.style.overflowY = "hidden";
+        tag.style.fontFamily = "Verdana";
+        tag.style.fontWeight = "bold";
+
+        tag.innerHTML = text;
+        document.body.appendChild(tag);
+
+
+        var size = initialsize;
+        tag.style.fontSize = size +"px";
+        console.log(tag.scrollHeight,$(tag).innerHeight());
+        while (size>10 && (tag.scrollHeight>$(tag).innerHeight() || tag.scrollWidth>$(tag).innerWidth())) {
+          tag.style.fontSize = size +"px";
+          //console.log(tag.scrollHeight,$(tag).innerHeight());
+          size = size - 0.5;
+        }
+        document.body.removeChild(tag);
+
+        return size;
+    }
+
+  });
+
+
+
+</script>
