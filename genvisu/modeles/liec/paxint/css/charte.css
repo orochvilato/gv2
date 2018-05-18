@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900|Courgette:100,200,300,400,500,600,700,800,900|Montserrat:100,200,300,400,500,600,700,800,900|Roboto+Slab:100,200,300,400,500,600,700,800,900");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu+Condensed:100,200,300,400,500,600,700,800,900|Roboto+Condensed:100,200,300,400,500,600,700,800,900|Roboto:100,200,300,400,500,600,700,800,900|Courgette:100,200,300,400,500,600,700,800,900|Montserrat:100,200,300,400,500,600,700,800,900|Roboto+Slab:100,200,300,400,500,600,700,800,900");
 
 *[fontfamily="1"] {
   font-family: "Montserrat", sans-serif;
@@ -12,7 +12,12 @@
 *[fontfamily="4"] {
   font-family: "Roboto", serif;
 }
-
+*[fontfamily="5"] {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+*[fontfamily="6"] {
+  font-family: 'Ubuntu Condensed', sans-serif;
+}
 
 *[color="4"] {
   color:#d1b9d7;
