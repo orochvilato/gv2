@@ -555,7 +555,7 @@ function iframeLoaded() {
     var fdocument = fwindow.document;
     var fzone = e.target;
     var charcode = e.charCode;
-    
+
     // Historique
     var changed = false;
     var his_item = getHistoryItem(fzone);
@@ -1160,6 +1160,8 @@ function sendData(action,slot,w,h) {
               if ((data.avancement == 100)||(data.avancement==-1)) {
                 clearInterval(downloadTimer);
                 window.setTimeout(function() {
+                  console.log(data.avancement);
+                  alert('pause');
                   if (data.avancement == 100) window.open('/retrieve_image?key='+key,'_blank');
                   $('#overlay').hide();
                   $('.jauge').css('width','0%');
