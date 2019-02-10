@@ -65,8 +65,8 @@ def senddata():
     import uuid
     cachekey = str(uuid.uuid4())
     memcache.set(cachekey,request.form.get('data'),time=600);
-    print request.form.get('data')
-    print memcache.get(cachekey)
+    print len(request.form.get('data'))
+    print len(memcache.get(cachekey))
 
     return cachekey
 
