@@ -65,6 +65,7 @@ def senddata():
     import uuid
     cachekey = str(uuid.uuid4())
     memcache.set(cachekey,request.form.get('data'),time=600);
+
     return cachekey
 
 def get_dimensions(visuelid):
@@ -259,7 +260,6 @@ def checkstate():
         data = {'etat':'Erreur','avancement':0}
     else:
         r = requests.get('http://127.0.0.1:8888/status?key='+key)
-        print r.content
         data = r.json()
         print data
         if not data:
@@ -283,7 +283,8 @@ def export():
     key = request.args.get('key')
     width = request.args.get('w',1024)
     height = request.args.get('h',1024)
-
+    print key
+    print memcache.get(key)
     data = None
     if key:
         data = memcache.get(key)
