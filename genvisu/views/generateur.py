@@ -65,6 +65,8 @@ def senddata():
     import uuid
     cachekey = str(uuid.uuid4())
     memcache.set(cachekey,request.form.get('data'),time=600);
+    print data
+    print memcache.get(cachekey)
 
     return cachekey
 
@@ -283,8 +285,7 @@ def export():
     key = request.args.get('key')
     width = request.args.get('w',1024)
     height = request.args.get('h',1024)
-    print key
-    print memcache.get(key)
+
     data = None
     if key:
         data = memcache.get(key)
