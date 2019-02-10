@@ -64,7 +64,7 @@ def senddata():
         save_work(user,slot,request.form)
     import uuid
     cachekey = str(uuid.uuid4())
-    print memcache.set(cachekey,request.form.get('data')),time=600)
+    print memcache.set(cachekey,request.form.get('data'),time=600)
     print len(request.form.get('data'))
 
 
